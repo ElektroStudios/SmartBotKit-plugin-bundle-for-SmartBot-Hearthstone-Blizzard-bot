@@ -31,9 +31,13 @@ You can star writting a new plugin taking this template project as a start point
 ## MultiLauncher
 This plugin automatically launchs your favorite files or 3rd party programs for Hearthstone at SmartBot's startup.
 
-You can run any kind of executable type, which is not limited to .exe files.
+You can run any kind of executable file type, which is not limited to .exe files.
 
-You can even run Blizzard's client if you like. 
+You can even run Blizzard's Battle.net client if you like. 
+
+Settings:
+
+![](https://i.imgur.com/BMZavKT.png)
 
 ## PanicButton
 This plugin will stop the bot or terminate SmartBot process when a specified hotkey combination is pressed.
@@ -51,10 +55,22 @@ When the plugin is deactivated or SmartBot process is terminated, the system-wid
 Don't be worried about, Windows operating system will ensure itself that the temporary hotkey ﻿gets unregistered,
 so the functionality of any modified key (or overriden operating system hotkey) will return to normal. 
 
+Settings:
+
+![](https://i.imgur.com/tUXTWGv.png)
+
 ## SystemTrayIcon
 This plugin will display a system tray icon that adds some enhancements to bring a new user experience when using SmartBot,﻿
 such as the ability to minimize the window to system-tray, restore from system-tray, terminate SmartBot process,
 and also will display your current win rate statistics when hovering the mouse cursor over the system tray icon. 
+
+Preview:
+
+![](https://i.imgur.com/Kpx6rXQ.png)
+
+Settings:
+
+![](https://i.imgur.com/a7NKPxC.png)
 
 ## TaskBarInfo
 This ﻿plugin will display progress information on SmartBot's taskbar icon﻿﻿.
@@ -65,13 +81,25 @@ this way you can keep track of your progress when SmartBot window is minimized.
 A progressbar indicator is also shown in the taskbar icon. ﻿
 
 For other game modes, it will only display your hero's class name and the enemy's class name﻿﻿.
-Since the visible text capacity of a taskbar icon is very small, I decided to just display that info﻿﻿. 
+Since the visible text capacity of a taskbar icon is very small, I decided to just display that info. 
+
+Preview:
+
+![](https://i.imgur.com/4kU0sbu.png)
+
+Settings:
+
+![](https://i.imgur.com/eKiY7fT.png)
 
 ## UltimateEmoter
 This plugin automatically sends emotes to enemies on certain conditions defined by the user.
 I added only few configurable conditions for this initial release, in the future I will add more.
 
 The plugin has also a condition to squelch/mute the enemy. 
+
+Settings:
+
+![](https://i.imgur.com/mL8zInj.png)
 
 ## WindowRestorator
 This plugin will restore the last size and position of SmartBot's window the next time you run it.
@@ -80,4 +108,6 @@ It also restores the maximized state if SmartBot was maximized when you terminat
 
 It will don't restore the minimized state since I consider it useless. (who wants to run minimized a program?)
 
- 
+Settings:
+
+![](https://i.imgur.com/EGyBLgA.png)
