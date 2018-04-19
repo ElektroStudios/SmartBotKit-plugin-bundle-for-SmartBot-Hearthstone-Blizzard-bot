@@ -46,13 +46,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="SBAPI">
-      <HintPath>..\..\..\Users\Administrador\Downloads\Games\sb-v46.1\SBAPI.dll</HintPath>
-      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <HintPath>..\References\SBAPI.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="Xceed.Wpf.Toolkit">
-      <HintPath>..\..\..\Users\Administrador\Downloads\Games\sb-v46.1\Xceed.Wpf.Toolkit.dll</HintPath>
+      <HintPath>..\References\Xceed.Wpf.Toolkit.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>

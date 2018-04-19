@@ -9,17 +9,17 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("UltimateEmoter")>
-<Assembly: AssemblyDescription("Automatically sends emotes to enemies on certain conditions defined by the user")>
+<Assembly: AssemblyTitle("AutoCleaner")>
+<Assembly: AssemblyDescription("Automatically cleans temporary files when exiting from SmartBot.")>
 <Assembly: AssemblyCompany("Elektro Studios")>
-<Assembly: AssemblyProduct("UltimateEmoter")>
+<Assembly: AssemblyProduct("AutoCleaner")>
 <Assembly: AssemblyCopyright("Copyright © Elektro Studios 2018")>
 <Assembly: AssemblyTrademark("")>
 
 <Assembly: ComVisible(False)>
 
 'The following GUID is for the ID of the typelib if this project is exposed to COM
-<Assembly: Guid("5B588561-A412-4A4C-8A34-A623E0604476")>
+<Assembly: Guid("0C989696-2464-46DB-A757-6A4D750B3B14")>
 
 ' Version information for an assembly consists of the following four values:
 '
@@ -32,6 +32,6 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")>
 
-<Assembly: AssemblyVersion("1.1.0.0")>
-<Assembly: AssemblyFileVersion("1.1.0.0")>
+<Assembly: AssemblyVersion("1.0.0.0")>
+<Assembly: AssemblyFileVersion("1.0.0.0")>
 <Assembly: NeutralResourcesLanguage("en")>

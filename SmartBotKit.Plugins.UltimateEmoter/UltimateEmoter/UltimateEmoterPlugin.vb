@@ -179,6 +179,18 @@ Namespace UltimateEmoter
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
+        ''' Called when the bot determines the hero has a lethal move to perform in the current turn.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        Public Overrides Sub OnLethal()
+            If (Me.DataContainer.Enabled) AndAlso (Bot.IsBotRunning) Then
+                Me.MaybeDoEmoteOnLethal()
+            End If
+            MyBase.OnLethal()
+        End Sub
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
         ''' Called when a game is conceded by our hero.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
@@ -220,6 +232,28 @@ Namespace UltimateEmoter
                         Dim queued As Boolean = Me.MaybeSendEmote(Me.DataContainer.SendEmoteOnConditionsPercent, emote)
                         If (queued) Then
                             Bot.Log(String.Format("[UltimateEmoter] Sending emote '{0}' due to condition: '{1}'.", emote.ToString(), NameOf(Me.DataContainer.EmoteOnFirstTurn)))
+                        End If
+                    End Sub, TaskCreationOptions.LongRunning)
+
+                Await t
+                t.Dispose()
+            End If
+        End Sub
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Randomly decides to send a emote when the bot detects a lethal move.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        Private Async Sub MaybeDoEmoteOnLethal()
+            If (Me.DataContainer.EmoteOnLethal) Then
+                Dim emote As Bot.EmoteType = Me.DataContainer.EmoteOnLethalType
+
+                Dim t As Task = Task.Factory.StartNew(
+                    Sub()
+                        Dim queued As Boolean = Me.MaybeSendEmote(Me.DataContainer.SendEmoteOnConditionsPercent, emote)
+                        If (queued) Then
+                            Bot.Log(String.Format("[UltimateEmoter] Sending emote '{0}' due to condition: '{1}'.", emote.ToString(), NameOf(Me.DataContainer.EmoteOnLethal)))
                         End If
                     End Sub, TaskCreationOptions.LongRunning)
 
@@ -290,7 +324,7 @@ Namespace UltimateEmoter
             Dim isWinner As Boolean = (chance <= percent)
 
             If (isWinner) Then
-                Thread.Sleep(Me.Rng.Next(1500, 4000))
+                Thread.Sleep(Me.Rng.Next(1500, Me.DataContainer.MaxDelay))
                 Bot.SendEmote(emote)
             End If
 
@@ -309,7 +343,7 @@ Namespace UltimateEmoter
 
             If (isWinner) Then
                 Me.isEnemySquelched = True
-                Thread.Sleep(Me.Rng.Next(1500, 4000))
+                Thread.Sleep(Me.Rng.Next(2000, 5000))
                 Bot.Squelch()
                 Bot.Log("[UltimateEmoter] Enemy squelched.")
             End If

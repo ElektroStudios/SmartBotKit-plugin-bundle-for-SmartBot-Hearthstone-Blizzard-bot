@@ -64,7 +64,8 @@ Namespace UltimateEmoter
             End Set
         End Property
         ''' <summary>
-        ''' (Backing Field )
+        ''' ( Backing Field )
+        ''' <para></para>
         ''' The percentage chance to reply an emote.
         ''' </summary>
         Private replyEmotePercentB As Integer
@@ -86,9 +87,9 @@ Namespace UltimateEmoter
                 Return Me.maxRepliesB
             End Get
             Set(ByVal value As Integer)
-                If value < 1 Then
+                If (value < 1) Then
                     Me.maxRepliesB = 1
-                ElseIf value > 20 Then
+                ElseIf (value > 20) Then
                     Me.maxRepliesB = 20
                 Else
                     Me.maxRepliesB = value
@@ -96,7 +97,8 @@ Namespace UltimateEmoter
             End Set
         End Property
         ''' <summary>
-        ''' (Backing Field )
+        ''' ( Backing Field )
+        ''' <para></para>
         ''' The amount of maximum emote replies per game.
         ''' </summary>
         Private maxRepliesB As Integer
@@ -160,6 +162,27 @@ Namespace UltimateEmoter
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
+        ''' Gets or sets a value that determine whether an emote should be sent when the bot detects a lethal move.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        <Category("Send Emote On Conditions")>
+        <DisplayName("Send emote when bot concedes the game.")>
+        <Browsable(True)>
+        Public Property EmoteOnLethal() As Boolean
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets or sets a value that determine the emote that will be sent 
+        ''' when <see cref="UltimateEmoterPluginData.EmoteOnLethal"/> is enabled.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        <Category("Send Emote On Conditions")>
+        <DisplayName("Emote type to send when bot concedes the game.")>
+        <Browsable(True)>
+        Public Property EmoteOnLethalType() As Bot.EmoteType
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
         ''' Gets or sets a value that determine whether an emote should be sent when the bot concedes the game.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
@@ -220,10 +243,48 @@ Namespace UltimateEmoter
             End Set
         End Property
         ''' <summary>
-        ''' (Backing Field )
+        ''' ( Backing Field )
+        ''' <para></para>
         ''' The percentage chance to squelch/mute the enemy when he sends a emote.
         ''' </summary>
         Private squelchEnemnyPercentB As Integer
+
+#End Region
+
+#Region " Global Settings "
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets or sets the maximum delay to send a emote, in milliseconds.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <value>
+        ''' The maximum delay to send a emote, in milliseconds.
+        ''' </value>
+        ''' ----------------------------------------------------------------------------------------------------
+        <Category("Global Settings")>
+        <DisplayName("The maximum delay to send any emote, in milliseconds.")>
+        <Browsable(True)>
+        Public Property MaxDelay() As Integer
+            Get
+                Return Me.maxDelayB
+            End Get
+            Set(ByVal value As Integer)
+                If (value < 2000) Then
+                    Me.maxDelayB = 2000
+                ElseIf (value > 5000) Then
+                    Me.maxDelayB = 5000
+                Else
+                    Me.maxDelayB = value
+                End If
+            End Set
+        End Property
+        ''' <summary>
+        ''' ( Backing Field )
+        ''' <para></para>
+        ''' The maximum delay to send a emote, in milliseconds.
+        ''' </summary>
+        Private maxDelayB As Integer
 
 #End Region
 
@@ -242,6 +303,9 @@ Namespace UltimateEmoter
             Me.EmoteOnFirstTurn = False
             Me.EmoteOnFirstTurnType = Bot.EmoteType.Greetings
 
+            Me.EmoteOnLethal = False
+            Me.EmoteOnLethalType = Bot.EmoteType.WellPlayed
+
             Me.EmoteOnConcede = False
             Me.EmoteOnConcedeType = Bot.EmoteType.WellPlayed
 
@@ -251,6 +315,7 @@ Namespace UltimateEmoter
             Me.ReplyEmotePercent = 40
             Me.SendEmoteOnConditionsPercent = 40
             Me.SquelchEnemnyPercent = 10
+            Me.MaxDelay = 4000
         End Sub
 
 #End Region

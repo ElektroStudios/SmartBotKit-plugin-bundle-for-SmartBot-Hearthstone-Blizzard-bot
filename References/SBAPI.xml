@@ -1,0 +1,940 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SBAPI</name>
+    </assembly>
+    <members>
+        <member name="M:SmartBot.Arena.ArenaPickHandler.HandlePickDecision(SmartBot.Plugins.API.Card.CClass,System.Collections.Generic.List{SmartBot.Plugins.API.Card.Cards},SmartBot.Plugins.API.Card.Cards,SmartBot.Plugins.API.Card.Cards,SmartBot.Plugins.API.Card.Cards)">
+            <summary>
+            Arena handler interface for external logic
+            </summary>
+            <param name="heroClass">Current deck hero's class</param>
+            <param name="deck">List of cards in the current deck</param>
+            <param name="choiceOne">Pick choice one</param>
+            <param name="choiceTwo">Pick choice two</param>
+            <param name="choiceThree">Pick choice three</param>
+            <returns>Either choiceOne or choiceTwo or choiceThree</returns>
+        </member>
+        <member name="M:SmartBot.Discover.DiscoverPickHandler.HandlePickDecision(SmartBot.Plugins.API.Card.Cards,System.Collections.Generic.List{SmartBot.Plugins.API.Card.Cards},SmartBot.Plugins.API.Board)">
+            <summary>
+                Arena handler interface for external logic
+            </summary>
+            <returns>return one of the choices contained in choices param</returns>
+        </member>
+        <member name="M:SmartBot.Mulligan.MulliganProfile.HandleMulligan(System.Collections.Generic.List{SmartBot.Plugins.API.Card.Cards},SmartBot.Plugins.API.Card.CClass,SmartBot.Plugins.API.Card.CClass)">
+            <summary>
+            Mulligan handler interface for external logic
+            </summary>
+            <param name="choices">List of cards choices</param>
+            <param name="opponentClass">Opponent's class</param>
+            <param name="ownClass">Own hero's class</param>
+            <returns></returns>
+        </member>
+        <member name="T:SmartBot.Plugins.API.Actions.Action">
+            <summary>
+            Base Action class
+            </summary>
+        </member>
+        <member name="T:SmartBot.Plugins.API.Actions.AttackAction">
+            <summary>
+            Attack action 
+            </summary>
+        </member>
+        <member name="T:SmartBot.Plugins.API.Actions.ChoiceAction">
+            <summary>
+            Choice action
+            </summary>
+        </member>
+        <member name="T:SmartBot.Plugins.API.Actions.ConcedeAction">
+            <summary>
+            Concede action
+            </summary>
+        </member>
+        <member name="T:SmartBot.Plugins.API.Actions.EndTurnAction">
+            <summary>
+            End turn action
+            </summary>
+        </member>
+        <member name="T:SmartBot.Plugins.API.Actions.PushAction">
+            <summary>
+            Play card action
+            </summary>
+        </member>
+        <member name="T:SmartBot.Plugins.API.Actions.ResimulateAction">
+            <summary>
+            Resimulate board action
+            </summary>
+        </member>
+        <member name="T:SmartBot.Plugins.API.Actions.TargetAction">
+            <summary>
+            Target a card action
+            </summary>
+        </member>
+        <member name="T:SmartBot.Plugins.API.Debug">
+            <summary>
+                Debug tools for profile developpers
+            </summary>
+        </member>
+        <member name="E:SmartBot.Plugins.API.Debug.OnAfterBoardReceived">
+            <summary>
+                Called when string containing rootboard is received
+            </summary>
+        </member>
+        <member name="E:SmartBot.Plugins.API.Debug.OnBeforeBoardReceived">
+            <summary>
+                Called when string containing the final board is received
+            </summary>
+        </member>
+        <member name="E:SmartBot.Plugins.API.Debug.OnActionsReceived">
+            <summary>
+                Called when string containing action list is received
+            </summary>
+        </member>
+        <member name="E:SmartBot.Plugins.API.Debug.OnLogReceived">
+            <summary>
+                Called whenever the main UI receive a log message
+            </summary>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Debug.SimulateSeed(System.String,System.String,System.Boolean)">
+            <summary>
+                Request a simulation from the server
+            </summary>
+            <param name="seed">Seed as a string from logs or profile debugger</param>
+            <param name="profile">Profile name, must match a profile contained in the list of the client</param>
+            <param name="autoconcede">Auco concede if enemy has lethal ?</param>
+        </member>
+        <member name="T:SmartBot.Plugins.API.GUI">
+            <summary>
+                Hearthstone GUI elements manipulation
+            </summary>
+        </member>
+        <member name="M:SmartBot.Plugins.API.GUI.AddElement(SmartBot.Plugins.API.GuiElement)">
+            <summary>
+                Add an element to the GUI
+            </summary>
+            <param name="element"></param>
+        </member>
+        <member name="M:SmartBot.Plugins.API.GUI.RemoveElement(SmartBot.Plugins.API.GuiElement)">
+            <summary>
+                Remove an element from the GUI
+            </summary>
+            <param name="element"></param>
+        </member>
+        <member name="M:SmartBot.Plugins.API.GUI.ClearUI">
+            <summary>
+                Clear the GUI
+            </summary>
+        </member>
+        <member name="M:SmartBot.Plugins.API.GUI.TakeScreenshotToPath(System.String,System.String)">
+            <summary>
+                Take a screenshot and save the bitmap as a file to the specified path
+            </summary>
+            <param name="path">Save location</param>
+            <param name="filename">File name</param>
+        </member>
+        <member name="M:SmartBot.Plugins.API.GUI.RequestScreenshotToBitmap">
+            <summary>
+                Request a bitmap screenshot from the game, it will be received via GUI.OnScreenshotReceived callback
+            </summary>
+        </member>
+        <member name="T:SmartBot.Plugins.API.Bot">
+            <summary>
+                Bot controller
+            </summary>
+        </member>
+        <member name="P:SmartBot.Plugins.API.Bot.CurrentBoard">
+            <summary>
+                Return current board state from the game, null if not in game/no board available
+            </summary>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.IsCoachEnabled">
+            <summary>
+                Return the coach state
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.IsBotRunning">
+            <summary>
+                Return the running state of the bot
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.GetCurrentAccount">
+            <summary>
+                Get the current account login
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.SwitchAccount(System.String,System.String)">
+            <summary>
+                Switch to another account
+            </summary>
+            <param name="login">account login</param>
+            <param name="password">account password</param>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.GetPlugins">
+            <summary>
+                Get all loaded plugins
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.GetSessionRewards">
+            <summary>
+                Get rewards gained from arena/ daily gold cap
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.Log(System.String)">
+            <summary>
+                Log an entry to the bot logs
+            </summary>
+            <param name="log"></param>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.StartBot">
+            <summary>
+                Start the bot
+            </summary>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.StopBot">
+            <summary>
+                Stop the bot
+            </summary>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.Squelch">
+            <summary>
+                Squelch opponent
+            </summary>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.UnsquelchOpponent">
+            <summary>
+                Unsquel opponent
+            </summary>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.CloseHs">
+            <summary>
+                Close Hearthstone
+            </summary>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.CloseBot">
+            <summary>
+                Close the bot
+            </summary>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.StartRelogger">
+            <summary>
+                Start relogger
+            </summary>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.StopRelogger">
+            <summary>
+                Stop relogger
+            </summary>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.SuspendBot">
+            <summary>
+                Suspend bot without stopping it
+            </summary>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.Finish">
+            <summary>
+                Finish current game then stop the bot
+            </summary>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.ResumeBot">
+            <summary>
+                Resume bot after Suspend() call
+            </summary>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.RefreshDecks">
+            <summary>
+                Refresh decks list
+            </summary>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.RefreshArenaProfiles">
+            <summary>
+                Refresh arena profiles list
+            </summary>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.RefreshDiscoverProfiles">
+            <summary>
+                Refresh arena profiles list
+            </summary>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.RefreshArchetypes">
+            <summary>
+                Refresh archetypes
+            </summary>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.RefreshProfiles">
+            <summary>
+                Refresh profiles list
+            </summary>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.ReloadPlugins">
+            <summary>
+                Reload plugins
+            </summary>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.RefreshMulliganProfiles">
+            <summary>
+                Refresh mulligan profiles list
+            </summary>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.GetDecks">
+            <summary>
+                Get all available decks
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.GetSelectedDecks">
+            <summary>
+                Get all selected decks
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.GetProfiles">
+            <summary>
+                Get all available profiles
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.GetArenaProfiles">
+            <summary>
+                Get all available arena profiles
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.GetDiscoverProfiles">
+            <summary>
+                Get all available arena profiles
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.GetMulliganProfiles">
+            <summary>
+                Get all mulligan available profiles
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.ChangeDeck(System.String)">
+            <summary>
+                Change current deck
+            </summary>
+            <param name="deckName"></param>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.ChangeArenaProfile(SmartBot.Plugins.API.Bot.ArenaLogic,System.String)">
+            <summary>
+                Change current arena profile
+            </summary>
+            <param name="profile"></param>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.ChangeDiscoverProfile(SmartBot.Plugins.API.Bot.DiscoverLogic,System.String)">
+            <summary>
+                Change current discover profile
+            </summary>
+            <param name="profile"></param>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.ChangeMulligan(System.String)">
+            <summary>
+                Change current mulligan
+            </summary>
+            <param name="mulliganName"></param>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.ChangeProfile(System.String)">
+            <summary>
+                Change current profile
+            </summary>
+            <param name="profileName"></param>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.CurrentMode">
+            <summary>
+                Get current bot mode
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.CurrentDiscoverLogic">
+            <summary>
+                Get Discover mode
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.CurrentDiscoverProfile">
+            <summary>
+                Get Discover mode
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.CurrentScene">
+            <summary>
+                Get current ingame scene
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.CurrentRegion">
+            <summary>
+                Get current ingame region
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.CurrentMulligan">
+            <summary>
+                Get currently used mulligan profile
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.CurrentProfile">
+            <summary>
+                Get currently used profile
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.CurrentDeck">
+            <summary>
+                Get currently used deck
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.ChangeMode(SmartBot.Plugins.API.Bot.Mode)">
+            <summary>
+                Change bot's mode
+            </summary>
+            <param name="mode"></param>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.ChangeAfterArenaMode(SmartBot.Plugins.API.Bot.Mode)">
+            <summary>
+                Change after arena bot's mode
+            </summary>
+            <param name="mode"></param>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.SendEmote(SmartBot.Plugins.API.Bot.EmoteType)">
+            <summary>
+                Send an ingame emote, has no effect if not playing a match
+            </summary>
+            <param name="emoteType"></param>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.SendRandomArrowFromHand(System.Int32)">
+            <summary>
+                Send a random arrow over the board from your hand
+            </summary>
+            <param name="duration">Duration of the arrow</param>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.SendRandomArrowFromBoard(System.Int32)">
+            <summary>
+                Send a random arrow over the board from the board
+            </summary>
+            <param name="duration"></param>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.SetMaxArenaPayments(System.Int32)">
+            <summary>
+                Update the max arenas count the bot will play in auto arena mode
+            </summary>
+            <param name="maxdraftscount"></param>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.SetCurrentArenaPayments(System.Int32)">
+            <summary>
+                Update the current arenas count the bot is playing in auto arena mode
+            </summary>
+            <param name="currentdraftscount"></param>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.SendRandomHoverOnHand(System.Int32)">
+            <summary>
+                Randomly hover card in hand
+            </summary>
+            <param name="duration"></param>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.SendRandomHoverOnFriendlyMinions(System.Int32)">
+            <summary>
+                Randomly hover friendly minions
+            </summary>
+            <param name="duration"></param>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.SendRandomHoverOnEnemyMinions(System.Int32)">
+            <summary>
+                RandomlyHover enemy's minions
+            </summary>
+            <param name="duration"></param>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.Concede">
+            <summary>
+                Concede current game
+            </summary>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.Hover(System.Int32,SmartBot.Plugins.API.Card)">
+            <summary>
+                Hover given card for a amount of time
+            </summary>
+            <param name="duration"></param>
+            <param name="card"></param>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.Arrow(System.Int32,SmartBot.Plugins.API.Card,SmartBot.Plugins.API.Card)">
+            <summary>
+                Create an arrow between two cards
+            </summary>
+            <param name="duration"></param>
+            <param name="source"></param>
+            <param name="target"></param>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.GetAverageLatency">
+            <summary>
+                Get average latency with auth server
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.GetMinLatency">
+            <summary>
+                Get min latency with auth server
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.GetMaxLatency">
+            <summary>
+                Get max latency from auth server
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.SetLatencySamplingRate(System.Int32)">
+            <summary>
+                Set latency sampling interval
+            </summary>
+            <param name="milliseconds"></param>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.SetMinRank(System.Int32)">
+            <summary>
+                Set min rank end condition
+            </summary>
+            <param name="minrank"></param>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.SetMaxRank(System.Int32)">
+            <summary>
+                Set max rank end condition
+            </summary>
+            <param name="maxrank"></param>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.SetMaxWins(System.Int32)">
+            <summary>
+                Set max win end condition
+            </summary>
+            <param name="maxwins"></param>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.SetMaxLosses(System.Int32)">
+            <summary>
+                Set max losses end condition
+            </summary>
+            <param name="maxlosses"></param>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.SetMaxHours(System.Int32)">
+            <summary>
+                Set max hours end condition
+            </summary>
+            <param name="maxhours"></param>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.SetCloseHs(System.Boolean)">
+            <summary>
+                Should close hs on end conditions
+            </summary>
+            <param name="enabled"></param>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.SetAutoConcede(System.Boolean)">
+            <summary>
+                Set auto concede setting
+            </summary>
+            <param name="enabled"></param>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.SetAutoConcedeAlternativeMode(System.Boolean)">
+            <summary>
+                Set auto concede setting
+            </summary>
+            <param name="enabled"></param>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.SetAutoConcedeMaxRank(System.Int32)">
+            <summary>
+                Set auto concede rank setting
+            </summary>
+            <param name="rank"></param>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.SetConcedeWhenLethal(System.Boolean)">
+            <summary>
+                Set concede when lethal setting
+            </summary>
+            <param name="enabled"></param>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.SetThinkingRoutineEnabled(System.Boolean)">
+            <summary>
+                Set thinking routine enabled setting
+            </summary>
+            <param name="enabled"></param>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.SetHoverRoutineEnabled(System.Boolean)">
+            <summary>
+                Set hovering routine enabled setting
+            </summary>
+            <param name="enabled"></param>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.GetQuests">
+            <summary>
+                Get current active quests
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.GetPlayerDatas">
+            <summary>
+                Get some basic infos about the player
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.GetCurrentOpponentId">
+            <summary>
+                Get current opponent's unique ID
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.GetPreviousOpponentId">
+            <summary>
+                Get previous opponent's unique ID
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.CanCancelQuest">
+            <summary>
+                Can cancel a quest today ?
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.CancelQuest(SmartBot.Plugins.API.Quest)">
+            <summary>
+                Schedule quest canceling
+            </summary>
+            <param name="quest"></param>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.GetFriendRequests">
+            <summary>
+                Get active friend requests
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.AcceptFriendRequest(SmartBot.Plugins.API.FriendRequest)">
+            <summary>
+                Accept an active friend request
+            </summary>
+            <param name="request"></param>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.DeclineFriendRequest(SmartBot.Plugins.API.FriendRequest)">
+            <summary>
+                Decline an active friend request
+            </summary>
+            <param name="request"></param>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.GetFriends">
+            <summary>
+                Get friends list
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.RemoveFriend(SmartBot.Plugins.API.Friend)">
+            <summary>
+                Remove a friend from friends list
+            </summary>
+            <param name="friend"></param>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.WhisperToFriend(SmartBot.Plugins.API.Friend,System.String)">
+            <summary>
+                Send a message to a friend
+            </summary>
+            <param name="friend"></param>
+            <param name="message"></param>
+        </member>
+        <member name="M:SmartBot.Plugins.API.Bot.IsGoldCapReached">
+            <summary>
+                Is gold cap reached for the day?
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SmartBot.Plugins.API.Board">
+            <summary>
+                Represent a board state capture
+            </summary>
+        </member>
+        <member name="T:SmartBot.Plugins.API.Card">
+            <summary>
+                Represent an entity from a Board
+            </summary>
+        </member>
+        <member name="T:SmartBot.Plugins.API.Deck">
+            <summary>
+            Deck
+            </summary>
+        </member>
+        <member name="T:SmartBot.Plugins.API.Friend">
+            <summary>
+            Represents a friend in player's friendlist
+            </summary>
+        </member>
+        <member name="T:SmartBot.Plugins.API.FriendRequest">
+            <summary>
+            Represents a request in player's friendlist
+            </summary>
+        </member>
+        <member name="T:SmartBot.Plugins.API.GuiElementButton">
+            <summary>
+            Draw a button on the screen
+            </summary>
+        </member>
+        <member name="T:SmartBot.Plugins.API.GuiElementBitmap">
+            <summary>
+            Draw a bitmap on the screen
+            </summary>
+        </member>
+        <member name="T:SmartBot.Plugins.API.GuiElementText">
+            <summary>
+            Draw text on the screen
+            </summary>
+        </member>
+        <member name="T:SmartBot.Plugins.API.GuiElement">
+            <summary>
+                UI element
+            </summary>
+        </member>
+        <member name="T:SmartBot.Plugins.API.PlayerData">
+            <summary>
+                Player informations
+            </summary>
+        </member>
+        <member name="T:SmartBot.Plugins.API.RemoteProfile">
+            <summary>
+            Remote AI profile template
+            </summary>
+        </member>
+        <member name="T:SmartBot.Plugins.API.Quest">
+            <summary>
+                Daily Quest
+            </summary>
+        </member>
+        <member name="T:SmartBot.Plugins.API.Statistics">
+            <summary>
+            Bot's stats
+            </summary>
+        </member>
+        <member name="T:SmartBot.Plugins.API.TrapManager">
+            <summary>
+            Fake class, used to reflect server side API
+            </summary>
+        </member>
+        <member name="T:SmartBot.Plugins.Plugin">
+            <summary>
+                Plugin interface
+            </summary>
+        </member>
+        <member name="M:SmartBot.Plugins.Plugin.OnPluginCreated">
+            <summary>
+                Constructor
+            </summary>
+        </member>
+        <member name="M:SmartBot.Plugins.Plugin.OnTick">
+            <summary>
+                Called every 300ms
+            </summary>
+        </member>
+        <member name="M:SmartBot.Plugins.Plugin.OnDecklistUpdate">
+            <summary>
+                Called on decklist refresh
+            </summary>
+        </member>
+        <member name="M:SmartBot.Plugins.Plugin.OnInjection">
+            <summary>
+                Called on injection
+            </summary>
+        </member>
+        <member name="M:SmartBot.Plugins.Plugin.OnStarted">
+            <summary>
+                Called when the bot starts
+            </summary>
+        </member>
+        <member name="M:SmartBot.Plugins.Plugin.OnStopped">
+            <summary>
+                Called when the bot stops
+            </summary>
+        </member>
+        <member name="M:SmartBot.Plugins.Plugin.OnTurnBegin">
+            <summary>
+                Called at the beginning of each turn
+            </summary>
+        </member>
+        <member name="M:SmartBot.Plugins.Plugin.OnTurnEnd">
+            <summary>
+                Called at the end of each turn
+            </summary>
+        </member>
+        <member name="M:SmartBot.Plugins.Plugin.OnSimulation">
+            <summary>
+                Called at the beginning of each simulations
+            </summary>
+        </member>
+        <member name="M:SmartBot.Plugins.Plugin.OnGameBegin">
+            <summary>
+                Called at the beginning of each games
+            </summary>
+        </member>
+        <member name="M:SmartBot.Plugins.Plugin.OnGameEnd">
+            <summary>
+                Called at the end of each games
+            </summary>
+        </member>
+        <member name="M:SmartBot.Plugins.Plugin.OnGoldAmountChanged">
+            <summary>
+                Called when the gold balance is updated to a new value
+            </summary>
+        </member>
+        <member name="M:SmartBot.Plugins.Plugin.OnArenaEnd">
+            <summary>
+                Called when auto arena is over
+            </summary>
+        </member>
+        <member name="M:SmartBot.Plugins.Plugin.OnLethal">
+            <summary>
+                Called when lethal is found in the simulation
+            </summary>
+        </member>
+        <member name="M:SmartBot.Plugins.Plugin.OnVictory">
+            <summary>
+                Called after each victories
+            </summary>
+        </member>
+        <member name="M:SmartBot.Plugins.Plugin.OnDefeat">
+            <summary>
+                Called after each defeats
+            </summary>
+        </member>
+        <member name="M:SmartBot.Plugins.Plugin.OnAllQuestsCompleted">
+            <summary>
+                Called when all quests get completed
+            </summary>
+        </member>
+        <member name="M:SmartBot.Plugins.Plugin.OnQuestCompleted">
+            <summary>
+                Called when a quest is completed
+            </summary>
+        </member>
+        <member name="M:SmartBot.Plugins.Plugin.OnArenaTicketPurchaseFailed">
+            <summary>
+                Called when there's not enough gold to buy a new arena ticket
+            </summary>
+        </member>
+        <member name="M:SmartBot.Plugins.Plugin.OnConcede">
+            <summary>
+                Called when the bot concedes a game
+            </summary>
+        </member>
+        <member name="M:SmartBot.Plugins.Plugin.OnGameResolutionUpdate(System.Int32,System.Int32)">
+            <summary>
+                Called whenever Hearthstone windows is resized
+            </summary>
+            <param name="width"></param>
+            <param name="height"></param>
+        </member>
+        <member name="M:SmartBot.Plugins.Plugin.OnWhisperReceived(SmartBot.Plugins.API.Friend,System.String)">
+            <summary>
+                Called when you receive an ingame whisper
+            </summary>
+            <param name="friend">Sender</param>
+            <param name="message">Message content</param>
+        </member>
+        <member name="M:SmartBot.Plugins.Plugin.OnFriendRequestReceived(SmartBot.Plugins.API.FriendRequest)">
+            <summary>
+                Called when you get a new friend request
+            </summary>
+            <param name="request">The new request</param>
+        </member>
+        <member name="M:SmartBot.Plugins.Plugin.OnFriendRequestAccepted(SmartBot.Plugins.API.Friend)">
+            <summary>
+                Called when you accept a new friend request
+            </summary>
+            <param name="friend">The new friend</param>
+        </member>
+        <member name="M:SmartBot.Plugins.Plugin.OnActionExecute(SmartBot.Plugins.API.Actions.Action)">
+            <summary>
+                Called whenever the bot execute an action ingame (may not work properly with play sequence)
+            </summary>
+            <param name="action"></param>
+        </member>
+        <member name="M:SmartBot.Plugins.Plugin.OnReceivedEmote(SmartBot.Plugins.API.Bot.EmoteType)">
+            <summary>
+                Called whenever an emote is received
+            </summary>
+            <param name="emoteType"></param>
+        </member>
+        <member name="M:SmartBot.Plugins.Plugin.OnActionStackReceived(System.Collections.Generic.List{SmartBot.Plugins.API.Actions.Action})">
+            <summary>
+                Called whenver results from the simulation are received
+            </summary>
+            <param name="actions"></param>
+        </member>
+        <member name="M:SmartBot.Plugins.Plugin.OnSharedDataQueryResult(System.Collections.Generic.Dictionary{System.Int32,System.Collections.Generic.Dictionary{System.String,System.String}})">
+            <summary>
+                Called when a result from SharedData.Query is received
+            </summary>
+            <param name="results"></param>
+        </member>
+        <member name="M:SmartBot.Plugins.Plugin.OnHandleMulligan(System.Collections.Generic.List{SmartBot.Plugins.API.Card.Cards},SmartBot.Plugins.API.Card.CClass,SmartBot.Plugins.API.Card.CClass)">
+            <summary>
+                Called when mulligan choices need to be handled (before calling the actual Handler)
+            </summary>
+            <param name="choices"></param>
+            <param name="opponentClass"></param>
+            <param name="ownClass"></param>
+        </member>
+        <member name="M:SmartBot.Plugins.Plugin.OnMulliganCardsReplaced(System.Collections.Generic.List{SmartBot.Plugins.API.Card.Cards})">
+            <summary>
+                Called when the handler toggled cards
+            </summary>
+            <param name="replacedCards"></param>
+        </member>
+        <member name="M:SmartBot.Plugins.Plugin.TryToWriteProperty(System.String,System.Object)">
+            <summary>
+                Try to set the value of a property
+            </summary>
+            <param name="propertyName">Name of the property</param>
+            <param name="value">Value</param>
+            <returns>True if property was found and set, false if property was not found or value of incorrect type</returns>
+        </member>
+        <member name="M:SmartBot.Plugins.Plugin.GetProperties">
+            <summary>
+                Return all the properties of the plugin and their values (Enabled + Name + custom ones defined in the script)
+            </summary>
+            <returns>Name + value of the properties</returns>
+        </member>
+        <member name="M:SmartBot.Plugins.Plugin.Dispose">
+            <summary>
+                Clean up unmanaged ressources
+            </summary>
+        </member>
+        <member name="T:SmartBotAPI.Plugins.API.Actions.AdaptAction">
+            <summary>
+                Attack action
+            </summary>
+        </member>
+        <member name="T:SmartBotAPI.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:SmartBotAPI.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:SmartBotAPI.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:SmartBotAPI.Properties.Resources.db">
+             <summary>
+               Looks up a localized string similar to BCON_001*Deadeye*0*0*2*FREE*HUNTER*SPELL*INVALID*False*False*0*0*False*False*False*False*False*False*False*False*0*False*False*CORE*False*0*False*False*False
+            BCON_001e*Deadeye*0*0*0*INVALID*NEUTRAL*ENCHANTMENT*INVALID*False*False*0*0*False*False*False*False*False*False*False*False*0*False*False*CORE*False*0*False*False*False
+            BCON_004*Polymorph: ???*0*0*5*FREE*MAGE*SPELL*INVALID*False*False*0*0*False*False*False*False*False*False*False*False*0*False*False*CORE*False*0*False*True*False
+            BCON_008*Nature&apos;s Ch [rest of string was truncated]&quot;;.
+             </summary>
+        </member>
+    </members>
+</doc>

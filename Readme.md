@@ -28,7 +28,14 @@ This is just a template of a plugin project written in VB.NET language.
 
 You can star writting a new plugin taking this template project as a start point.
 
-## MultiLauncher
+## Auto Cleaner
+This plugin will automatically clean temporary/garbage files when exiting from SmartBot. 
+
+Settings:
+
+![](https://i.imgur.com/IQD5eia.png)
+
+## Multi Launcher
 This plugin automatically launchs your favorite files or 3rd party programs for Hearthstone at SmartBot's startup.
 
 You can run any kind of executable file type, which is not limited to .exe files.
@@ -39,7 +46,7 @@ Settings:
 
 ![](https://i.imgur.com/BMZavKT.png)
 
-## PanicButton
+## Panic Button
 This plugin will stop the bot or terminate SmartBot process when a specified hotkey combination is pressed.
 
 You can stablish a hotkey combination of 1, 2 or 3 simultaneous keys.
@@ -59,7 +66,7 @@ Settings:
 
 ![](https://i.imgur.com/tUXTWGv.png)
 
-## SystemTrayIcon
+## System Tray Icon
 This plugin will display a system tray icon that adds some enhancements to bring a new user experience when using SmartBot,﻿
 such as the ability to minimize the window to system-tray, restore from system-tray, terminate SmartBot process,
 and also will display your current win rate statistics when hovering the mouse cursor over the system tray icon. 
@@ -72,7 +79,7 @@ Settings:
 
 ![](https://i.imgur.com/a7NKPxC.png)
 
-## TaskBarInfo
+## TaskBar Info
 This ﻿plugin will display progress information on SmartBot's taskbar icon﻿﻿.
 
 For example, when you are in a arena run, it will display the current wins and losses,
@@ -91,7 +98,7 @@ Settings:
 
 ![](https://i.imgur.com/eKiY7fT.png)
 
-## UltimateEmoter
+## Ultimate Emoter
 This plugin automatically sends emotes to enemies on certain conditions defined by the user.
 I added only few configurable conditions for this initial release, in the future I will add more.
 
@@ -101,7 +108,7 @@ Settings:
 
 ![](https://i.imgur.com/mL8zInj.png)
 
-## WindowRestorator
+## Window Restorator
 This plugin will restore the last size and position of SmartBot's window the next time you run it.
 
 It also restores the maximized state if SmartBot was maximized when you terminated its ﻿process.

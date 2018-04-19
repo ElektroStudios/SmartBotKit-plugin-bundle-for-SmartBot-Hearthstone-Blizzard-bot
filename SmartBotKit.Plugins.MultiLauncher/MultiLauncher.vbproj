@@ -46,9 +46,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="SBAPI">
-      <HintPath>..\..\..\Users\Administrador\Downloads\Games\sb-v46.1\SBAPI.dll</HintPath>
-      <EmbedInteropTypes>False</EmbedInteropTypes>
-      <Private>False</Private>
+      <HintPath>..\References\SBAPI.dll</HintPath>
     </Reference>
     <Reference Include="System" />
   </ItemGroup>
