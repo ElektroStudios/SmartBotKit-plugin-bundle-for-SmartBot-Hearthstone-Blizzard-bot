@@ -9,7 +9,7 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("TaskBarInfo")>
+<Assembly: AssemblyTitle("TaskBar Info")>
 <Assembly: AssemblyDescription("Displays progress status on the SmartBot's taskbar icon.")>
 <Assembly: AssemblyCompany("Elektro Studios")>
 <Assembly: AssemblyProduct("TaskBarInfo")>

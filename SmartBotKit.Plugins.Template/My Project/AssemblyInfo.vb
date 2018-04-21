@@ -10,7 +10,7 @@ Imports System.Runtime.InteropServices
 ' Review the values of the assembly attributes
 
 <Assembly: AssemblyTitle("Template")>
-<Assembly: AssemblyDescription("A template for a plugin for SmartBot")>
+<Assembly: AssemblyDescription("A plugin template for SmartBot")>
 <Assembly: AssemblyCompany("Elektro Studios")>
 <Assembly: AssemblyProduct("Template")>
 <Assembly: AssemblyCopyright("Copyright © Elektro Studios 2018")>

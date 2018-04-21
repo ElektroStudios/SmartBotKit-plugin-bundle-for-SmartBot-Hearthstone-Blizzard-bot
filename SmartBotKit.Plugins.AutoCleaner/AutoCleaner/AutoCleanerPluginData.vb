@@ -14,8 +14,9 @@ Imports System.Diagnostics
 Imports System.Reflection
 
 Imports SmartBot.Plugins
-
 Imports Xceed.Wpf.Toolkit.PropertyGrid.Attributes
+
+Imports SmartBotKit.Interop
 
 #End Region
 
@@ -70,9 +71,9 @@ Namespace AutoCleaner
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         <Category("When to delete?")>
-        <DisplayName("Specifies when the garbage should be deleted.")>
-        <ItemsSource(GetType(CleanerModeSource))>
-        Public Property CleanerMode As CleanerMode
+        <DisplayName("In which event should the garbage be cleaned?")>
+        <ItemsSource(GetType(CleanerEventSource))>
+        Public Property CleanerEvent As SmartBotEvent
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
@@ -80,8 +81,9 @@ Namespace AutoCleaner
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         <Category("Global Settings")>
-        <DisplayName("If enabled, the names of deleted files and directories will be sent to bot's log.")>
-        Public Property SilentClean As Boolean
+        <DisplayName("Verbose clean mode." & ControlChars.NewLine &
+                     "If enabled, the cleaner will log the names of any deleted item.")>
+        Public Property VerboseMode As Boolean
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
@@ -129,12 +131,12 @@ Namespace AutoCleaner
         Public Sub New()
             Me.Name = Assembly.GetExecutingAssembly().GetName().Name
 
-            Me.CleanerMode = CleanerMode.OnExit
-            Me.SendFilesToRecycleBin = False
+            Me.CleanerEvent = SmartBotEvent.Startup
+            Me.SendFilesToRecycleBin = True
             Me.DeleteLogs = False
             Me.DeleteSeeds = False
             Me.OlderThanDays = 0
-            Me.SilentClean = False
+            Me.VerboseMode = True
         End Sub
 
 #End Region

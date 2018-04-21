@@ -9,17 +9,17 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("Multi Launcher")>
-<Assembly: AssemblyDescription("Automatically launchs your favorite files or 3rd party programs for Hearthstone at SmartBot's startup.")>
+<Assembly: AssemblyTitle("Hearthstone Resizer")>
+<Assembly: AssemblyDescription("This plugin will automatically resize the Hearthstone window to a speciied size.")>
 <Assembly: AssemblyCompany("Elektro Studios")>
-<Assembly: AssemblyProduct("MultiLauncher")>
+<Assembly: AssemblyProduct("HearthstoneResizer")>
 <Assembly: AssemblyCopyright("Copyright © Elektro Studios 2018")>
 <Assembly: AssemblyTrademark("")>
 
 <Assembly: ComVisible(False)>
 
 'The following GUID is for the ID of the typelib if this project is exposed to COM
-<Assembly: Guid("3985CB62-7531-41F5-866B-B0B9DE0D8B31")>
+<Assembly: Guid("47B0C7C0-FE45-4730-AE5C-D6153CEE3754")>
 
 ' Version information for an assembly consists of the following four values:
 '

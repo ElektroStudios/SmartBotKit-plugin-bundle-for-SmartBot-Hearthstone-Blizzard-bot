@@ -9,7 +9,7 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("AutoCleaner")>
+<Assembly: AssemblyTitle("Auto-Cleaner")>
 <Assembly: AssemblyDescription("Automatically cleans temporary files when exiting from SmartBot.")>
 <Assembly: AssemblyCompany("Elektro Studios")>
 <Assembly: AssemblyProduct("AutoCleaner")>
@@ -32,6 +32,6 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")>
 
-<Assembly: AssemblyVersion("1.0.0.0")>
-<Assembly: AssemblyFileVersion("1.0.0.0")>
+<Assembly: AssemblyVersion("1.1.0.0")>
+<Assembly: AssemblyFileVersion("1.1.0.0")>
 <Assembly: NeutralResourcesLanguage("en")>

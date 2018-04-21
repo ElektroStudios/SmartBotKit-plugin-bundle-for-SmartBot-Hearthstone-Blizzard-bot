@@ -19,6 +19,8 @@ Imports System.Reflection
 Imports SmartBot.Plugins
 Imports SmartBot.Plugins.API
 
+Imports SmartBotKit.Interop
+
 #End Region
 
 #Region " AutoCleanerPlugin "
@@ -88,7 +90,7 @@ Namespace AutoCleaner
             Me.lastEnabled = Me.DataContainer.Enabled
             If (Me.lastEnabled) Then
                 Bot.Log("[AutoCleaner] Plugin initialized.")
-                If (Me.DataContainer.CleanerMode = CleanerMode.OnStartup) Then
+                If (Me.DataContainer.CleanerEvent = SmartBotEvent.Startup) Then
                     Me.CleanGarbage()
                 End If
             End If
@@ -119,7 +121,7 @@ Namespace AutoCleaner
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Public Overrides Sub OnStopped()
-            If (Me.DataContainer.Enabled) AndAlso (Me.DataContainer.CleanerMode = CleanerMode.OnBotStop) Then
+            If (Me.DataContainer.Enabled) AndAlso (Me.DataContainer.CleanerEvent = SmartBotEvent.BotStop) Then
                 Me.CleanGarbage()
             End If
             MyBase.OnStopped()
@@ -131,7 +133,7 @@ Namespace AutoCleaner
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Public Overrides Sub Dispose()
-            If (Me.DataContainer.Enabled) AndAlso (Me.DataContainer.CleanerMode = CleanerMode.OnExit) Then
+            If (Me.DataContainer.Enabled) AndAlso (Me.DataContainer.CleanerEvent = SmartBotEvent.Exit) Then
                 Me.CleanGarbage()
             End If
             MyBase.Dispose()
@@ -157,7 +159,7 @@ Namespace AutoCleaner
                 Throw New DirectoryNotFoundException("SmartBot's root directory cannot be found.")
             End If
 
-            Dim silentClean As Boolean = Me.DataContainer.SilentClean
+            Dim verboseMode As Boolean = Me.DataContainer.VerboseMode
             Dim minDaysDiff As Integer = Me.DataContainer.OlderThanDays
 
             Dim recycleOption As RecycleOption
@@ -176,7 +178,7 @@ Namespace AutoCleaner
                     If (daysDiff >= minDaysDiff) Then
                         Try
                             My.Computer.FileSystem.DeleteDirectory(seedDir.FullName, UIOption.OnlyErrorDialogs, recycleOption)
-                            If Not (silentClean) Then
+                            If (verboseMode) Then
                                 Bot.Log(String.Format("[AutoCleaner] Seed directory deleted: '{0}'. Older than {1} days.", seedDir.Name, daysDiff))
                             End If
                         Catch ex As Exception
@@ -189,14 +191,15 @@ Namespace AutoCleaner
             If (Me.DataContainer.DeleteLogs) Then
                 Dim logFiles As IEnumerable(Of FileInfo) =
                     Enumerable.Concat(Of FileInfo)(logsDir.EnumerateFiles("*.log", System.IO.SearchOption.AllDirectories),
-                                                   logsDir.EnumerateFiles("*.txt", System.IO.SearchOption.AllDirectories))
+                                                   logsDir.EnumerateFiles("*.txt", System.IO.SearchOption.AllDirectories)).
+                                                   Concat({New FileInfo(Path.Combine(sbDir.FullName, "UpdaterLog.txt"))})
 
                 For Each logFile As FileInfo In logFiles
                     Dim daysDiff As Integer = CInt((Date.Now - logFile.CreationTime).TotalDays)
                     If (daysDiff >= minDaysDiff) Then
                         Try
                             My.Computer.FileSystem.DeleteFile(logFile.FullName, UIOption.OnlyErrorDialogs, recycleOption)
-                            If Not (silentClean) Then
+                            If (verboseMode) Then
                                 Bot.Log(String.Format("[AutoCleaner] Log file deleted: '{0}'. Older than {1} days.", logFile.Name, daysDiff))
                             End If
                         Catch ex As Exception

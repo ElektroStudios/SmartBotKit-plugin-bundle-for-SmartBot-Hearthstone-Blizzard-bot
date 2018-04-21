@@ -1,23 +1,4 @@
 ﻿
-#Region " Public Members Summary "
-
-#Region " Properties "
-
-' Process As Process
-' MainThreadId As Integer
-' Statistics As String
-' WinsRatio As String
-
-#End Region
-
-#Region " Methods "
-
-' GetAutomationElement(String) As AutomationElement
-
-#End Region
-
-#End Region
-
 #Region " Option Statements "
 
 Option Strict On
@@ -28,6 +9,8 @@ Option Infer Off
 
 #Region " Imports "
 
+Imports System.Drawing
+Imports System.Runtime.InteropServices
 Imports System.Windows.Automation
 
 Imports SmartBot.Plugins
@@ -36,16 +19,16 @@ Imports SmartBotKit.Interop.Win32
 
 #End Region
 
-#Region " AutomationUtil "
+#Region " SmartBotUtil "
 
-Namespace SmartBotKit.Interop.SmartBot
+Namespace SmartBotKit.Interop
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>
-    ''' Provides reusable automation utilities for SmartBot.
+    ''' Provides reusable automation utilities for SmartBot process.
     ''' </summary>
     ''' ----------------------------------------------------------------------------------------------------
-    Public NotInheritable Class AutomationUtil
+    Public NotInheritable Class SmartBotUtil
 
 #Region " Properties "
 
@@ -61,11 +44,11 @@ Namespace SmartBotKit.Interop.SmartBot
         Public Shared ReadOnly Property Process As Process
             <DebuggerStepThrough>
             Get
-                If (AutomationUtil.processB Is Nothing) OrElse (AutomationUtil.processB.HasExited) Then
-                    AutomationUtil.processB = Diagnostics.Process.GetCurrentProcess()
+                If (SmartBotUtil.processB Is Nothing) OrElse (SmartBotUtil.processB.HasExited) Then
+                    SmartBotUtil.processB = Diagnostics.Process.GetCurrentProcess()
                 End If
-                ' AutomationUtil.processB.Refresh() ' Refresh window title and main window handle.
-                Return AutomationUtil.processB
+                ' SmartBotUtil.processB.Refresh() ' Refresh window title and main window handle.
+                Return SmartBotUtil.processB
             End Get
         End Property
         ''' ----------------------------------------------------------------------------------------------------
@@ -104,7 +87,7 @@ Namespace SmartBotKit.Interop.SmartBot
         Public Shared ReadOnly Property MainThreadId As Integer
             <DebuggerStepThrough>
             Get
-                Return NativeMethods.GetWindowThreadProcessId(AutomationUtil.processB.MainWindowHandle, New Integer)
+                Return NativeMethods.GetWindowThreadProcessId(SmartBotUtil.Process.MainWindowHandle, New Integer)
             End Get
         End Property
 
@@ -120,7 +103,7 @@ Namespace SmartBotKit.Interop.SmartBot
         Public Shared ReadOnly Property Statistics As String
             <DebuggerStepThrough>
             Get
-                Return AutomationUtil.GetStatisticsString(AutomationUtil.Process)
+                Return SmartBotUtil.GetStatisticsString(SmartBotUtil.Process)
             End Get
         End Property
 
@@ -136,8 +119,77 @@ Namespace SmartBotKit.Interop.SmartBot
         Public Shared ReadOnly Property WinsRatio As String
             <DebuggerStepThrough>
             Get
-                Return AutomationUtil.GetWinsRatio()
+                Return SmartBotUtil.GetWinsRatio()
             End Get
+        End Property
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets or sets the SmartBot window placement.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <value>
+        ''' The Hearthstone window placement.
+        ''' </value>
+        ''' ----------------------------------------------------------------------------------------------------
+        Public Shared Property WindowPlacement As WindowPlacement
+            <DebuggerStepThrough>
+            Get
+                Return SmartBotUtil.GetWindowPlacement(SmartBotUtil.Process.MainWindowHandle)
+            End Get
+            Set(value As WindowPlacement)
+                Dim wpl As WindowPlacement = SmartBotUtil.GetWindowPlacement(SmartBotUtil.Process.MainWindowHandle)
+                If (wpl.NormalPosition <> CType(value.NormalPosition, Rectangle)) OrElse
+                   (wpl.WindowState <> value.WindowState) OrElse
+                   (wpl.Flags <> value.Flags) OrElse
+                   (wpl.MaxPosition <> CType(value.MaxPosition, Point)) OrElse
+                   (wpl.MinPosition <> CType(value.MinPosition, Point)) Then
+
+                    SmartBotUtil.SetWindowPlacement(SmartBotUtil.Process.MainWindowHandle, value)
+                End If
+            End Set
+        End Property
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets or sets the SmartBot window position.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <value>
+        ''' The Hearthstone window position.
+        ''' </value>
+        ''' ----------------------------------------------------------------------------------------------------
+        Public Shared Property WindowPosition As Point
+            <DebuggerStepThrough>
+            Get
+                Return SmartBotUtil.GetWindowPosition(SmartBotUtil.Process.MainWindowHandle)
+            End Get
+            Set(value As Point)
+                If (SmartBotUtil.GetWindowPosition(SmartBotUtil.Process.MainWindowHandle) <> value) Then
+                    SmartBotUtil.SetWindowPosition(SmartBotUtil.Process.MainWindowHandle, value)
+                End If
+            End Set
+        End Property
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets or sets the SmartBot window size.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <value>
+        ''' The Hearthstone window size.
+        ''' </value>
+        ''' ----------------------------------------------------------------------------------------------------
+        Public Shared Property WindowSize As Size
+            <DebuggerStepThrough>
+            Get
+                Return SmartBotUtil.GetWindowSize(SmartBotUtil.Process.MainWindowHandle)
+            End Get
+            Set(value As Size)
+                If (SmartBotUtil.GetWindowSize(SmartBotUtil.Process.MainWindowHandle) <> value) Then
+                    SmartBotUtil.SetWindowSize(SmartBotUtil.Process.MainWindowHandle, value)
+                End If
+            End Set
         End Property
 
 #End Region
@@ -146,7 +198,7 @@ Namespace SmartBotKit.Interop.SmartBot
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Prevents a default instance of the <see cref="AutomationUtil"/> class from being created.
+        ''' Prevents a default instance of the <see cref="SmartBotUtil"/> class from being created.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         <DebuggerNonUserCode>
@@ -168,7 +220,7 @@ Namespace SmartBotKit.Interop.SmartBot
         ''' ----------------------------------------------------------------------------------------------------
         <DebuggerStepThrough>
         Public Shared Function GetAutomationElement(ByVal automationId As String) As AutomationElement
-            Return AutomationUtil.GetAutomationElement(AutomationUtil.Process, automationId)
+            Return SmartBotUtil.GetAutomationElement(SmartBotUtil.Process, automationId)
         End Function
 
 #End Region
@@ -190,7 +242,7 @@ Namespace SmartBotKit.Interop.SmartBot
         ''' ----------------------------------------------------------------------------------------------------
         <DebuggerStepperBoundary>
         Private Shared Function GetStatisticsString(ByVal process As Process) As String
-            Dim element As AutomationElement = AutomationUtil.GetAutomationElement(process, "Statslabel")
+            Dim element As AutomationElement = SmartBotUtil.GetAutomationElement(process, "Statslabel")
 
             Return element.Current.Name
         End Function
@@ -252,6 +304,47 @@ Namespace SmartBotKit.Interop.SmartBot
             Dim element As AutomationElement = window.FindFirst(TreeScope.Subtree, condition)
 
             Return element
+        End Function
+
+        Private Shared Function GetWindowPlacement(ByVal hWnd As IntPtr) As WindowPlacement
+            Dim wpl As New WindowPlacement()
+            wpl.Length = Marshal.SizeOf(wpl)
+            NativeMethods.GetWindowPlacement(hWnd, wpl)
+            Return wpl
+        End Function
+
+        Private Shared Function SetWindowPlacement(ByVal hWnd As IntPtr, ByVal wpl As WindowPlacement) As Boolean
+            Return NativeMethods.SetWindowPlacement(hWnd, wpl)
+        End Function
+
+        Private Shared Function GetWindowSize(ByVal hWnd As IntPtr) As Size
+            Dim rc As Rectangle
+            NativeMethods.GetWindowRect(hWnd, rc)
+            Return rc.Size
+        End Function
+
+        Private Shared Function SetWindowSize(ByVal hWnd As IntPtr, ByVal sz As Size) As Boolean
+            Dim rc As Rectangle
+            NativeMethods.GetWindowRect(hWnd, rc)
+            Return NativeMethods.SetWindowPos(hWnd, IntPtr.Zero,
+                                              rc.Location.X, rc.Location.Y,
+                                              sz.Width, sz.Height,
+                                              SetWindowPosFlags.IgnoreMove)
+        End Function
+
+        Private Shared Function GetWindowPosition(ByVal hWnd As IntPtr) As Point
+            Dim rc As Rectangle
+            NativeMethods.GetWindowRect(hWnd, rc)
+            Return rc.Location
+        End Function
+
+        Private Shared Function SetWindowPosition(ByVal hWnd As IntPtr, ByVal pt As Point) As Boolean
+            Dim rc As Rectangle
+            NativeMethods.GetWindowRect(hWnd, rc)
+            Return NativeMethods.SetWindowPos(hWnd, IntPtr.Zero,
+                                              pt.X, pt.Y,
+                                              rc.Size.Width, rc.Size.Height,
+                                              SetWindowPosFlags.IgnoreResize)
         End Function
 
 #End Region

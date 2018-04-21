@@ -17,7 +17,7 @@ Imports System.Threading
 Imports SmartBot.Plugins
 Imports SmartBot.Plugins.API
 
-Imports SmartBotKit.Interop.SmartBot
+Imports SmartBotKit.Interop
 Imports SmartBotKit.Interop.Win32
 
 #End Region
@@ -142,10 +142,7 @@ Namespace WindowRestorator
         ''' ----------------------------------------------------------------------------------------------------
         <DebuggerStepperBoundary>
         Private Sub SaveWindowPlacement()
-            Dim p As Process = AutomationUtil.Process
-            Dim wpl As New WindowPlacement()
-            wpl.Length = Marshal.SizeOf(wpl)
-            NativeMethods.GetWindowPlacement(p.MainWindowHandle, wpl)
+            Dim wpl As WindowPlacement = SmartBotUtil.WindowPlacement
 
             Dim normalRect As Rectangle = wpl.NormalPosition
 
@@ -164,12 +161,13 @@ Namespace WindowRestorator
         ''' ----------------------------------------------------------------------------------------------------
         <DebuggerStepperBoundary>
         Private Sub RestoreWindowPlacement()
-            Dim p As Process = AutomationUtil.Process
-            Do While (AutomationUtil.IsInSplashScreen) OrElse (p.MainWindowHandle = IntPtr.Zero)
+            Dim p As Process = SmartBotUtil.Process
+            Do While (SmartBotUtil.IsInSplashScreen) OrElse (p.MainWindowHandle = IntPtr.Zero)
                 Thread.Sleep(100)
                 p.Refresh()
             Loop
 
+#Disable Warning IDE0009 ' Member access should be qualified.
             Dim wpl As New WindowPlacement With {
                 .NormalPosition = New Rectangle(Me.DataContainer.NormalPosition, Me.DataContainer.NormalSize),
                 .MinPosition = Me.DataContainer.MinimizedPosition,
@@ -177,13 +175,14 @@ Namespace WindowRestorator
                 .WindowState = Me.DataContainer.WindowState,
                 .Flags = Me.DataContainer.Flags
             }
+#Enable Warning IDE0009 ' Member access should be qualified.
 
             Select Case wpl.WindowState
                 Case WindowState.ForceMinimize, WindowState.Minimize,
                      WindowState.ShowMinimized, WindowState.ShowMinNoActive,
                      WindowState.Hide
 
-                    ' This is because we don't want to set the window minimized or hidden when retoring it.
+                    ' This is because we don't want to set the window minimized or hidden when restoring it.
                     wpl.WindowState = WindowState.Normal
                     Me.DataContainer.WindowState = WindowState.Normal
 
@@ -197,7 +196,9 @@ Namespace WindowRestorator
                 Thread.Sleep(100)
             Loop
 
-            Dim success As Boolean = NativeMethods.SetWindowPlacement(p.MainWindowHandle, wpl)
+            SmartBotUtil.WindowPlacement = wpl
+
+            ' Dim success As Boolean = NativeMethods.SetWindowPlacement(p.MainWindowHandle, wpl)
 
         End Sub
 

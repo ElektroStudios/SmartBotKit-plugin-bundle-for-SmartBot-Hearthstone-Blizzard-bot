@@ -9,7 +9,7 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("SystemTrayIcon")>
+<Assembly: AssemblyTitle("System Tray Icon")>
 <Assembly: AssemblyDescription("Creates a system tray icon for SmartBot program.")>
 <Assembly: AssemblyCompany("Elektro Studios")>
 <Assembly: AssemblyProduct("SystemTrayIcon")>

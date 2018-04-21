@@ -9,7 +9,7 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("PanicButton")>
+<Assembly: AssemblyTitle("Panic Button")>
 <Assembly: AssemblyDescription("Terminate SmartBot process when a specified hotkey combination is pressed.")>
 <Assembly: AssemblyCompany("Elektro Studios")>
 <Assembly: AssemblyProduct("PanicButton")>

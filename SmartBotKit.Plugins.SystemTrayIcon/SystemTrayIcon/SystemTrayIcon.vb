@@ -18,7 +18,6 @@ Imports SmartBot.Plugins
 Imports SmartBot.Plugins.API
 
 Imports SmartBotKit.Interop.Win32
-Imports SmartBotKit.Interop.SmartBot
 
 #End Region
 

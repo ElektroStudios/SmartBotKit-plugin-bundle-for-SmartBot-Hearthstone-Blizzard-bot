@@ -462,6 +462,100 @@ Namespace SmartBotKit.Interop.Win32
         ) As <MarshalAs(UnmanagedType.Bool)> Boolean
         End Function
 
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Retrieves the dimensions of the bounding rectangle of the specified window. 
+        ''' <para></para>
+        ''' The dimensions are given in screen coordinates that are relative to the upper-left corner of the screen.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <remarks>
+        ''' <see href="https://msdn.microsoft.com/es-es/library/windows/desktop/ms633519%28v=vs.85%29.aspx"/>
+        ''' </remarks>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <param name="hwnd">
+        ''' A <see cref="IntPtr"/> handle to the window.
+        ''' </param>
+        ''' 
+        ''' <param name="refRect">
+        ''' A pointer to a <see cref="NativeRectangle"/> structure that receives the screen coordinates of the 
+        ''' upper-left and lower-right corners of the window.
+        ''' </param>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <returns>
+        ''' <see langword="True"/> if the function succeeds, <see langword="False"/> otherwise.
+        ''' </returns>
+        ''' ----------------------------------------------------------------------------------------------------
+        <SuppressMessage("Microsoft.Interoperability", "CA1401:PInvokesShouldNotBeVisible", Justification:="Visible for API users")>
+        <SuppressUnmanagedCodeSecurity>
+        <DllImport("User32.dll", SetLastError:=True)>
+        Public Shared Function GetWindowRect(ByVal hwnd As IntPtr,
+                                       <Out> ByRef refRect As NativeRectangle
+        ) As <MarshalAs(UnmanagedType.Bool)> Boolean
+        End Function
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Changes the size, position, and Z order of a child, pop-up, or top-level window.
+        ''' <para></para>
+        ''' These windows are ordered according to their appearance on the screen.
+        ''' <para></para>
+        ''' The topmost window receives the highest rank and is the first window in the Z order.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <remarks>
+        ''' <see href="https://msdn.microsoft.com/es-es/library/windows/desktop/ms633545(v=vs.85).aspx"/>
+        ''' </remarks>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <param name="hwnd">
+        ''' A handle to the window.
+        ''' </param>
+        ''' 
+        ''' <param name="hwndInsertAfter">
+        ''' A handle to the window to precede the positioned window in the Z order.
+        ''' </param>
+        ''' 
+        ''' <param name="x">
+        ''' The new position of the left side of the window, in client coordinates.
+        ''' </param>
+        ''' 
+        ''' <param name="y">
+        ''' The new position of the top of the window, in client coordinates.
+        ''' </param>
+        ''' 
+        ''' <param name="cx">
+        ''' The new width of the window, in pixels.
+        ''' </param>
+        ''' 
+        ''' <param name="cy">
+        ''' The new height of the window, in pixels.
+        ''' </param>
+        ''' 
+        ''' <param name="uFlags">
+        ''' The window sizing and positioning flags.
+        ''' </param>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <returns>
+        ''' If the function succeeds, the return value is <see langword="True"/>.
+        ''' <para></para>
+        ''' If the function fails, the return value is <see langword="False"/>.
+        ''' <para></para>
+        ''' To get extended error information, call <see cref="Marshal.GetLastWin32Error()"/>. 
+        ''' </returns>
+        ''' ----------------------------------------------------------------------------------------------------
+        <SuppressMessage("Microsoft.Interoperability", "CA1401:PInvokesShouldNotBeVisible", Justification:="Visible for API users")>
+        <SuppressUnmanagedCodeSecurity>
+        <DllImport("User32.dll", SetLastError:=True)>
+        Public Shared Function SetWindowPos(ByVal hwnd As IntPtr,
+                                            ByVal hwndInsertAfter As IntPtr,
+                                            ByVal x As Integer,
+                                            ByVal y As Integer,
+                                            ByVal cx As Integer,
+                                            ByVal cy As Integer,
+                                            ByVal uFlags As SetWindowPosFlags
+        ) As <MarshalAs(UnmanagedType.Bool)> Boolean
+        End Function
+
 #End Region
 
     End Class

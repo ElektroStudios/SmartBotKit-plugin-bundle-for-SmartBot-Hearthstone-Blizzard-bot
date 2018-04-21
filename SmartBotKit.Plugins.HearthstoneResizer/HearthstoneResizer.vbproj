@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5386DBF5-5C88-43A4-B8AF-34A7D35599CB}</ProjectGuid>
+    <ProjectGuid>{2C9D9A26-6D46-432E-AC1A-F491156CA64A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>SmartBotKit.Plugins</RootNamespace>
-    <AssemblyName>AutoCleaner</AssemblyName>
+    <AssemblyName>HearthstoneResizer</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>Windows</MyType>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
@@ -31,7 +31,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\AnyCPU\Debug\</OutputPath>
-    <DocumentationFile>AutoCleaner.xml</DocumentationFile>
+    <DocumentationFile>HearthstoneResizer.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -41,7 +41,7 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\AnyCPU\Release\</OutputPath>
-    <DocumentationFile>AutoCleaner.xml</DocumentationFile>
+    <DocumentationFile>HearthstoneResizer.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <ItemGroup>
@@ -50,6 +50,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Drawing" />
     <Reference Include="Xceed.Wpf.Toolkit">
       <HintPath>..\References\Xceed.Wpf.Toolkit.dll</HintPath>
       <Private>False</Private>
@@ -60,7 +61,8 @@
     <Import Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AutoCleaner\CleanerEventSource.vb" />
+    <Compile Include="HearthstoneResizer\HearthstoneResizerEventSource.vb" />
+    <Compile Include="HearthstoneResizer\ResolutionSource.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -76,8 +78,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="AutoCleaner\AutoCleanerPluginData.vb" />
-    <Compile Include="AutoCleaner\AutoCleanerPlugin.vb" />
+    <Compile Include="HearthstoneResizer\HearthstoneResizerPluginData.vb" />
+    <Compile Include="HearthstoneResizer\HearthstoneResizerPlugin.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">

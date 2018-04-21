@@ -119,14 +119,14 @@ Namespace UltimateEmoter
         <Category("Send Emote On Conditions")>
         <DisplayName("The percentage chance to send an emote on conditions.")>
         <Browsable(True)>
-        Public Property SendEmoteOnConditionsPercent() As Integer
+        Public Property SendEmoteOnConditionsPercent As Integer
             Get
                 Return Me.sendEmoteOnConditionsPercentB
             End Get
             Set(ByVal value As Integer)
-                If value < 1 Then
+                If (value < 1) Then
                     Me.sendEmoteOnConditionsPercentB = 1
-                ElseIf value > 100 Then
+                ElseIf (value > 100) Then
                     Me.sendEmoteOnConditionsPercentB = 100
                 Else
                     Me.sendEmoteOnConditionsPercentB = value
@@ -134,7 +134,8 @@ Namespace UltimateEmoter
             End Set
         End Property
         ''' <summary>
-        ''' (Backing Field )
+        ''' ( Backing Field )
+        ''' <para></para>
         ''' The percentage chance to send an emote on conditions.
         ''' </summary>
         Private sendEmoteOnConditionsPercentB As Integer
@@ -147,7 +148,7 @@ Namespace UltimateEmoter
         <Category("Send Emote On Conditions")>
         <DisplayName("Send emote at first turn.")>
         <Browsable(True)>
-        Public Property EmoteOnFirstTurn() As Boolean
+        Public Property EmoteOnFirstTurn As Boolean
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
@@ -158,7 +159,7 @@ Namespace UltimateEmoter
         <Category("Send Emote On Conditions")>
         <DisplayName("Emote type to send at first turn.")>
         <Browsable(True)>
-        Public Property EmoteOnFirstTurnType() As Bot.EmoteType
+        Public Property EmoteOnFirstTurnType As Bot.EmoteType
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
@@ -166,9 +167,9 @@ Namespace UltimateEmoter
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         <Category("Send Emote On Conditions")>
-        <DisplayName("Send emote when bot concedes the game.")>
+        <DisplayName("Send emote when the bot detects a lethal move.")>
         <Browsable(True)>
-        Public Property EmoteOnLethal() As Boolean
+        Public Property EmoteOnLethal As Boolean
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
@@ -177,9 +178,9 @@ Namespace UltimateEmoter
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         <Category("Send Emote On Conditions")>
-        <DisplayName("Emote type to send when bot concedes the game.")>
+        <DisplayName("Emote type to send when bot detects a lethal move.")>
         <Browsable(True)>
-        Public Property EmoteOnLethalType() As Bot.EmoteType
+        Public Property EmoteOnLethalType As Bot.EmoteType
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
@@ -189,7 +190,7 @@ Namespace UltimateEmoter
         <Category("Send Emote On Conditions")>
         <DisplayName("Send emote when bot concedes the game.")>
         <Browsable(True)>
-        Public Property EmoteOnConcede() As Boolean
+        Public Property EmoteOnConcede As Boolean
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>

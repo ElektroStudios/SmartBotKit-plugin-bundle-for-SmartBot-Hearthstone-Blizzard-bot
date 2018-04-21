@@ -13,24 +13,24 @@ Imports Xceed.Wpf.Toolkit.PropertyGrid.Attributes
 
 #End Region
 
-#Region " CleanerMode "
+#Region " ResolutionSource "
 
-Namespace AutoCleaner
+Namespace HearthstoneResizer
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>
-    ''' Provides the collection of values represented by a ComboBox for the <see cref="AutoCleanerPluginData.CleanerMode"/> property.
+    ''' Provides the collection of values represented by a ComboBox for the <see cref="HearthstoneResizerPluginData.Resolution"/> property.
     ''' </summary>
     ''' ----------------------------------------------------------------------------------------------------
     ''' <seealso cref="IItemsSource"/>
     ''' ----------------------------------------------------------------------------------------------------
-    Public NotInheritable Class CleanerModeSource : Implements IItemsSource
+    Public NotInheritable Class ResolutionSource : Implements IItemsSource
 
 #Region " Constructors "
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Initializes a new instance of the <see cref="CleanerModeSource"/> class.
+        ''' Initializes a new instance of the <see cref="ResolutionSource"/> class.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Public Sub New()
@@ -52,9 +52,9 @@ Namespace AutoCleaner
         Public Function GetValues() As ItemCollection Implements IItemsSource.GetValues
             Dim collection As New ItemCollection()
 
-            For Each mode As CleanerMode In [Enum].GetValues(GetType(CleanerMode))
-                collection.Add(mode)
-            Next mode
+            For Each key As String In HearthstoneResizerPluginData.Resolutions.Keys
+                collection.Add(key)
+            Next key
 
             Return collection
         End Function

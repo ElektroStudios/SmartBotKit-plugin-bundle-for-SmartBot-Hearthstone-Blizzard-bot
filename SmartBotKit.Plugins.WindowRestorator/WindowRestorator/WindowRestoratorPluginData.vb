@@ -16,7 +16,7 @@ Imports System.Reflection
 
 Imports SmartBot.Plugins
 
-Imports SmartBotKit.Interop.SmartBot
+Imports SmartBotKit.Interop
 Imports SmartBotKit.Interop.Win32
 
 #End Region
@@ -134,7 +134,7 @@ Namespace WindowRestorator
         ''' ----------------------------------------------------------------------------------------------------
         Private Function GetWindowPosition() As Point
 
-            Dim p As Process = AutomationUtil.Process
+            Dim p As Process = SmartBotUtil.Process
 
             Dim wpl As New WindowPlacement
             Dim success As Boolean = NativeMethods.GetWindowPlacement(p.MainWindowHandle, wpl)

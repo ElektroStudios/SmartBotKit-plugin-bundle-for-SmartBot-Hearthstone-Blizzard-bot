@@ -71,6 +71,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Application\TaskBarManager.vb" />
+    <Compile Include="Interop\Hearthstone\Hearthstone.vb" />
+    <Compile Include="Interop\SmartBot\SmartBotEvent.vb" />
+    <Compile Include="Interop\Win32\SetWindowPosFlags.vb" />
     <Compile Include="Text\StringCase.vb" />
     <Compile Include="Extensions\StringExtensions.vb" />
     <Compile Include="Interop\Win32\CTaskbarList.vb" />
@@ -85,7 +88,7 @@
     <Compile Include="IO\Hotkey.vb" />
     <Compile Include="Interop\Win32\NativeHotkeyModifiers.vb" />
     <Compile Include="Interop\Win32\WindowsMessages.vb" />
-    <Compile Include="Interop\SmartBot\AutomationUtil.vb" />
+    <Compile Include="Interop\SmartBot\SmartBotUtil.vb" />
     <Compile Include="Interop\Win32\NativeMethods.vb" />
     <Compile Include="Interop\Win32\NativePoint.vb" />
     <Compile Include="Interop\Win32\NativeRectangle.vb" />

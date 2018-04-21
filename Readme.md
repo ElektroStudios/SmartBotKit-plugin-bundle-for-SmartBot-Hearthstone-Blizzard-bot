@@ -35,6 +35,28 @@ Settings:
 
 ![](https://i.imgur.com/IQD5eia.png)
 
+## Hearthstone Resizer
+This plugin will automatically resize the Hearthstone window to a speciied size.
+
+Just that.
+
+You can configure the plugin to resize the window every timer tick, or each 5 ticks, for example.
+
+The plugin is aware of when Hearthstone window is maximized, and when it is at fullscreen mode.
+
+It will not try to resize its window in those circunstances.
+
+(however, I didn't tested the fullscreen mode detection on multi-monitor configurations)
+
+
+Note that I didn't provided any 16:9 resolution just because Hearthstone process does not like those resolutions;
+
+when attempting to resize Hearthstone window to a 16:9 size, its process will automatically change to a different size.
+
+Settings:
+
+![](https://i.imgur.com/PDMa2vT.png)
+
 ## Multi Launcher
 This plugin automatically launchs your favorite files or 3rd party programs for Hearthstone at SmartBot's startup.
 

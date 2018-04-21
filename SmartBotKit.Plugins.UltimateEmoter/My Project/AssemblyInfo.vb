@@ -9,7 +9,7 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("UltimateEmoter")>
+<Assembly: AssemblyTitle("Ultimate Emoter")>
 <Assembly: AssemblyDescription("Automatically sends emotes to enemies on certain conditions defined by the user")>
 <Assembly: AssemblyCompany("Elektro Studios")>
 <Assembly: AssemblyProduct("UltimateEmoter")>
@@ -32,6 +32,6 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")>
 
-<Assembly: AssemblyVersion("1.1.0.0")>
-<Assembly: AssemblyFileVersion("1.1.0.0")>
+<Assembly: AssemblyVersion("1.3.0.0")>
+<Assembly: AssemblyFileVersion("1.3.0.0")>
 <Assembly: NeutralResourcesLanguage("en")>

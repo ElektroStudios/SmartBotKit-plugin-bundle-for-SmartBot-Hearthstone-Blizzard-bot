@@ -18,7 +18,7 @@ Imports SmartBot.Plugins.API
 
 Imports SmartBotKit.Application
 Imports SmartBotKit.Extensions.StringExtensions
-Imports SmartBotKit.Interop.SmartBot
+Imports SmartBotKit.Interop
 Imports SmartBotKit.Interop.Win32
 Imports SmartBotKit.Text
 
@@ -211,7 +211,7 @@ Namespace TaskBarInfo
             Dim state As TaskbarProgressBarState
             Dim minValue As Integer
             Dim maxValue As Integer
-            Dim p As Process = AutomationUtil.Process
+            Dim p As Process = SmartBotUtil.Process
 
             Select Case mode
 
@@ -235,7 +235,7 @@ Namespace TaskBarInfo
 
             End Select
 
-            Do While (AutomationUtil.IsInSplashScreen) OrElse (p.MainWindowHandle = IntPtr.Zero)
+            Do While (SmartBotUtil.IsInSplashScreen) OrElse (p.MainWindowHandle = IntPtr.Zero)
                 Thread.Sleep(100)
                 p.Refresh()
             Loop
