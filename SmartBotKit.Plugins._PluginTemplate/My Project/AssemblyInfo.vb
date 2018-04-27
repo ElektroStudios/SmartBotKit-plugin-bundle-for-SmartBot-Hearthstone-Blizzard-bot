@@ -9,10 +9,10 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("Template")>
-<Assembly: AssemblyDescription("A plugin template for SmartBot")>
+<Assembly: AssemblyTitle("Plugin Template")>
+<Assembly: AssemblyDescription("A plugin template for SmartBot.")>
 <Assembly: AssemblyCompany("Elektro Studios")>
-<Assembly: AssemblyProduct("Template")>
+<Assembly: AssemblyProduct("PluginTemplate")>
 <Assembly: AssemblyCopyright("Copyright © Elektro Studios 2018")>
 <Assembly: AssemblyTrademark("")>
 

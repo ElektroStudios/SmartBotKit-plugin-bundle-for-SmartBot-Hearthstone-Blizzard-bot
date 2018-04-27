@@ -9,6 +9,7 @@ Option Infer Off
 
 #Region " Imports "
 
+Imports System.Collections.Generic
 Imports System.Diagnostics
 Imports System.Runtime.InteropServices
 Imports System.Threading
@@ -21,9 +22,9 @@ Imports SmartBotKit.Interop.Win32
 
 #End Region
 
-#Region " FriendListManagerPlugin "
+#Region " PlayAFriendTrackerPlugin "
 
-Namespace FriendListManager
+Namespace PlayAFriendTracker
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>
@@ -32,7 +33,7 @@ Namespace FriendListManager
     ''' ----------------------------------------------------------------------------------------------------
     ''' <seealso cref="Plugin"/>
     ''' ----------------------------------------------------------------------------------------------------
-    Public NotInheritable Class FriendListManagerPlugin : Inherits Plugin
+    Public NotInheritable Class PlayAFriendTrackerPlugin : Inherits Plugin
 
 #Region " Properties "
 
@@ -45,9 +46,9 @@ Namespace FriendListManager
         ''' The plugin's data container.
         ''' </value>
         ''' ----------------------------------------------------------------------------------------------------
-        Public Shadows ReadOnly Property DataContainer As FriendListManagerPluginData
+        Public Shadows ReadOnly Property DataContainer As PlayAFriendTrackerPluginData
             Get
-                Return DirectCast(MyBase.DataContainer, FriendListManagerPluginData)
+                Return DirectCast(MyBase.DataContainer, PlayAFriendTrackerPluginData)
             End Get
         End Property
 
@@ -57,7 +58,7 @@ Namespace FriendListManager
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Keeps track of the last <see cref="FriendListManagerPluginData.Enabled"/> value.
+        ''' Keeps track of the last <see cref="PlayAFriendTrackerPluginData.Enabled"/> value.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Private lastEnabled As Boolean
@@ -68,7 +69,7 @@ Namespace FriendListManager
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Initializes a new instance of the <see cref="FriendListManagerPlugin"/> class.
+        ''' Initializes a new instance of the <see cref="PlayAFriendTrackerPlugin"/> class.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Public Sub New()
@@ -81,29 +82,29 @@ Namespace FriendListManager
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Called when this <see cref="FriendListManagerPlugin"/> is created by the SmartBot plugin manager.
+        ''' Called when this <see cref="PlayAFriendTrackerPlugin"/> is created by the SmartBot plugin manager.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Public Overrides Sub OnPluginCreated()
             Me.lastEnabled = Me.DataContainer.Enabled
             If (Me.lastEnabled) Then
-                Bot.Log(String.Format("[FriendListManager] Plugin initialized. Current friends count: {0}", Bot.GetFriends.Count()))
+                Bot.Log("[PlayAFriendTracker] Plugin initialized.")
             End If
             MyBase.OnPluginCreated()
         End Sub
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Called when the properties of <see cref="FriendListManagerPluginData"/> are updated.
+        ''' Called when the properties of <see cref="PlayAFriendTrackerPluginData"/> are updated.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Public Overrides Sub OnDataContainerUpdated()
             Dim enabled As Boolean = Me.DataContainer.Enabled
             If (enabled <> Me.lastEnabled) Then
                 If (enabled) Then
-                    Bot.Log(String.Format("[FriendListManager] Plugin enabled. Current friends count: {0}", Bot.GetFriends.Count()))
+                    Bot.Log("[PlayAFriendTracker] Plugin enabled.")
                 Else
-                    Bot.Log("[FriendListManager] Plugin disabled.")
+                    Bot.Log("[PlayAFriendTracker] Plugin disabled.")
                 End If
                 Me.lastEnabled = enabled
             End If
@@ -118,23 +119,23 @@ Namespace FriendListManager
         Public Overrides Sub OnGameEnd()
             If (Me.DataContainer.Enabled) Then
 
-                If (Me.DataContainer.InviteOpponents) Then
-                    Dim id As Long = Bot.GetPreviousOpponentId()
-                    ' Bot.AddFriend()
-                End If
-
-                If (Me.DataContainer.RemoveInactiveFriends) Then
-                    For Each dude As [Friend] In Bot.GetFriends()
-                        'If dude.GetBattleTag...
-                    Next
-                End If
-
             End If
 
             MyBase.OnGameEnd()
         End Sub
 
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Called when the bot timer is ticked, every 300 milliseconds.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        Public Overrides Sub OnTick()
+            'If SmartBot.Plugins.API.Bot.IsChallengedByAFriendActive Then
+            '    ' ...
+            'End If
 
+            MyBase.OnTick()
+        End Sub
 
 #End Region
 

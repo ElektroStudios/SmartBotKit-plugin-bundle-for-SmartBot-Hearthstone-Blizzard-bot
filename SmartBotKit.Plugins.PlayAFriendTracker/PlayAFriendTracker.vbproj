@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C09A1D48-448C-46A2-BDB3-E5A684067DE4}</ProjectGuid>
+    <ProjectGuid>{20A3438D-C7E7-425A-B8E9-CCF42DD622CF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>SmartBotKit.Plugins</RootNamespace>
-    <AssemblyName>Template</AssemblyName>
+    <AssemblyName>PlayAFriendTracker</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>Windows</MyType>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
@@ -30,8 +30,8 @@
     <DebugType>full</DebugType>
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
-    <OutputPath>bin\AnyCPU\Debug\</OutputPath>
-    <DocumentationFile>Template.xml</DocumentationFile>
+    <OutputPath>..\Bin\Debug\Plugins\</OutputPath>
+    <DocumentationFile>PlayAFriendTracker.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -40,8 +40,8 @@
     <DefineDebug>false</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
-    <OutputPath>bin\AnyCPU\Release\</OutputPath>
-    <DocumentationFile>Template.xml</DocumentationFile>
+    <OutputPath>..\Bin\Release\Plugins\</OutputPath>
+    <DocumentationFile>PlayAFriendTracker.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <ItemGroup>
@@ -50,10 +50,6 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="Xceed.Wpf.Toolkit">
-      <HintPath>..\References\Xceed.Wpf.Toolkit.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Import Include="Microsoft.VisualBasic" />
@@ -75,8 +71,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Template\TemplatePluginData.vb" />
-    <Compile Include="Template\TemplatePlugin.vb" />
+    <Compile Include="PlayAFriendTracker\PlayAFriendTrackerPluginData.vb" />
+    <Compile Include="PlayAFriendTracker\PlayAFriendTrackerPlugin.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">

@@ -14,32 +14,42 @@ Imports System.Diagnostics
 Imports System.Reflection
 
 Imports SmartBot.Plugins
-Imports Xceed.Wpf.Toolkit.PropertyGrid.Attributes
-
-Imports SmartBotKit.Interop.Win32
 
 #End Region
 
-#Region " SystemTrayIconPluginData "
+#Region " PlayAFriendTrackerPluginData "
 
-Namespace SystemTrayIcon
+Namespace PlayAFriendTracker
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>
-    ''' Plugin data for <see cref="SystemTrayIconPlugin"/> plugin class.
+    ''' Plugin data for <see cref="PlayAFriendTrackerPlugin"/> plugin class.
     ''' </summary>
     ''' ----------------------------------------------------------------------------------------------------
     ''' <seealso cref="PluginDataContainer"/>
     ''' ----------------------------------------------------------------------------------------------------
     <Serializable>
     <DebuggerNonUserCode>
-    Public NotInheritable Class SystemTrayIconPluginData : Inherits PluginDataContainer
+    Public NotInheritable Class PlayAFriendTrackerPluginData : Inherits PluginDataContainer
+
+#Region " Properties "
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets or sets a value that determine whether the plugin should...
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        <Category("Settings")>
+        <DisplayName("Test")>
+        Public Property Test As Boolean
+
+#End Region
 
 #Region " Constructors "
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Initializes a new instance of the <see cref="SystemTrayIconPluginData"/> class.
+        ''' Initializes a new instance of the <see cref="PlayAFriendTrackerPluginData"/> class.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Public Sub New()

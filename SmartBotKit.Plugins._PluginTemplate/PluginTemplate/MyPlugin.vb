@@ -19,9 +19,9 @@ Imports SmartBot.Plugins.API.Bot
 
 #End Region
 
-#Region " TemplatePlugin "
+#Region " MyPlugin "
 
-Namespace Template
+Namespace PluginTemplate
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>
@@ -31,7 +31,7 @@ Namespace Template
     ''' ----------------------------------------------------------------------------------------------------
     ''' <seealso cref="Plugin"/>
     ''' ----------------------------------------------------------------------------------------------------
-    Public NotInheritable Class TemplatePlugin : Inherits Plugin
+    Public NotInheritable Class MyPlugin : Inherits Plugin
 
 #Region " Properties "
 
@@ -44,9 +44,9 @@ Namespace Template
         ''' The plugin's data container.
         ''' </value>
         ''' ----------------------------------------------------------------------------------------------------
-        Public Shadows ReadOnly Property DataContainer As TemplatePluginData
+        Public Shadows ReadOnly Property DataContainer As MyPluginData
             Get
-                Return DirectCast(MyBase.DataContainer, TemplatePluginData)
+                Return DirectCast(MyBase.DataContainer, MyPluginData)
             End Get
         End Property
 
@@ -67,7 +67,7 @@ Namespace Template
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Initializes a new instance of the <see cref="TemplatePlugin"/> class.
+        ''' Initializes a new instance of the <see cref="MyPlugin"/> class.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         <DebuggerNonUserCode>
@@ -81,7 +81,7 @@ Namespace Template
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Called when this <see cref="TemplatePlugin"/> is created by the SmartBot plugin manager.
+        ''' Called when this <see cref="MyPlugin"/> is created by the SmartBot plugin manager.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Public Overrides Sub OnPluginCreated()
@@ -415,7 +415,7 @@ Namespace Template
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Called when the properties of <see cref="TemplatePluginData"/> are updated.
+        ''' Called when the properties of <see cref="MyPluginData"/> are updated.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Public Overrides Sub OnDataContainerUpdated()
@@ -425,7 +425,7 @@ Namespace Template
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Releases all the resources used by this <see cref="TemplatePlugin"/> instance.
+        ''' Releases all the resources used by this <see cref="MyPlugin"/> instance.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Public Overrides Sub Dispose()
@@ -448,7 +448,7 @@ Namespace Template
         ''' ----------------------------------------------------------------------------------------------------
         <DebuggerStepThrough>
         Private Sub LogMethodName(<CallerMemberName> ByVal Optional methodName As String = "")
-            Bot.Log(String.Format("[{0}] -> {1}", NameOf(TemplatePlugin), methodName))
+            Bot.Log(String.Format("[{0}] -> {1}", NameOf(MyPlugin), methodName))
         End Sub
 
         ''' ----------------------------------------------------------------------------------------------------

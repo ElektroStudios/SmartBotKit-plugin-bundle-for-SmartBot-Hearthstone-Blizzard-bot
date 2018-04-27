@@ -10,7 +10,7 @@ Imports System.Runtime.InteropServices
 ' Review the values of the assembly attributes
 
 <Assembly: AssemblyTitle("Hearthstone Resizer")>
-<Assembly: AssemblyDescription("This plugin will automatically resize the Hearthstone window to a speciied size.")>
+<Assembly: AssemblyDescription("This plugin will automatically move and resize the Hearthstone window to a specified location.")>
 <Assembly: AssemblyCompany("Elektro Studios")>
 <Assembly: AssemblyProduct("HearthstoneResizer")>
 <Assembly: AssemblyCopyright("Copyright © Elektro Studios 2018")>
@@ -32,6 +32,6 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")>
 
-<Assembly: AssemblyVersion("1.0.0.0")>
-<Assembly: AssemblyFileVersion("1.0.0.0")>
+<Assembly: AssemblyVersion("1.1.0.0")>
+<Assembly: AssemblyFileVersion("1.1.0.0")>
 <Assembly: NeutralResourcesLanguage("en")>

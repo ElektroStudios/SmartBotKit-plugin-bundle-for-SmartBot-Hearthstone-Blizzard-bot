@@ -24,19 +24,19 @@ Installation:
 ![](https://i.imgur.com/CjbUmW8.png)
 
 ## Template
-This is just a template of a plugin project written in VB.NET language.
+This is just a plugin template written in VB.NET language.
 
-You can star writting a new plugin taking this template project as a start point.
+You can star writting a new plugin for SmartBot taking this template project as a startup point.
 
 ## Auto Cleaner
 This plugin will automatically clean temporary/garbage files when exiting from SmartBot. 
 
 Settings:
 
-![](https://i.imgur.com/IQD5eia.png)
+![](https://i.imgur.com/ngublGM.png)
 
 ## Hearthstone Resizer
-This plugin will automatically resize the Hearthstone window to a speciied size.
+This plugin will automatically move and resize the Hearthstone window to a speciied size and location.
 
 Just that.
 
@@ -44,10 +44,8 @@ You can configure the plugin to resize the window every timer tick, or each 5 ti
 
 The plugin is aware of when Hearthstone window is maximized, and when it is at fullscreen mode.
 
-It will not try to resize its window in those circunstances.
-
+It will not try to move/resize its window in those circunstances.
 (however, I didn't tested the fullscreen mode detection on multi-monitor configurations)
-
 
 Note that I didn't provided any 16:9 resolution just because Hearthstone process does not like those resolutions;
 
@@ -55,7 +53,7 @@ when attempting to resize Hearthstone window to a 16:9 size, its process will au
 
 Settings:
 
-![](https://i.imgur.com/PDMa2vT.png)
+![](https://i.imgur.com/RajVU6i.png)
 
 ## Multi Launcher
 This plugin automatically launchs your favorite files or 3rd party programs for Hearthstone at SmartBot's startup.

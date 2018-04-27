@@ -16,22 +16,24 @@ Imports System.Reflection
 Imports SmartBot.Plugins
 Imports Xceed.Wpf.Toolkit.PropertyGrid.Attributes
 
+Imports SmartBotKit.Interop
+
 #End Region
 
-#Region " TemplatePluginData "
+#Region " MyPluginData "
 
-Namespace Template
+Namespace PluginTemplate
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>
-    ''' Plugin data for <see cref="TemplatePlugin"/> plugin class.
+    ''' Plugin data for <see cref="MyPlugin"/> plugin class.
     ''' </summary>
     ''' ----------------------------------------------------------------------------------------------------
     ''' <seealso cref="PluginDataContainer"/>
     ''' ----------------------------------------------------------------------------------------------------
     <Serializable>
     <DebuggerNonUserCode>
-    Public NotInheritable Class TemplatePluginData : Inherits PluginDataContainer
+    Public NotInheritable Class MyPluginData : Inherits PluginDataContainer
 
 #Region " Properties "
 
@@ -43,7 +45,8 @@ Namespace Template
         <Category("Settings")>
         <DisplayName("A test property.")>
         <Browsable(True)>
-        Public Property TestProperty As Boolean
+        <ItemsSource(GetType(SmartBotEvent))>
+        Public Property TestProperty As SmartBotEvent
 
 #End Region
 
@@ -51,7 +54,7 @@ Namespace Template
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Initializes a new instance of the <see cref="TemplatePluginData"/> class.
+        ''' Initializes a new instance of the <see cref="MyPluginData"/> class.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Public Sub New()

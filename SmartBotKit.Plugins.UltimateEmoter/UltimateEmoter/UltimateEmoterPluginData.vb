@@ -313,9 +313,9 @@ Namespace UltimateEmoter
             Me.SquelchEnemny = False
 
             Me.MaxReplies = 5
-            Me.ReplyEmotePercent = 40
-            Me.SendEmoteOnConditionsPercent = 40
-            Me.SquelchEnemnyPercent = 10
+            Me.ReplyEmotePercent = 25
+            Me.SendEmoteOnConditionsPercent = 20
+            Me.SquelchEnemnyPercent = 5
             Me.MaxDelay = 4000
         End Sub
 

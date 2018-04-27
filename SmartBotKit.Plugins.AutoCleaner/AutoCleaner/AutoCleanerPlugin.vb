@@ -117,6 +117,18 @@ Namespace AutoCleaner
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
+        ''' Called when the bot is started.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        Public Overrides Sub OnStarted()
+            If (Me.DataContainer.Enabled) AndAlso (Me.DataContainer.CleanerEvent = SmartBotEvent.BotStart) Then
+                Me.CleanGarbage()
+            End If
+            MyBase.OnStarted()
+        End Sub
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
         ''' Called when the bot is stopped.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
@@ -152,8 +164,10 @@ Namespace AutoCleaner
 
             Dim pluginsPath As New DirectoryInfo(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location))
             Dim sbDir As DirectoryInfo = pluginsPath.Parent
+            Dim crashDir As New DirectoryInfo(Path.Combine(sbDir.FullName, "Crashs"))
             Dim logsDir As New DirectoryInfo(Path.Combine(sbDir.FullName, "Logs"))
             Dim seedsDir As New DirectoryInfo(Path.Combine(sbDir.FullName, "Seeds"))
+            Dim screenshotsDir As New DirectoryInfo(Path.Combine(sbDir.FullName, "Screenshots"))
 
             If Not File.Exists(Path.Combine(sbDir.FullName, "SBAPI.dll")) Then
                 Throw New DirectoryNotFoundException("SmartBot's root directory cannot be found.")
@@ -169,45 +183,75 @@ Namespace AutoCleaner
                 recycleOption = RecycleOption.DeletePermanently
             End If
 
+            ' Delete seeds
             If (Me.DataContainer.DeleteSeeds) Then
-                Dim seedDirs As IEnumerable(Of DirectoryInfo) =
-                    seedsDir.EnumerateDirectories("*", System.IO.SearchOption.TopDirectoryOnly)
+                Dim seeds As New List(Of DirectoryInfo)
+                If (seedsDir.Exists) Then
+                    seeds.AddRange(seedsDir.EnumerateDirectories("*", System.IO.SearchOption.TopDirectoryOnly))
+                End If
 
-                For Each seedDir As DirectoryInfo In seedDirs
-                    Dim daysDiff As Integer = CInt((Date.Now - seedDir.CreationTime).TotalDays)
+                For Each seed As DirectoryInfo In seeds
+                    Dim daysDiff As Integer = CInt((Date.Now - seed.CreationTime).TotalDays)
                     If (daysDiff >= minDaysDiff) Then
                         Try
-                            My.Computer.FileSystem.DeleteDirectory(seedDir.FullName, UIOption.OnlyErrorDialogs, recycleOption)
+                            My.Computer.FileSystem.DeleteDirectory(seed.FullName, UIOption.OnlyErrorDialogs, recycleOption)
                             If (verboseMode) Then
-                                Bot.Log(String.Format("[AutoCleaner] Seed directory deleted: '{0}'. Older than {1} days.", seedDir.Name, daysDiff))
+                                Bot.Log(String.Format("[AutoCleaner] Seed directory deleted: '{0}'. Older than {1} days.", seed.Name, daysDiff))
                             End If
                         Catch ex As Exception
                             ' Ignore all.
                         End Try
                     End If
-                Next seedDir
+                Next seed
             End If
 
+            ' Delete logs
             If (Me.DataContainer.DeleteLogs) Then
-                Dim logFiles As IEnumerable(Of FileInfo) =
-                    Enumerable.Concat(Of FileInfo)(logsDir.EnumerateFiles("*.log", System.IO.SearchOption.AllDirectories),
-                                                   logsDir.EnumerateFiles("*.txt", System.IO.SearchOption.AllDirectories)).
-                                                   Concat({New FileInfo(Path.Combine(sbDir.FullName, "UpdaterLog.txt"))})
+                Dim logs As New List(Of FileInfo)
+                If (crashDir.Exists) Then
+                    logs.AddRange(crashDir.EnumerateFiles("*.txt", System.IO.SearchOption.TopDirectoryOnly))
+                End If
+                If (logsDir.Exists) Then
+                    logs.AddRange(logsDir.EnumerateFiles("*.log", System.IO.SearchOption.AllDirectories))
+                    logs.AddRange(logsDir.EnumerateFiles("*.txt", System.IO.SearchOption.AllDirectories))
+                End If
+                logs.Add(New FileInfo(Path.Combine(sbDir.FullName, "UpdaterLog.txt")))
 
-                For Each logFile As FileInfo In logFiles
-                    Dim daysDiff As Integer = CInt((Date.Now - logFile.CreationTime).TotalDays)
+                For Each log As FileInfo In logs
+                    Dim daysDiff As Integer = CInt((Date.Now - log.CreationTime).TotalDays)
                     If (daysDiff >= minDaysDiff) Then
                         Try
-                            My.Computer.FileSystem.DeleteFile(logFile.FullName, UIOption.OnlyErrorDialogs, recycleOption)
+                            My.Computer.FileSystem.DeleteFile(log.FullName, UIOption.OnlyErrorDialogs, recycleOption)
                             If (verboseMode) Then
-                                Bot.Log(String.Format("[AutoCleaner] Log file deleted: '{0}'. Older than {1} days.", logFile.Name, daysDiff))
+                                Bot.Log(String.Format("[AutoCleaner] Log file deleted: '{0}'. Older than {1} days.", log.Name, daysDiff))
                             End If
                         Catch ex As Exception
                             ' Ignore all.
                         End Try
                     End If
-                Next logFile
+                Next log
+            End If
 
+            ' Delete screenshots
+            If (Me.DataContainer.DeleteScreenshots) Then
+                Dim screenshots As New List(Of FileInfo)
+                If (screenshotsDir.Exists) Then
+                    screenshots.AddRange(screenshotsDir.EnumerateFiles("*.png", System.IO.SearchOption.TopDirectoryOnly))
+                End If
+
+                For Each screenshot As FileInfo In screenshots
+                    Dim daysDiff As Integer = CInt((Date.Now - screenshot.CreationTime).TotalDays)
+                    If (daysDiff >= minDaysDiff) Then
+                        Try
+                            My.Computer.FileSystem.DeleteFile(screenshot.FullName, UIOption.OnlyErrorDialogs, recycleOption)
+                            If (verboseMode) Then
+                                Bot.Log(String.Format("[AutoCleaner] Screenshot deleted: '{0}'. Older than {1} days.", screenshot.Name, daysDiff))
+                            End If
+                        Catch ex As Exception
+                            ' Ignore all.
+                        End Try
+                    End If
+                Next screenshot
             End If
 
         End Sub

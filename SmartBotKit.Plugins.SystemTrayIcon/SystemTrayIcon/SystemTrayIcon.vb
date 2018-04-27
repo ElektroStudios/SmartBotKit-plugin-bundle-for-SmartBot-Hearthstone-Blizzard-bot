@@ -32,24 +32,6 @@ Namespace SystemTrayIcon
     ''' ----------------------------------------------------------------------------------------------------
     Public NotInheritable Class SystemTrayIcon : Implements IDisposable
 
-#Region " Properties "
-
-        ''' ----------------------------------------------------------------------------------------------------
-        ''' <summary>
-        ''' Gets the animation effect to fade in the SmartBot window.
-        ''' </summary>
-        ''' ----------------------------------------------------------------------------------------------------
-        Public ReadOnly Property FxFadeIn As WindowAnimation
-
-        ''' ----------------------------------------------------------------------------------------------------
-        ''' <summary>
-        ''' Gets the animation effect to fade out the SmartBot window.
-        ''' </summary>
-        ''' ----------------------------------------------------------------------------------------------------
-        Public ReadOnly Property FxFadeOut As WindowAnimation
-
-#End Region
-
 #Region " Private Fields "
 
         ''' ----------------------------------------------------------------------------------------------------
@@ -109,8 +91,6 @@ Namespace SystemTrayIcon
         Public Sub New(ByVal dataContainer As SystemTrayIconPluginData)
             Me.p = Process.GetCurrentProcess()
             Me.dataContainer = dataContainer
-            Me.FxFadeIn = dataContainer.FxFadeIn
-            Me.FxFadeOut = dataContainer.FxFadeOut
 
             Me.MenuItemShow = New ToolStripMenuItem("Show", My.Resources.MenuItemShow)
             Me.MenuItemHide = New ToolStripMenuItem("Hide", My.Resources.MenuItemHide)

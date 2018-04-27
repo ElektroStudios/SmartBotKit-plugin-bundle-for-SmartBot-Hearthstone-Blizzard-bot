@@ -13,24 +13,24 @@ Imports Xceed.Wpf.Toolkit.PropertyGrid.Attributes
 
 #End Region
 
-#Region " ResolutionSource "
+#Region " SizeSource "
 
 Namespace HearthstoneResizer
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>
-    ''' Provides the collection of values represented by a ComboBox for the <see cref="HearthstoneResizerPluginData.Resolution"/> property.
+    ''' Provides the collection of values represented by a ComboBox for the <see cref="HearthstoneResizerPluginData.Size"/> property.
     ''' </summary>
     ''' ----------------------------------------------------------------------------------------------------
     ''' <seealso cref="IItemsSource"/>
     ''' ----------------------------------------------------------------------------------------------------
-    Public NotInheritable Class ResolutionSource : Implements IItemsSource
+    Public NotInheritable Class SizeSource : Implements IItemsSource
 
 #Region " Constructors "
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Initializes a new instance of the <see cref="ResolutionSource"/> class.
+        ''' Initializes a new instance of the <see cref="SizeSource"/> class.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Public Sub New()

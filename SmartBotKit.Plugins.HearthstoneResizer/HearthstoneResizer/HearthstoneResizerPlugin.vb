@@ -26,7 +26,7 @@ Namespace HearthstoneResizer
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>
-    ''' This plugin will automatically resize the Hearthstone window to a speciied size.
+    ''' This plugin will automatically move and resize the Hearthstone window to a specified location.
     ''' </summary>
     ''' ----------------------------------------------------------------------------------------------------
     ''' <seealso cref="Plugin"/>
@@ -95,6 +95,9 @@ Namespace HearthstoneResizer
             If (Me.lastEnabled) Then
                 Bot.Log("[HearthstoneResizer] Plugin initialized.")
             End If
+            If (Me.DataContainer.Enabled) AndAlso (Me.DataContainer.HearthstoneResizerEvent = SmartBotEvent.Startup) Then
+                Me.SetHearthstoneWindowSizeAndPosition()
+            End If
             MyBase.OnPluginCreated()
         End Sub
 
@@ -116,7 +119,6 @@ Namespace HearthstoneResizer
             MyBase.OnDataContainerUpdated()
         End Sub
 
-
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
         ''' Called when the bot is started.
@@ -124,7 +126,7 @@ Namespace HearthstoneResizer
         ''' ----------------------------------------------------------------------------------------------------
         Public Overrides Sub OnStarted()
             If (Me.DataContainer.Enabled) AndAlso (Me.DataContainer.HearthstoneResizerEvent = SmartBotEvent.BotStart) Then
-                Me.SetHearthstoneWindowSize()
+                Me.SetHearthstoneWindowSizeAndPosition()
             End If
             MyBase.OnStarted()
         End Sub
@@ -136,7 +138,7 @@ Namespace HearthstoneResizer
         ''' ----------------------------------------------------------------------------------------------------
         Public Overrides Sub OnGameBegin()
             If (Me.DataContainer.Enabled) AndAlso (Me.DataContainer.HearthstoneResizerEvent = SmartBotEvent.GameBegin) Then
-                Me.SetHearthstoneWindowSize()
+                Me.SetHearthstoneWindowSizeAndPosition()
             End If
             MyBase.OnGameBegin()
         End Sub
@@ -148,7 +150,7 @@ Namespace HearthstoneResizer
         ''' ----------------------------------------------------------------------------------------------------
         Public Overrides Sub OnTurnBegin()
             If (Me.DataContainer.Enabled) AndAlso (Me.DataContainer.HearthstoneResizerEvent = SmartBotEvent.TurnBegin) Then
-                Me.SetHearthstoneWindowSize()
+                Me.SetHearthstoneWindowSizeAndPosition()
             End If
             MyBase.OnTurnBegin()
         End Sub
@@ -161,11 +163,11 @@ Namespace HearthstoneResizer
         Public Overrides Sub OnTick()
             If (Me.DataContainer.Enabled) AndAlso (Me.DataContainer.HearthstoneResizerEvent = SmartBotEvent.TimerTick) Then
 
-                If (Me.DataContainer.IgnoreTicksIfBotStopped) OrElse
-                   (Not Me.DataContainer.IgnoreTicksIfBotStopped AndAlso Bot.IsBotRunning()) Then
+                If (Not Me.DataContainer.IgnoreTicksIfBotStopped) OrElse
+                   (Me.DataContainer.IgnoreTicksIfBotStopped AndAlso Bot.IsBotRunning()) Then
 
                     If (Interlocked.Increment(Me.curTickCount) >= Me.DataContainer.TickCount) Then
-                        Me.SetHearthstoneWindowSize()
+                        Me.SetHearthstoneWindowSizeAndPosition()
                         Me.curTickCount = 0
                     End If
 
@@ -182,10 +184,10 @@ Namespace HearthstoneResizer
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Sets the Hearthstone window size.
+        ''' Sets the Hearthstone window size and position.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        Private Sub SetHearthstoneWindowSize()
+        Private Sub SetHearthstoneWindowSizeAndPosition()
             If (HearthstoneUtil.Process Is Nothing) Then
                 Exit Sub
             End If
@@ -198,9 +200,18 @@ Namespace HearthstoneResizer
 
                 Case Else
                     If Not (HearthstoneUtil.IsFullscreen) Then
+                        Dim oldPos As Point = HearthstoneUtil.WindowPosition
+                        Dim newPos As Point = Me.DataContainer.Position
+
                         Dim oldSize As Size = HearthstoneUtil.WindowSize
-                        Dim newSize As Size = HearthstoneResizerPluginData.Resolutions(Me.DataContainer.Resolution)
-                        If (oldSize <> newSize) Then
+                        Dim newSize As Size = HearthstoneResizerPluginData.Resolutions(Me.DataContainer.Size)
+
+                        If (oldPos <> newPos) AndAlso (Me.DataContainer.EnableMove) Then
+                            HearthstoneUtil.WindowPosition = newPos
+                            Bot.Log(String.Format("[HearthstoneResizer] Hearthstone window position changed to: {0}", newPos.ToString()))
+                        End If
+
+                        If (oldSize <> newSize) AndAlso (Me.DataContainer.EnableResize) Then
                             HearthstoneUtil.WindowSize = newSize
                             Bot.Log(String.Format("[HearthstoneResizer] Hearthstone window size changed to: {0}", newSize.ToString()))
                         End If

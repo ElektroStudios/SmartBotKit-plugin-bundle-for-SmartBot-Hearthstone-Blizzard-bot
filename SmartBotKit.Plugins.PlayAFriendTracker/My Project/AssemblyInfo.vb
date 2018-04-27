@@ -9,10 +9,10 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("FriendList Manager")>
-<Assembly: AssemblyDescription("Manages your friend list in Hearthstone.")>
+<Assembly: AssemblyTitle("Play A Friend Tracker")>
+<Assembly: AssemblyDescription("")>
 <Assembly: AssemblyCompany("Elektro Studios")>
-<Assembly: AssemblyProduct("FriendListManager")>
+<Assembly: AssemblyProduct("PlayAFriendTracker")>
 <Assembly: AssemblyCopyright("Copyright © Elektro Studios 2018")>
 <Assembly: AssemblyTrademark("")>
 

@@ -30,7 +30,7 @@
     <DebugType>full</DebugType>
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
-    <OutputPath>bin\AnyCPU\Debug\</OutputPath>
+    <OutputPath>..\Bin\Debug\Plugins\</OutputPath>
     <DocumentationFile>HearthstoneResizer.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
@@ -40,7 +40,7 @@
     <DefineDebug>false</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
-    <OutputPath>bin\AnyCPU\Release\</OutputPath>
+    <OutputPath>..\Bin\Release\Plugins\</OutputPath>
     <DocumentationFile>HearthstoneResizer.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
@@ -62,7 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HearthstoneResizer\HearthstoneResizerEventSource.vb" />
-    <Compile Include="HearthstoneResizer\ResolutionSource.vb" />
+    <Compile Include="HearthstoneResizer\SizeSource.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>

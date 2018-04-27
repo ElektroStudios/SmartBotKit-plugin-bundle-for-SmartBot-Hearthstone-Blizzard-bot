@@ -32,7 +32,7 @@
     <DebugType>full</DebugType>
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
-    <OutputPath>bin\AnyCPU\Debug\</OutputPath>
+    <OutputPath>..\Bin\Debug\Plugins\libs\</OutputPath>
     <DocumentationFile>SmartBotKit.Core.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
     <Prefer32Bit>false</Prefer32Bit>
@@ -43,7 +43,7 @@
     <DefineDebug>false</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
-    <OutputPath>bin\AnyCPU\Release\</OutputPath>
+    <OutputPath>..\Bin\Release\Plugins\libs\</OutputPath>
     <DocumentationFile>SmartBotKit.Core.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
     <Prefer32Bit>false</Prefer32Bit>
@@ -80,7 +80,6 @@
     <Compile Include="Interop\Win32\ITaskbarList4.vb" />
     <Compile Include="Interop\Win32\TaskbarList.vb" />
     <Compile Include="Interop\Win32\TaskbarProgressBarState.vb" />
-    <Compile Include="Interop\Win32\WindowAnimation.vb" />
     <Compile Include="IO\HotkeyIsNotRegisteredException.vb" />
     <Compile Include="IO\HotkeyIsRegisteredException.vb" />
     <Compile Include="IO\HotkeyPressEventArgs.vb" />

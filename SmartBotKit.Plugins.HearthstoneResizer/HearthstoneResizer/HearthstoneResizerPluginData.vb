@@ -107,27 +107,62 @@ Namespace HearthstoneResizer
 
 #End Region
 
-#Region " Main Settings "
+#Region " Size And Position "
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
         ''' Gets or sets the desired Hearthstone's window size.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        <Category("Main Settings")>
-        <DisplayName("Desired Hearthstone's window size.")>
-        <ItemsSource(GetType(ResolutionSource))>
-        Public Property Resolution As String
+        <Category("Size And Position")>
+        <DisplayName("Target window size.")>
+        <ItemsSource(GetType(SizeSource))>
+        Public Property Size As String
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets or sets the desired Hearthstone's window position.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        <Category("Size And Position")>
+        <DisplayName("Target window position.")>
+        Public Property Position As Point
+
+#End Region
+
+#Region " Behavior "
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
         ''' Gets or sets a value that determine at which event to resize Hearthstone's window size.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        <Category("Main Settings")>
-        <DisplayName("In which event should the window size be changed?")>
+        <Category("Behavior")>
+        <DisplayName("At which event should the window be moved/resized?")>
         <ItemsSource(GetType(HearthstoneResizerEventSource))>
         Public Property HearthstoneResizerEvent As SmartBotEvent
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets or sets a value that determine whether the plugin shouldn't move Hearthstone window.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        <Category("Behavior")>
+        <DisplayName("Enable Hearthstone window move." & ControlChars.NewLine &
+                     "If enabled, Hearthstone window will be moved to the target position that you specified in the settings." & ControlChars.NewLine &
+                     "Disable this option if you only want to resize the window.")>
+        Public Property EnableMove As Boolean
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets or sets a value that determine whether the plugin shouldn't resize Hearthstone window.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        <Category("Behavior")>
+        <DisplayName("Enable Hearthstone window resize." & ControlChars.NewLine &
+                     "If enabled, Hearthstone window will be resized to the target size that you specified in the settings." & ControlChars.NewLine &
+                     "Disable this option if you only want to move the window.")>
+        Public Property EnableResize As Boolean
 
 #End Region
 
@@ -190,7 +225,12 @@ Namespace HearthstoneResizer
         Public Sub New()
             Me.Name = Assembly.GetExecutingAssembly().GetName().Name
 
-            Me.Resolution = "800×600 (4:3)"
+            Me.EnableMove = True
+            Me.EnableResize = True
+
+            Me.Position = Point.Empty
+            Me.Size = "800×600 (4:3)"
+
             Me.IgnoreTicksIfBotStopped = False
             Me.TickCount = 5
             Me.HearthstoneResizerEvent = SmartBotEvent.TimerTick

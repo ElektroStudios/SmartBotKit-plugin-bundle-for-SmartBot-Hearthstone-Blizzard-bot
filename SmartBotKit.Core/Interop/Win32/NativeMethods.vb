@@ -40,57 +40,6 @@ Namespace SmartBotKit.Interop.Win32
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Produces special effects when showing or hiding a window.
-        ''' <para></para>
-        ''' This doesn't show the window so make sure you call <see cref="Form.Show"/> 
-        ''' or set <see cref="Form.Visible"/> property to <see langword="True"/> after calling <see cref="NativeMethods.AnimateWindow"/>.
-        ''' </summary>
-        ''' ----------------------------------------------------------------------------------------------------
-        ''' <remarks>
-        ''' <see href="http://msdn.microsoft.com/en-us/library/windows/desktop/ms632669%28v=vs.85%29.aspx"/>
-        ''' </remarks>
-        ''' ----------------------------------------------------------------------------------------------------
-        ''' <param name="hwnd">
-        ''' A <see cref="IntPtr"/> handle to the window to animate.
-        ''' <para></para>
-        ''' The calling thread must own this window.
-        ''' </param>
-        ''' 
-        ''' <param name="time">
-        ''' The time it takes to play the animation, in milliseconds.
-        ''' <para></para>
-        ''' Typically, an animation takes 200 milliseconds to play.
-        ''' </param>
-        ''' 
-        ''' <param name="animation">
-        ''' The type of animation.
-        ''' </param>
-        ''' ----------------------------------------------------------------------------------------------------
-        ''' <returns>
-        ''' If the function succeeds, the return value is <see langword="True"/>.
-        ''' <para></para>
-        ''' If the function fails, the return value is <see langword="False"/>.
-        ''' <para></para>
-        ''' The function will fail in the following situations:
-        ''' <para></para> If the window is already visible and you are trying to show the window.
-        ''' <para></para> If the window is already hidden and you are trying to hide the window.
-        ''' <para></para> When trying to animate a child window with <see cref="WindowAnimation.ShowFade"/> or <see cref="WindowAnimation.HideFade"/>.
-        ''' <para></para> If the thread does not own the window. 
-        ''' Note that, in this case, <see cref="NativeMethods.AnimateWindow"/> fails 
-        ''' but <see cref="Marshal.GetLastWin32Error"/> returns Win32ErrorCode.ERROR_SUCCESS.
-        ''' </returns>
-        ''' ----------------------------------------------------------------------------------------------------
-        <SuppressMessage("Microsoft.Interoperability", "CA1401:PInvokesShouldNotBeVisible", Justification:="Visible for API users")>
-        <SuppressUnmanagedCodeSecurity>
-        <DllImport("User32.dll", SetLastError:=True)>
-        Public Shared Function AnimateWindow(ByVal hwnd As IntPtr,
-                                             ByVal time As Integer,
-                                             ByVal animation As WindowAnimation
-        ) As <MarshalAs(UnmanagedType.Bool)> Boolean
-        End Function
-
-        ''' ----------------------------------------------------------------------------------------------------
-        ''' <summary>
         ''' Retrieves the show state and the restored, minimized, and maximized positions of the specified window.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------

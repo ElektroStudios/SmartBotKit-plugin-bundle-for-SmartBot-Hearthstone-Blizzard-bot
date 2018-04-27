@@ -57,6 +57,15 @@ Namespace AutoCleaner
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
+        ''' Gets a value that determine whether the plugin should delete screenshots.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        <Category("What to delete?")>
+        <DisplayName("Delete screenshots.")>
+        Public Property DeleteScreenshots As Boolean
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
         ''' Gets a value that determine whether deleted files will be sent to Recycle Bin.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
@@ -71,7 +80,7 @@ Namespace AutoCleaner
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         <Category("When to delete?")>
-        <DisplayName("In which event should the garbage be cleaned?")>
+        <DisplayName("At which event should the garbage be cleaned?")>
         <ItemsSource(GetType(CleanerEventSource))>
         Public Property CleanerEvent As SmartBotEvent
 
@@ -135,6 +144,7 @@ Namespace AutoCleaner
             Me.SendFilesToRecycleBin = True
             Me.DeleteLogs = False
             Me.DeleteSeeds = False
+            Me.DeleteScreenshots = False
             Me.OlderThanDays = 0
             Me.VerboseMode = True
         End Sub
