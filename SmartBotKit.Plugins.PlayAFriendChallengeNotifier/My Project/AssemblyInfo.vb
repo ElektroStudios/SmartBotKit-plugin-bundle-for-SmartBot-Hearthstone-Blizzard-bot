@@ -9,17 +9,17 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("Play A Friend Tracker")>
-<Assembly: AssemblyDescription("")>
+<Assembly: AssemblyTitle("'Play a Friend' Challenge Notifier")>
+<Assembly: AssemblyDescription("Notifies when a friend challenges you for the 'Play a Friend' quest.")>
 <Assembly: AssemblyCompany("Elektro Studios")>
-<Assembly: AssemblyProduct("PlayAFriendTracker")>
+<Assembly: AssemblyProduct("QuestChallengeNotifier")>
 <Assembly: AssemblyCopyright("Copyright © Elektro Studios 2018")>
 <Assembly: AssemblyTrademark("")>
 
 <Assembly: ComVisible(False)>
 
 'The following GUID is for the ID of the typelib if this project is exposed to COM
-<Assembly: Guid("D3911C32-C652-403F-85DB-E658A37C8C7A")>
+<Assembly: Guid("D3911C32-C652-403F-85DB-E658A37C8C7D")>
 
 ' Version information for an assembly consists of the following four values:
 '
@@ -32,6 +32,6 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")>
 
-<Assembly: AssemblyVersion("1.0.0.0")>
-<Assembly: AssemblyFileVersion("1.0.0.0")>
+<Assembly: AssemblyVersion("1.5.0.0")>
+<Assembly: AssemblyFileVersion("1.5.0.0")>
 <Assembly: NeutralResourcesLanguage("en")>

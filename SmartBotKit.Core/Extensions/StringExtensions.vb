@@ -29,7 +29,7 @@ Namespace SmartBotKit.Extensions.StringExtensions
     ''' ----------------------------------------------------------------------------------------------------
     <ImmutableObject(True)>
     <HideModuleName>
-    Public Module Renaming
+    Public Module StringExtensions
 
 #Region " Public Extension Methods "
 

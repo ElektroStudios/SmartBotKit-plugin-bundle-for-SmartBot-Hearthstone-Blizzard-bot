@@ -23,7 +23,7 @@ Installation:
 
 ![](https://i.imgur.com/CjbUmW8.png)
 
-## Template
+## Plugin Template
 This is just a plugin template written in VB.NET language.
 
 You can star writting a new plugin for SmartBot taking this template project as a startup point.
@@ -138,3 +138,30 @@ It will don't restore the minimized state since I consider it useless. (who want
 Settings:
 
 ![](https://i.imgur.com/EGyBLgA.png)
+
+## Server Down Handler
+This plugin will handle the bot behavior when the server is down.
+
+I totally suggest to use this plugin to avoid losing rank stars o farmed gold botting in ArenaAuto mode when the server is down.
+
+Settings:
+
+![](https://i.imgur.com/rCqnffo.png)
+
+## 'Play A Friend' Challenge Notifier
+This plugin will notify when a friend challenges you for the 'Play a Friend' quest
+
+PLEASE NOTE THAT THIS PLUGIN IS EXPERIMENTAL, UNFINISHED, AND IT WAS INTENDED FOR MY PERSONAL USAGE ONLY,
+
+BUT IM SHARING IT SO YOU CAN USE IT IN CASE OF YOU ACCOMPLISH THE CONDITIONS TO USE IT.
+
+FOR BEST RESULTS I SUGGEST TO USE THIS PLUGIN IN ADDITION TO MY OTHER PLUGIN: 'HEARTHSTONE RESIZER', SPECIFYING A RESOLUTION OF 640X480, THAT WAY IT WILL NEVER FAIL TO DETECT A CHALLENGUE INVITATION.
+
+IF YOU WANT TO SEE MORE RESOLUTIONS SUPPORTED BY THIS PLUGIN,
+YOU CAN CONTRIBUTE BY SENDING ME A SCREENSHOT OF HEARTHSTONE WINDOW RUNNING IN THE DESIRED SIZE THAT YOU WANT TO SUPPORT WHEN A FRIEND CHALLENGUES YOU. SEE THIS SCREENSHOT AS A EXAMPLE
+
+![](https://i.imgur.com/pIeRQyy.jpg)
+
+Settings:
+
+![](https://i.imgur.com/bIS9TRO.png)

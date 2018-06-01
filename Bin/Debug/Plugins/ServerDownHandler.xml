@@ -1,0 +1,163 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+ServerDownHandler
+</name>
+</assembly>
+<members>
+<member name="T:SmartBotKit.Plugins.My.Resources.Resources">
+<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member>
+<member name="P:SmartBotKit.Plugins.My.Resources.Resources.ResourceManager">
+<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member>
+<member name="P:SmartBotKit.Plugins.My.Resources.Resources.Culture">
+<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member>
+<member name="T:SmartBotKit.Plugins.ServerDownHandler.ServerDownHandlerPluginData">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Plugin data for <see cref="T:SmartBotKit.Plugins.ServerDownHandler.ServerDownHandlerPlugin"/> plugin class.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <seealso cref="T:SmartBot.Plugins.PluginDataContainer"/>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.ServerDownHandler.ServerDownHandlerPluginData.LastServerDownRecord">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the last known server down time record for the current session.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.ServerDownHandler.ServerDownHandlerPluginData.StopTheBotIfArena">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets a value that indicate whether the bot should be stopped if server is down and current mode is 
+ <see cref="F:SmartBot.Plugins.API.Bot.Mode.ArenaAuto"/>.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.ServerDownHandler.ServerDownHandlerPluginData.StopTheBotIfRanked">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets a value that indicate whether the bot should be stopped if server is down and current mode is 
+ <see cref="F:SmartBot.Plugins.API.Bot.Mode.RankedStandard"/> or <see cref="F:SmartBot.Plugins.API.Bot.Mode.RankedWild"/>.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.ServerDownHandler.ServerDownHandlerPluginData.StopTheBotIfUnranked">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets a value that indicate whether the bot should be stopped if server is down and current mode is 
+ <see cref="F:SmartBot.Plugins.API.Bot.Mode.UnrankedStandard"/> or <see cref="F:SmartBot.Plugins.API.Bot.Mode.UnrankedWild"/>.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.ServerDownHandler.ServerDownHandlerPluginData.PlaySoundFile">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets or sets a value that determine whether to play a wave sound file when a server down is detected.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.ServerDownHandler.ServerDownHandlerPluginData.#ctor">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Initializes a new instance of the <see cref="T:SmartBotKit.Plugins.ServerDownHandler.ServerDownHandlerPluginData"/> class.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="T:SmartBotKit.Plugins.ServerDownHandler.ServerDownHandlerPlugin">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ This plugin will handles the bot behavior when the server is down.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <seealso cref="T:SmartBot.Plugins.Plugin"/>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="F:SmartBotKit.Plugins.ServerDownHandler.ServerDownHandlerPlugin.lastDateActive">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Keeps track of the creation datetime of this plugin.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.ServerDownHandler.ServerDownHandlerPlugin.DataContainer">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the plugin's data container.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <value>
+ The plugin's data container.
+ </value>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="F:SmartBotKit.Plugins.ServerDownHandler.ServerDownHandlerPlugin.lastEnabled">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Keeps track of the last <see cref="P:SmartBot.Plugins.PluginDataContainer.Enabled"/> value.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.ServerDownHandler.ServerDownHandlerPlugin.#ctor">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Initializes a new instance of the <see cref="T:SmartBotKit.Plugins.ServerDownHandler.ServerDownHandlerPlugin"/> class.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.ServerDownHandler.ServerDownHandlerPlugin.OnPluginCreated">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Called when this <see cref="T:SmartBotKit.Plugins.ServerDownHandler.ServerDownHandlerPlugin"/> is created by the SmartBot plugin manager.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.ServerDownHandler.ServerDownHandlerPlugin.OnDataContainerUpdated">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Called when the properties of <see cref="T:SmartBotKit.Plugins.ServerDownHandler.ServerDownHandlerPluginData"/> are updated.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.ServerDownHandler.ServerDownHandlerPlugin.OnStarted">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Called when the bot is started.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.ServerDownHandler.ServerDownHandlerPlugin.OnStopped">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Called when the bot is stopped.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.ServerDownHandler.ServerDownHandlerPlugin.OnTick">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Called when the bot timer is ticked, every 300 milliseconds.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.ServerDownHandler.ServerDownHandlerPlugin.Dispose">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Releases all the resources used by this <see cref="T:SmartBotKit.Plugins.ServerDownHandler.ServerDownHandlerPlugin"/> instance.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+</members>
+</doc>

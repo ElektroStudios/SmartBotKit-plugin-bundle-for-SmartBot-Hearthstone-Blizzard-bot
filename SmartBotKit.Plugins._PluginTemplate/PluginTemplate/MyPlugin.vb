@@ -59,7 +59,7 @@ Namespace PluginTemplate
         ''' A <see cref="Boolean"/> flag for testing purposes.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        Private testFlag As Boolean
+        Private ReadOnly testFlag As Boolean
 
 #End Region
 
@@ -448,7 +448,9 @@ Namespace PluginTemplate
         ''' ----------------------------------------------------------------------------------------------------
         <DebuggerStepThrough>
         Private Sub LogMethodName(<CallerMemberName> ByVal Optional methodName As String = "")
-            Bot.Log(String.Format("[{0}] -> {1}", NameOf(MyPlugin), methodName))
+            If (Me.DataContainer.Enabled) Then
+                Bot.Log(String.Format("[{0}] -> {1}", NameOf(MyPlugin), methodName))
+            End If
         End Sub
 
         ''' ----------------------------------------------------------------------------------------------------

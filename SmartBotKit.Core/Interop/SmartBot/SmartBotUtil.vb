@@ -9,7 +9,11 @@ Option Infer Off
 
 #Region " Imports "
 
+Imports System.Collections.Generic
 Imports System.Drawing
+Imports System.IO
+Imports System.Linq
+Imports System.Reflection
 Imports System.Runtime.InteropServices
 Imports System.Windows.Automation
 
@@ -93,17 +97,79 @@ Namespace SmartBotKit.Interop
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Gets the statistics string shown in the SmartBot window.
+        ''' Gets the <see cref="AutomationElement"/> that represents the 'TextBoxLog' control.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        ''' <value>
-        ''' The statistics string shown in the SmartBot window.
-        ''' </value>
+        Public Shared ReadOnly Property UIElementTextBoxLog As AutomationElement
+            Get
+                Return SmartBotUtil.GetAutomationElement(SmartBotUtil.Process, "TextBoxLog")
+            End Get
+        End Property
+
         ''' ----------------------------------------------------------------------------------------------------
-        Public Shared ReadOnly Property Statistics As String
+        ''' <summary>
+        ''' Gets the <see cref="AutomationElement"/> that represents the 'Statslabel' control.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        Public Shared ReadOnly Property UIElementStatsLabel As AutomationElement
+            Get
+                Return SmartBotUtil.GetAutomationElement(SmartBotUtil.Process, "Statslabel")
+            End Get
+        End Property
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets the text of the 'Statslabel' control.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        Public Shared ReadOnly Property StatsLabelText As String
             <DebuggerStepThrough>
             Get
-                Return SmartBotUtil.GetStatisticsString(SmartBotUtil.Process)
+                Return SmartBotUtil.UIElementStatsLabel.Current.Name
+            End Get
+        End Property
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets the text of the 'TextBoxLog' control.
+        ''' <para></para>
+        ''' Note that a call to <see cref="SmartBotUtil.TextBoxLogText"/> property will throw a 
+        ''' <see cref="System.NullReferenceException"/> exception if the 'TextBoxLog' control is not visible in the UI. 
+        ''' That is, if the 'Missplays', 'Changelog' or 'Debug' tab is the active one.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        Public Shared ReadOnly Property TextBoxLogText As String
+            <DebuggerStepThrough>
+            Get
+                Dim pattern As TextPattern = DirectCast(SmartBotUtil.UIElementTextBoxLog.GetCurrentPattern(TextPattern.Pattern), TextPattern)
+                Return pattern.DocumentRange.GetText(Integer.MaxValue)
+            End Get
+        End Property
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets a <see cref="TimeSpan"/> that represents the exact hour that the SmartBot's server was down for last time.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        Public Shared ReadOnly Property LastServerDownRecord As TimeSpan
+            Get
+                Dim serverIsDownString As String = "Board request sent for more than 30seconds ago,trying to resend request"
+
+                Dim files As IEnumerable(Of FileInfo) = SmartBotUtil.LogsDir.GetFiles("*.txt", SearchOption.TopDirectoryOnly)
+                Dim recentFile As FileInfo = (From fi As FileInfo In files
+                                              Where fi.Name Like "#*-#*-####_#*-#*-#*_?M.txt"
+                                              Order By fi.LastWriteTime Descending
+                                             ).FirstOrDefault()
+
+                ' Dim lines As IEnumerable(Of String) = SmartBotUtil.TextBoxLogText.Split(ControlChars.Lf).Reverse()
+                Dim lines As IEnumerable(Of String) = File.ReadLines(recentFile.FullName).Reverse()
+                For Each line As String In lines
+                    If line.Contains(serverIsDownString) Then
+                        Return TimeSpan.Parse(line.Substring(0, 10).TrimStart("["c).TrimEnd("]"c))
+                    End If
+                Next
+
+                Return Nothing
             End Get
         End Property
 
@@ -192,6 +258,78 @@ Namespace SmartBotKit.Interop
             End Set
         End Property
 
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets the directory where the SmartBot plugins are stored.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        Public Shared ReadOnly Property PluginsDir As DirectoryInfo
+            <DebuggerStepThrough>
+            Get
+                Return New DirectoryInfo(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)).Parent
+            End Get
+        End Property
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets the main directory of SmartBot.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        Public Shared ReadOnly Property SmartBotDir As DirectoryInfo
+            <DebuggerStepThrough>
+            Get
+                Return SmartBotUtil.PluginsDir.Parent
+            End Get
+        End Property
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets the directory where the SmartBot crash logs are stored.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        Public Shared ReadOnly Property CrashesDir As DirectoryInfo
+            <DebuggerStepThrough>
+            Get
+                Return New DirectoryInfo(Path.Combine(SmartBotUtil.SmartBotDir.FullName, "Crashs"))
+            End Get
+        End Property
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets the directory where the SmartBot logs are stored.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        Public Shared ReadOnly Property LogsDir As DirectoryInfo
+            <DebuggerStepThrough>
+            Get
+                Return New DirectoryInfo(Path.Combine(SmartBotUtil.SmartBotDir.FullName, "Logs"))
+            End Get
+        End Property
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets the directory where the SmartBot seeds are stored.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        Public Shared ReadOnly Property SeedsDir As DirectoryInfo
+            <DebuggerStepThrough>
+            Get
+                Return New DirectoryInfo(Path.Combine(SmartBotUtil.SmartBotDir.FullName, "Seeds"))
+            End Get
+        End Property
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets the directory where the SmartBot screenshots are stored.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        Public Shared ReadOnly Property ScreenshotsDir As DirectoryInfo
+            <DebuggerStepThrough>
+            Get
+                Return New DirectoryInfo(Path.Combine(SmartBotUtil.SmartBotDir.FullName, "Screenshots"))
+            End Get
+        End Property
+
 #End Region
 
 #Region " Constructors "
@@ -226,26 +364,6 @@ Namespace SmartBotKit.Interop
 #End Region
 
 #Region " Private Methods "
-
-        ''' ----------------------------------------------------------------------------------------------------
-        ''' <summary>
-        ''' Gets the statistics string shown in the SmartBot window.
-        ''' </summary>
-        ''' ----------------------------------------------------------------------------------------------------
-        ''' <param name="process">
-        ''' The SmartBot <see cref="Diagnostics.Process"/>.
-        ''' </param>
-        ''' ----------------------------------------------------------------------------------------------------
-        ''' <returns>
-        ''' The statistics string shown in the SmartBot window.
-        ''' </returns>
-        ''' ----------------------------------------------------------------------------------------------------
-        <DebuggerStepperBoundary>
-        Private Shared Function GetStatisticsString(ByVal process As Process) As String
-            Dim element As AutomationElement = SmartBotUtil.GetAutomationElement(process, "Statslabel")
-
-            Return element.Current.Name
-        End Function
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>

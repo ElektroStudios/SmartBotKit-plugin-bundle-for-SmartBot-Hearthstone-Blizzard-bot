@@ -74,9 +74,9 @@ Namespace SystemTrayIcon
         ''' The plugin's data container.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        Private dataContainer As SystemTrayIconPluginData
+        Private ReadOnly dataContainer As SystemTrayIconPluginData
 
-        Private p As Process
+        Private ReadOnly p As Process
 
 #End Region
 

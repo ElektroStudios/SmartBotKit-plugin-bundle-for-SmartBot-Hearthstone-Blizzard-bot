@@ -97,6 +97,7 @@ Namespace PanicButton
         ''' ----------------------------------------------------------------------------------------------------
         Public Sub New()
             Me.IsDll = True
+            'SmartBotKit.ReservedUse.UpdateUtil.CheckForSmartBotKitUpdates()
         End Sub
 
 #End Region

@@ -35,7 +35,7 @@ Namespace PanicButton
         ''' The plugin's data container.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        Private dataContainer As PanicButtonPluginData
+        Private ReadOnly dataContainer As PanicButtonPluginData
 
 #End Region
 

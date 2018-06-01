@@ -7,7 +7,7 @@
     <ProjectGuid>{20A3438D-C7E7-425A-B8E9-CCF42DD622CF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>SmartBotKit.Plugins</RootNamespace>
-    <AssemblyName>PlayAFriendTracker</AssemblyName>
+    <AssemblyName>PlayAFriendChallengeNotifier</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>Windows</MyType>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
@@ -31,7 +31,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>..\Bin\Debug\Plugins\</OutputPath>
-    <DocumentationFile>PlayAFriendTracker.xml</DocumentationFile>
+    <DocumentationFile>PlayAFriendChallengeNotifier.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -41,15 +41,24 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>..\Bin\Release\Plugins\</OutputPath>
-    <DocumentationFile>PlayAFriendTracker.xml</DocumentationFile>
+    <DocumentationFile>PlayAFriendChallengeNotifier.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AForge.Imaging">
+      <HintPath>..\References\AForge.Imaging.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="SBAPI">
       <HintPath>..\References\SBAPI.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="Xceed.Wpf.Toolkit">
+      <HintPath>..\References\Xceed.Wpf.Toolkit.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Import Include="Microsoft.VisualBasic" />
@@ -71,8 +80,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="PlayAFriendTracker\PlayAFriendTrackerPluginData.vb" />
-    <Compile Include="PlayAFriendTracker\PlayAFriendTrackerPlugin.vb" />
+    <Compile Include="PlayAFriendChallengeNotifier\PlayAFriendChallengeNotifierPluginData.vb" />
+    <Compile Include="PlayAFriendChallengeNotifier\PlayAFriendChallengeNotifierPlugin.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -99,6 +108,20 @@
       <Name>Core</Name>
       <Private>False</Private>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\640x480.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PlayAFriendChallengeNotifier.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\800x600.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1280x768.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

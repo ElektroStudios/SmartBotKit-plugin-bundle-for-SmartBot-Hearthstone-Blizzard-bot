@@ -74,6 +74,7 @@ Namespace AutoCleaner
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Public Sub New()
+            'SmartBotKit.ReservedUse.UpdateUtil.CheckForSmartBotKitUpdates()
             Me.IsDll = True
         End Sub
 
@@ -162,14 +163,7 @@ Namespace AutoCleaner
         ''' ----------------------------------------------------------------------------------------------------
         Private Sub CleanGarbage()
 
-            Dim pluginsPath As New DirectoryInfo(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location))
-            Dim sbDir As DirectoryInfo = pluginsPath.Parent
-            Dim crashDir As New DirectoryInfo(Path.Combine(sbDir.FullName, "Crashs"))
-            Dim logsDir As New DirectoryInfo(Path.Combine(sbDir.FullName, "Logs"))
-            Dim seedsDir As New DirectoryInfo(Path.Combine(sbDir.FullName, "Seeds"))
-            Dim screenshotsDir As New DirectoryInfo(Path.Combine(sbDir.FullName, "Screenshots"))
-
-            If Not File.Exists(Path.Combine(sbDir.FullName, "SBAPI.dll")) Then
+            If Not File.Exists(Path.Combine(SmartBotUtil.SmartBotDir.FullName, "SBAPI.dll")) Then
                 Throw New DirectoryNotFoundException("SmartBot's root directory cannot be found.")
             End If
 
@@ -186,8 +180,8 @@ Namespace AutoCleaner
             ' Delete seeds
             If (Me.DataContainer.DeleteSeeds) Then
                 Dim seeds As New List(Of DirectoryInfo)
-                If (seedsDir.Exists) Then
-                    seeds.AddRange(seedsDir.EnumerateDirectories("*", System.IO.SearchOption.TopDirectoryOnly))
+                If (SmartBotUtil.SeedsDir.Exists) Then
+                    seeds.AddRange(SmartBotUtil.SeedsDir.EnumerateDirectories("*", System.IO.SearchOption.TopDirectoryOnly))
                 End If
 
                 For Each seed As DirectoryInfo In seeds
@@ -208,14 +202,14 @@ Namespace AutoCleaner
             ' Delete logs
             If (Me.DataContainer.DeleteLogs) Then
                 Dim logs As New List(Of FileInfo)
-                If (crashDir.Exists) Then
-                    logs.AddRange(crashDir.EnumerateFiles("*.txt", System.IO.SearchOption.TopDirectoryOnly))
+                If (SmartBotUtil.CrashesDir.Exists) Then
+                    logs.AddRange(SmartBotUtil.CrashesDir.EnumerateFiles("*.txt", System.IO.SearchOption.TopDirectoryOnly))
                 End If
-                If (logsDir.Exists) Then
-                    logs.AddRange(logsDir.EnumerateFiles("*.log", System.IO.SearchOption.AllDirectories))
-                    logs.AddRange(logsDir.EnumerateFiles("*.txt", System.IO.SearchOption.AllDirectories))
+                If (SmartBotUtil.LogsDir.Exists) Then
+                    logs.AddRange(SmartBotUtil.LogsDir.EnumerateFiles("*.log", System.IO.SearchOption.AllDirectories))
+                    logs.AddRange(SmartBotUtil.LogsDir.EnumerateFiles("*.txt", System.IO.SearchOption.AllDirectories))
                 End If
-                logs.Add(New FileInfo(Path.Combine(sbDir.FullName, "UpdaterLog.txt")))
+                logs.Add(New FileInfo(Path.Combine(SmartBotUtil.SmartBotDir.FullName, "UpdaterLog.txt")))
 
                 For Each log As FileInfo In logs
                     Dim daysDiff As Integer = CInt((Date.Now - log.CreationTime).TotalDays)
@@ -235,8 +229,8 @@ Namespace AutoCleaner
             ' Delete screenshots
             If (Me.DataContainer.DeleteScreenshots) Then
                 Dim screenshots As New List(Of FileInfo)
-                If (screenshotsDir.Exists) Then
-                    screenshots.AddRange(screenshotsDir.EnumerateFiles("*.png", System.IO.SearchOption.TopDirectoryOnly))
+                If (SmartBotUtil.ScreenshotsDir.Exists) Then
+                    screenshots.AddRange(SmartBotUtil.ScreenshotsDir.EnumerateFiles("*.png", System.IO.SearchOption.TopDirectoryOnly))
                 End If
 
                 For Each screenshot As FileInfo In screenshots
