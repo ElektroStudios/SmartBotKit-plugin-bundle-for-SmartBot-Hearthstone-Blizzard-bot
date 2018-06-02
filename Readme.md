@@ -146,7 +146,7 @@ I totally suggest to use this plugin to avoid losing rank stars o farmed gold bo
 
 Settings:
 
-![](https://i.imgur.com/rCqnffo.png)
+![](https://i.imgur.com/7vHXp5w.png)
 
 ## 'Play A Friend' Challenge Notifier
 This plugin will notify when a friend challenges you for the 'Play a Friend' quest

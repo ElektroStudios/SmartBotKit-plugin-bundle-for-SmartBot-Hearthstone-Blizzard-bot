@@ -38,6 +38,13 @@ ServerDownHandler
  </summary>
  ----------------------------------------------------------------------------------------------------
 </member>
+<member name="P:SmartBotKit.Plugins.ServerDownHandler.ServerDownHandlerPluginData.PlaySoundFile">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets or sets a value that determine whether to play a wave sound file when a server down is detected.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
 <member name="P:SmartBotKit.Plugins.ServerDownHandler.ServerDownHandlerPluginData.StopTheBotIfArena">
  ----------------------------------------------------------------------------------------------------
  <summary>
@@ -62,12 +69,31 @@ ServerDownHandler
  </summary>
  ----------------------------------------------------------------------------------------------------
 </member>
-<member name="P:SmartBotKit.Plugins.ServerDownHandler.ServerDownHandlerPluginData.PlaySoundFile">
+<member name="P:SmartBotKit.Plugins.ServerDownHandler.ServerDownHandlerPluginData.ResumeEnabled">
  ----------------------------------------------------------------------------------------------------
  <summary>
- Gets or sets a value that determine whether to play a wave sound file when a server down is detected.
+ Gets or sets a value that determine whether the bot should resume and try reconnect to the server after the 
+ specified time interval.
  </summary>
  ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.ServerDownHandler.ServerDownHandlerPluginData.ResumeInterval">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets or sets the time interval, in minutes, to resume the bot and try reconnect to the server.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <value>
+ A value between 5 and 1440 (24 hours).
+ </value>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="F:SmartBotKit.Plugins.ServerDownHandler.ServerDownHandlerPluginData.resumeIntervalB">
+ <summary>
+ ( Backing Field )
+ <para></para>
+ The time interval, in minutes, to resume the bot and try reconnect to the server.
+ </summary>
 </member>
 <member name="M:SmartBotKit.Plugins.ServerDownHandler.ServerDownHandlerPluginData.#ctor">
  ----------------------------------------------------------------------------------------------------
@@ -85,13 +111,6 @@ ServerDownHandler
  <seealso cref="T:SmartBot.Plugins.Plugin"/>
  ----------------------------------------------------------------------------------------------------
 </member>
-<member name="F:SmartBotKit.Plugins.ServerDownHandler.ServerDownHandlerPlugin.lastDateActive">
- ----------------------------------------------------------------------------------------------------
- <summary>
- Keeps track of the creation datetime of this plugin.
- </summary>
- ----------------------------------------------------------------------------------------------------
-</member>
 <member name="P:SmartBotKit.Plugins.ServerDownHandler.ServerDownHandlerPlugin.DataContainer">
  ----------------------------------------------------------------------------------------------------
  <summary>
@@ -107,6 +126,13 @@ ServerDownHandler
  ----------------------------------------------------------------------------------------------------
  <summary>
  Keeps track of the last <see cref="P:SmartBot.Plugins.PluginDataContainer.Enabled"/> value.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="F:SmartBotKit.Plugins.ServerDownHandler.ServerDownHandlerPlugin.lastDateActive">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Keeps track of the creation datetime of this plugin.
  </summary>
  ----------------------------------------------------------------------------------------------------
 </member>
@@ -156,6 +182,13 @@ ServerDownHandler
  ----------------------------------------------------------------------------------------------------
  <summary>
  Releases all the resources used by this <see cref="T:SmartBotKit.Plugins.ServerDownHandler.ServerDownHandlerPlugin"/> instance.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.ServerDownHandler.ServerDownHandlerPlugin.ScheduleResume(System.Int32)">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Schedule a bot resume to try a reconnection to the server.
  </summary>
  ----------------------------------------------------------------------------------------------------
 </member>

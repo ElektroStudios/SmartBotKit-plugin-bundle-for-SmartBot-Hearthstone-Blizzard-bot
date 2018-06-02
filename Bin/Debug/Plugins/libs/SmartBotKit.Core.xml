@@ -4297,44 +4297,6 @@ The data necessary to complete this operation is not yet available.
  </returns>
  ----------------------------------------------------------------------------------------------------
 </member>
-<member name="T:SmartBotKit.ReservedUse.UpdateUtil">
- ----------------------------------------------------------------------------------------------------
- <summary>
- Provides utilities for version update check of SmartBotKit plugin bundle.
- <para></para>
- Note: the usage of this class is reserved by SmartBotKit plugins, don't use it by yourself.
- </summary>
- ----------------------------------------------------------------------------------------------------
-</member>
-<member name="F:SmartBotKit.ReservedUse.UpdateUtil.IsUpdateChecked">
- ----------------------------------------------------------------------------------------------------
- <summary>
- Flag to prevent redundant calls from multiple plugins checking for updates.
- <para></para>
- Note: the usage of this field is reserved by SmartBotKit plugins, don't use it by yourself.
- </summary>
- ----------------------------------------------------------------------------------------------------
-</member>
-<member name="M:SmartBotKit.ReservedUse.UpdateUtil.#ctor">
- ----------------------------------------------------------------------------------------------------
- <summary>
- Prevents a default instance of the <see cref="T:SmartBotKit.ReservedUse.UpdateUtil"/> class from being created.
- <para></para>
- Note: the usage of this class is reserved by SmartBotKit plugins, don't use it by yourself.
- </summary>
- ----------------------------------------------------------------------------------------------------
-</member>
-<member name="M:SmartBotKit.ReservedUse.UpdateUtil.CheckForSmartBotKitUpdatesAsync">
- ----------------------------------------------------------------------------------------------------
- <summary>
- Checks for SmartBotKit available updates on GitHub.
- <para></para>
- If a update is detected, a <see cref="T:System.Windows.Forms.MessageBox"/> will be shown to ask the user navigate to the GitHub repository.
- <para></para>
- Note: the usage of this method is reserved by SmartBotKit plugins, don't use it by yourself.
- </summary>
- ----------------------------------------------------------------------------------------------------
-</member>
 <member name="T:SmartBotKit.SystemInfo.SystemInfoUtil">
  ----------------------------------------------------------------------------------------------------
  <summary>

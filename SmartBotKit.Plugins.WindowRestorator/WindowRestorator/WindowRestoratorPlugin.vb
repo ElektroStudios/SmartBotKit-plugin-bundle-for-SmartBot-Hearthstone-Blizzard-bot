@@ -89,17 +89,22 @@ Namespace WindowRestorator
         Public Overrides Sub OnPluginCreated()
             Me.lastEnabled = Me.DataContainer.Enabled
             If (Me.lastEnabled) Then
+                Bot.Log("[WindowRestorator] Plugin initialized.")
                 Me.RestoreWindowPlacement()
+#If DEBUG Then
                 Select Case Me.DataContainer.WindowState
                     Case WindowState.Maximize, WindowState.ShowMaximized
-                        Bot.Log(String.Format("[WindowRestorator] Plugin initialized. Window state restored to: {0}.", Me.DataContainer.WindowState.ToString()))
+                        Bot.Log(String.Format("[WindowRestorator] Window state restored to: {0}.",
+                                              Me.DataContainer.WindowState.ToString()))
 
                     Case Else
-                        Bot.Log(String.Format("[WindowRestorator] Plugin initialized. Window state restored to: {0}, with position: {1} and size: {2}.",
-                                          Me.DataContainer.WindowState.ToString(), Me.DataContainer.CurrentPosition.ToString(), Me.DataContainer.NormalSize.ToString()))
+                        Bot.Log(String.Format("[WindowRestorator] Window state restored to: {0} with pos={1} size={2}",
+                                          Me.DataContainer.WindowState.ToString(),
+                                          Me.DataContainer.CurrentPosition.ToString(),
+                                          Me.DataContainer.NormalSize.ToString()))
 
                 End Select
-
+#End If
             End If
             MyBase.OnPluginCreated()
         End Sub

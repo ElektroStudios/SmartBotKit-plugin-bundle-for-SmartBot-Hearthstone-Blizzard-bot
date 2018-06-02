@@ -11,6 +11,8 @@ Option Infer Off
 
 Imports System.IO
 Imports System.Media
+Imports System.Threading
+Imports System.Threading.Tasks
 
 Imports SmartBot.Plugins
 Imports SmartBot.Plugins.API
@@ -31,17 +33,6 @@ Namespace ServerDownHandler
     ''' <seealso cref="Plugin"/>
     ''' ----------------------------------------------------------------------------------------------------
     Public NotInheritable Class ServerDownHandlerPlugin : Inherits Plugin
-
-#Region " Private Fields "
-
-        ''' ----------------------------------------------------------------------------------------------------
-        ''' <summary>
-        ''' Keeps track of the creation datetime of this plugin.
-        ''' </summary>
-        ''' ----------------------------------------------------------------------------------------------------
-        Private lastDateActive As Date
-
-#End Region
 
 #Region " Properties "
 
@@ -70,6 +61,13 @@ Namespace ServerDownHandler
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Private lastEnabled As Boolean
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Keeps track of the creation datetime of this plugin.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        Private lastDateActive As Date
 
 #End Region
 
@@ -183,8 +181,14 @@ Namespace ServerDownHandler
 
                     End Select
 
-                    If Not Bot.IsBotRunning() Then
+                    If Not (Bot.IsBotRunning()) Then
                         Bot.Log("[ServerDownHandler] Server down detected. Bot has been stopped.")
+
+                        If (Me.DataContainer.ResumeEnabled()) Then
+                            Dim minutes As Integer = Me.DataContainer.ResumeInterval
+                            Me.ScheduleResume(minutes)
+                            Bot.Log(String.Format("[ServerDownHandler] Bot resumption scheduled to {0} minutes.", minutes))
+                        End If
                     End If
 
                     If (Me.DataContainer.PlaySoundFile) Then
@@ -213,6 +217,43 @@ Namespace ServerDownHandler
         ''' ----------------------------------------------------------------------------------------------------
         Public Overrides Sub Dispose()
             MyBase.Dispose()
+        End Sub
+
+#End Region
+
+#Region " Private Methods "
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Schedule a bot resume to try a reconnection to the server.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        Private Sub ScheduleResume(ByVal minutes As Integer)
+
+            Dim resumeMethod As New Action(
+                Sub()
+                    If Not (Me.DataContainer.ResumeEnabled) Then
+                        Exit Sub
+                    End If
+
+                    Dim lastDateActive As Date = Me.lastDateActive
+                    Thread.Sleep(TimeSpan.FromMinutes(minutes))
+
+                    If (Me.DataContainer.Enabled) AndAlso
+                       (Me.DataContainer.ResumeEnabled) AndAlso
+                       (Me.lastDateActive = lastDateActive) Then
+
+                        If Not (Bot.IsBotRunning) Then
+                            Bot.StartBot()
+                            Bot.Log("[ServerDownHandler] Bot resumed.")
+                        End If
+
+                    End If
+                End Sub)
+
+            Dim resumeTask As New Task(resumeMethod)
+            resumeTask.Start()
+
         End Sub
 
 #End Region

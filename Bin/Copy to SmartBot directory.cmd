@@ -1,7 +1,7 @@
 @Echo OFF
 
 Set "SmartBotDir=G:\Windows\Online\Hearthstone\Cheats\SmartBot"
-Set "FolderToCopy=Debug"
+Set "FolderToCopy=Release"
 
 Echo+
 Echo [+] Plugins:

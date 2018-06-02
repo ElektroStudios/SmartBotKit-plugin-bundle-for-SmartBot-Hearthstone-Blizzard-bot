@@ -53,41 +53,6 @@ Namespace My
                 Return defaultInstance
             End Get
         End Property
-        
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
-        Public Property LastVersionNotifiedMajor() As Integer
-            Get
-                Return CType(Me("LastVersionNotifiedMajor"),Integer)
-            End Get
-            Set
-                Me("LastVersionNotifiedMajor") = value
-            End Set
-        End Property
-        
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
-        Public Property LastVersionNotifiedMinor() As Integer
-            Get
-                Return CType(Me("LastVersionNotifiedMinor"),Integer)
-            End Get
-            Set
-                Me("LastVersionNotifiedMinor") = value
-            End Set
-        End Property
-        
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Property LastDateNotified() As Date
-            Get
-                Return CType(Me("LastDateNotified"),Date)
-            End Get
-            Set
-                Me("LastDateNotified") = value
-            End Set
-        End Property
     End Class
 End Namespace
 
