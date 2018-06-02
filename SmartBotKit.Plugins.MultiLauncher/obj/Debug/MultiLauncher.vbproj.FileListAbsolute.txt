@@ -1,0 +1,10 @@
+P:\Documents\Source codes\VB.NET\SmartBotKit\Bin\Debug\Plugins\MultiLauncher.dll
+P:\Documents\Source codes\VB.NET\SmartBotKit\Bin\Debug\Plugins\MultiLauncher.pdb
+P:\Documents\Source codes\VB.NET\SmartBotKit\Bin\Debug\Plugins\MultiLauncher.xml
+P:\Documents\Source codes\VB.NET\SmartBotKit\SmartBotKit.Plugins.MultiLauncher\obj\Debug\MultiLauncher.vbprojAssemblyReference.cache
+P:\Documents\Source codes\VB.NET\SmartBotKit\SmartBotKit.Plugins.MultiLauncher\obj\Debug\SmartBotKit.Plugins.Resources.resources
+P:\Documents\Source codes\VB.NET\SmartBotKit\SmartBotKit.Plugins.MultiLauncher\obj\Debug\MultiLauncher.vbproj.GenerateResource.cache
+P:\Documents\Source codes\VB.NET\SmartBotKit\SmartBotKit.Plugins.MultiLauncher\obj\Debug\MultiLauncher.vbproj.CoreCompileInputs.cache
+P:\Documents\Source codes\VB.NET\SmartBotKit\SmartBotKit.Plugins.MultiLauncher\obj\Debug\MultiLauncher.dll
+P:\Documents\Source codes\VB.NET\SmartBotKit\SmartBotKit.Plugins.MultiLauncher\obj\Debug\MultiLauncher.xml
+P:\Documents\Source codes\VB.NET\SmartBotKit\SmartBotKit.Plugins.MultiLauncher\obj\Debug\MultiLauncher.pdb

@@ -1,0 +1,8 @@
+P:\Documents\Source codes\VB.NET\SmartBotKit\Bin\Release\Plugins\AutoCleaner.dll
+P:\Documents\Source codes\VB.NET\SmartBotKit\Bin\Release\Plugins\AutoCleaner.xml
+P:\Documents\Source codes\VB.NET\SmartBotKit\SmartBotKit.Plugins.AutoCleaner\obj\Release\AutoCleaner.vbprojAssemblyReference.cache
+P:\Documents\Source codes\VB.NET\SmartBotKit\SmartBotKit.Plugins.AutoCleaner\obj\Release\SmartBotKit.Plugins.Resources.resources
+P:\Documents\Source codes\VB.NET\SmartBotKit\SmartBotKit.Plugins.AutoCleaner\obj\Release\AutoCleaner.vbproj.GenerateResource.cache
+P:\Documents\Source codes\VB.NET\SmartBotKit\SmartBotKit.Plugins.AutoCleaner\obj\Release\AutoCleaner.vbproj.CoreCompileInputs.cache
+P:\Documents\Source codes\VB.NET\SmartBotKit\SmartBotKit.Plugins.AutoCleaner\obj\Release\AutoCleaner.dll
+P:\Documents\Source codes\VB.NET\SmartBotKit\SmartBotKit.Plugins.AutoCleaner\obj\Release\AutoCleaner.xml

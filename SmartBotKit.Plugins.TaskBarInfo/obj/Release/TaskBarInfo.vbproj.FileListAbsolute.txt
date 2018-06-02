@@ -1,0 +1,8 @@
+P:\Documents\Source codes\VB.NET\SmartBotKit\Bin\Release\Plugins\TaskBarInfo.dll
+P:\Documents\Source codes\VB.NET\SmartBotKit\Bin\Release\Plugins\TaskBarInfo.xml
+P:\Documents\Source codes\VB.NET\SmartBotKit\SmartBotKit.Plugins.TaskBarInfo\obj\Release\SmartBotKit.Plugins.Resources.resources
+P:\Documents\Source codes\VB.NET\SmartBotKit\SmartBotKit.Plugins.TaskBarInfo\obj\Release\TaskBarInfo.vbproj.GenerateResource.cache
+P:\Documents\Source codes\VB.NET\SmartBotKit\SmartBotKit.Plugins.TaskBarInfo\obj\Release\TaskBarInfo.vbproj.CoreCompileInputs.cache
+P:\Documents\Source codes\VB.NET\SmartBotKit\SmartBotKit.Plugins.TaskBarInfo\obj\Release\TaskBarInfo.dll
+P:\Documents\Source codes\VB.NET\SmartBotKit\SmartBotKit.Plugins.TaskBarInfo\obj\Release\TaskBarInfo.xml
+P:\Documents\Source codes\VB.NET\SmartBotKit\SmartBotKit.Plugins.TaskBarInfo\obj\Release\TaskBarInfo.vbprojAssemblyReference.cache

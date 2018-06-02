@@ -1,0 +1,9 @@
+P:\Documents\Source codes\VB.NET\SmartBotKit\Bin\Release\Plugins\PlayAFriendChallengeNotifier.wav
+P:\Documents\Source codes\VB.NET\SmartBotKit\Bin\Release\Plugins\PlayAFriendChallengeNotifier.dll
+P:\Documents\Source codes\VB.NET\SmartBotKit\Bin\Release\Plugins\PlayAFriendChallengeNotifier.xml
+P:\Documents\Source codes\VB.NET\SmartBotKit\SmartBotKit.Plugins.PlayAFriendChallengeNotifier\obj\Release\SmartBotKit.Plugins.Resources.resources
+P:\Documents\Source codes\VB.NET\SmartBotKit\SmartBotKit.Plugins.PlayAFriendChallengeNotifier\obj\Release\PlayAFriendChallengeNotifier.vbproj.GenerateResource.cache
+P:\Documents\Source codes\VB.NET\SmartBotKit\SmartBotKit.Plugins.PlayAFriendChallengeNotifier\obj\Release\PlayAFriendChallengeNotifier.vbproj.CoreCompileInputs.cache
+P:\Documents\Source codes\VB.NET\SmartBotKit\SmartBotKit.Plugins.PlayAFriendChallengeNotifier\obj\Release\PlayAFriendChallengeNotifier.dll
+P:\Documents\Source codes\VB.NET\SmartBotKit\SmartBotKit.Plugins.PlayAFriendChallengeNotifier\obj\Release\PlayAFriendChallengeNotifier.xml
+P:\Documents\Source codes\VB.NET\SmartBotKit\SmartBotKit.Plugins.PlayAFriendChallengeNotifier\obj\Release\PlayAFriendChallengeNotifier.vbprojAssemblyReference.cache

@@ -157,9 +157,13 @@ Namespace SmartBotKit.Interop
 
                 Dim files As IEnumerable(Of FileInfo) = SmartBotUtil.LogsDir.GetFiles("*.txt", SearchOption.TopDirectoryOnly)
                 Dim recentFile As FileInfo = (From fi As FileInfo In files
-                                              Where fi.Name Like "#*-#*-####_#*-#*-#*_?M.txt"
+                                              Where fi.Name Like "#*-#*-####_#*-#*-#*_??.???"
                                               Order By fi.LastWriteTime Descending
                                              ).FirstOrDefault()
+
+                If (recentFile Is Nothing) Then
+                    Return Nothing
+                End If
 
                 ' Dim lines As IEnumerable(Of String) = SmartBotUtil.TextBoxLogText.Split(ControlChars.Lf).Reverse()
                 Dim lines As IEnumerable(Of String) = File.ReadLines(recentFile.FullName).Reverse()

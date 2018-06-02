@@ -1,0 +1,10 @@
+P:\Documents\Source codes\VB.NET\SmartBotKit\Bin\Debug\Plugins\PluginTemplate.dll
+P:\Documents\Source codes\VB.NET\SmartBotKit\Bin\Debug\Plugins\PluginTemplate.pdb
+P:\Documents\Source codes\VB.NET\SmartBotKit\Bin\Debug\Plugins\PluginTemplate.xml
+P:\Documents\Source codes\VB.NET\SmartBotKit\SmartBotKit.Plugins._PluginTemplate\obj\Debug\_PluginTemplate.vbprojAssemblyReference.cache
+P:\Documents\Source codes\VB.NET\SmartBotKit\SmartBotKit.Plugins._PluginTemplate\obj\Debug\SmartBotKit.Plugins.Resources.resources
+P:\Documents\Source codes\VB.NET\SmartBotKit\SmartBotKit.Plugins._PluginTemplate\obj\Debug\_PluginTemplate.vbproj.GenerateResource.cache
+P:\Documents\Source codes\VB.NET\SmartBotKit\SmartBotKit.Plugins._PluginTemplate\obj\Debug\_PluginTemplate.vbproj.CoreCompileInputs.cache
+P:\Documents\Source codes\VB.NET\SmartBotKit\SmartBotKit.Plugins._PluginTemplate\obj\Debug\PluginTemplate.dll
+P:\Documents\Source codes\VB.NET\SmartBotKit\SmartBotKit.Plugins._PluginTemplate\obj\Debug\PluginTemplate.xml
+P:\Documents\Source codes\VB.NET\SmartBotKit\SmartBotKit.Plugins._PluginTemplate\obj\Debug\PluginTemplate.pdb

@@ -1,0 +1,11 @@
+P:\Documents\Source codes\VB.NET\SmartBotKit\Bin\Debug\Plugins\ServerDownHandler.wav
+P:\Documents\Source codes\VB.NET\SmartBotKit\Bin\Debug\Plugins\ServerDownHandler.dll
+P:\Documents\Source codes\VB.NET\SmartBotKit\Bin\Debug\Plugins\ServerDownHandler.pdb
+P:\Documents\Source codes\VB.NET\SmartBotKit\Bin\Debug\Plugins\ServerDownHandler.xml
+P:\Documents\Source codes\VB.NET\SmartBotKit\SmartBotKit.Plugins.ServerDownHandler\obj\Debug\ServerDownHandler.vbprojAssemblyReference.cache
+P:\Documents\Source codes\VB.NET\SmartBotKit\SmartBotKit.Plugins.ServerDownHandler\obj\Debug\SmartBotKit.Plugins.Resources.resources
+P:\Documents\Source codes\VB.NET\SmartBotKit\SmartBotKit.Plugins.ServerDownHandler\obj\Debug\ServerDownHandler.vbproj.GenerateResource.cache
+P:\Documents\Source codes\VB.NET\SmartBotKit\SmartBotKit.Plugins.ServerDownHandler\obj\Debug\ServerDownHandler.vbproj.CoreCompileInputs.cache
+P:\Documents\Source codes\VB.NET\SmartBotKit\SmartBotKit.Plugins.ServerDownHandler\obj\Debug\ServerDownHandler.dll
+P:\Documents\Source codes\VB.NET\SmartBotKit\SmartBotKit.Plugins.ServerDownHandler\obj\Debug\ServerDownHandler.xml
+P:\Documents\Source codes\VB.NET\SmartBotKit\SmartBotKit.Plugins.ServerDownHandler\obj\Debug\ServerDownHandler.pdb
