@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D2D33EB8-ED7B-4800-92B8-6302934F2082}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>
+    </RootNamespace>
+    <AssemblyName>SmartBotKit.Core</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>Windows</MyType>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>..\..\Bin\Debug\Plugins\libs\</OutputPath>
+    <DocumentationFile>SmartBotKit.Core.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>none</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\Bin\Release\Plugins\libs\</OutputPath>
+    <DocumentationFile>SmartBotKit.Core.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AForge.Imaging">
+      <HintPath>..\..\References\AForge.Imaging.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="SBAPI">
+      <HintPath>..\..\References\SBAPI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Xml.Serialization" />
+    <Reference Include="UIAutomationClient" />
+    <Reference Include="UIAutomationTypes" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Application\TaskBarManager.vb" />
+    <Compile Include="Extensions\RectangleExtensions.vb" />
+    <Compile Include="Extensions\BitmapExtensions.vb" />
+    <Compile Include="Extensions\ImageExtensions.vb" />
+    <Compile Include="Imaging\ImageCaptureInfo.vb" />
+    <Compile Include="Imaging\AForgeUtil.vb" />
+    <Compile Include="Imaging\ImageUtil.vb" />
+    <Compile Include="Interop\Hearthstone\Hearthstone.vb" />
+    <Compile Include="Interop\SmartBot\SmartBotEvent.vb" />
+    <Compile Include="Interop\Win32\SetWindowPosFlags.vb" />
+    <Compile Include="Interop\Win32\TernaryRasterOperations.vb" />
+    <Compile Include="Interop\Win32\HResult.vb" />
+    <Compile Include="Interop\Win32\DwmWindowAttribute.vb" />
+    <Compile Include="ReservedUse\UpdateUtil.vb" />
+    <Compile Include="System\SystemInfoUtil.vb" />
+    <Compile Include="Text\StringCase.vb" />
+    <Compile Include="Extensions\StringExtensions.vb" />
+    <Compile Include="Interop\Win32\CTaskbarList.vb" />
+    <Compile Include="Interop\Win32\ITaskbarList4.vb" />
+    <Compile Include="Interop\Win32\TaskbarList.vb" />
+    <Compile Include="Interop\Win32\TaskbarProgressBarState.vb" />
+    <Compile Include="IO\HotkeyIsNotRegisteredException.vb" />
+    <Compile Include="IO\HotkeyIsRegisteredException.vb" />
+    <Compile Include="IO\HotkeyPressEventArgs.vb" />
+    <Compile Include="IO\HotkeyModifiers.vb" />
+    <Compile Include="IO\Hotkey.vb" />
+    <Compile Include="Interop\Win32\NativeHotkeyModifiers.vb" />
+    <Compile Include="Interop\Win32\WindowsMessages.vb" />
+    <Compile Include="Interop\SmartBot\SmartBotUtil.vb" />
+    <Compile Include="Interop\Win32\NativeMethods.vb" />
+    <Compile Include="Interop\Win32\NativePoint.vb" />
+    <Compile Include="Interop\Win32\NativeRectangle.vb" />
+    <Compile Include="Interop\Win32\WindowState.vb" />
+    <Compile Include="Interop\Win32\WindowPlacement.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+</Project>
