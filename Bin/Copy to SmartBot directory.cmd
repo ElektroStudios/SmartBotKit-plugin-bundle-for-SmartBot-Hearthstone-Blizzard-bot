@@ -25,5 +25,12 @@ FOR %%# IN ("%CD%\%FolderToCopy%\Plugins\libs\*.dll") DO (
 )
 
 Echo+
+Echo [+] Executables:
+FOR %%# IN ("%CD%\%FolderToCopy%\Plugins\libs\*.exe") DO (
+	Echo %%~nx#
+	(Copy /Y "%%~f#" "%SmartBotDir%\Plugins\libs\%%~nx#")1>NUL
+)
+
+Echo+
 Pause
 Exit /B 0

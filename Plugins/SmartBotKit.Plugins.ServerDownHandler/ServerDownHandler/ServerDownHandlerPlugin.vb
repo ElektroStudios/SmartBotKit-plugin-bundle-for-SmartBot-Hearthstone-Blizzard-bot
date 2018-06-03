@@ -81,7 +81,7 @@ Namespace ServerDownHandler
         ''' ----------------------------------------------------------------------------------------------------
         Public Sub New()
             Me.IsDll = True
-            'SmartBotKit.ReservedUse.UpdateUtil.CheckForSmartBotKitUpdates()
+            SmartBotKit.ReservedUse.UpdateUtil.RunUpdaterExecutable()
             Me.lastDateActive = Date.Now()
         End Sub
 

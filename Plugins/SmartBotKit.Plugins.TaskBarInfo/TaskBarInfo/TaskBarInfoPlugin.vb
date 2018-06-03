@@ -76,7 +76,7 @@ Namespace TaskBarInfo
         ''' ----------------------------------------------------------------------------------------------------
         Public Sub New()
             Me.IsDll = True
-            'SmartBotKit.ReservedUse.UpdateUtil.CheckForSmartBotKitUpdates()
+            SmartBotKit.ReservedUse.UpdateUtil.RunUpdaterExecutable()
         End Sub
 
 #End Region

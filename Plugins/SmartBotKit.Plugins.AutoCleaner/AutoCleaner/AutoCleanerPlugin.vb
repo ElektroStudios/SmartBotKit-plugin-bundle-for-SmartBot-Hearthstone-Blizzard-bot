@@ -74,7 +74,7 @@ Namespace AutoCleaner
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Public Sub New()
-            'SmartBotKit.ReservedUse.UpdateUtil.CheckForSmartBotKitUpdates()
+            SmartBotKit.ReservedUse.UpdateUtil.RunUpdaterExecutable()
             Me.IsDll = True
         End Sub
 

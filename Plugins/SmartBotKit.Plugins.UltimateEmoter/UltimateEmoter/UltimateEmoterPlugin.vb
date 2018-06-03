@@ -100,7 +100,7 @@ Namespace UltimateEmoter
         ''' ----------------------------------------------------------------------------------------------------
         Public Sub New()
             Me.IsDll = True
-            'SmartBotKit.ReservedUse.UpdateUtil.CheckForSmartBotKitUpdates()
+            SmartBotKit.ReservedUse.UpdateUtil.RunUpdaterExecutable()
 
             Me.Rng = New Random(Seed:=Environment.TickCount)
         End Sub

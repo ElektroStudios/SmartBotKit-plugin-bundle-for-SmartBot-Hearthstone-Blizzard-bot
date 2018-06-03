@@ -115,7 +115,7 @@ Namespace PlayAFriendChallengeNotifier
         ''' ----------------------------------------------------------------------------------------------------
         Public Sub New()
             Me.IsDll = True
-            'SmartBotKit.ReservedUse.UpdateUtil.CheckForSmartBotKitUpdates()
+            SmartBotKit.ReservedUse.UpdateUtil.RunUpdaterExecutable()
 
             Me.stopWatch = New Stopwatch()
         End Sub

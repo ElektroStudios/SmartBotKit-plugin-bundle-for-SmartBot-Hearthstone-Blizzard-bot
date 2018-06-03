@@ -61,10 +61,6 @@ Namespace MultiLauncher
         ''' ----------------------------------------------------------------------------------------------------
         Private lastEnabled As Boolean
 
-#End Region
-
-#Region " Constructors "
-
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
         ''' A collection that holds the processes that were ran by this <see cref="MultiLauncherPlugin"/>.
