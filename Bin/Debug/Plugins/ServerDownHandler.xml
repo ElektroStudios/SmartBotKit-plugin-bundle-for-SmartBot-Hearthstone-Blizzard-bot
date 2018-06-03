@@ -171,6 +171,25 @@ ServerDownHandler
  </summary>
  ----------------------------------------------------------------------------------------------------
 </member>
+<member name="M:SmartBotKit.Plugins.ServerDownHandler.ServerDownHandlerPlugin.OnHandleMulligan(System.Collections.Generic.List{SmartBot.Plugins.API.Card.Cards},SmartBot.Plugins.API.Card.CClass,SmartBot.Plugins.API.Card.CClass)">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Called when the bot is about to handle mulligan (to decide which card to replace) before a game begins.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <param name="choices">
+ The mulligan choices.
+ </param>
+ 
+ <param name="opponentClass">
+ The opponent class.
+ </param>
+ 
+ <param name="ownClass">
+ Our hero class.
+ </param>
+ ----------------------------------------------------------------------------------------------------
+</member>
 <member name="M:SmartBotKit.Plugins.ServerDownHandler.ServerDownHandlerPlugin.OnTick">
  ----------------------------------------------------------------------------------------------------
  <summary>

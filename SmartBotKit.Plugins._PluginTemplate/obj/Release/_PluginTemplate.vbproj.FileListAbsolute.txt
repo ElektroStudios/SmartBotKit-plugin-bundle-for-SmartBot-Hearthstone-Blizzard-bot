@@ -1,8 +1,0 @@
-P:\Documents\Source codes\VB.NET\SmartBotKit\Bin\Release\Plugins\PluginTemplate.dll
-P:\Documents\Source codes\VB.NET\SmartBotKit\Bin\Release\Plugins\PluginTemplate.xml
-P:\Documents\Source codes\VB.NET\SmartBotKit\SmartBotKit.Plugins._PluginTemplate\obj\Release\_PluginTemplate.vbprojAssemblyReference.cache
-P:\Documents\Source codes\VB.NET\SmartBotKit\SmartBotKit.Plugins._PluginTemplate\obj\Release\SmartBotKit.Plugins.Resources.resources
-P:\Documents\Source codes\VB.NET\SmartBotKit\SmartBotKit.Plugins._PluginTemplate\obj\Release\_PluginTemplate.vbproj.GenerateResource.cache
-P:\Documents\Source codes\VB.NET\SmartBotKit\SmartBotKit.Plugins._PluginTemplate\obj\Release\_PluginTemplate.vbproj.CoreCompileInputs.cache
-P:\Documents\Source codes\VB.NET\SmartBotKit\SmartBotKit.Plugins._PluginTemplate\obj\Release\PluginTemplate.dll
-P:\Documents\Source codes\VB.NET\SmartBotKit\SmartBotKit.Plugins._PluginTemplate\obj\Release\PluginTemplate.xml

@@ -165,8 +165,25 @@ Namespace SmartBotKit.Interop
                     Return Nothing
                 End If
 
-                ' Dim lines As IEnumerable(Of String) = SmartBotUtil.TextBoxLogText.Split(ControlChars.Lf).Reverse()
-                Dim lines As IEnumerable(Of String) = File.ReadLines(recentFile.FullName).Reverse()
+                Dim lines As IEnumerable(Of String)
+                Try
+                    lines = File.ReadLines(recentFile.FullName).Reverse()
+
+                Catch ex As IOException ' Unable to read log file because SmartBot has open it. This will occur at very specific circumstances.
+                    ' Try to copy the file to a new location so we can finally read it.
+                    Dim tmpFullPath As String = Path.Combine(Path.GetTempPath(), Path.GetTempFileName())
+                    Try
+                        My.Computer.FileSystem.CopyFile(recentFile.FullName, tmpFullPath, overwrite:=True)
+                        lines = File.ReadLines(tmpFullPath).Reverse()
+                    Catch ' In case it also fails to copy or read, return nothing.
+                        Return Nothing
+                    End Try
+
+                Catch ex As Exception
+                    Throw
+
+                End Try
+
                 For Each line As String In lines
                     If line.Contains(serverIsDownString) Then
                         Return TimeSpan.Parse(line.Substring(0, 10).TrimStart("["c).TrimEnd("]"c))

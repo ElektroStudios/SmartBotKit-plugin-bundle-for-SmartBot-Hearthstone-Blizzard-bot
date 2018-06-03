@@ -210,6 +210,7 @@ Namespace AutoCleaner
                     logs.AddRange(SmartBotUtil.LogsDir.EnumerateFiles("*.txt", System.IO.SearchOption.AllDirectories))
                 End If
                 logs.Add(New FileInfo(Path.Combine(SmartBotUtil.SmartBotDir.FullName, "UpdaterLog.txt")))
+                logs.Add(New FileInfo(Path.Combine(SmartBotUtil.SmartBotDir.FullName, "CompileErrorsDiscoverCC.txt")))
 
                 For Each log As FileInfo In logs
                     Dim daysDiff As Integer = CInt((Date.Now - log.CreationTime).TotalDays)

@@ -1,8 +1,0 @@
-P:\Documents\Source codes\VB.NET\SmartBotKit\Bin\Release\Plugins\WindowRestorator.dll
-P:\Documents\Source codes\VB.NET\SmartBotKit\Bin\Release\Plugins\WindowRestorator.xml
-P:\Documents\Source codes\VB.NET\SmartBotKit\SmartBotKit.Plugins.WindowRestorator\obj\Release\WindowRestorator.vbprojAssemblyReference.cache
-P:\Documents\Source codes\VB.NET\SmartBotKit\SmartBotKit.Plugins.WindowRestorator\obj\Release\SmartBotKit.Plugins.Resources.resources
-P:\Documents\Source codes\VB.NET\SmartBotKit\SmartBotKit.Plugins.WindowRestorator\obj\Release\WindowRestorator.vbproj.GenerateResource.cache
-P:\Documents\Source codes\VB.NET\SmartBotKit\SmartBotKit.Plugins.WindowRestorator\obj\Release\WindowRestorator.vbproj.CoreCompileInputs.cache
-P:\Documents\Source codes\VB.NET\SmartBotKit\SmartBotKit.Plugins.WindowRestorator\obj\Release\WindowRestorator.dll
-P:\Documents\Source codes\VB.NET\SmartBotKit\SmartBotKit.Plugins.WindowRestorator\obj\Release\WindowRestorator.xml

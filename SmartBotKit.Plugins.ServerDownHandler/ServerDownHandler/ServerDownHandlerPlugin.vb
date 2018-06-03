@@ -9,6 +9,7 @@ Option Infer Off
 
 #Region " Imports "
 
+Imports System.Collections.Generic
 Imports System.IO
 Imports System.Media
 Imports System.Threading
@@ -141,11 +142,33 @@ Namespace ServerDownHandler
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
+        ''' Called when the bot is about to handle mulligan (to decide which card to replace) before a game begins.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <param name="choices">
+        ''' The mulligan choices.
+        ''' </param>
+        ''' 
+        ''' <param name="opponentClass">
+        ''' The opponent class.
+        ''' </param>
+        ''' 
+        ''' <param name="ownClass">
+        ''' Our hero class.
+        ''' </param>
+        ''' ----------------------------------------------------------------------------------------------------
+        Public Overrides Sub OnHandleMulligan(ByVal choices As List(Of Card.Cards), ByVal opponentClass As Card.CClass, ByVal ownClass As Card.CClass)
+            Me.lastDateActive = Date.Now
+            MyBase.OnHandleMulligan(choices, opponentClass, ownClass)
+        End Sub
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
         ''' Called when the bot timer is ticked, every 300 milliseconds.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Public Overrides Sub OnTick()
-            If (Me.DataContainer.Enabled) AndAlso (Bot.IsBotRunning) Then
+            If (Me.DataContainer.Enabled) AndAlso (Bot.IsBotRunning()) Then
 
                 Dim lastServerDownRecord As TimeSpan = SmartBotUtil.LastServerDownRecord
                 If (lastServerDownRecord = Nothing) Then
@@ -159,21 +182,25 @@ Namespace ServerDownHandler
                 Dim diffTime As TimeSpan = lastServerDownRecord.Subtract(Date.Now.TimeOfDay)
                 If (diffTime.TotalSeconds < 60) Then ' If lastServerDownRecord occured more than 1 minute ago then...
 
+                    Dim isBotStopped As Boolean
                     Select Case Bot.CurrentMode
 
                         Case Bot.Mode.ArenaAuto
                             If (Me.DataContainer.StopTheBotIfArena) Then
                                 Bot.StopBot()
+                                isBotStopped = True
                             End If
 
                         Case Bot.Mode.RankedStandard, Bot.Mode.RankedWild
                             If (Me.DataContainer.StopTheBotIfRanked) Then
                                 Bot.StopBot()
+                                isBotStopped = True
                             End If
 
                         Case Bot.Mode.UnrankedStandard, Bot.Mode.UnrankedWild
                             If (Me.DataContainer.StopTheBotIfUnranked) Then
                                 Bot.StopBot()
+                                isBotStopped = True
                             End If
 
                         Case Else
@@ -181,7 +208,7 @@ Namespace ServerDownHandler
 
                     End Select
 
-                    If Not (Bot.IsBotRunning()) Then
+                    If (isBotStopped) Then
                         Bot.Log("[ServerDownHandler] Server down detected. Bot has been stopped.")
 
                         If (Me.DataContainer.ResumeEnabled()) Then
@@ -243,11 +270,10 @@ Namespace ServerDownHandler
                        (Me.DataContainer.ResumeEnabled) AndAlso
                        (Me.lastDateActive = lastDateActive) Then
 
-                        If Not (Bot.IsBotRunning) Then
+                        If Not (Bot.IsBotRunning()) Then
                             Bot.StartBot()
                             Bot.Log("[ServerDownHandler] Bot resumed.")
                         End If
-
                     End If
                 End Sub)
 
