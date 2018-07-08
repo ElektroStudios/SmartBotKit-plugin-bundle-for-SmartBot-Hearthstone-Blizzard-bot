@@ -1,0 +1,8 @@
+C:\Users\Administrador\Desktop\SmartBotKit\Bin\Release\Plugins\UltimateEmoter.dll
+C:\Users\Administrador\Desktop\SmartBotKit\Bin\Release\Plugins\UltimateEmoter.xml
+C:\Users\Administrador\Desktop\SmartBotKit\Plugins\SmartBotKit.Plugins.UltimateEmoter\obj\Release\UltimateEmoter.vbprojAssemblyReference.cache
+C:\Users\Administrador\Desktop\SmartBotKit\Plugins\SmartBotKit.Plugins.UltimateEmoter\obj\Release\SmartBotKit.Plugins.Resources.resources
+C:\Users\Administrador\Desktop\SmartBotKit\Plugins\SmartBotKit.Plugins.UltimateEmoter\obj\Release\UltimateEmoter.vbproj.GenerateResource.cache
+C:\Users\Administrador\Desktop\SmartBotKit\Plugins\SmartBotKit.Plugins.UltimateEmoter\obj\Release\UltimateEmoter.vbproj.CoreCompileInputs.cache
+C:\Users\Administrador\Desktop\SmartBotKit\Plugins\SmartBotKit.Plugins.UltimateEmoter\obj\Release\UltimateEmoter.dll
+C:\Users\Administrador\Desktop\SmartBotKit\Plugins\SmartBotKit.Plugins.UltimateEmoter\obj\Release\UltimateEmoter.xml

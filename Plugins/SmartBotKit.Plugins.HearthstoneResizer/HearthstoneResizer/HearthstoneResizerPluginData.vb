@@ -232,7 +232,7 @@ Namespace HearthstoneResizer
             Me.Size = "800×600 (4:3)"
 
             Me.IgnoreTicksIfBotStopped = False
-            Me.TickCount = 5
+            Me.TickCount = 10
             Me.HearthstoneResizerEvent = SmartBotEvent.TimerTick
         End Sub
 

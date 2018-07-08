@@ -21,7 +21,7 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "TaskBarInfo", "Plugins\Smar
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "AutoCleaner", "Plugins\SmartBotKit.Plugins.AutoCleaner\AutoCleaner.vbproj", "{5386DBF5-5C88-43A4-B8AF-34A7D35599CB}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "PlayAFriendChallengeNotifier", "Plugins\SmartBotKit.Plugins.PlayAFriendChallengeNotifier\PlayAFriendChallengeNotifier.vbproj", "{20A3438D-C7E7-425A-B8E9-CCF42DD622CF}"
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "ChallengeNotifier", "Plugins\SmartBotKit.Plugins.ChallengeNotifier\ChallengeNotifier.vbproj", "{20A3438D-C7E7-425A-B8E9-CCF42DD622CF}"
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "HearthstoneResizer", "Plugins\SmartBotKit.Plugins.HearthstoneResizer\HearthstoneResizer.vbproj", "{2C9D9A26-6D46-432E-AC1A-F491156CA64A}"
 EndProject
@@ -64,7 +64,6 @@ Global
 		{C09A1D48-448C-46A2-BDB3-E5A684067DE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C09A1D48-448C-46A2-BDB3-E5A684067DE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C09A1D48-448C-46A2-BDB3-E5A684067DE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C09A1D48-448C-46A2-BDB3-E5A684067DE4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4A2C1D42-0C58-4640-BFF6-68B7B549D38B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4A2C1D42-0C58-4640-BFF6-68B7B549D38B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4A2C1D42-0C58-4640-BFF6-68B7B549D38B}.Release|Any CPU.ActiveCfg = Release|Any CPU

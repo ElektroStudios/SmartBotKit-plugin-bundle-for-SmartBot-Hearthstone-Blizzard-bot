@@ -1,0 +1,8 @@
+C:\Users\Administrador\Desktop\SmartBotKit\Bin\Release\Plugins\PanicButton.dll
+C:\Users\Administrador\Desktop\SmartBotKit\Bin\Release\Plugins\PanicButton.xml
+C:\Users\Administrador\Desktop\SmartBotKit\Plugins\SmartBotKit.Plugins.PanicButton\obj\Release\PanicButton.vbprojAssemblyReference.cache
+C:\Users\Administrador\Desktop\SmartBotKit\Plugins\SmartBotKit.Plugins.PanicButton\obj\Release\SmartBotKit.Plugins.Resources.resources
+C:\Users\Administrador\Desktop\SmartBotKit\Plugins\SmartBotKit.Plugins.PanicButton\obj\Release\PanicButton.vbproj.GenerateResource.cache
+C:\Users\Administrador\Desktop\SmartBotKit\Plugins\SmartBotKit.Plugins.PanicButton\obj\Release\PanicButton.vbproj.CoreCompileInputs.cache
+C:\Users\Administrador\Desktop\SmartBotKit\Plugins\SmartBotKit.Plugins.PanicButton\obj\Release\PanicButton.dll
+C:\Users\Administrador\Desktop\SmartBotKit\Plugins\SmartBotKit.Plugins.PanicButton\obj\Release\PanicButton.xml

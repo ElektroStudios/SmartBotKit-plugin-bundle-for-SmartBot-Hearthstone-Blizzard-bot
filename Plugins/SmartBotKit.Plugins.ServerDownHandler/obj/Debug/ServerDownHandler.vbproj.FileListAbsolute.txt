@@ -1,0 +1,11 @@
+C:\Users\Administrador\Desktop\SmartBotKit\Bin\Debug\Plugins\ServerDownHandler.wav
+C:\Users\Administrador\Desktop\SmartBotKit\Bin\Debug\Plugins\ServerDownHandler.dll
+C:\Users\Administrador\Desktop\SmartBotKit\Bin\Debug\Plugins\ServerDownHandler.pdb
+C:\Users\Administrador\Desktop\SmartBotKit\Bin\Debug\Plugins\ServerDownHandler.xml
+C:\Users\Administrador\Desktop\SmartBotKit\Plugins\SmartBotKit.Plugins.ServerDownHandler\obj\Debug\ServerDownHandler.vbprojAssemblyReference.cache
+C:\Users\Administrador\Desktop\SmartBotKit\Plugins\SmartBotKit.Plugins.ServerDownHandler\obj\Debug\SmartBotKit.Plugins.Resources.resources
+C:\Users\Administrador\Desktop\SmartBotKit\Plugins\SmartBotKit.Plugins.ServerDownHandler\obj\Debug\ServerDownHandler.vbproj.GenerateResource.cache
+C:\Users\Administrador\Desktop\SmartBotKit\Plugins\SmartBotKit.Plugins.ServerDownHandler\obj\Debug\ServerDownHandler.vbproj.CoreCompileInputs.cache
+C:\Users\Administrador\Desktop\SmartBotKit\Plugins\SmartBotKit.Plugins.ServerDownHandler\obj\Debug\ServerDownHandler.dll
+C:\Users\Administrador\Desktop\SmartBotKit\Plugins\SmartBotKit.Plugins.ServerDownHandler\obj\Debug\ServerDownHandler.xml
+C:\Users\Administrador\Desktop\SmartBotKit\Plugins\SmartBotKit.Plugins.ServerDownHandler\obj\Debug\ServerDownHandler.pdb

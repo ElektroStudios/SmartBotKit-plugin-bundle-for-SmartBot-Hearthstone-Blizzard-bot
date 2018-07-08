@@ -1,0 +1,10 @@
+C:\Users\Administrador\Desktop\SmartBotKit\Bin\Release\Plugins\ChallengeNotifier_Gold.wav
+C:\Users\Administrador\Desktop\SmartBotKit\Bin\Release\Plugins\ChallengeNotifier_Normal.wav
+C:\Users\Administrador\Desktop\SmartBotKit\Bin\Release\Plugins\ChallengeNotifier.dll
+C:\Users\Administrador\Desktop\SmartBotKit\Bin\Release\Plugins\ChallengeNotifier.xml
+C:\Users\Administrador\Desktop\SmartBotKit\Plugins\SmartBotKit.Plugins.ChallengeNotifier\obj\Release\ChallengeNotifier.vbprojAssemblyReference.cache
+C:\Users\Administrador\Desktop\SmartBotKit\Plugins\SmartBotKit.Plugins.ChallengeNotifier\obj\Release\SmartBotKit.Plugins.Resources.resources
+C:\Users\Administrador\Desktop\SmartBotKit\Plugins\SmartBotKit.Plugins.ChallengeNotifier\obj\Release\ChallengeNotifier.vbproj.GenerateResource.cache
+C:\Users\Administrador\Desktop\SmartBotKit\Plugins\SmartBotKit.Plugins.ChallengeNotifier\obj\Release\ChallengeNotifier.vbproj.CoreCompileInputs.cache
+C:\Users\Administrador\Desktop\SmartBotKit\Plugins\SmartBotKit.Plugins.ChallengeNotifier\obj\Release\ChallengeNotifier.dll
+C:\Users\Administrador\Desktop\SmartBotKit\Plugins\SmartBotKit.Plugins.ChallengeNotifier\obj\Release\ChallengeNotifier.xml

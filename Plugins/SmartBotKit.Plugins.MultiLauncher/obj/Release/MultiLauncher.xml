@@ -1,0 +1,193 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+MultiLauncher
+</name>
+</assembly>
+<members>
+<member name="T:SmartBotKit.Plugins.My.Resources.Resources">
+<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member>
+<member name="P:SmartBotKit.Plugins.My.Resources.Resources.ResourceManager">
+<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member>
+<member name="P:SmartBotKit.Plugins.My.Resources.Resources.Culture">
+<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member>
+<member name="T:SmartBotKit.Plugins.MultiLauncher.MultiLauncherPluginData">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Plugin data for <see cref="T:SmartBotKit.Plugins.MultiLauncher.MultiLauncherPlugin"/> plugin class.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <seealso cref="T:SmartBot.Plugins.PluginDataContainer"/>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.MultiLauncher.MultiLauncherPluginData.TerminateProgramsWhenClosingSmartBot">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets or sets a value that determine whether to terminate the programs specified in properties: 
+ <see cref="P:SmartBotKit.Plugins.MultiLauncher.MultiLauncherPluginData.ExecutablePath1"/>, <see cref="P:SmartBotKit.Plugins.MultiLauncher.MultiLauncherPluginData.ExecutablePath2"/>, 
+ <see cref="P:SmartBotKit.Plugins.MultiLauncher.MultiLauncherPluginData.ExecutablePath3"/>, <see cref="P:SmartBotKit.Plugins.MultiLauncher.MultiLauncherPluginData.ExecutablePath4"/>, 
+ <see cref="P:SmartBotKit.Plugins.MultiLauncher.MultiLauncherPluginData.ExecutablePath5"/>, <see cref="P:SmartBotKit.Plugins.MultiLauncher.MultiLauncherPluginData.ExecutablePath6"/>, 
+ <see cref="P:SmartBotKit.Plugins.MultiLauncher.MultiLauncherPluginData.ExecutablePath7"/>, <see cref="P:SmartBotKit.Plugins.MultiLauncher.MultiLauncherPluginData.ExecutablePath8"/> and 
+ <see cref="P:SmartBotKit.Plugins.MultiLauncher.MultiLauncherPluginData.ExecutablePath9"/> when exiting from SmartBot application.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.MultiLauncher.MultiLauncherPluginData.ExecutablePath1">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ (1) Gets or sets the full path to a file or program that you want run.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.MultiLauncher.MultiLauncherPluginData.ExecutablePath2">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ (2) Gets or sets the full path to a file or program that you want run.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.MultiLauncher.MultiLauncherPluginData.ExecutablePath3">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ (3) Gets or sets the full path to a file or program that you want run.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.MultiLauncher.MultiLauncherPluginData.ExecutablePath4">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ (4) Gets or sets the full path to a file or program that you want run.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.MultiLauncher.MultiLauncherPluginData.ExecutablePath5">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ (5) Gets or sets the full path to a file or program that you want run.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.MultiLauncher.MultiLauncherPluginData.ExecutablePath6">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ (6) Gets or sets the full path to a file or program that you want run.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.MultiLauncher.MultiLauncherPluginData.ExecutablePath7">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ (7) Gets or sets the full path to a file or program that you want run.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.MultiLauncher.MultiLauncherPluginData.ExecutablePath8">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ (8) Gets or sets the full path to a file or program that you want run.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.MultiLauncher.MultiLauncherPluginData.ExecutablePath9">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ (9) Gets or sets the full path to a file or program that you want run.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.MultiLauncher.MultiLauncherPluginData.#ctor">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Initializes a new instance of the <see cref="T:SmartBotKit.Plugins.MultiLauncher.MultiLauncherPluginData"/> class.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="T:SmartBotKit.Plugins.MultiLauncher.MultiLauncherPlugin">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ This plugin automatically launchs your favorite files or 3rd party programs for Hearthstone at SmartBot's startup.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <seealso cref="T:SmartBot.Plugins.Plugin"/>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.MultiLauncher.MultiLauncherPlugin.DataContainer">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the plugin's data container.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <value>
+ The plugin's data container.
+ </value>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="F:SmartBotKit.Plugins.MultiLauncher.MultiLauncherPlugin.lastEnabled">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Keeps track of the last <see cref="P:SmartBot.Plugins.PluginDataContainer.Enabled"/> value.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="F:SmartBotKit.Plugins.MultiLauncher.MultiLauncherPlugin.processes">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ A collection that holds the processes that were ran by this <see cref="T:SmartBotKit.Plugins.MultiLauncher.MultiLauncherPlugin"/>.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.MultiLauncher.MultiLauncherPlugin.#ctor">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Initializes a new instance of the <see cref="T:SmartBotKit.Plugins.MultiLauncher.MultiLauncherPlugin"/> class.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.MultiLauncher.MultiLauncherPlugin.OnPluginCreated">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Called when this <see cref="T:SmartBotKit.Plugins.MultiLauncher.MultiLauncherPlugin"/> is created by the SmartBot plugin manager.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.MultiLauncher.MultiLauncherPlugin.OnDataContainerUpdated">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Called when the properties of <see cref="T:SmartBotKit.Plugins.MultiLauncher.MultiLauncherPluginData"/> are updated.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.MultiLauncher.MultiLauncherPlugin.Dispose">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Releases all the resources used by this <see cref="T:SmartBotKit.Plugins.MultiLauncher.MultiLauncherPlugin"/> instance.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.MultiLauncher.MultiLauncherPlugin.RunProcesses">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Tries to run all the executable files that were specified in the <see cref="P:SmartBotKit.Plugins.MultiLauncher.MultiLauncherPlugin.DataContainer"/> properties.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.MultiLauncher.MultiLauncherPlugin.KillProcesses">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Tries to kill all the processes that were ran as result of a call to <see cref="M:SmartBotKit.Plugins.MultiLauncher.MultiLauncherPlugin.RunProcesses"/> method.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+</members>
+</doc>

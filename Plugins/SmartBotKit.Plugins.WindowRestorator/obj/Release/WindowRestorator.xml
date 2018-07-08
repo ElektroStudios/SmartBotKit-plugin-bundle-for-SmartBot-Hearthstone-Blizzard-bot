@@ -1,0 +1,171 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+WindowRestorator
+</name>
+</assembly>
+<members>
+<member name="T:SmartBotKit.Plugins.My.Resources.Resources">
+<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member>
+<member name="P:SmartBotKit.Plugins.My.Resources.Resources.ResourceManager">
+<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member>
+<member name="P:SmartBotKit.Plugins.My.Resources.Resources.Culture">
+<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member>
+<member name="T:SmartBotKit.Plugins.WindowRestorator.WindowRestoratorPluginData">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Plugin data for <see cref="T:SmartBotKit.Plugins.WindowRestorator.WindowRestoratorPlugin"/> plugin class.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <seealso cref="T:SmartBot.Plugins.PluginDataContainer"/>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.WindowRestorator.WindowRestoratorPluginData.CurrentPosition">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the current SmartBot's window position.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.WindowRestorator.WindowRestoratorPluginData.NormalPosition">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets or sets the SmartBot's window position in its normal state.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.WindowRestorator.WindowRestoratorPluginData.NormalSize">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets or sets the SmartBot's window size in its normal state.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.WindowRestorator.WindowRestoratorPluginData.MaximizedPosition">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets or sets the SmartBot's window position in its maximized state.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.WindowRestorator.WindowRestoratorPluginData.MinimizedPosition">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets or sets the SmartBot's window position in its minimized state.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.WindowRestorator.WindowRestoratorPluginData.WindowState">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets or sets the SmartBot's window state.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.WindowRestorator.WindowRestoratorPluginData.Flags">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets or sets the SmartBot's window flags.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.WindowRestorator.WindowRestoratorPluginData.#ctor">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Initializes a new instance of the <see cref="T:SmartBotKit.Plugins.WindowRestorator.WindowRestoratorPluginData"/> class.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.WindowRestorator.WindowRestoratorPluginData.GetWindowPosition">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the current SmartBot's window position.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <returns>
+ The resulting <see cref="T:System.Drawing.Point"/>.
+ </returns>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="T:SmartBotKit.Plugins.WindowRestorator.WindowRestoratorPlugin">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ This plugin will restore the last size and position of SmartBot's window the next time you run it.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <seealso cref="T:SmartBot.Plugins.Plugin"/>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.WindowRestorator.WindowRestoratorPlugin.DataContainer">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the plugin's data container.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <value>
+ The plugin's data container.
+ </value>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="F:SmartBotKit.Plugins.WindowRestorator.WindowRestoratorPlugin.lastEnabled">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Keeps track of the last <see cref="P:SmartBot.Plugins.PluginDataContainer.Enabled"/> value.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.WindowRestorator.WindowRestoratorPlugin.#ctor">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Initializes a new instance of the <see cref="T:SmartBotKit.Plugins.WindowRestorator.WindowRestoratorPlugin"/> class.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.WindowRestorator.WindowRestoratorPlugin.OnPluginCreated">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Called when this <see cref="T:SmartBotKit.Plugins.WindowRestorator.WindowRestoratorPlugin"/> is created by the SmartBot plugin manager.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.WindowRestorator.WindowRestoratorPlugin.OnDataContainerUpdated">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Called when the properties of <see cref="T:SmartBotKit.Plugins.WindowRestorator.WindowRestoratorPluginData"/> are updated.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.WindowRestorator.WindowRestoratorPlugin.Dispose">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Releases all the resources used by this <see cref="T:SmartBotKit.Plugins.WindowRestorator.WindowRestoratorPlugin"/> instance.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.WindowRestorator.WindowRestoratorPlugin.SaveWindowPlacement">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Saves the current window size and position.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.WindowRestorator.WindowRestoratorPlugin.RestoreWindowPlacement">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Restores the last saved window size and position.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+</members>
+</doc>

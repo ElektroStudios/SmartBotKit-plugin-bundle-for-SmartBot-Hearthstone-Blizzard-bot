@@ -1,0 +1,10 @@
+C:\Users\Administrador\Desktop\SmartBotKit\Bin\Debug\Plugins\PanicButton.dll
+C:\Users\Administrador\Desktop\SmartBotKit\Bin\Debug\Plugins\PanicButton.pdb
+C:\Users\Administrador\Desktop\SmartBotKit\Bin\Debug\Plugins\PanicButton.xml
+C:\Users\Administrador\Desktop\SmartBotKit\Plugins\SmartBotKit.Plugins.PanicButton\obj\Debug\PanicButton.vbprojAssemblyReference.cache
+C:\Users\Administrador\Desktop\SmartBotKit\Plugins\SmartBotKit.Plugins.PanicButton\obj\Debug\SmartBotKit.Plugins.Resources.resources
+C:\Users\Administrador\Desktop\SmartBotKit\Plugins\SmartBotKit.Plugins.PanicButton\obj\Debug\PanicButton.vbproj.GenerateResource.cache
+C:\Users\Administrador\Desktop\SmartBotKit\Plugins\SmartBotKit.Plugins.PanicButton\obj\Debug\PanicButton.vbproj.CoreCompileInputs.cache
+C:\Users\Administrador\Desktop\SmartBotKit\Plugins\SmartBotKit.Plugins.PanicButton\obj\Debug\PanicButton.dll
+C:\Users\Administrador\Desktop\SmartBotKit\Plugins\SmartBotKit.Plugins.PanicButton\obj\Debug\PanicButton.xml
+C:\Users\Administrador\Desktop\SmartBotKit\Plugins\SmartBotKit.Plugins.PanicButton\obj\Debug\PanicButton.pdb
