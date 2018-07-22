@@ -1,0 +1,252 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+OfflineServerHandler
+</name>
+</assembly>
+<members>
+<member name="T:SmartBotKit.Plugins.My.Resources.Resources">
+<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member>
+<member name="P:SmartBotKit.Plugins.My.Resources.Resources.ResourceManager">
+<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member>
+<member name="P:SmartBotKit.Plugins.My.Resources.Resources.Culture">
+<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member>
+<member name="T:SmartBotKit.Plugins.OfflineServerHandler.OfflineServerHandlerPluginData">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Plugin data for <see cref="T:SmartBotKit.Plugins.OfflineServerHandler.OfflineServerHandlerPlugin"/> plugin class.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <seealso cref="T:SmartBot.Plugins.PluginDataContainer"/>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.OfflineServerHandler.OfflineServerHandlerPluginData.AssemblyInfo">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the <see cref="T:Microsoft.VisualBasic.ApplicationServices.AssemblyInfo"/> for this assembly.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.OfflineServerHandler.OfflineServerHandlerPluginData.Author">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the author of this plugin.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.OfflineServerHandler.OfflineServerHandlerPluginData.ProductName">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the plugin name.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.OfflineServerHandler.OfflineServerHandlerPluginData.Description">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the plugin description.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.OfflineServerHandler.OfflineServerHandlerPluginData.Version">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets a value that determine whether the plugin should delete log files.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.OfflineServerHandler.OfflineServerHandlerPluginData.LastServerDownRecord">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the last known server down time record for the current session.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.OfflineServerHandler.OfflineServerHandlerPluginData.PlaySoundFile">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets or sets a value that determine whether to play a wave sound file when a server down is detected.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.OfflineServerHandler.OfflineServerHandlerPluginData.StopTheBotIfArena">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets a value that indicate whether the bot should be stopped if server is down and current mode is 
+ <see cref="F:SmartBot.Plugins.API.Bot.Mode.ArenaAuto"/>.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.OfflineServerHandler.OfflineServerHandlerPluginData.StopTheBotIfRanked">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets a value that indicate whether the bot should be stopped if server is down and current mode is 
+ <see cref="F:SmartBot.Plugins.API.Bot.Mode.RankedStandard"/> or <see cref="F:SmartBot.Plugins.API.Bot.Mode.RankedWild"/>.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.OfflineServerHandler.OfflineServerHandlerPluginData.StopTheBotIfUnranked">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets a value that indicate whether the bot should be stopped if server is down and current mode is 
+ <see cref="F:SmartBot.Plugins.API.Bot.Mode.UnrankedStandard"/> or <see cref="F:SmartBot.Plugins.API.Bot.Mode.UnrankedWild"/>.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.OfflineServerHandler.OfflineServerHandlerPluginData.ResumeEnabled">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets or sets a value that determine whether the bot should resume and try reconnect to the server after the 
+ specified time interval.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.OfflineServerHandler.OfflineServerHandlerPluginData.ResumeInterval">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets or sets the time interval, in minutes, to resume the bot and try reconnect to the server.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <value>
+ A value between 5 and 1440 (24 hours).
+ </value>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="F:SmartBotKit.Plugins.OfflineServerHandler.OfflineServerHandlerPluginData.resumeIntervalB">
+ <summary>
+ ( Backing Field )
+ <para></para>
+ The time interval, in minutes, to resume the bot and try reconnect to the server.
+ </summary>
+</member>
+<member name="M:SmartBotKit.Plugins.OfflineServerHandler.OfflineServerHandlerPluginData.#ctor">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Initializes a new instance of the <see cref="T:SmartBotKit.Plugins.OfflineServerHandler.OfflineServerHandlerPluginData"/> class.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="T:SmartBotKit.Plugins.OfflineServerHandler.OfflineServerHandlerPlugin">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ A plugin that handles the bot behavior when the server gets down. 
+ <para></para>
+ Note that it ﻿does not ﻿handle ﻿lag, ﻿local network inactivity﻿﻿ neither ﻿authentication connection problems.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <seealso cref="T:SmartBot.Plugins.Plugin"/>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.OfflineServerHandler.OfflineServerHandlerPlugin.DataContainer">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the plugin's data container.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <value>
+ The plugin's data container.
+ </value>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="F:SmartBotKit.Plugins.OfflineServerHandler.OfflineServerHandlerPlugin.lastEnabled">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Keeps track of the last <see cref="P:SmartBot.Plugins.PluginDataContainer.Enabled"/> value.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="F:SmartBotKit.Plugins.OfflineServerHandler.OfflineServerHandlerPlugin.lastDateActive">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Keeps track of the creation datetime of this plugin.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.OfflineServerHandler.OfflineServerHandlerPlugin.#ctor">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Initializes a new instance of the <see cref="T:SmartBotKit.Plugins.OfflineServerHandler.OfflineServerHandlerPlugin"/> class.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.OfflineServerHandler.OfflineServerHandlerPlugin.OnPluginCreated">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Called when this <see cref="T:SmartBotKit.Plugins.OfflineServerHandler.OfflineServerHandlerPlugin"/> is created by the SmartBot plugin manager.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.OfflineServerHandler.OfflineServerHandlerPlugin.OnDataContainerUpdated">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Called when the properties of <see cref="T:SmartBotKit.Plugins.OfflineServerHandler.OfflineServerHandlerPluginData"/> are updated.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.OfflineServerHandler.OfflineServerHandlerPlugin.OnStarted">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Called when the bot is started.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.OfflineServerHandler.OfflineServerHandlerPlugin.OnStopped">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Called when the bot is stopped.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.OfflineServerHandler.OfflineServerHandlerPlugin.OnHandleMulligan(System.Collections.Generic.List{SmartBot.Plugins.API.Card.Cards},SmartBot.Plugins.API.Card.CClass,SmartBot.Plugins.API.Card.CClass)">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Called when the bot is about to handle mulligan (to decide which card to replace) before a game begins.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <param name="choices">
+ The mulligan choices.
+ </param>
+ 
+ <param name="opponentClass">
+ The opponent class.
+ </param>
+ 
+ <param name="ownClass">
+ Our hero class.
+ </param>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.OfflineServerHandler.OfflineServerHandlerPlugin.OnTick">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Called when the bot timer is ticked, every 300 milliseconds.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.OfflineServerHandler.OfflineServerHandlerPlugin.Dispose">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Releases all the resources used by this <see cref="T:SmartBotKit.Plugins.OfflineServerHandler.OfflineServerHandlerPlugin"/> instance.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.OfflineServerHandler.OfflineServerHandlerPlugin.ScheduleResume(System.Int32)">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Schedule a bot resume to try a reconnection to the server.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+</members>
+</doc>

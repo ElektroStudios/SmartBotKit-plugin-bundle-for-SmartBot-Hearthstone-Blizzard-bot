@@ -15,6 +15,10 @@ Imports System.Runtime.InteropServices
 
 Imports SmartBotKit.Interop.Win32
 
+Imports SmartBot.Plugins.API
+Imports SmartBot.Plugins.API.Card
+Imports System.Collections.Generic
+
 #End Region
 
 #Region " HearthstoneUtil "
@@ -42,9 +46,22 @@ Namespace SmartBotKit.Interop
         Public Shared ReadOnly Property Process As Process
             <DebuggerStepThrough>
             Get
-                Return Diagnostics.Process.GetProcessesByName("Hearthstone").DefaultIfEmpty(Nothing).SingleOrDefault()
+
+                If (HearthstoneUtil.processB Is Nothing) OrElse (HearthstoneUtil.processB.HasExited) Then
+                    HearthstoneUtil.processB = Process.GetProcessesByName("Hearthstone").DefaultIfEmpty(Nothing).SingleOrDefault()
+                End If
+                ' HearthstoneUtil.processB.Refresh() ' Refresh window title and main window handle.
+                Return HearthstoneUtil.processB
             End Get
         End Property
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' ( Backing Field )
+        ''' <para></para>
+        ''' Gets the Hearthstone <see cref="Diagnostics.Process"/>.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        Private Shared processB As Process
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>

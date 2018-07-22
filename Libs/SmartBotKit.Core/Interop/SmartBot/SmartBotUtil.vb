@@ -49,7 +49,7 @@ Namespace SmartBotKit.Interop
             <DebuggerStepThrough>
             Get
                 If (SmartBotUtil.processB Is Nothing) OrElse (SmartBotUtil.processB.HasExited) Then
-                    SmartBotUtil.processB = Diagnostics.Process.GetCurrentProcess()
+                    SmartBotUtil.processB = Process.GetCurrentProcess()
                 End If
                 ' SmartBotUtil.processB.Refresh() ' Refresh window title and main window handle.
                 Return SmartBotUtil.processB

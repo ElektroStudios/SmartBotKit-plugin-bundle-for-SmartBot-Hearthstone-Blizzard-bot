@@ -1,8 +1,0 @@
-C:\Users\Administrador\Desktop\SmartBotKit\Bin\Release\Plugins\WindowRestorator.dll
-C:\Users\Administrador\Desktop\SmartBotKit\Bin\Release\Plugins\WindowRestorator.xml
-C:\Users\Administrador\Desktop\SmartBotKit\Plugins\SmartBotKit.Plugins.WindowRestorator\obj\Release\WindowRestorator.vbprojAssemblyReference.cache
-C:\Users\Administrador\Desktop\SmartBotKit\Plugins\SmartBotKit.Plugins.WindowRestorator\obj\Release\SmartBotKit.Plugins.Resources.resources
-C:\Users\Administrador\Desktop\SmartBotKit\Plugins\SmartBotKit.Plugins.WindowRestorator\obj\Release\WindowRestorator.vbproj.GenerateResource.cache
-C:\Users\Administrador\Desktop\SmartBotKit\Plugins\SmartBotKit.Plugins.WindowRestorator\obj\Release\WindowRestorator.vbproj.CoreCompileInputs.cache
-C:\Users\Administrador\Desktop\SmartBotKit\Plugins\SmartBotKit.Plugins.WindowRestorator\obj\Release\WindowRestorator.dll
-C:\Users\Administrador\Desktop\SmartBotKit\Plugins\SmartBotKit.Plugins.WindowRestorator\obj\Release\WindowRestorator.xml

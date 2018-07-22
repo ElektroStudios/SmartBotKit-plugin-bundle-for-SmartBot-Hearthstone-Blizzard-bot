@@ -9,6 +9,7 @@ Option Infer Off
 
 #Region " Imports "
 
+Imports System.Drawing
 Imports SmartBotKit.Interop.Win32
 
 #End Region
@@ -31,7 +32,7 @@ Namespace SmartBotKit.Application
         ''' Object to lock on instance.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        Private Shared lock As New Object()
+        Private Shared ReadOnly lock As New Object()
 
 #End Region
 
@@ -68,7 +69,7 @@ Namespace SmartBotKit.Application
         ''' Sets the handle of the window whose taskbar button will be used to display progress.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        Friend ReadOnly Property OwnerHandle As IntPtr
+        Public ReadOnly Property OwnerHandle As IntPtr
             Get
                 If (Me.ownerHandleB = IntPtr.Zero) Then
                     Dim currentProcess As Process = Process.GetCurrentProcess()
@@ -112,9 +113,8 @@ Namespace SmartBotKit.Application
                 (Environment.OSVersion.Platform = PlatformID.Win32NT) AndAlso
                 (Environment.OSVersion.Version.CompareTo(New Version(6, 1)) >= 0)
 
-
             If Not (isRunningOnWin7) Then
-                Throw New PlatformNotSupportedException("Taskbar features are only supported on Windows 7 or newer.")
+                Throw New PlatformNotSupportedException("Taskbar features are only supported on Windows 7 and newer.")
             End If
 
         End Sub
@@ -171,33 +171,6 @@ Namespace SmartBotKit.Application
 
         End Sub
 
-        '''' ----------------------------------------------------------------------------------------------------
-        '''' <summary>
-        '''' Displays or updates a progress bar hosted in a taskbar button of the given window  
-        '''' to show the specific percentage completed of the full operation.
-        '''' </summary>
-        '''' ----------------------------------------------------------------------------------------------------
-        '''' <param name="currentValue">
-        '''' The proportion of the operation that has been completed at the time the method is called.
-        '''' </param>
-        '''' 
-        '''' <param name="maximumValue">
-        '''' The value <paramref name="currentValue"/> will have when the operation is complete.
-        '''' </param>
-        '''' 
-        '''' <param name="window">
-        '''' The window whose associated taskbar button is being used as a progress indicator. 
-        '''' <para></para>
-        '''' This window belong to a calling process associated with the button's application and must be already loaded.
-        '''' </param>
-        '''' ----------------------------------------------------------------------------------------------------
-        '<DebuggerStepThrough>
-        'Public Sub SetProgressValue(ByVal currentValue As Integer, maximumValue As Integer, ByVal window As System.Windows.Window)
-
-        '    TaskbarList.Instance.SetProgressValue((New System.Windows.Interop.WindowInteropHelper(window)).Handle, Convert.ToUInt32(currentValue), Convert.ToUInt32(maximumValue))
-
-        'End Sub
-
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
         ''' Sets the type and state of the progress indicator displayed on a taskbar button of the main application.
@@ -236,25 +209,49 @@ Namespace SmartBotKit.Application
 
         End Sub
 
-        '''' ----------------------------------------------------------------------------------------------------
-        '''' <summary>
-        '''' Sets the type and state of the progress indicator displayed on a taskbar button of the given window. 
-        '''' </summary>
-        '''' ----------------------------------------------------------------------------------------------------
-        '''' <param name="state">
-        '''' Progress state of the progress button
-        '''' </param>
-        '''' 
-        '''' <param name="window">
-        '''' The window whose associated taskbar button is being used as a progress indicator. 
-        '''' <para></para>
-        '''' This window belong to a calling process associated with the button's application and must be already loaded.
-        '''' </param>
-        '''' ----------------------------------------------------------------------------------------------------
-        '<DebuggerStepThrough>
-        'Public Sub SetProgressState(ByVal state As TaskbarProgressBarState, ByVal window As System.Windows.Window)
-        '    TaskbarList.Instance.SetProgressState((New System.Windows.Interop.WindowInteropHelper(window)).Handle, state)
-        'End Sub
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Selects a portion of a window's client area to display as that window's thumbnail in the taskbar.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <param name="clipRect">
+        ''' A <see cref="Rectangle"/> structure that specifies a selection within the window's client area, 
+        ''' relative to the upper-left corner of that client area. 
+        ''' 
+        ''' To clear a clip that is already in place and return to the default display of the thumbnail, 
+        ''' set this parameter to <see langword="Nothing"/>.
+        ''' </param>
+        ''' ----------------------------------------------------------------------------------------------------
+        <DebuggerStepThrough>
+        Public Sub SetThumbnailClip(ByVal clipRect As Rectangle)
+
+            Dim result As HResult = TaskbarList.Instance.SetThumbnailClip(Me.OwnerHandle, clipRect)
+
+        End Sub
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Selects a portion of a window's client area to display as that window's thumbnail in the taskbar.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <param name="clipRect">
+        ''' A <see cref="Rectangle"/> structure that specifies a selection within the window's client area, 
+        ''' relative to the upper-left corner of that client area. 
+        ''' 
+        ''' To clear a clip that is already in place and return to the default display of the thumbnail, 
+        ''' set this parameter to <see langword="Nothing"/>.
+        ''' </param>
+        ''' 
+        ''' <param name="windowHandle">
+        ''' The handle to the window represented in the taskbar.
+        ''' </param>
+        ''' ----------------------------------------------------------------------------------------------------
+        <DebuggerStepThrough>
+        Public Sub SetThumbnailClip(ByVal clipRect As Rectangle, ByVal windowHandle As IntPtr)
+
+            Dim result As HResult = TaskbarList.Instance.SetThumbnailClip(windowHandle, clipRect)
+
+        End Sub
 
 #End Region
 

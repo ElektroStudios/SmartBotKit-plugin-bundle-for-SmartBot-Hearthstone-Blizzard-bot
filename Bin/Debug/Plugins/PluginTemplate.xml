@@ -22,6 +22,33 @@ PluginTemplate
   resource lookups using this strongly typed resource class.
 </summary>
 </member>
+<member name="T:SmartBotKit.Plugins.PluginTemplate.MyPluginDataSource">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Provides the collection of values represented by a ComboBox for the <see cref="P:SmartBotKit.Plugins.PluginTemplate.MyPluginData.TestProperty"/> property.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <seealso cref="T:Xceed.Wpf.Toolkit.PropertyGrid.Attributes.IItemsSource"/>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.PluginTemplate.MyPluginDataSource.#ctor">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Initializes a new instance of the <see cref="T:SmartBotKit.Plugins.PluginTemplate.MyPluginDataSource"/> class.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.PluginTemplate.MyPluginDataSource.GetValues">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the collection of values.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <returns>
+ The resulting <see cref="T:Xceed.Wpf.Toolkit.PropertyGrid.Attributes.ItemCollection"/>.
+ </returns>
+ ----------------------------------------------------------------------------------------------------
+</member>
 <member name="T:SmartBotKit.Plugins.PluginTemplate.MyPluginData">
  ----------------------------------------------------------------------------------------------------
  <summary>
@@ -29,6 +56,41 @@ PluginTemplate
  </summary>
  ----------------------------------------------------------------------------------------------------
  <seealso cref="T:SmartBot.Plugins.PluginDataContainer"/>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.PluginTemplate.MyPluginData.AssemblyInfo">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the <see cref="T:Microsoft.VisualBasic.ApplicationServices.AssemblyInfo"/> for this assembly.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.PluginTemplate.MyPluginData.Author">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the author of this plugin.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.PluginTemplate.MyPluginData.ProductName">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the plugin name.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.PluginTemplate.MyPluginData.Description">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the plugin description.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.PluginTemplate.MyPluginData.Version">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets a value that determine whether the plugin should delete log files.
+ </summary>
  ----------------------------------------------------------------------------------------------------
 </member>
 <member name="P:SmartBotKit.Plugins.PluginTemplate.MyPluginData.TestProperty">

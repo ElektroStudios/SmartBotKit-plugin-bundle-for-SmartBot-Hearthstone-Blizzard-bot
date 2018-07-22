@@ -10,9 +10,9 @@ Imports System.Runtime.InteropServices
 ' Review the values of the assembly attributes
 
 <Assembly: AssemblyTitle("Challenge Notifier")>
-<Assembly: AssemblyDescription("Notifies you when a friend challenges you for the 'Play a Friend' quest.")>
+<Assembly: AssemblyDescription("Notifies when a friend challenge is received, like the 'Play a Friend' challenge.")>
 <Assembly: AssemblyCompany("Elektro Studios")>
-<Assembly: AssemblyProduct("ChallengeNotifier")>
+<Assembly: AssemblyProduct("ChallengeNotifier.dll")>
 <Assembly: AssemblyCopyright("Copyright © Elektro Studios 2018")>
 <Assembly: AssemblyTrademark("")>
 
@@ -32,6 +32,6 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")>
 
-<Assembly: AssemblyVersion("1.8.0.0")>
-<Assembly: AssemblyFileVersion("1.8.0.0")>
+<Assembly: AssemblyVersion("2.0.0.0")>
+<Assembly: AssemblyFileVersion("2.0.0.0")>
 <Assembly: NeutralResourcesLanguage("en")>

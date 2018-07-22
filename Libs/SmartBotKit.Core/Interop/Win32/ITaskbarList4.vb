@@ -32,72 +32,70 @@ Namespace SmartBotKit.Interop.Win32
 #Region " ITaskbarList "
 
         <PreserveSig>
-        Sub HrInit()
+        Function HrInit() As HResult
 
         <PreserveSig>
-        Sub AddTab(ByVal hwnd As IntPtr)
+        Function AddTab(ByVal hwnd As IntPtr) As HResult
 
         <PreserveSig>
-        Sub DeleteTab(ByVal hwnd As IntPtr)
+        Function DeleteTab(ByVal hwnd As IntPtr) As HResult
 
         <PreserveSig>
-        Sub ActivateTab(ByVal hwnd As IntPtr)
+        Function ActivateTab(ByVal hwnd As IntPtr) As HResult
 
         <PreserveSig>
-        Sub SetActiveAlt(ByVal hwnd As IntPtr)
+        Function SetActiveAlt(ByVal hwnd As IntPtr) As HResult
 
 #End Region
 
 #Region " ITaskbarList2 "
 
         <PreserveSig>
-        Sub MarkFullscreenWindow(ByVal hwnd As IntPtr, <MarshalAs(UnmanagedType.Bool)> ByVal fFullscreen As Boolean)
+        Function MarkFullscreenWindow(ByVal hwnd As IntPtr, <MarshalAs(UnmanagedType.Bool)> ByVal fFullscreen As Boolean) As HResult
 
 #End Region
 
 #Region " ITaskbarList3 "
 
         <PreserveSig>
-        Sub SetProgressValue(ByVal hwnd As IntPtr, ByVal ullCompleted As ULong, ByVal ullTotal As ULong)
+        Function SetProgressValue(ByVal hwnd As IntPtr, ByVal ullCompleted As ULong, ByVal ullTotal As ULong) As HResult
 
         <PreserveSig>
-        Sub SetProgressState(ByVal hwnd As IntPtr, ByVal tbpFlags As TaskbarProgressBarState)
+        Function SetProgressState(ByVal hwnd As IntPtr, ByVal tbpFlags As TaskbarProgressBarState) As HResult
 
         <PreserveSig>
-        Sub RegisterTab(ByVal hwndTab As IntPtr, ByVal hwndMdi As IntPtr)
+        Function RegisterTab(ByVal hwndTab As IntPtr, ByVal hwndMdi As IntPtr) As HResult
 
         <PreserveSig>
-        Sub UnregisterTab(ByVal hwndTab As IntPtr)
+        Function UnregisterTab(ByVal hwndTab As IntPtr) As HResult
 
         <PreserveSig>
-        Sub SetTabOrder(ByVal hwndTab As IntPtr, ByVal hwndInsertBefore As IntPtr)
+        Function SetTabOrder(ByVal hwndTab As IntPtr, ByVal hwndInsertBefore As IntPtr) As HResult
 
         <PreserveSig>
-        Sub SetTabActive(ByVal hwndTab As IntPtr, ByVal hwndInsertBefore As IntPtr, ByVal dwReserved As UInteger)
+        Function SetTabActive(ByVal hwndTab As IntPtr, ByVal hwndInsertBefore As IntPtr, ByVal dwReserved As UInteger) As HResult
 
         <EditorBrowsable(EditorBrowsableState.Never)>
         <PreserveSig>
-        Function Fake1() As Integer ' HResult
+        Function Fake1() As HResult
         ' Function ThumbBarAddButtons(byval hwnd As IntPtr, byval cButtons As UInteger, <MarshalAs(UnmanagedType.LPArray)> byval pButtons As ThumbButton()) As HResult
 
         <EditorBrowsable(EditorBrowsableState.Never)>
         <PreserveSig>
-        Function Fake2() As Integer ' HResult
+        Function Fake2() As HResult
         ' Function ThumbBarUpdateButtons(byval hwnd As IntPtr, byval cButtons As UInteger, <MarshalAs(UnmanagedType.LPArray)> byval pButtons As ThumbButton()) As HResult
 
-        <EditorBrowsable(EditorBrowsableState.Never)>
         <PreserveSig>
-        Sub Fake3()
-        ' Sub ThumbBarSetImageList(byval hwnd As IntPtr, byval himl As IntPtr)
+        Function ThumbBarSetImageList(ByVal hwnd As IntPtr, ByVal himl As IntPtr) As HResult
 
         <PreserveSig>
-        Sub SetOverlayIcon(ByVal hwnd As IntPtr, ByVal hIcon As IntPtr, <MarshalAs(UnmanagedType.LPWStr)> ByVal pszDescription As String)
+        Function SetOverlayIcon(ByVal hwnd As IntPtr, ByVal hIcon As IntPtr, <MarshalAs(UnmanagedType.LPWStr)> ByVal pszDescription As String) As HResult
 
         <PreserveSig>
-        Sub SetThumbnailTooltip(ByVal hwnd As IntPtr, <MarshalAs(UnmanagedType.LPWStr)> ByVal pszTip As String)
+        Function SetThumbnailTooltip(ByVal hwnd As IntPtr, <MarshalAs(UnmanagedType.LPWStr)> ByVal pszTip As String) As HResult
 
         <PreserveSig>
-        Sub SetThumbnailClip(ByVal hwnd As IntPtr, ByVal prcClip As IntPtr)
+        Function SetThumbnailClip(ByVal hwnd As IntPtr, ByRef refClip As NativeRectangle) As HResult
 
 #End Region
 
@@ -105,7 +103,7 @@ Namespace SmartBotKit.Interop.Win32
 
         <EditorBrowsable(EditorBrowsableState.Never)>
         Sub Fake4()
-        ' Sub SetTabProperties(byval hwndTab As IntPtr, byval stpFlags As SetTabPropertiesOption)
+        ' Function SetTabProperties(byval hwndTab As IntPtr, byval stpFlags As SetTabPropertiesOption) As HResult
 
 #End Region
 

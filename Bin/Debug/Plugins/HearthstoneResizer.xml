@@ -92,6 +92,41 @@ HearthstoneResizer
  </summary>
  ----------------------------------------------------------------------------------------------------
 </member>
+<member name="P:SmartBotKit.Plugins.HearthstoneResizer.HearthstoneResizerPluginData.AssemblyInfo">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the <see cref="T:Microsoft.VisualBasic.ApplicationServices.AssemblyInfo"/> for this assembly.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.HearthstoneResizer.HearthstoneResizerPluginData.Author">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the author of this plugin.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.HearthstoneResizer.HearthstoneResizerPluginData.ProductName">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the plugin name.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.HearthstoneResizer.HearthstoneResizerPluginData.Description">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the plugin description.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.HearthstoneResizer.HearthstoneResizerPluginData.Version">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets a value that determine whether the plugin should delete log files.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
 <member name="P:SmartBotKit.Plugins.HearthstoneResizer.HearthstoneResizerPluginData.CurrentPosition">
  ----------------------------------------------------------------------------------------------------
  <summary>
@@ -106,10 +141,24 @@ HearthstoneResizer
  </summary>
  ----------------------------------------------------------------------------------------------------
 </member>
+<member name="P:SmartBotKit.Plugins.HearthstoneResizer.HearthstoneResizerPluginData.EnableFixedSize">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets or sets a value that determine whether the plugin shouldn't resize Hearthstone window.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
 <member name="P:SmartBotKit.Plugins.HearthstoneResizer.HearthstoneResizerPluginData.Size">
  ----------------------------------------------------------------------------------------------------
  <summary>
  Gets or sets the desired Hearthstone's window size.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.HearthstoneResizer.HearthstoneResizerPluginData.EnableFixedPos">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets or sets a value that determine whether the plugin shouldn't move Hearthstone window.
  </summary>
  ----------------------------------------------------------------------------------------------------
 </member>
@@ -124,20 +173,6 @@ HearthstoneResizer
  ----------------------------------------------------------------------------------------------------
  <summary>
  Gets or sets a value that determine at which event to resize Hearthstone's window size.
- </summary>
- ----------------------------------------------------------------------------------------------------
-</member>
-<member name="P:SmartBotKit.Plugins.HearthstoneResizer.HearthstoneResizerPluginData.EnableMove">
- ----------------------------------------------------------------------------------------------------
- <summary>
- Gets or sets a value that determine whether the plugin shouldn't move Hearthstone window.
- </summary>
- ----------------------------------------------------------------------------------------------------
-</member>
-<member name="P:SmartBotKit.Plugins.HearthstoneResizer.HearthstoneResizerPluginData.EnableResize">
- ----------------------------------------------------------------------------------------------------
- <summary>
- Gets or sets a value that determine whether the plugin shouldn't resize Hearthstone window.
  </summary>
  ----------------------------------------------------------------------------------------------------
 </member>
@@ -176,7 +211,7 @@ HearthstoneResizer
 <member name="T:SmartBotKit.Plugins.HearthstoneResizer.HearthstoneResizerPlugin">
  ----------------------------------------------------------------------------------------------------
  <summary>
- This plugin will automatically move and resize the Hearthstone window to a specified location.
+ A plugin that maintains a fixed size and location for Hearthstone window.
  </summary>
  ----------------------------------------------------------------------------------------------------
  <seealso cref="T:SmartBot.Plugins.Plugin"/>

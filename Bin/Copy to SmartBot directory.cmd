@@ -11,7 +11,7 @@ FOR %%# IN ("%CD%\%FolderToCopy%\Plugins\*.dll") DO (
 )
 
 Echo+
-Echo [+] Plugin Resources:
+Echo [+] Plugin Audio Resources:
 FOR %%# IN ("%CD%\%FolderToCopy%\Plugins\*.wav") DO (
 	Echo %%~nx#
 	(Copy /Y "%%~f#" "%SmartBotDir%\Plugins\%%~nx#")1>NUL
@@ -32,5 +32,5 @@ FOR %%# IN ("%CD%\%FolderToCopy%\Plugins\libs\*.exe") DO (
 )
 
 Echo+
-Pause
+TimeOut /T 4
 Exit /B 0

@@ -1,8 +1,0 @@
-C:\Users\Administrador\Desktop\SmartBotKit\Bin\Release\Plugins\libs\SmartBotKit.Core.dll
-C:\Users\Administrador\Desktop\SmartBotKit\Bin\Release\Plugins\libs\SmartBotKit.Core.xml
-C:\Users\Administrador\Desktop\SmartBotKit\Libs\SmartBotKit.Core\obj\Release\Core.vbprojAssemblyReference.cache
-C:\Users\Administrador\Desktop\SmartBotKit\Libs\SmartBotKit.Core\obj\Release\Resources.resources
-C:\Users\Administrador\Desktop\SmartBotKit\Libs\SmartBotKit.Core\obj\Release\Core.vbproj.GenerateResource.cache
-C:\Users\Administrador\Desktop\SmartBotKit\Libs\SmartBotKit.Core\obj\Release\Core.vbproj.CoreCompileInputs.cache
-C:\Users\Administrador\Desktop\SmartBotKit\Libs\SmartBotKit.Core\obj\Release\SmartBotKit.Core.dll
-C:\Users\Administrador\Desktop\SmartBotKit\Libs\SmartBotKit.Core\obj\Release\SmartBotKit.Core.xml

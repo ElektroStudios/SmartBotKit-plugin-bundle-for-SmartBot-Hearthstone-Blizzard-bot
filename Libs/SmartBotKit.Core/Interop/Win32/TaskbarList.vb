@@ -24,7 +24,7 @@ Namespace SmartBotKit.Interop.Win32
     ''' ----------------------------------------------------------------------------------------------------
     Public NotInheritable Class TaskbarList
 
-        Private Shared lock As New Object()
+        Private Shared ReadOnly lock As New Object()
         Private Shared taskbarList As ITaskbarList4
 
         ''' ----------------------------------------------------------------------------------------------------

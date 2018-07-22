@@ -86,6 +86,41 @@ PanicButton
  <seealso cref="T:SmartBot.Plugins.PluginDataContainer"/>
  ----------------------------------------------------------------------------------------------------
 </member>
+<member name="P:SmartBotKit.Plugins.PanicButton.PanicButtonPluginData.AssemblyInfo">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the <see cref="T:Microsoft.VisualBasic.ApplicationServices.AssemblyInfo"/> for this assembly.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.PanicButton.PanicButtonPluginData.Author">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the author of this plugin.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.PanicButton.PanicButtonPluginData.ProductName">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the plugin name.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.PanicButton.PanicButtonPluginData.Description">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the plugin description.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.PanicButton.PanicButtonPluginData.Version">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets a value that determine whether the plugin should delete log files.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
 <member name="P:SmartBotKit.Plugins.PanicButton.PanicButtonPluginData.StopBot">
  ----------------------------------------------------------------------------------------------------
  <summary>
@@ -97,6 +132,13 @@ PanicButton
  ----------------------------------------------------------------------------------------------------
  <summary>
  Gets or sets a value that determine whether SmartBot process should be terminated when the hotkey is pressed.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.PanicButton.PanicButtonPluginData.Key">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets or sets the keyboard key.
  </summary>
  ----------------------------------------------------------------------------------------------------
 </member>
@@ -114,13 +156,6 @@ PanicButton
  </summary>
  ----------------------------------------------------------------------------------------------------
 </member>
-<member name="P:SmartBotKit.Plugins.PanicButton.PanicButtonPluginData.Key">
- ----------------------------------------------------------------------------------------------------
- <summary>
- Gets or sets the keyboard key.
- </summary>
- ----------------------------------------------------------------------------------------------------
-</member>
 <member name="M:SmartBotKit.Plugins.PanicButton.PanicButtonPluginData.#ctor">
  ----------------------------------------------------------------------------------------------------
  <summary>
@@ -131,7 +166,7 @@ PanicButton
 <member name="T:SmartBotKit.Plugins.PanicButton.PanicButtonPlugin">
  ----------------------------------------------------------------------------------------------------
  <summary>
- This plugin will terminate SmartBot process when a specified hotkey combination is pressed.
+ A plugin that stops or terminates SmartBot process when a specified hotkey combination is pressed.
  </summary>
  ----------------------------------------------------------------------------------------------------
  <seealso cref="T:SmartBot.Plugins.Plugin"/>

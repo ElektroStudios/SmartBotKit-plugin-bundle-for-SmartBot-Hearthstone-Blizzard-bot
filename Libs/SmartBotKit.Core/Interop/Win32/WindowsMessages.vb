@@ -68,6 +68,68 @@ Namespace SmartBotKit.Interop.Win32
         ''' ----------------------------------------------------------------------------------------------------
         WM_Hotkey = &H312
 
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Instructs a window to provide a static bitmap to use as a thumbnail representation of that window.
+        ''' <para></para>
+        ''' Desktop Window Manager (DWM) sends this message to a window if all of the following situations are true: 
+        ''' <para></para>
+        ''' <c>DWM</c> is displaying an iconic representation of the window.
+        ''' <para></para>
+        ''' The <see cref="DwmWindowAttribute.HasIconicBitmap"/> and <see cref="DwmWindowAttribute.ForceIconicRepresentation"/> attributes are set on the window.
+        ''' <para></para>
+        ''' The window did not set a cached bitmap.
+        ''' <para></para>
+        ''' There is room in the cache for another bitmap.
+        ''' <para></para>
+        ''' 
+        ''' <c>wParam</c> 
+        ''' Not used. 
+        ''' <para></para>
+        ''' 
+        ''' <c>lParam</c> 
+        ''' The <c>HIWORD</c> of this value is the maximum possible width of the thumbnail.
+        ''' <para></para>
+        ''' The <c>LOWORD</c> is the maximum possible height.
+        ''' <para></para>
+        ''' If a thumbnail has a dimension that exceeds one or both of these values, 
+        ''' the <c>DWM</c> does not accept the thumbnail.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <remarks>
+        ''' <see href="https://msdn.microsoft.com/en-us/library/windows/desktop/dd938875%28v=vs.85%29.aspx"/>
+        ''' </remarks>
+        ''' ----------------------------------------------------------------------------------------------------
+        WM_DwmSendIconicThumbnail = &H323
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Instructs a window to provide a static bitmap to use as a live preview (also known as a <c>Peek preview</c>) 
+        ''' of that window.
+        ''' <para></para>
+        ''' Desktop Window Manager (DWM) sends this message to a window if all of the following situations are true: 
+        ''' <para></para>
+        ''' Live preview has been invoked on the window
+        ''' <para></para>
+        ''' The <see cref="DwmWindowAttribute.HasIconicBitmap"/> and <see cref="DwmWindowAttribute.ForceIconicRepresentation"/> attributes are set on the window.
+        ''' <para></para>
+        ''' An iconic representation is the only one that exists for this window.
+        ''' <para></para>
+        ''' 
+        ''' <c>wParam</c> 
+        ''' Not used. 
+        ''' <para></para>
+        ''' 
+        ''' <c>lParam</c> 
+        ''' Not used.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <remarks>
+        ''' <see href="https://msdn.microsoft.com/en-us/library/windows/desktop/dd938874%28v=vs.85%29.aspx"/>
+        ''' </remarks>
+        ''' ----------------------------------------------------------------------------------------------------
+        WM_DwmSendIconicLivePreviewBitmap = &H326
+
     End Enum
 
 End Namespace

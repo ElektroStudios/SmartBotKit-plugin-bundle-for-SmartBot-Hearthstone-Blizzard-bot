@@ -31,6 +31,41 @@ WindowRestorator
  <seealso cref="T:SmartBot.Plugins.PluginDataContainer"/>
  ----------------------------------------------------------------------------------------------------
 </member>
+<member name="P:SmartBotKit.Plugins.WindowRestorator.WindowRestoratorPluginData.AssemblyInfo">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the <see cref="T:Microsoft.VisualBasic.ApplicationServices.AssemblyInfo"/> for this assembly.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.WindowRestorator.WindowRestoratorPluginData.Author">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the author of this plugin.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.WindowRestorator.WindowRestoratorPluginData.ProductName">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the plugin name.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.WindowRestorator.WindowRestoratorPluginData.Description">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the plugin description.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.WindowRestorator.WindowRestoratorPluginData.Version">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets a value that determine whether the plugin should delete log files.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
 <member name="P:SmartBotKit.Plugins.WindowRestorator.WindowRestoratorPluginData.CurrentPosition">
  ----------------------------------------------------------------------------------------------------
  <summary>
@@ -101,7 +136,7 @@ WindowRestorator
 <member name="T:SmartBotKit.Plugins.WindowRestorator.WindowRestoratorPlugin">
  ----------------------------------------------------------------------------------------------------
  <summary>
- This plugin will restore the last size and position of SmartBot's window the next time you run it.
+ A plugin that reminds the last SmartBot's window size and position and restores it at the next program startup.
  </summary>
  ----------------------------------------------------------------------------------------------------
  <seealso cref="T:SmartBot.Plugins.Plugin"/>

@@ -22,17 +22,17 @@ SystemTrayIcon
   resource lookups using this strongly typed resource class.
 </summary>
 </member>
-<member name="P:SmartBotKit.Plugins.My.Resources.Resources.MenuItemExit">
+<member name="P:SmartBotKit.Plugins.My.Resources.Resources.Close">
 <summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
 </member>
-<member name="P:SmartBotKit.Plugins.My.Resources.Resources.MenuItemHide">
+<member name="P:SmartBotKit.Plugins.My.Resources.Resources.HideHS">
 <summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
 </member>
-<member name="P:SmartBotKit.Plugins.My.Resources.Resources.MenuItemShow">
+<member name="P:SmartBotKit.Plugins.My.Resources.Resources.HideSB">
 <summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
@@ -42,6 +42,16 @@ SystemTrayIcon
   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
 </summary>
 </member>
+<member name="P:SmartBotKit.Plugins.My.Resources.Resources.ShowHS">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:SmartBotKit.Plugins.My.Resources.Resources.ShowSB">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
 <member name="T:SmartBotKit.Plugins.SystemTrayIcon.SystemTrayIconPluginData">
  ----------------------------------------------------------------------------------------------------
  <summary>
@@ -49,6 +59,55 @@ SystemTrayIcon
  </summary>
  ----------------------------------------------------------------------------------------------------
  <seealso cref="T:SmartBot.Plugins.PluginDataContainer"/>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.SystemTrayIcon.SystemTrayIconPluginData.AssemblyInfo">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the <see cref="T:Microsoft.VisualBasic.ApplicationServices.AssemblyInfo"/> for this assembly.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.SystemTrayIcon.SystemTrayIconPluginData.Author">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the author of this plugin.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.SystemTrayIcon.SystemTrayIconPluginData.ProductName">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the plugin name.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.SystemTrayIcon.SystemTrayIconPluginData.Description">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the plugin description.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.SystemTrayIcon.SystemTrayIconPluginData.Version">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets a value that determine whether the plugin should delete log files.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.SystemTrayIcon.SystemTrayIconPluginData.ShowHearthstoneCommands">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets or sets a value that determine whether the bot systray icon should display Hearthstone menu commands.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.SystemTrayIcon.SystemTrayIconPluginData.ShowSmartBotCommands">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets or sets a value that determine whether the bot systray icon should display SmartBot menu commands.
+ </summary>
  ----------------------------------------------------------------------------------------------------
 </member>
 <member name="M:SmartBotKit.Plugins.SystemTrayIcon.SystemTrayIconPluginData.#ctor">
@@ -61,8 +120,7 @@ SystemTrayIcon
 <member name="T:SmartBotKit.Plugins.SystemTrayIcon.SystemTrayIconPlugin">
  ----------------------------------------------------------------------------------------------------
  <summary>
- This plugin creates a <see cref="T:System.Windows.Forms.NotifyIcon"/> on runtime to add some basic features to SmartBot,
- such as the ability to minimize to system-tray, restore from system-tray, and close/kill SmartBot program.
+ A plugin that creates a <see cref="T:System.Windows.Forms.NotifyIcon"/> with menu commands to handle SmartBot and Hearthstone.
  </summary>
  ----------------------------------------------------------------------------------------------------
  <seealso cref="T:SmartBot.Plugins.Plugin"/>
@@ -163,42 +221,56 @@ SystemTrayIcon
  </summary>
  ----------------------------------------------------------------------------------------------------
 </member>
-<member name="F:SmartBotKit.Plugins.SystemTrayIcon.SystemTrayIcon._MenuItemShow">
+<member name="F:SmartBotKit.Plugins.SystemTrayIcon.SystemTrayIcon._MenuItemShowHS">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ The menu item used to show/restore the Hearthstone window.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="F:SmartBotKit.Plugins.SystemTrayIcon.SystemTrayIcon._MenuItemHideHS">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ The menu item used to hide the Hearthstone window.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="F:SmartBotKit.Plugins.SystemTrayIcon.SystemTrayIcon._MenuItemCloseHS">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ The menu item used to kill the Hearthstone process.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="F:SmartBotKit.Plugins.SystemTrayIcon.SystemTrayIcon._MenuItemShowSB">
  ----------------------------------------------------------------------------------------------------
  <summary>
  The menu item used to show/restore the SmartBot window.
  </summary>
  ----------------------------------------------------------------------------------------------------
 </member>
-<member name="F:SmartBotKit.Plugins.SystemTrayIcon.SystemTrayIcon._MenuItemHide">
+<member name="F:SmartBotKit.Plugins.SystemTrayIcon.SystemTrayIcon._MenuItemHideSB">
  ----------------------------------------------------------------------------------------------------
  <summary>
  The menu item used to hide the SmartBot window.
  </summary>
  ----------------------------------------------------------------------------------------------------
 </member>
-<member name="F:SmartBotKit.Plugins.SystemTrayIcon.SystemTrayIcon._MenuItemExit">
+<member name="F:SmartBotKit.Plugins.SystemTrayIcon.SystemTrayIcon._MenuItemCloseSB">
  ----------------------------------------------------------------------------------------------------
  <summary>
  The menu item used to kill the SmartBot process.
  </summary>
  ----------------------------------------------------------------------------------------------------
 </member>
-<member name="F:SmartBotKit.Plugins.SystemTrayIcon.SystemTrayIcon.dataContainer">
- ----------------------------------------------------------------------------------------------------
- <summary>
- The plugin's data container.
- </summary>
- ----------------------------------------------------------------------------------------------------
-</member>
-<member name="M:SmartBotKit.Plugins.SystemTrayIcon.SystemTrayIcon.#ctor(SmartBotKit.Plugins.SystemTrayIcon.SystemTrayIconPluginData)">
+<member name="M:SmartBotKit.Plugins.SystemTrayIcon.SystemTrayIcon.#ctor(SmartBotKit.Plugins.SystemTrayIcon.SystemTrayIconPlugin)">
  ----------------------------------------------------------------------------------------------------
  <summary>
  Initializes a new instance of the <see cref="T:SmartBotKit.Plugins.SystemTrayIcon.SystemTrayIcon"/> class.
  </summary>
  ----------------------------------------------------------------------------------------------------
 </member>
-<member name="M:SmartBotKit.Plugins.SystemTrayIcon.SystemTrayIcon.ToggleWindowVisibility">
+<member name="M:SmartBotKit.Plugins.SystemTrayIcon.SystemTrayIcon.ToggleSmartBotWindowVisibility">
  ----------------------------------------------------------------------------------------------------
  <summary>
  Toggles (hide or show) the visibility state of the SmartBot window.
@@ -250,10 +322,10 @@ SystemTrayIcon
  </param>
  ----------------------------------------------------------------------------------------------------
 </member>
-<member name="M:SmartBotKit.Plugins.SystemTrayIcon.SystemTrayIcon.MenuItemHide_Click(System.Object,System.EventArgs)">
+<member name="M:SmartBotKit.Plugins.SystemTrayIcon.SystemTrayIcon.MenuItemShowHS_Click(System.Object,System.EventArgs)">
  ----------------------------------------------------------------------------------------------------
  <summary>
- Handles the <see cref="E:System.Windows.Forms.ToolStripItem.Click"/> event of the <see cref="P:SmartBotKit.Plugins.SystemTrayIcon.SystemTrayIcon.MenuItemHide"/> component.
+ Handles the <see cref="E:System.Windows.Forms.ToolStripItem.Click"/> event of the <see cref="P:SmartBotKit.Plugins.SystemTrayIcon.SystemTrayIcon.MenuItemShowSB"/> component.
  </summary>
  ----------------------------------------------------------------------------------------------------
  <param name="sender">
@@ -265,10 +337,10 @@ SystemTrayIcon
  </param>
  ----------------------------------------------------------------------------------------------------
 </member>
-<member name="M:SmartBotKit.Plugins.SystemTrayIcon.SystemTrayIcon.MenuItemShow_Click(System.Object,System.EventArgs)">
+<member name="M:SmartBotKit.Plugins.SystemTrayIcon.SystemTrayIcon.MenuItemHideHS_Click(System.Object,System.EventArgs)">
  ----------------------------------------------------------------------------------------------------
  <summary>
- Handles the <see cref="E:System.Windows.Forms.ToolStripItem.Click"/> event of the <see cref="P:SmartBotKit.Plugins.SystemTrayIcon.SystemTrayIcon.MenuItemShow"/> component.
+ Handles the <see cref="E:System.Windows.Forms.ToolStripItem.Click"/> event of the <see cref="P:SmartBotKit.Plugins.SystemTrayIcon.SystemTrayIcon.MenuItemHideHS"/> component.
  </summary>
  ----------------------------------------------------------------------------------------------------
  <param name="sender">
@@ -280,10 +352,55 @@ SystemTrayIcon
  </param>
  ----------------------------------------------------------------------------------------------------
 </member>
-<member name="M:SmartBotKit.Plugins.SystemTrayIcon.SystemTrayIcon.MenuItemExit_Click(System.Object,System.EventArgs)">
+<member name="M:SmartBotKit.Plugins.SystemTrayIcon.SystemTrayIcon.MenuItemCloseHS_Click(System.Object,System.EventArgs)">
  ----------------------------------------------------------------------------------------------------
  <summary>
- Handles the <see cref="E:System.Windows.Forms.ToolStripItem.Click"/> event of the <see cref="P:SmartBotKit.Plugins.SystemTrayIcon.SystemTrayIcon.MenuItemExit"/> component.
+ Handles the <see cref="E:System.Windows.Forms.ToolStripItem.Click"/> event of the <see cref="P:SmartBotKit.Plugins.SystemTrayIcon.SystemTrayIcon.MenuItemCloseHS"/> component.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <param name="sender">
+ The source of the event.
+ </param>
+ ----------------------------------------------------------------------------------------------------
+ <param name="e">
+ The <see cref="T:System.EventArgs"/> instance containing the event data.
+ </param>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.SystemTrayIcon.SystemTrayIcon.MenuItemShowSB_Click(System.Object,System.EventArgs)">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Handles the <see cref="E:System.Windows.Forms.ToolStripItem.Click"/> event of the <see cref="P:SmartBotKit.Plugins.SystemTrayIcon.SystemTrayIcon.MenuItemShowSB"/> component.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <param name="sender">
+ The source of the event.
+ </param>
+ ----------------------------------------------------------------------------------------------------
+ <param name="e">
+ The <see cref="T:System.EventArgs"/> instance containing the event data.
+ </param>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.SystemTrayIcon.SystemTrayIcon.MenuItemHideSB_Click(System.Object,System.EventArgs)">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Handles the <see cref="E:System.Windows.Forms.ToolStripItem.Click"/> event of the <see cref="P:SmartBotKit.Plugins.SystemTrayIcon.SystemTrayIcon.MenuItemHideSB"/> component.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <param name="sender">
+ The source of the event.
+ </param>
+ ----------------------------------------------------------------------------------------------------
+ <param name="e">
+ The <see cref="T:System.EventArgs"/> instance containing the event data.
+ </param>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.SystemTrayIcon.SystemTrayIcon.MenuItemCloseSB_Click(System.Object,System.EventArgs)">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Handles the <see cref="E:System.Windows.Forms.ToolStripItem.Click"/> event of the <see cref="P:SmartBotKit.Plugins.SystemTrayIcon.SystemTrayIcon.MenuItemCloseSB"/> component.
  </summary>
  ----------------------------------------------------------------------------------------------------
  <param name="sender">

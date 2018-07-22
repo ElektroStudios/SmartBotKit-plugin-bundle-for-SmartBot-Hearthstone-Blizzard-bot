@@ -68,6 +68,41 @@ ChallengeNotifier
  </summary>
  ----------------------------------------------------------------------------------------------------
 </member>
+<member name="P:SmartBotKit.Plugins.ChallengeNotifier.ChallengeNotifierPluginData.AssemblyInfo">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the <see cref="T:Microsoft.VisualBasic.ApplicationServices.AssemblyInfo"/> for this assembly.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.ChallengeNotifier.ChallengeNotifierPluginData.Author">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the author of this plugin.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.ChallengeNotifier.ChallengeNotifierPluginData.ProductName">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the plugin name.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.ChallengeNotifier.ChallengeNotifierPluginData.Description">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the plugin description.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.ChallengeNotifier.ChallengeNotifierPluginData.Version">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets a value that determine whether the plugin should delete log files.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
 <member name="P:SmartBotKit.Plugins.ChallengeNotifier.ChallengeNotifierPluginData.SupportedResolutionsFormatted">
  ----------------------------------------------------------------------------------------------------
  <summary>
@@ -124,7 +159,7 @@ ChallengeNotifier
 <member name="T:SmartBotKit.Plugins.ChallengeNotifier.ChallengeNotifierPlugin">
  ----------------------------------------------------------------------------------------------------
  <summary>
- This plugin will notify you when a friend challenges you for the 'Play a Friend' quest.
+ A plugin that notifies when a friend challenge is received, like the 'Play a Friend' challenge.
  </summary>
  ----------------------------------------------------------------------------------------------------
  <seealso cref="T:SmartBot.Plugins.Plugin"/>

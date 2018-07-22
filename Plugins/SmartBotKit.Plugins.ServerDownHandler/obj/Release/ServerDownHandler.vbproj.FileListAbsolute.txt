@@ -1,9 +1,0 @@
-C:\Users\Administrador\Desktop\SmartBotKit\Bin\Release\Plugins\ServerDownHandler.wav
-C:\Users\Administrador\Desktop\SmartBotKit\Bin\Release\Plugins\ServerDownHandler.dll
-C:\Users\Administrador\Desktop\SmartBotKit\Bin\Release\Plugins\ServerDownHandler.xml
-C:\Users\Administrador\Desktop\SmartBotKit\Plugins\SmartBotKit.Plugins.ServerDownHandler\obj\Release\SmartBotKit.Plugins.Resources.resources
-C:\Users\Administrador\Desktop\SmartBotKit\Plugins\SmartBotKit.Plugins.ServerDownHandler\obj\Release\ServerDownHandler.vbproj.GenerateResource.cache
-C:\Users\Administrador\Desktop\SmartBotKit\Plugins\SmartBotKit.Plugins.ServerDownHandler\obj\Release\ServerDownHandler.vbproj.CoreCompileInputs.cache
-C:\Users\Administrador\Desktop\SmartBotKit\Plugins\SmartBotKit.Plugins.ServerDownHandler\obj\Release\ServerDownHandler.dll
-C:\Users\Administrador\Desktop\SmartBotKit\Plugins\SmartBotKit.Plugins.ServerDownHandler\obj\Release\ServerDownHandler.xml
-C:\Users\Administrador\Desktop\SmartBotKit\Plugins\SmartBotKit.Plugins.ServerDownHandler\obj\Release\ServerDownHandler.vbprojAssemblyReference.cache

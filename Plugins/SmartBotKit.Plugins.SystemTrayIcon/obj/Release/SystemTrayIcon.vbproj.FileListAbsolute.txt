@@ -1,8 +1,0 @@
-C:\Users\Administrador\Desktop\SmartBotKit\Bin\Release\Plugins\SystemTrayIcon.dll
-C:\Users\Administrador\Desktop\SmartBotKit\Bin\Release\Plugins\SystemTrayIcon.xml
-C:\Users\Administrador\Desktop\SmartBotKit\Plugins\SmartBotKit.Plugins.SystemTrayIcon\obj\Release\SystemTrayIcon.vbprojAssemblyReference.cache
-C:\Users\Administrador\Desktop\SmartBotKit\Plugins\SmartBotKit.Plugins.SystemTrayIcon\obj\Release\SmartBotKit.Plugins.Resources.resources
-C:\Users\Administrador\Desktop\SmartBotKit\Plugins\SmartBotKit.Plugins.SystemTrayIcon\obj\Release\SystemTrayIcon.vbproj.GenerateResource.cache
-C:\Users\Administrador\Desktop\SmartBotKit\Plugins\SmartBotKit.Plugins.SystemTrayIcon\obj\Release\SystemTrayIcon.vbproj.CoreCompileInputs.cache
-C:\Users\Administrador\Desktop\SmartBotKit\Plugins\SmartBotKit.Plugins.SystemTrayIcon\obj\Release\SystemTrayIcon.dll
-C:\Users\Administrador\Desktop\SmartBotKit\Plugins\SmartBotKit.Plugins.SystemTrayIcon\obj\Release\SystemTrayIcon.xml

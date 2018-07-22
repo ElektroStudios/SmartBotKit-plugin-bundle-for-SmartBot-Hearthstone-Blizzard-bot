@@ -10,9 +10,9 @@ Imports System.Runtime.InteropServices
 ' Review the values of the assembly attributes
 
 <Assembly: AssemblyTitle("System Tray Icon")>
-<Assembly: AssemblyDescription("Creates a system tray icon for SmartBot program.")>
+<Assembly: AssemblyDescription("Creates a system tray icon with menu commands to handle SmartBot and Hearthstone visibility.")>
 <Assembly: AssemblyCompany("Elektro Studios")>
-<Assembly: AssemblyProduct("SystemTrayIcon")>
+<Assembly: AssemblyProduct("SystemTrayIcon.dll")>
 <Assembly: AssemblyCopyright("Copyright © Elektro Studios 2018")>
 <Assembly: AssemblyTrademark("")>
 
@@ -32,6 +32,6 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")>
 
-<Assembly: AssemblyVersion("1.8.0.0")>
-<Assembly: AssemblyFileVersion("1.8.0.0")>
+<Assembly: AssemblyVersion("2.0.0.0")>
+<Assembly: AssemblyFileVersion("2.0.0.0")>
 <Assembly: NeutralResourcesLanguage("en")>

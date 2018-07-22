@@ -1,8 +1,0 @@
-C:\Users\Administrador\Desktop\SmartBotKit\Bin\Release\Plugins\MultiLauncher.dll
-C:\Users\Administrador\Desktop\SmartBotKit\Bin\Release\Plugins\MultiLauncher.xml
-C:\Users\Administrador\Desktop\SmartBotKit\Plugins\SmartBotKit.Plugins.MultiLauncher\obj\Release\MultiLauncher.vbprojAssemblyReference.cache
-C:\Users\Administrador\Desktop\SmartBotKit\Plugins\SmartBotKit.Plugins.MultiLauncher\obj\Release\SmartBotKit.Plugins.Resources.resources
-C:\Users\Administrador\Desktop\SmartBotKit\Plugins\SmartBotKit.Plugins.MultiLauncher\obj\Release\MultiLauncher.vbproj.GenerateResource.cache
-C:\Users\Administrador\Desktop\SmartBotKit\Plugins\SmartBotKit.Plugins.MultiLauncher\obj\Release\MultiLauncher.vbproj.CoreCompileInputs.cache
-C:\Users\Administrador\Desktop\SmartBotKit\Plugins\SmartBotKit.Plugins.MultiLauncher\obj\Release\MultiLauncher.dll
-C:\Users\Administrador\Desktop\SmartBotKit\Plugins\SmartBotKit.Plugins.MultiLauncher\obj\Release\MultiLauncher.xml

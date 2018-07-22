@@ -1,8 +1,0 @@
-C:\Users\Administrador\Desktop\SmartBotKit\Bin\Release\Plugins\HearthstoneResizer.dll
-C:\Users\Administrador\Desktop\SmartBotKit\Bin\Release\Plugins\HearthstoneResizer.xml
-C:\Users\Administrador\Desktop\SmartBotKit\Plugins\SmartBotKit.Plugins.HearthstoneResizer\obj\Release\HearthstoneResizer.vbprojAssemblyReference.cache
-C:\Users\Administrador\Desktop\SmartBotKit\Plugins\SmartBotKit.Plugins.HearthstoneResizer\obj\Release\SmartBotKit.Plugins.Resources.resources
-C:\Users\Administrador\Desktop\SmartBotKit\Plugins\SmartBotKit.Plugins.HearthstoneResizer\obj\Release\HearthstoneResizer.vbproj.GenerateResource.cache
-C:\Users\Administrador\Desktop\SmartBotKit\Plugins\SmartBotKit.Plugins.HearthstoneResizer\obj\Release\HearthstoneResizer.vbproj.CoreCompileInputs.cache
-C:\Users\Administrador\Desktop\SmartBotKit\Plugins\SmartBotKit.Plugins.HearthstoneResizer\obj\Release\HearthstoneResizer.dll
-C:\Users\Administrador\Desktop\SmartBotKit\Plugins\SmartBotKit.Plugins.HearthstoneResizer\obj\Release\HearthstoneResizer.xml

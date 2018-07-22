@@ -1,8 +1,0 @@
-C:\Users\Administrador\Desktop\SmartBotKit\Bin\Release\Plugins\AutoCleaner.dll
-C:\Users\Administrador\Desktop\SmartBotKit\Bin\Release\Plugins\AutoCleaner.xml
-C:\Users\Administrador\Desktop\SmartBotKit\Plugins\SmartBotKit.Plugins.AutoCleaner\obj\Release\AutoCleaner.vbprojAssemblyReference.cache
-C:\Users\Administrador\Desktop\SmartBotKit\Plugins\SmartBotKit.Plugins.AutoCleaner\obj\Release\SmartBotKit.Plugins.Resources.resources
-C:\Users\Administrador\Desktop\SmartBotKit\Plugins\SmartBotKit.Plugins.AutoCleaner\obj\Release\AutoCleaner.vbproj.GenerateResource.cache
-C:\Users\Administrador\Desktop\SmartBotKit\Plugins\SmartBotKit.Plugins.AutoCleaner\obj\Release\AutoCleaner.vbproj.CoreCompileInputs.cache
-C:\Users\Administrador\Desktop\SmartBotKit\Plugins\SmartBotKit.Plugins.AutoCleaner\obj\Release\AutoCleaner.dll
-C:\Users\Administrador\Desktop\SmartBotKit\Plugins\SmartBotKit.Plugins.AutoCleaner\obj\Release\AutoCleaner.xml
