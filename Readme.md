@@ -39,6 +39,13 @@ Settings:
 
 ![](https://i.imgur.com/VRWohnR.png)
 
+## Bounty Hunter
+A plugin that completes quests, schedules ranked mode and level up heroes.
+
+Settings:
+
+![](https://i.imgur.com/5rxD3g1.png)
+
 ## Challenge Notifier
 A plugin that notifies when a friend challenge is received, like the 'Play a Friend' challenge.
 
