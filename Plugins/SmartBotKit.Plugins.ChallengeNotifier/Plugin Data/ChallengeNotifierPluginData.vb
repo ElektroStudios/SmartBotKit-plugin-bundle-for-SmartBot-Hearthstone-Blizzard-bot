@@ -15,6 +15,7 @@ Imports System.Collections.Generic
 Imports System.ComponentModel
 Imports System.Diagnostics
 Imports System.Drawing
+Imports System.IO
 Imports System.Linq
 Imports System.Reflection
 
@@ -69,27 +70,14 @@ Namespace ChallengeNotifier
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Gets the author of this plugin.
+        ''' Gets the assembly name.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         <Category("Plugin")>
-        <DisplayName("Author")>
-        Public ReadOnly Property Author As String
+        <DisplayName("Assembly Name")>
+        Public ReadOnly Property AssemblyName As String
             Get
-                Return Me.AssemblyInfo.CompanyName
-            End Get
-        End Property
-
-        ''' ----------------------------------------------------------------------------------------------------
-        ''' <summary>
-        ''' Gets the plugin name.
-        ''' </summary>
-        ''' ----------------------------------------------------------------------------------------------------
-        <Category("Plugin")>
-        <DisplayName("Name")>
-        Public ReadOnly Property ProductName As String
-            Get
-                Return Me.AssemblyInfo.Title
+                Return Path.ChangeExtension(Me.AssemblyInfo.AssemblyName, "dll")
             End Get
         End Property
 
@@ -102,7 +90,8 @@ Namespace ChallengeNotifier
         <DisplayName("Description")>
         Public ReadOnly Property Description As String
             Get
-                Return Me.AssemblyInfo.Description
+                Return "Notifies when a friend challenge is received," & ControlChars.NewLine &
+                       "like the 'Play a Friend' challenge."
             End Get
         End Property
 
@@ -159,7 +148,7 @@ Namespace ChallengeNotifier
         ''' </value>
         ''' ----------------------------------------------------------------------------------------------------
         <Category("Settings")>
-        <DisplayName("The interval, in seconds, to check for new challenge invitations.")>
+        <DisplayName("The interval, in seconds, to check for new challenge invitations")>
         <Browsable(True)>
         Public Property Interval() As Double
             Get
@@ -188,7 +177,7 @@ Namespace ChallengeNotifier
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         <Category("Settings")>
-        <DisplayName("Play sound file when a challenge is detected.")>
+        <DisplayName("Play sound file when a challenge is detected")>
         Public Property PlaySoundFile As Boolean
 
         ''' ----------------------------------------------------------------------------------------------------
@@ -197,7 +186,7 @@ Namespace ChallengeNotifier
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         <Category("Settings")>
-        <DisplayName("Activate Hearthstone window when a challenge is detected.")>
+        <DisplayName("Activate Hearthstone window when a challenge is detected")>
         Public Property SetHearthstoneWindowToForeground As Boolean
 
         ''' ----------------------------------------------------------------------------------------------------
@@ -206,7 +195,7 @@ Namespace ChallengeNotifier
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         <Category("Settings")>
-        <DisplayName("Maximize Hearthstone window when a challenge is detected.")>
+        <DisplayName("Maximize Hearthstone window when a challenge is detected")>
         Public Property SetHearthstoneWindowMaximized As Boolean
 
 #If DEBUG Then

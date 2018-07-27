@@ -1,0 +1,11 @@
+P:\Documents\Source codes\VB.NET\SmartBotKit\Bin\Debug\Plugins\libs\SmartBotKit.Core.dll
+P:\Documents\Source codes\VB.NET\SmartBotKit\Bin\Debug\Plugins\libs\SmartBotKit.Core.pdb
+P:\Documents\Source codes\VB.NET\SmartBotKit\Bin\Debug\Plugins\libs\SmartBotKit.Core.xml
+P:\Documents\Source codes\VB.NET\SmartBotKit\Libs\SmartBotKit.Core\obj\Debug\Resources.resources
+P:\Documents\Source codes\VB.NET\SmartBotKit\Libs\SmartBotKit.Core\obj\Debug\SmartBotKit.Core.vbproj.GenerateResource.cache
+P:\Documents\Source codes\VB.NET\SmartBotKit\Libs\SmartBotKit.Core\obj\Debug\SmartBotKit.Core.vbproj.CoreCompileInputs.cache
+P:\Documents\Source codes\VB.NET\SmartBotKit\Libs\SmartBotKit.Core\obj\Debug\SmartBotKit.Core.vbproj.CopyComplete
+P:\Documents\Source codes\VB.NET\SmartBotKit\Libs\SmartBotKit.Core\obj\Debug\SmartBotKit.Core.dll
+P:\Documents\Source codes\VB.NET\SmartBotKit\Libs\SmartBotKit.Core\obj\Debug\SmartBotKit.Core.xml
+P:\Documents\Source codes\VB.NET\SmartBotKit\Libs\SmartBotKit.Core\obj\Debug\SmartBotKit.Core.pdb
+P:\Documents\Source codes\VB.NET\SmartBotKit\Libs\SmartBotKit.Core\obj\Debug\SmartBotKit.Core.vbprojAssemblyReference.cache

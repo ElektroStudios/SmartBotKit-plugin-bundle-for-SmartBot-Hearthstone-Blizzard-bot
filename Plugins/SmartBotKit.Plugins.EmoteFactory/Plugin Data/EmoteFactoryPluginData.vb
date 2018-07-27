@@ -13,6 +13,7 @@ Imports Microsoft.VisualBasic.ApplicationServices
 
 Imports System.ComponentModel
 Imports System.Diagnostics
+Imports System.IO
 Imports System.Reflection
 
 Imports SmartBot.Plugins
@@ -52,27 +53,14 @@ Namespace EmoteFactory
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Gets the author of this plugin.
+        ''' Gets the assembly name.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         <Category("Plugin")>
-        <DisplayName("Author")>
-        Public ReadOnly Property Author As String
+        <DisplayName("Assembly Name")>
+        Public ReadOnly Property AssemblyName As String
             Get
-                Return Me.AssemblyInfo.CompanyName
-            End Get
-        End Property
-
-        ''' ----------------------------------------------------------------------------------------------------
-        ''' <summary>
-        ''' Gets the plugin name.
-        ''' </summary>
-        ''' ----------------------------------------------------------------------------------------------------
-        <Category("Plugin")>
-        <DisplayName("Name")>
-        Public ReadOnly Property ProductName As String
-            Get
-                Return Me.AssemblyInfo.Title
+                Return Path.ChangeExtension(Me.AssemblyInfo.AssemblyName, "dll")
             End Get
         End Property
 
@@ -85,7 +73,8 @@ Namespace EmoteFactory
         <DisplayName("Description")>
         Public ReadOnly Property Description As String
             Get
-                Return Me.AssemblyInfo.Description
+                Return "Builds configurable rule conditions" & ControlChars.NewLine &
+                       "to send or answer to opponent emotes."
             End Get
         End Property
 
@@ -119,7 +108,7 @@ Namespace EmoteFactory
         ''' </value>
         ''' ----------------------------------------------------------------------------------------------------
         <Category("Reply to Enemy Emotes")>
-        <DisplayName("The percentage chance to reply an emote.")>
+        <DisplayName("The percentage chance to reply an emote")>
         <Browsable(True)>
         Public Property ReplyEmotePercent() As Integer
             Get
@@ -152,7 +141,7 @@ Namespace EmoteFactory
         ''' </value>
         ''' ----------------------------------------------------------------------------------------------------
         <Category("Reply to Enemy Emotes")>
-        <DisplayName("The amount of maximum emote replies per game.")>
+        <DisplayName("The amount of maximum emote replies per game")>
         <Browsable(True)>
         Public Property MaxReplies() As Integer
             Get
@@ -189,7 +178,7 @@ Namespace EmoteFactory
         ''' </value>
         ''' ----------------------------------------------------------------------------------------------------
         <Category("Send Emote On Conditions")>
-        <DisplayName("The percentage chance to send an emote on conditions.")>
+        <DisplayName("The percentage chance to send an emote on conditions")>
         <Browsable(True)>
         Public Property SendEmoteOnConditionsPercent As Integer
             Get
@@ -218,7 +207,7 @@ Namespace EmoteFactory
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         <Category("Send Emote On Conditions")>
-        <DisplayName("Send emote at first turn.")>
+        <DisplayName("Send emote at first turn")>
         <Browsable(True)>
         Public Property EmoteOnFirstTurn As Boolean
 
@@ -229,7 +218,7 @@ Namespace EmoteFactory
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         <Category("Send Emote On Conditions")>
-        <DisplayName("Emote type to send at first turn.")>
+        <DisplayName("Emote type to send at first turn")>
         <Browsable(True)>
         Public Property EmoteOnFirstTurnType As Bot.EmoteType
 
@@ -239,7 +228,7 @@ Namespace EmoteFactory
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         <Category("Send Emote On Conditions")>
-        <DisplayName("Send emote when the bot detects a lethal move.")>
+        <DisplayName("Send emote when the bot detects a lethal move")>
         <Browsable(True)>
         Public Property EmoteOnLethal As Boolean
 
@@ -250,7 +239,7 @@ Namespace EmoteFactory
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         <Category("Send Emote On Conditions")>
-        <DisplayName("Emote type to send when bot detects a lethal move.")>
+        <DisplayName("Emote type to send when bot detects a lethal move")>
         <Browsable(True)>
         Public Property EmoteOnLethalType As Bot.EmoteType
 
@@ -260,7 +249,7 @@ Namespace EmoteFactory
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         <Category("Send Emote On Conditions")>
-        <DisplayName("Send emote when bot concedes the game.")>
+        <DisplayName("Send emote when bot concedes the game")>
         <Browsable(True)>
         Public Property EmoteOnConcede As Boolean
 
@@ -271,7 +260,7 @@ Namespace EmoteFactory
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         <Category("Send Emote On Conditions")>
-        <DisplayName("Emote type to send when bot concedes the game.")>
+        <DisplayName("Emote type to send when bot concedes the game")>
         <Browsable(True)>
         Public Property EmoteOnConcedeType() As Bot.EmoteType
 
@@ -285,7 +274,7 @@ Namespace EmoteFactory
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         <Category("Squelch/Mute Enemy")>
-        <DisplayName("Squelch/Mute the enemy when he sends a emote.")>
+        <DisplayName("Squelch/Mute the enemy when he sends a emote")>
         <Browsable(True)>
         Public Property SquelchEnemny() As Boolean
 
@@ -299,7 +288,7 @@ Namespace EmoteFactory
         ''' </value>
         ''' ----------------------------------------------------------------------------------------------------
         <Category("Squelch/Mute Enemy")>
-        <DisplayName("The percentage chance to squelch/mute the enemy.")>
+        <DisplayName("The percentage chance to squelch/mute the enemy")>
         <Browsable(True)>
         Public Property SquelchEnemnyPercent() As Integer
             Get
@@ -336,7 +325,7 @@ Namespace EmoteFactory
         ''' </value>
         ''' ----------------------------------------------------------------------------------------------------
         <Category("Global Settings")>
-        <DisplayName("The maximum delay to send any emote, in milliseconds.")>
+        <DisplayName("The maximum delay to send any emote, in milliseconds")>
         <Browsable(True)>
         Public Property MaxDelay() As Integer
             Get

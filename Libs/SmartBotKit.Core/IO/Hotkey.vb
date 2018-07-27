@@ -526,18 +526,8 @@ Namespace SmartBotKit.IO
 
                 Me.events.Dispose()
                 Try
-                    ' MsgBox(Me.Handle.ToInt32)
-                    ' MsgBox(Me.idB)
-                    '  MsgBox(Me.IsRegistered)
                     Dim success As Boolean = NativeMethods.UnregisterHotKey(Me.Handle, Me.idB)
                     Dim win32err As Integer = Marshal.GetLastWin32Error()
-                    'MsgBox(success)
-                    ''  MsgBox(win32err)
-                    'Try
-                    '    Throw New Win32Exception(win32err)
-                    'Catch ex As Exception
-                    '    MsgBox(ex.Message)
-                    'End Try
                 Catch ex As Exception
                 End Try
                 MyBase.ReleaseHandle()

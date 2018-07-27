@@ -19,6 +19,7 @@ Imports SmartBot.Plugins
 Imports SmartBot.Plugins.API
 
 Imports SmartBotKit.Interop
+Imports SmartBotKit.ReservedUse
 
 #End Region
 
@@ -83,7 +84,7 @@ Namespace OfflineServerHandler
         ''' ----------------------------------------------------------------------------------------------------
         Public Sub New()
             Me.IsDll = True
-            SmartBotKit.ReservedUse.UpdateUtil.RunUpdaterExecutable()
+            UpdateUtil.RunUpdaterExecutable()
             Me.lastDateActive = Date.Now()
         End Sub
 

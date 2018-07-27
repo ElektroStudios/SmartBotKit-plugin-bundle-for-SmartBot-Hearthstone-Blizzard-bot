@@ -13,13 +13,12 @@ Imports Microsoft.VisualBasic.FileIO
 
 Imports System.Collections.Generic
 Imports System.IO
-Imports System.Linq
-Imports System.Reflection
 
 Imports SmartBot.Plugins
 Imports SmartBot.Plugins.API
 
 Imports SmartBotKit.Interop
+Imports SmartBotKit.ReservedUse
 
 #End Region
 
@@ -74,7 +73,7 @@ Namespace GarbageCleaner
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Public Sub New()
-            SmartBotKit.ReservedUse.UpdateUtil.RunUpdaterExecutable()
+            UpdateUtil.RunUpdaterExecutable()
             Me.IsDll = True
         End Sub
 

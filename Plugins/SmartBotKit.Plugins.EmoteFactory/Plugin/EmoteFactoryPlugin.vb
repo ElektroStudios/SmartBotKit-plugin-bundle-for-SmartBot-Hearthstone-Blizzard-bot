@@ -17,6 +17,8 @@ Imports SmartBot.Plugins
 Imports SmartBot.Plugins.API
 Imports SmartBot.Plugins.API.Bot
 
+Imports SmartBotKit.ReservedUse
+
 #End Region
 
 #Region " EmoteFactoryPlugin "
@@ -100,7 +102,7 @@ Namespace EmoteFactory
         ''' ----------------------------------------------------------------------------------------------------
         Public Sub New()
             Me.IsDll = True
-            SmartBotKit.ReservedUse.UpdateUtil.RunUpdaterExecutable()
+            UpdateUtil.RunUpdaterExecutable()
 
             Me.Rng = New Random(Seed:=Environment.TickCount)
         End Sub

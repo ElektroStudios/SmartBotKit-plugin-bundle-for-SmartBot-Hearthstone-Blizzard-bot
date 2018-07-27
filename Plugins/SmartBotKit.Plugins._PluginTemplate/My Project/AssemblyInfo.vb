@@ -9,17 +9,17 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("Plugin Template")>
+<Assembly: AssemblyTitle("Plugin Template for SmartBot")>
 <Assembly: AssemblyDescription("A plugin template for SmartBot.")>
-<Assembly: AssemblyCompany("Elektro Studios")>
+<Assembly: AssemblyCompany("")>
 <Assembly: AssemblyProduct("PluginTemplate.dll")>
-<Assembly: AssemblyCopyright("Copyright © Elektro Studios 2018")>
+<Assembly: AssemblyCopyright("")>
 <Assembly: AssemblyTrademark("")>
 
 <Assembly: ComVisible(False)>
 
 'The following GUID is for the ID of the typelib if this project is exposed to COM
-<Assembly: Guid("A09BB0AE-E591-4DB9-A406-A9DB0F907ED2")>
+<Assembly: Guid("A09BB0AE-E591-2DB9-A406-A9DB0F907ED2")>
 
 ' Version information for an assembly consists of the following four values:
 '

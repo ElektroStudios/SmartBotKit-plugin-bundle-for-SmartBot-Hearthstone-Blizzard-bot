@@ -13,13 +13,16 @@ Imports Microsoft.VisualBasic.ApplicationServices
 
 Imports System.ComponentModel
 Imports System.Diagnostics
-Imports System.Reflection
+Imports System.IO
 Imports System.Linq
+Imports System.Reflection
 
 Imports SmartBot.Plugins
 Imports SmartBot.Plugins.API
 Imports SmartBot.Plugins.API.Card
 Imports Xceed.Wpf.Toolkit.PropertyGrid.Attributes
+
+Imports SmartBotKit.Extensions.IEnumerableExtensions
 
 #End Region
 
@@ -55,27 +58,14 @@ Namespace BountyHunter
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Gets the author of this plugin.
+        ''' Gets the assembly name.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         <Category("Plugin")>
-        <DisplayName("Author")>
-        Public ReadOnly Property Author As String
+        <DisplayName("Assembly Name")>
+        Public ReadOnly Property AssemblyName As String
             Get
-                Return Me.AssemblyInfo.CompanyName
-            End Get
-        End Property
-
-        ''' ----------------------------------------------------------------------------------------------------
-        ''' <summary>
-        ''' Gets the plugin name.
-        ''' </summary>
-        ''' ----------------------------------------------------------------------------------------------------
-        <Category("Plugin")>
-        <DisplayName("Name")>
-        Public ReadOnly Property ProductName As String
-            Get
-                Return Me.AssemblyInfo.Title
+                Return Path.ChangeExtension(Me.AssemblyInfo.AssemblyName, "dll")
             End Get
         End Property
 
@@ -88,7 +78,8 @@ Namespace BountyHunter
         <DisplayName("Description")>
         Public ReadOnly Property Description As String
             Get
-                Return Me.AssemblyInfo.Description
+                Return "Completes quests, schedules ranked mode" & ControlChars.NewLine &
+                       "and level up heroes."
             End Get
         End Property
 
@@ -110,86 +101,113 @@ Namespace BountyHunter
 
 #End Region
 
-#Region " General Settings "
-
-        ''' ----------------------------------------------------------------------------------------------------
-        ''' <summary>
-        ''' Gets or sets the bot mode.
-        ''' </summary>
-        ''' ----------------------------------------------------------------------------------------------------
-        <Category("General Settings")>
-        <DisplayName("Bot Mode")>
-        <Browsable(True)>
-        <ItemsSource(GetType(BotModeSource))>
-        Public Property BotMode As Bot.Mode
+#Region " Quests Completion "
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
         ''' Gets or sets a value that determine whether the plugin should do quests.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        <Category("General Settings")>
-        <DisplayName("Enable Quests Completion")>
+        <Category("Mode: Quests Completion")>
+        <DisplayName("* Enable quests completion")>
         <Browsable(True)>
         Public Property EnableQuestCompletion As Boolean
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Gets or sets a value that determine whether the plugin should do quests.
+        ''' Gets or sets the bot mode for questing.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        <Category("General Settings")>
-        <DisplayName("Enable Hero Levels Completion")>
+        <Category("Mode: Quests Completion")>
+        <DisplayName("Bot mode")>
         <Browsable(True)>
-        Public Property EnableHeroLevelsCompletion As Boolean
-
-#End Region
-
-#Region " Quests Completion "
+        <ItemsSource(GetType(QuestModeSource))>
+        Public Property QuestMode As Bot.Mode
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
         ''' Gets or sets a value that determine whether 50 gold quests should be reroll.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        <Category("Quests Completion")>
-        <DisplayName("Reroll 50 Gold Quests")>
+        <Category("Mode: Quests Completion")>
+        <DisplayName("Reroll 50 gold quests")>
         <Browsable(True)>
-        Public Property Reroll50GoldQuests() As Boolean
+        Public Property Reroll50GoldQuests As Boolean
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
         ''' Gets or sets a value that determine whether unfulfillable quests should be reroll.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        <Category("Quests Completion")>
-        <DisplayName("Reroll Unfulfillable Quests")>
+        <Category("Mode: Quests Completion")>
+        <DisplayName("Reroll unfulfillable quests")>
         <Browsable(True)>
-        Public Property RerollUnfulfillableQuests() As Boolean
+        Public Property RerollUnfulfillableQuests As Boolean
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
         ''' Gets or sets a value that determine whether "Watch and Learn!" quest should be kept.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        <Category("Quests Completion")>
-        <DisplayName("Keep 'Watch and Learn!' Quest")>
+        <Category("Mode: Quests Completion")>
+        <DisplayName("Keep 'Watch and Learn!' quest")>
         <Browsable(True)>
-        Public Property KeepWatchAndLearnQuest() As Boolean
+        Public Property KeepQuestWatchAndLearn As Boolean
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
         ''' Gets or sets a value that determine whether "Play a Friend!" quest should be kept.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        <Category("Quests Completion")>
-        <DisplayName("Keep 'Play a Friend!' Quest")>
+        <Category("Mode: Quests Completion")>
+        <DisplayName("Keep 'Play a Friend!' quest")>
         <Browsable(True)>
-        Public Property KeepPlayAFriendQuest() As Boolean
+        Public Property KeepQuestPlayAFriend As Boolean
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets or sets a value that determine whether "Catch a Big One!" quest should be kept.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        <Category("Mode: Quests Completion")>
+        <DisplayName("Keep 'Catch a Big One!' quest")>
+        <Browsable(True)>
+        Public Property KeepQuestCatchABigOne As Boolean
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets or sets a value that determine whether "Spelunker!" quest should be kept.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        <Category("Mode: Quests Completion")>
+        <DisplayName("Keep 'Spelunker!' quest")>
+        <Browsable(True)>
+        Public Property KeepQuestSpelunker As Boolean
 
 #End Region
 
-#Region " Hero Levels Completion "
+#Region " Hero Levelling "
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets or sets a value that determine whether the plugin should level up heroes.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        <Category("Mode: Hero Levelling")>
+        <DisplayName("* Enable Hero Class Level Completion")>
+        <Browsable(True)>
+        Public Property EnableHeroLevelling As Boolean
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets or sets the bot mode for levelling.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        <Category("Mode: Hero Levelling")>
+        <DisplayName("Bot Mode")>
+        <Browsable(True)>
+        <ItemsSource(GetType(LevelModeSource))>
+        Public Property LevelMode As Bot.Mode
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
@@ -198,7 +216,7 @@ Namespace BountyHunter
         ''' Valid range is between 1 and 60.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        <Category("Hero Levels Completion")>
+        <Category("Mode: Hero Levelling")>
         <DisplayName("Mage")>
         <Browsable(True)>
         Public Property LvlMage As Integer
@@ -231,7 +249,7 @@ Namespace BountyHunter
         ''' Valid range is between 1 and 60.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        <Category("Hero Levels Completion")>
+        <Category("Mode: Hero Levelling")>
         <DisplayName("Priest")>
         <Browsable(True)>
         Public Property LvlPriest As Integer
@@ -264,7 +282,7 @@ Namespace BountyHunter
         ''' Valid range is between 1 and 60.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        <Category("Hero Levels Completion")>
+        <Category("Mode: Hero Levelling")>
         <DisplayName("Warrior")>
         <Browsable(True)>
         Public Property LvlWarrior As Integer
@@ -297,7 +315,7 @@ Namespace BountyHunter
         ''' Valid range is between 1 and 60.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        <Category("Hero Levels Completion")>
+        <Category("Mode: Hero Levelling")>
         <DisplayName("Warlock")>
         <Browsable(True)>
         Public Property LvlWarlock As Integer
@@ -330,7 +348,7 @@ Namespace BountyHunter
         ''' Valid range is between 1 and 60.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        <Category("Hero Levels Completion")>
+        <Category("Mode: Hero Levelling")>
         <DisplayName("Rogue")>
         <Browsable(True)>
         Public Property LvlRogue As Integer
@@ -363,7 +381,7 @@ Namespace BountyHunter
         ''' Valid range is between 1 and 60.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        <Category("Hero Levels Completion")>
+        <Category("Mode: Hero Levelling")>
         <DisplayName("Druid")>
         <Browsable(True)>
         Public Property LvlDruid As Integer
@@ -396,7 +414,7 @@ Namespace BountyHunter
         ''' Valid range is between 1 and 60.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        <Category("Hero Levels Completion")>
+        <Category("Mode: Hero Levelling")>
         <DisplayName("Hunter")>
         <Browsable(True)>
         Public Property LvlHunter As Integer
@@ -429,7 +447,7 @@ Namespace BountyHunter
         ''' Valid range is between 1 and 60.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        <Category("Hero Levels Completion")>
+        <Category("Mode: Hero Levelling")>
         <DisplayName("Shaman")>
         <Browsable(True)>
         Public Property LvlShaman As Integer
@@ -462,7 +480,7 @@ Namespace BountyHunter
         ''' Valid range is between 1 and 60.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        <Category("Hero Levels Completion")>
+        <Category("Mode: Hero Levelling")>
         <DisplayName("Paladin")>
         <Browsable(True)>
         Public Property LvlPaladin As Integer
@@ -490,106 +508,303 @@ Namespace BountyHunter
 
 #End Region
 
-#Region " Prefered Decks "
+#Region " Ladder Scheduler "
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Gets or sets the prefered deck for Druid.
+        ''' Gets or sets the hour to start playing ladder.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        <Category("Prefered Decks")>
+        <Category("Mode: Ladder Scheduler")>
+        <DisplayName("* Enable Ladder Scheduler" & ControlChars.NewLine & ControlChars.NewLine &
+                     "If enabled, between the specified hours " & ControlChars.NewLine &
+                     "the plugin will ignore questing and levelling " & ControlChars.NewLine &
+                     "and it will only play ranked mode.")>
+        <Browsable(True)>
+        Public Property EnableLadderScheduler As Boolean
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets or sets the ranked mode to play ladder.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        <Category("Mode: Ladder Scheduler")>
+        <DisplayName("Bot Mode")>
+        <Browsable(True)>
+        <ItemsSource(GetType(LadderModeSource))>
+        Public Property LadderMode As Bot.Mode
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets or sets the preferred deck for playing ladder.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        <Category("Mode: Ladder Scheduler")>
+        <DisplayName("Preferred Deck")>
+        <Browsable(True)>
+        <ItemsSource(GetType(DeckSource))>
+        Public Property LadderPreferredDeck As String
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets or sets a value that determine whether the bot should try to use a random available deck if 
+        ''' the specified preferred deck in <see cref="BountyHunterPluginData.LadderPreferredDeck"/> is unavailable.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        <Category("Mode: Ladder Scheduler")>
+        <DisplayName("Try a random available deck if preferred deck is unavailable")>
+        <Browsable(True)>
+        Public Property LadderUseRandomDeckIfPreferredIsUnavailable As Boolean
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets or sets the hour to start playing ladder.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        <Category("Mode: Ladder Scheduler")>
+        <DisplayName("Hour Initiate")>
+        <Browsable(True)>
+        Public Property LadderStartHour As TimeSpan
+            Get
+                Return Me.ladderStartHourB
+            End Get
+            Set(value As TimeSpan)
+                If (value < TimeSpan.Zero) Then
+                    value = TimeSpan.Zero
+                End If
+                If (value >= TimeSpan.FromHours(24)) Then
+                    value = TimeSpan.FromHours(24).Add(TimeSpan.FromSeconds(-1))
+                End If
+                Me.ladderStartHourB = value
+            End Set
+        End Property
+        Private ladderStartHourB As TimeSpan
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets or sets the hour to end playing ladder.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        <Category("Mode: Ladder Scheduler")>
+        <DisplayName("Hour Terminate")>
+        <Browsable(True)>
+        Public Property LadderEndHour As TimeSpan
+            Get
+                Return Me.ladderEndHourB
+            End Get
+            Set(value As TimeSpan)
+                If (value < TimeSpan.Zero) Then
+                    value = TimeSpan.Zero
+                End If
+                If (value >= TimeSpan.FromHours(24)) Then
+                    value = TimeSpan.FromHours(24).Add(TimeSpan.FromSeconds(-1))
+                End If
+                Me.ladderEndHourB = value
+            End Set
+        End Property
+        Private ladderEndHourB As TimeSpan
+
+#End Region
+
+#Region " Preferred Decks (for questing and levelling)"
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets or sets the preferred deck for Druid.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        <Category("Preferred Decks (for questing and levelling)")>
         <DisplayName("Druid")>
         <Browsable(True)>
         <ItemsSource(GetType(DeckSourceDruid))>
         Public Property DeckDruid As String
+            Get
+                If String.IsNullOrEmpty(Me.deckDruidB) Then
+                    Me.deckDruidB = "None"
+                End If
+                Return Me.deckDruidB
+            End Get
+            Set(value As String)
+                Me.deckDruidB = value
+            End Set
+        End Property
+        Private deckDruidB As String
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Gets or sets the prefered deck for Mage.
+        ''' Gets or sets the preferred deck for Mage.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        <Category("Prefered Decks")>
+        <Category("Preferred Decks (for questing and levelling)")>
         <DisplayName("Mage")>
         <Browsable(True)>
         <ItemsSource(GetType(DeckSourceMage))>
         Public Property DeckMage As String
+            Get
+                If String.IsNullOrEmpty(Me.deckMageB) Then
+                    Me.deckMageB = "None"
+                End If
+                Return Me.deckMageB
+            End Get
+            Set(value As String)
+                Me.deckMageB = value
+            End Set
+        End Property
+        Private deckMageB As String
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Gets or sets the prefered deck for Hunter.
+        ''' Gets or sets the preferred deck for Hunter.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        <Category("Prefered Decks")>
+        <Category("Preferred Decks (for questing and levelling)")>
         <DisplayName("Hunter")>
         <Browsable(True)>
         <ItemsSource(GetType(DeckSourceHunter))>
         Public Property DeckHunter As String
+            Get
+                If String.IsNullOrEmpty(Me.deckHunterB) Then
+                    Me.deckHunterB = "None"
+                End If
+                Return Me.deckHunterB
+            End Get
+            Set(value As String)
+                Me.deckHunterB = value
+            End Set
+        End Property
+        Private deckHunterB As String
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Gets or sets the prefered deck for Paladin.
+        ''' Gets or sets the preferred deck for Paladin.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        <Category("Prefered Decks")>
+        <Category("Preferred Decks (for questing and levelling)")>
         <DisplayName("Paladin")>
         <Browsable(True)>
         <ItemsSource(GetType(DeckSourcePaladin))>
         Public Property DeckPaladin As String
+            Get
+                If String.IsNullOrEmpty(Me.deckPaladinB) Then
+                    Me.deckPaladinB = "None"
+                End If
+                Return Me.deckPaladinB
+            End Get
+            Set(value As String)
+                Me.deckPaladinB = value
+            End Set
+        End Property
+        Private deckPaladinB As String
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Gets or sets the prefered deck for Priest.
+        ''' Gets or sets the preferred deck for Priest.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        <Category("Prefered Decks")>
+        <Category("Preferred Decks (for questing and levelling)")>
         <DisplayName("Priest")>
         <Browsable(True)>
         <ItemsSource(GetType(DeckSourcePriest))>
         Public Property DeckPriest As String
+            Get
+                If String.IsNullOrEmpty(Me.deckPriestB) Then
+                    Me.deckPriestB = "None"
+                End If
+                Return Me.deckPriestB
+            End Get
+            Set(value As String)
+                Me.deckPriestB = value
+            End Set
+        End Property
+        Private deckPriestB As String
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Gets or sets the prefered deck for Rogue.
+        ''' Gets or sets the preferred deck for Rogue.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        <Category("Prefered Decks")>
+        <Category("Preferred Decks (for questing and levelling)")>
         <DisplayName("Rogue")>
         <Browsable(True)>
         <ItemsSource(GetType(DeckSourceRogue))>
         Public Property DeckRogue As String
+            Get
+                If String.IsNullOrEmpty(Me.deckRogueB) Then
+                    Me.deckRogueB = "None"
+                End If
+                Return Me.deckRogueB
+            End Get
+            Set(value As String)
+                Me.deckRogueB = value
+            End Set
+        End Property
+        Private deckRogueB As String
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Gets or sets the prefered deck for Shaman.
+        ''' Gets or sets the preferred deck for Shaman.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        <Category("Prefered Decks")>
+        <Category("Preferred Decks (for questing and levelling)")>
         <DisplayName("Shaman")>
         <Browsable(True)>
         <ItemsSource(GetType(DeckSourceShaman))>
         Public Property DeckShaman As String
+            Get
+                If String.IsNullOrEmpty(Me.deckShamanB) Then
+                    Me.deckShamanB = "None"
+                End If
+                Return Me.deckShamanB
+            End Get
+            Set(value As String)
+                Me.deckShamanB = value
+            End Set
+        End Property
+        Private deckShamanB As String
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Gets or sets the prefered deck for Warrior.
+        ''' Gets or sets the preferred deck for Warrior.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        <Category("Prefered Decks")>
+        <Category("Preferred Decks (for questing and levelling)")>
         <DisplayName("Warrior")>
         <Browsable(True)>
         <ItemsSource(GetType(DeckSourceWarrior))>
         Public Property DeckWarrior As String
+            Get
+                If String.IsNullOrEmpty(Me.deckWarriorB) Then
+                    Me.deckWarriorB = "None"
+                End If
+                Return Me.deckWarriorB
+            End Get
+            Set(value As String)
+                Me.deckWarriorB = value
+            End Set
+        End Property
+        Private deckWarriorB As String
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Gets or sets the prefered deck for Warlock.
+        ''' Gets or sets the preferred deck for Warlock.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        <Category("Prefered Decks")>
+        <Category("Preferred Decks (for questing and levelling)")>
         <DisplayName("Warlock")>
         <Browsable(True)>
         <ItemsSource(GetType(DeckSourceWarlock))>
         Public Property DeckWarlock As String
+            Get
+                If String.IsNullOrEmpty(Me.deckWarlockB) Then
+                    Me.deckWarlockB = "None"
+                End If
+                Return Me.deckWarlockB
+            End Get
+            Set(value As String)
+                Me.deckWarlockB = value
+            End Set
+        End Property
+        Private deckWarlockB As String
 
 #End Region
 
@@ -597,14 +812,14 @@ Namespace BountyHunter
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Gets the prefered deck for the specified hero class.
+        ''' Gets the preferred deck for the specified hero class.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         <Category("Reserved")>
         <Browsable(False)>
-        Public ReadOnly Property PreferedDeck(ByVal heroClass As CClass) As Deck
+        Public ReadOnly Property PreferredDeck(ByVal heroClass As CClass) As Deck
             Get
-                Return Me.GetPreferedDeck(heroClass)
+                Return Me.GetPreferredDeck(heroClass)
             End Get
         End Property
 
@@ -635,34 +850,43 @@ Namespace BountyHunter
         Public Sub New()
             MyBase.Name = Me.AssemblyInfo.AssemblyName
 
-            Me.BotMode = Bot.Mode.UnrankedStandard
-            Me.EnableHeroLevelsCompletion = True
-            Me.EnableQuestCompletion = True
-
+            Me.EnableQuestCompletion = False
+            Me.QuestMode = Bot.Mode.UnrankedStandard
             Me.Reroll50GoldQuests = False
             Me.RerollUnfulfillableQuests = False
-            Me.KeepPlayAFriendQuest = True
-            Me.KeepWatchAndLearnQuest = False
+            Me.KeepQuestCatchABigOne = False
+            Me.KeepQuestPlayAFriend = False
+            Me.KeepQuestSpelunker = False
+            Me.KeepQuestWatchAndLearn = False
 
-            Me.lvlDruidB = 10
-            Me.lvlHunterB = 10
-            Me.lvlMageB = 10
-            Me.lvlPaladinB = 10
-            Me.lvlPriestB = 10
-            Me.lvlRogueB = 10
-            Me.lvlShamanB = 10
-            Me.lvlWarlockB = 10
-            Me.lvlWarriorB = 10
+            Me.EnableLadderScheduler = False
+            Me.LadderMode = Bot.Mode.RankedStandard
+            Me.LadderPreferredDeck = "None"
+            Me.LadderUseRandomDeckIfPreferredIsUnavailable = False
+            Me.ladderStartHourB = TimeSpan.Zero
+            Me.ladderEndHourB = Me.ladderStartHourB.Add(TimeSpan.FromHours(10))
 
-            Me.DeckDruid = "None"
-            Me.DeckHunter = "None"
-            Me.DeckMage = "None"
-            Me.DeckPaladin = "None"
-            Me.DeckPriest = "None"
-            Me.DeckRogue = "None"
-            Me.DeckShaman = "None"
-            Me.DeckWarlock = "None"
-            Me.DeckWarrior = "None"
+            Me.EnableHeroLevelling = False
+            Me.LevelMode = Bot.Mode.UnrankedStandard
+            Me.lvlDruidB = 1
+            Me.lvlHunterB = 1
+            Me.lvlMageB = 1
+            Me.lvlPaladinB = 1
+            Me.lvlPriestB = 1
+            Me.lvlRogueB = 1
+            Me.lvlShamanB = 1
+            Me.lvlWarlockB = 1
+            Me.lvlWarriorB = 1
+
+            Me.deckDruidB = "None"
+            Me.deckHunterB = "None"
+            Me.deckMageB = "None"
+            Me.deckPaladinB = "None"
+            Me.deckPriestB = "None"
+            Me.deckRogueB = "None"
+            Me.deckShamanB = "None"
+            Me.deckWarlockB = "None"
+            Me.deckWarriorB = "None"
         End Sub
 
 #End Region
@@ -671,10 +895,10 @@ Namespace BountyHunter
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Gets the prefered deck for the specified hero class.
+        ''' Gets the preferred deck for the specified hero class.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        Private Function GetPreferedDeck(ByVal heroClass As CClass) As Deck
+        Private Function GetPreferredDeck(ByVal heroClass As CClass) As Deck
 
             Dim result As Deck
 
@@ -682,47 +906,47 @@ Namespace BountyHunter
 
                 Case CClass.DRUID
                     result = (From deck As Deck In Bot.GetDecks()
-                              Where (deck.Class = heroClass) AndAlso (deck.Name = Me.DeckDruid)
+                              Where (deck.Class = heroClass) AndAlso (deck.Name = Me.DeckDruid) AndAlso (deck.IsValid())
                            ).FirstOrDefault()
 
                 Case CClass.HUNTER
                     result = (From deck As Deck In Bot.GetDecks()
-                              Where (deck.Class = heroClass) AndAlso (deck.Name = Me.DeckHunter)
+                              Where (deck.Class = heroClass) AndAlso (deck.Name = Me.DeckHunter) AndAlso (deck.IsValid())
                            ).FirstOrDefault()
 
                 Case CClass.MAGE
                     result = (From deck As Deck In Bot.GetDecks()
-                              Where (deck.Class = heroClass) AndAlso (deck.Name = Me.DeckMage)
+                              Where (deck.Class = heroClass) AndAlso (deck.Name = Me.DeckMage) AndAlso (deck.IsValid())
                            ).FirstOrDefault()
 
                 Case CClass.PALADIN
                     result = (From deck As Deck In Bot.GetDecks()
-                              Where (deck.Class = heroClass) AndAlso (deck.Name = Me.DeckPaladin)
+                              Where (deck.Class = heroClass) AndAlso (deck.Name = Me.DeckPaladin) AndAlso (deck.IsValid())
                            ).FirstOrDefault()
 
                 Case CClass.PRIEST
                     result = (From deck As Deck In Bot.GetDecks()
-                              Where (deck.Class = heroClass) AndAlso (deck.Name = Me.DeckPriest)
+                              Where (deck.Class = heroClass) AndAlso (deck.Name = Me.DeckPriest) AndAlso (deck.IsValid())
                            ).FirstOrDefault()
 
                 Case CClass.ROGUE
                     result = (From deck As Deck In Bot.GetDecks()
-                              Where (deck.Class = heroClass) AndAlso (deck.Name = Me.DeckRogue)
+                              Where (deck.Class = heroClass) AndAlso (deck.Name = Me.DeckRogue) AndAlso (deck.IsValid())
                            ).FirstOrDefault()
 
                 Case CClass.SHAMAN
                     result = (From deck As Deck In Bot.GetDecks()
-                              Where (deck.Class = heroClass) AndAlso (deck.Name = Me.DeckShaman)
+                              Where (deck.Class = heroClass) AndAlso (deck.Name = Me.DeckShaman) AndAlso (deck.IsValid())
                            ).FirstOrDefault()
 
                 Case CClass.WARLOCK
                     result = (From deck As Deck In Bot.GetDecks()
-                              Where (deck.Class = heroClass) AndAlso (deck.Name = Me.DeckWarlock)
+                              Where (deck.Class = heroClass) AndAlso (deck.Name = Me.DeckWarlock) AndAlso (deck.IsValid())
                            ).FirstOrDefault()
 
                 Case CClass.WARRIOR
                     result = (From deck As Deck In Bot.GetDecks()
-                              Where (deck.Class = heroClass) AndAlso (deck.Name = Me.DeckWarrior)
+                              Where (deck.Class = heroClass) AndAlso (deck.Name = Me.DeckWarrior) AndAlso (deck.IsValid())
                            ).FirstOrDefault()
 
                 Case Else ' CClass.NONE
@@ -732,8 +956,12 @@ Namespace BountyHunter
 
             If (result Is Nothing) Then
                 result = (From deck As Deck In Bot.GetDecks()
-                          Where (deck.Class = heroClass)
-                         ).FirstOrDefault()
+                          Where (deck.Class = heroClass) AndAlso (deck.IsValid())
+                         ).Randomize().FirstOrDefault()
+            End If
+
+            If (result Is Nothing) Then
+                result = New Deck() With {.Name = "None"}
             End If
 
             Return result

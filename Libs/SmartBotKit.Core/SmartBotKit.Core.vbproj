@@ -77,6 +77,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Application\TaskBarManager.vb" />
+    <Compile Include="Extensions\TimeSpanExtensions.vb" />
+    <Compile Include="Extensions\IListExtensions.vb" />
+    <Compile Include="Extensions\IEnumerableExtensions.vb" />
     <Compile Include="Extensions\RectangleExtensions.vb" />
     <Compile Include="Extensions\BitmapExtensions.vb" />
     <Compile Include="Extensions\ImageExtensions.vb" />

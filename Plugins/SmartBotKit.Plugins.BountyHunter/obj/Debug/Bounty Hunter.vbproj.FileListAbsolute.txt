@@ -1,0 +1,10 @@
+P:\Documents\Source codes\VB.NET\SmartBotKit\Plugins\SmartBotKit.Plugins.BountyHunter\obj\Debug\Bounty Hunter.vbprojAssemblyReference.cache
+P:\Documents\Source codes\VB.NET\SmartBotKit\Plugins\SmartBotKit.Plugins.BountyHunter\obj\Debug\SmartBotKit.Plugins.Resources.resources
+P:\Documents\Source codes\VB.NET\SmartBotKit\Plugins\SmartBotKit.Plugins.BountyHunter\obj\Debug\Bounty Hunter.vbproj.GenerateResource.cache
+P:\Documents\Source codes\VB.NET\SmartBotKit\Plugins\SmartBotKit.Plugins.BountyHunter\obj\Debug\Bounty Hunter.vbproj.CoreCompileInputs.cache
+P:\Documents\Source codes\VB.NET\SmartBotKit\Bin\Debug\Plugins\BountyHunter.dll
+P:\Documents\Source codes\VB.NET\SmartBotKit\Bin\Debug\Plugins\BountyHunter.pdb
+P:\Documents\Source codes\VB.NET\SmartBotKit\Bin\Debug\Plugins\BountyHunter.xml
+P:\Documents\Source codes\VB.NET\SmartBotKit\Plugins\SmartBotKit.Plugins.BountyHunter\obj\Debug\BountyHunter.dll
+P:\Documents\Source codes\VB.NET\SmartBotKit\Plugins\SmartBotKit.Plugins.BountyHunter\obj\Debug\BountyHunter.xml
+P:\Documents\Source codes\VB.NET\SmartBotKit\Plugins\SmartBotKit.Plugins.BountyHunter\obj\Debug\BountyHunter.pdb

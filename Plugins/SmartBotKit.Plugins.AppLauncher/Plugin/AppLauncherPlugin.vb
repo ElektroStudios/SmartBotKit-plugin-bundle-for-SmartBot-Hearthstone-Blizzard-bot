@@ -9,14 +9,16 @@ Option Infer Off
 
 #Region " Imports "
 
+Imports System.Collections.Generic
+Imports System.Collections.ObjectModel
+Imports System.Diagnostics
+Imports System.IO
+Imports System.Linq
+
 Imports SmartBot.Plugins
 Imports SmartBot.Plugins.API
 
-Imports System.Collections.Generic
-Imports System.IO
-Imports System.Linq
-Imports System.Collections.ObjectModel
-Imports System.Diagnostics
+Imports SmartBotKit.ReservedUse
 
 #End Region
 
@@ -79,7 +81,7 @@ Namespace AppLauncher
         ''' ----------------------------------------------------------------------------------------------------
         Public Sub New()
             Me.IsDll = True
-            SmartBotKit.ReservedUse.UpdateUtil.RunUpdaterExecutable()
+            UpdateUtil.RunUpdaterExecutable()
         End Sub
 
 #End Region

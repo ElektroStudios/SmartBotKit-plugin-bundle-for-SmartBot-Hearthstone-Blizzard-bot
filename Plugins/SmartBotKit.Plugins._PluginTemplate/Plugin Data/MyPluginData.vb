@@ -12,6 +12,7 @@ Imports Microsoft.VisualBasic.ApplicationServices
 
 Imports System.ComponentModel
 Imports System.Diagnostics
+Imports System.IO
 Imports System.Reflection
 
 Imports SmartBot.Plugins
@@ -53,27 +54,14 @@ Namespace PluginTemplate
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Gets the author of this plugin.
+        ''' Gets the assembly name.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         <Category("Plugin")>
-        <DisplayName("Author")>
-        Public ReadOnly Property Author As String
+        <DisplayName("Assembly Name")>
+        Public ReadOnly Property AssemblyName As String
             Get
-                Return Me.AssemblyInfo.CompanyName
-            End Get
-        End Property
-
-        ''' ----------------------------------------------------------------------------------------------------
-        ''' <summary>
-        ''' Gets the plugin name.
-        ''' </summary>
-        ''' ----------------------------------------------------------------------------------------------------
-        <Category("Plugin")>
-        <DisplayName("Name")>
-        Public ReadOnly Property ProductName As String
-            Get
-                Return Me.AssemblyInfo.Title
+                Return Path.ChangeExtension(Me.AssemblyInfo.AssemblyName, "dll")
             End Get
         End Property
 
@@ -116,7 +104,7 @@ Namespace PluginTemplate
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         <Category("Settings")>
-        <DisplayName("A test property.")>
+        <DisplayName("A test property")>
         <Browsable(True)>
         <ItemsSource(GetType(MyPluginDataSource))>
         Public Property TestProperty As Bot.Mode

@@ -1,0 +1,9 @@
+P:\Documents\Source codes\VB.NET\SmartBotKit\Bin\Release\Plugins\libs\SmartBotKit.Core.dll
+P:\Documents\Source codes\VB.NET\SmartBotKit\Bin\Release\Plugins\libs\SmartBotKit.Core.xml
+P:\Documents\Source codes\VB.NET\SmartBotKit\Libs\SmartBotKit.Core\obj\Release\Resources.resources
+P:\Documents\Source codes\VB.NET\SmartBotKit\Libs\SmartBotKit.Core\obj\Release\SmartBotKit.Core.vbproj.GenerateResource.cache
+P:\Documents\Source codes\VB.NET\SmartBotKit\Libs\SmartBotKit.Core\obj\Release\SmartBotKit.Core.vbproj.CoreCompileInputs.cache
+P:\Documents\Source codes\VB.NET\SmartBotKit\Libs\SmartBotKit.Core\obj\Release\SmartBotKit.Core.vbproj.CopyComplete
+P:\Documents\Source codes\VB.NET\SmartBotKit\Libs\SmartBotKit.Core\obj\Release\SmartBotKit.Core.dll
+P:\Documents\Source codes\VB.NET\SmartBotKit\Libs\SmartBotKit.Core\obj\Release\SmartBotKit.Core.xml
+P:\Documents\Source codes\VB.NET\SmartBotKit\Libs\SmartBotKit.Core\obj\Release\SmartBotKit.Core.vbprojAssemblyReference.cache

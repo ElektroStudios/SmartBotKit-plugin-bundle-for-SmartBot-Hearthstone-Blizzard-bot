@@ -15,6 +15,7 @@ Imports System.Collections.Generic
 Imports System.ComponentModel
 Imports System.Diagnostics
 Imports System.Drawing
+Imports System.IO
 Imports System.Reflection
 
 Imports SmartBot.Plugins
@@ -94,27 +95,14 @@ Namespace HearthstoneResizer
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Gets the author of this plugin.
+        ''' Gets the assembly name.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         <Category("Plugin")>
-        <DisplayName("Author")>
-        Public ReadOnly Property Author As String
+        <DisplayName("Assembly Name")>
+        Public ReadOnly Property AssemblyName As String
             Get
-                Return Me.AssemblyInfo.CompanyName
-            End Get
-        End Property
-
-        ''' ----------------------------------------------------------------------------------------------------
-        ''' <summary>
-        ''' Gets the plugin name.
-        ''' </summary>
-        ''' ----------------------------------------------------------------------------------------------------
-        <Category("Plugin")>
-        <DisplayName("Name")>
-        Public ReadOnly Property ProductName As String
-            Get
-                Return Me.AssemblyInfo.Title
+                Return Path.ChangeExtension(Me.AssemblyInfo.AssemblyName, "dll")
             End Get
         End Property
 
@@ -127,7 +115,8 @@ Namespace HearthstoneResizer
         <DisplayName("Description")>
         Public ReadOnly Property Description As String
             Get
-                Return Me.AssemblyInfo.Description
+                Return "Maintains a fixed size and location" & ControlChars.NewLine &
+                       "for Hearthstone window."
             End Get
         End Property
 
@@ -157,7 +146,7 @@ Namespace HearthstoneResizer
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         <Category("Info")>
-        <DisplayName("Current Hearthstone's window position.")>
+        <DisplayName("Current Hearthstone's window position")>
         Public ReadOnly Property CurrentPosition As Point
             Get
                 Return HearthstoneUtil.WindowPosition
@@ -170,7 +159,7 @@ Namespace HearthstoneResizer
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         <Category("Info")>
-        <DisplayName("Current Hearthstone's window size.")>
+        <DisplayName("Current Hearthstone's window size")>
         Public ReadOnly Property CurrentSize As Size
             Get
                 Return HearthstoneUtil.WindowSize
@@ -187,7 +176,7 @@ Namespace HearthstoneResizer
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         <Category("Fixed Size")>
-        <DisplayName("Enable Fixed Size.")>
+        <DisplayName("Enable Fixed Size")>
         Public Property EnableFixedSize As Boolean
 
         ''' ----------------------------------------------------------------------------------------------------
@@ -210,7 +199,7 @@ Namespace HearthstoneResizer
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         <Category("Fixed Position")>
-        <DisplayName("Enable Fixed Position.")>
+        <DisplayName("Enable Fixed Position")>
         Public Property EnableFixedPos As Boolean
 
         ''' ----------------------------------------------------------------------------------------------------
@@ -247,7 +236,7 @@ Namespace HearthstoneResizer
         ''' ----------------------------------------------------------------------------------------------------
         <Category("Timer Tick Settings" & ControlChars.NewLine &
                   "Note that these settings only has effect if the event you selected is " & NameOf(SmartBotEvent.TimerTick))>
-        <DisplayName("Ignore ticks when the bot is stopped.")>
+        <DisplayName("Ignore ticks when the bot is stopped")>
         Public Property IgnoreTicksIfBotStopped As Boolean
 
         ''' ----------------------------------------------------------------------------------------------------
@@ -261,7 +250,7 @@ Namespace HearthstoneResizer
         ''' ----------------------------------------------------------------------------------------------------
         <Category("Timer Tick Settings" & ControlChars.NewLine &
                   "Note that these settings only has effect if the event you selected is " & NameOf(SmartBotEvent.TimerTick))>
-        <DisplayName("The required tick count to fix size and position.")>
+        <DisplayName("The required tick count to fix size and position")>
         Public Property TickCount As Integer
             Get
                 Return Me.tickCountB

@@ -13,6 +13,7 @@ Imports Microsoft.VisualBasic.ApplicationServices
 
 Imports System.ComponentModel
 Imports System.Diagnostics
+Imports System.IO
 Imports System.Reflection
 
 Imports SmartBot.Plugins
@@ -51,27 +52,14 @@ Namespace SystemTrayIcon
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Gets the author of this plugin.
+        ''' Gets the assembly name.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         <Category("Plugin")>
-        <DisplayName("Author")>
-        Public ReadOnly Property Author As String
+        <DisplayName("Assembly Name")>
+        Public ReadOnly Property AssemblyName As String
             Get
-                Return Me.AssemblyInfo.CompanyName
-            End Get
-        End Property
-
-        ''' ----------------------------------------------------------------------------------------------------
-        ''' <summary>
-        ''' Gets the plugin name.
-        ''' </summary>
-        ''' ----------------------------------------------------------------------------------------------------
-        <Category("Plugin")>
-        <DisplayName("Name")>
-        Public ReadOnly Property ProductName As String
-            Get
-                Return Me.AssemblyInfo.Title
+                Return Path.ChangeExtension(Me.AssemblyInfo.AssemblyName, "dll")
             End Get
         End Property
 
@@ -84,7 +72,8 @@ Namespace SystemTrayIcon
         <DisplayName("Description")>
         Public ReadOnly Property Description As String
             Get
-                Return Me.AssemblyInfo.Description
+                Return "Creates a system tray icon with menu commands" & ControlChars.NewLine &
+                       "to handle SmartBot and Hearthstone visibility."
             End Get
         End Property
 
@@ -114,7 +103,7 @@ Namespace SystemTrayIcon
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         <Category("Menu Commands")>
-        <DisplayName("Enable Show/Hide/Close commands for Hearthstone.")>
+        <DisplayName("Enable Show/Hide/Close commands for Hearthstone")>
         Public Property ShowHearthstoneCommands As Boolean
 
         ''' ----------------------------------------------------------------------------------------------------
@@ -123,7 +112,7 @@ Namespace SystemTrayIcon
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         <Category("Menu Commands")>
-        <DisplayName("Enable Show/Hide/Close commands for SmartBot.")>
+        <DisplayName("Enable Show/Hide/Close commands for SmartBot")>
         Public Property ShowSmartBotCommands As Boolean
 
 #End Region

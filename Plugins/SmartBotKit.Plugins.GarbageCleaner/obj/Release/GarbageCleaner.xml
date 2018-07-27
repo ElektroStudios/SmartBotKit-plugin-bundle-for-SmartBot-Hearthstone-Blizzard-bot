@@ -1,0 +1,233 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+GarbageCleaner
+</name>
+</assembly>
+<members>
+<member name="T:SmartBotKit.Plugins.My.Resources.Resources">
+<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member>
+<member name="P:SmartBotKit.Plugins.My.Resources.Resources.ResourceManager">
+<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member>
+<member name="P:SmartBotKit.Plugins.My.Resources.Resources.Culture">
+<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member>
+<member name="T:SmartBotKit.Plugins.GarbageCleaner.CleanerEventSource">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Provides the collection of values represented by a ComboBox for the <see cref="P:SmartBotKit.Plugins.GarbageCleaner.GarbageCleanerPluginData.CleanerEvent"/> property.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <seealso cref="T:Xceed.Wpf.Toolkit.PropertyGrid.Attributes.IItemsSource"/>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.GarbageCleaner.CleanerEventSource.#ctor">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Initializes a new instance of the <see cref="T:SmartBotKit.Plugins.GarbageCleaner.CleanerEventSource"/> class.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.GarbageCleaner.CleanerEventSource.GetValues">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the collection of values.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <returns>
+ The resulting <see cref="T:Xceed.Wpf.Toolkit.PropertyGrid.Attributes.ItemCollection"/>.
+ </returns>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="T:SmartBotKit.Plugins.GarbageCleaner.GarbageCleanerPluginData">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Plugin data for <see cref="T:SmartBotKit.Plugins.GarbageCleaner.GarbageCleanerPlugin"/> plugin class.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <seealso cref="T:SmartBot.Plugins.PluginDataContainer"/>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.GarbageCleaner.GarbageCleanerPluginData.AssemblyInfo">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the <see cref="T:Microsoft.VisualBasic.ApplicationServices.AssemblyInfo"/> for this assembly.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.GarbageCleaner.GarbageCleanerPluginData.AssemblyName">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the assembly name.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.GarbageCleaner.GarbageCleanerPluginData.Description">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the plugin description.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.GarbageCleaner.GarbageCleanerPluginData.Version">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets a value that determine whether the plugin should delete log files.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.GarbageCleaner.GarbageCleanerPluginData.SendFilesToRecycleBin">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets a value that determine whether deleted files will be sent to Recycle Bin.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.GarbageCleaner.GarbageCleanerPluginData.DeleteLogs">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets a value that determine whether the plugin should delete log files.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.GarbageCleaner.GarbageCleanerPluginData.DeleteSeeds">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets a value that determine whether the plugin should delete seed files.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.GarbageCleaner.GarbageCleanerPluginData.DeleteScreenshots">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets a value that determine whether the plugin should delete screenshots.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.GarbageCleaner.GarbageCleanerPluginData.OlderThanDays">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets or sets a value that determine to only clean garbage that is older than the number specified, in days.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <value>
+ The minimum number of days that a directory or file must have to be cleaned.
+ </value>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="F:SmartBotKit.Plugins.GarbageCleaner.GarbageCleanerPluginData.olderThanDaysB">
+ <summary>
+ ( Backing Field )
+ <para></para>
+ The minimum number of days that a directory or file must have to be cleaned.
+ </summary>
+</member>
+<member name="P:SmartBotKit.Plugins.GarbageCleaner.GarbageCleanerPluginData.VerboseMode">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets a value that determine whether the plugin should delete log files.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.GarbageCleaner.GarbageCleanerPluginData.CleanerEvent">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets a value that specifies when the garbage should be deleted.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.GarbageCleaner.GarbageCleanerPluginData.#ctor">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Initializes a new instance of the <see cref="T:SmartBotKit.Plugins.GarbageCleaner.GarbageCleanerPluginData"/> class.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="T:SmartBotKit.Plugins.GarbageCleaner.GarbageCleanerPlugin">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ A plugin that cleans temporary files generated by SmartBot and its plugins.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <seealso cref="T:SmartBot.Plugins.Plugin"/>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.GarbageCleaner.GarbageCleanerPlugin.DataContainer">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the plugin's data container.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <value>
+ The plugin's data container.
+ </value>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="F:SmartBotKit.Plugins.GarbageCleaner.GarbageCleanerPlugin.lastEnabled">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Keeps track of the last <see cref="P:SmartBot.Plugins.PluginDataContainer.Enabled"/> value.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.GarbageCleaner.GarbageCleanerPlugin.#ctor">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Initializes a new instance of the <see cref="T:SmartBotKit.Plugins.GarbageCleaner.GarbageCleanerPlugin"/> class.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.GarbageCleaner.GarbageCleanerPlugin.OnPluginCreated">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Called when this <see cref="T:SmartBotKit.Plugins.GarbageCleaner.GarbageCleanerPlugin"/> is created by the SmartBot plugin manager.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.GarbageCleaner.GarbageCleanerPlugin.OnDataContainerUpdated">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Called when the properties of <see cref="T:SmartBotKit.Plugins.GarbageCleaner.GarbageCleanerPluginData"/> are updated.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.GarbageCleaner.GarbageCleanerPlugin.OnStarted">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Called when the bot is started.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.GarbageCleaner.GarbageCleanerPlugin.OnStopped">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Called when the bot is stopped.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.GarbageCleaner.GarbageCleanerPlugin.Dispose">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Releases all the resources used by this <see cref="T:SmartBotKit.Plugins.GarbageCleaner.GarbageCleanerPlugin"/> instance.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.GarbageCleaner.GarbageCleanerPlugin.CleanGarbage">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Cleans the temporary files and folders.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+</members>
+</doc>

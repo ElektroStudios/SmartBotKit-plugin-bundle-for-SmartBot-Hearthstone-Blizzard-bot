@@ -61,7 +61,10 @@
     <Import Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Plugin Data Sources\BotModeSource.vb" />
+    <Compile Include="Plugin Data Sources\LadderModeSource.vb" />
+    <Compile Include="Plugin Data Sources\LevelModeSource.vb" />
+    <Compile Include="Plugin Data Sources\QuestModeSource.vb" />
+    <Compile Include="Plugin Data Sources\DeckSource.vb" />
     <Compile Include="Plugin Data Sources\DeckSourceWarlock.vb" />
     <Compile Include="Plugin Data Sources\DeckSourceWarrior.vb" />
     <Compile Include="Plugin Data Sources\DeckSourcePaladin.vb" />
@@ -88,6 +91,7 @@
     </Compile>
     <Compile Include="Plugin Data\BountyHunterPluginData.vb" />
     <Compile Include="Plugin\BountyHunterPlugin.vb" />
+    <Compile Include="Plugin\BountyHunterMode.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">

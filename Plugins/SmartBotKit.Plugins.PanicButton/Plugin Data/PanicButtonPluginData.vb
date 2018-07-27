@@ -13,6 +13,7 @@ Imports Microsoft.VisualBasic.ApplicationServices
 
 Imports System.ComponentModel
 Imports System.Diagnostics
+Imports System.IO
 Imports System.Reflection
 Imports System.Windows.Forms
 
@@ -55,27 +56,14 @@ Namespace PanicButton
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Gets the author of this plugin.
+        ''' Gets the assembly name.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         <Category("Plugin")>
-        <DisplayName("Author")>
-        Public ReadOnly Property Author As String
+        <DisplayName("Assembly Name")>
+        Public ReadOnly Property AssemblyName As String
             Get
-                Return Me.AssemblyInfo.CompanyName
-            End Get
-        End Property
-
-        ''' ----------------------------------------------------------------------------------------------------
-        ''' <summary>
-        ''' Gets the plugin name.
-        ''' </summary>
-        ''' ----------------------------------------------------------------------------------------------------
-        <Category("Plugin")>
-        <DisplayName("Name")>
-        Public ReadOnly Property ProductName As String
-            Get
-                Return Me.AssemblyInfo.Title
+                Return Path.ChangeExtension(Me.AssemblyInfo.AssemblyName, "dll")
             End Get
         End Property
 
@@ -88,7 +76,8 @@ Namespace PanicButton
         <DisplayName("Description")>
         Public ReadOnly Property Description As String
             Get
-                Return Me.AssemblyInfo.Description
+                Return "Stops or terminates SmartBot process" & ControlChars.NewLine &
+                       "when a specified hotkey combination is pressed."
             End Get
         End Property
 
@@ -118,7 +107,7 @@ Namespace PanicButton
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         <Category("Behavior (when the hotkey is pressed)")>
-        <DisplayName("Stop bot.")>
+        <DisplayName("Stop bot")>
         Public ReadOnly Property StopBot As Boolean
             Get
                 Return True
@@ -131,7 +120,7 @@ Namespace PanicButton
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         <Category("Behavior (when the hotkey is pressed)")>
-        <DisplayName("Terminate SmartBot process.")>
+        <DisplayName("Terminate SmartBot process")>
         Public Property KillProcess As Boolean
 
 #End Region
@@ -144,7 +133,7 @@ Namespace PanicButton
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         <Category("Hotkey")>
-        <DisplayName("Main key.")>
+        <DisplayName("Main key")>
         <ItemsSource(GetType(KeysSource))>
         Public Property Key As Keys
 
@@ -154,7 +143,7 @@ Namespace PanicButton
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         <Category("Hotkey")>
-        <DisplayName("1st modifier key.")>
+        <DisplayName("1st modifier key")>
         <ItemsSource(GetType(HotkeyModifiersSource))>
         Public Property ModifierA As HotkeyModifiers
 
@@ -164,7 +153,7 @@ Namespace PanicButton
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         <Category("Hotkey")>
-        <DisplayName("2nd modifier key.")>
+        <DisplayName("2nd modifier key")>
         <ItemsSource(GetType(HotkeyModifiersSource))>
         Public Property ModifierB As HotkeyModifiers
 
@@ -181,6 +170,10 @@ Namespace PanicButton
         ''' ----------------------------------------------------------------------------------------------------
         Public Sub New()
             MyBase.Name = Me.AssemblyInfo.AssemblyName
+
+            Me.ModifierA = HotkeyModifiers.Control
+            Me.ModifierB = HotkeyModifiers.Alt
+            Me.Key = Keys.F1
         End Sub
 
 #End Region

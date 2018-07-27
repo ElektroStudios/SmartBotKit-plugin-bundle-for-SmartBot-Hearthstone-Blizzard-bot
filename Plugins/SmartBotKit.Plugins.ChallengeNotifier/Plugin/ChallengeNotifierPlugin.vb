@@ -24,6 +24,7 @@ Imports SmartBot.Plugins.API
 Imports SmartBotKit.Imaging
 Imports SmartBotKit.Interop
 Imports SmartBotKit.Interop.Win32
+Imports SmartBotKit.ReservedUse
 
 Imports AForge.Imaging
 Imports Image = System.Drawing.Image
@@ -124,7 +125,7 @@ Namespace ChallengeNotifier
         ''' ----------------------------------------------------------------------------------------------------
         Public Sub New()
             Me.IsDll = True
-            SmartBotKit.ReservedUse.UpdateUtil.RunUpdaterExecutable()
+            UpdateUtil.RunUpdaterExecutable()
 
             Me.stopWatch = New Stopwatch()
         End Sub

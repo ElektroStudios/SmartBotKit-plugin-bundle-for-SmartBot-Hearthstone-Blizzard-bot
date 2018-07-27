@@ -1,0 +1,9 @@
+P:\Documents\Source codes\VB.NET\SmartBotKit\Bin\Release\Plugins\OfflineServerHandler.wav
+P:\Documents\Source codes\VB.NET\SmartBotKit\Bin\Release\Plugins\OfflineServerHandler.dll
+P:\Documents\Source codes\VB.NET\SmartBotKit\Bin\Release\Plugins\OfflineServerHandler.xml
+P:\Documents\Source codes\VB.NET\SmartBotKit\Plugins\SmartBotKit.Plugins.ServerDownHandler\obj\Release\Offline Server Handler.vbprojAssemblyReference.cache
+P:\Documents\Source codes\VB.NET\SmartBotKit\Plugins\SmartBotKit.Plugins.ServerDownHandler\obj\Release\SmartBotKit.Plugins.Resources.resources
+P:\Documents\Source codes\VB.NET\SmartBotKit\Plugins\SmartBotKit.Plugins.ServerDownHandler\obj\Release\Offline Server Handler.vbproj.GenerateResource.cache
+P:\Documents\Source codes\VB.NET\SmartBotKit\Plugins\SmartBotKit.Plugins.ServerDownHandler\obj\Release\Offline Server Handler.vbproj.CoreCompileInputs.cache
+P:\Documents\Source codes\VB.NET\SmartBotKit\Plugins\SmartBotKit.Plugins.ServerDownHandler\obj\Release\OfflineServerHandler.dll
+P:\Documents\Source codes\VB.NET\SmartBotKit\Plugins\SmartBotKit.Plugins.ServerDownHandler\obj\Release\OfflineServerHandler.xml

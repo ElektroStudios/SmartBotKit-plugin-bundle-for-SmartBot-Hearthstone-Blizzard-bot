@@ -9,15 +9,16 @@ Option Infer Off
 
 #Region " Imports "
 
-Imports System.Collections
 Imports System.Collections.Generic
+Imports System.ComponentModel
 Imports System.Linq
-Imports System.Threading
 
 Imports SmartBot.Plugins
 Imports SmartBot.Plugins.API
 Imports SmartBot.Plugins.API.Card
 
+Imports SmartBotKit.Extensions.IListExtensions
+Imports SmartBotKit.Extensions.TimeSpanExtensions
 Imports SmartBotKit.ReservedUse
 
 #End Region
@@ -28,12 +29,16 @@ Namespace BountyHunter
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>
-    ''' A plugin that complete quests and level up hero classes.
+    ''' A plugin that completes quests, schedules ranked mode and level up hero heroClasss.
     ''' </summary>
     ''' ----------------------------------------------------------------------------------------------------
     ''' <seealso cref="Plugin"/>
     ''' ----------------------------------------------------------------------------------------------------
     Public NotInheritable Class BountyHunterPlugin : Inherits Plugin
+
+        Private unfulfillableQuestTypes As List(Of Quest.QuestType)
+
+        Private questTypesToKeep As List(Of Quest.QuestType)
 
 #Region " Properties "
 
@@ -77,13 +82,6 @@ Namespace BountyHunter
         ''' ----------------------------------------------------------------------------------------------------
         Private lastNormalBotMode As Bot.Mode = Bot.Mode.None
 
-        ''' ----------------------------------------------------------------------------------------------------
-        ''' <summary>
-        ''' 
-        ''' </summary>
-        ''' ----------------------------------------------------------------------------------------------------
-        Private hadQuest As Boolean
-
 #End Region
 
 #Region " Constructors "
@@ -110,7 +108,7 @@ Namespace BountyHunter
         Public Overrides Sub OnPluginCreated()
             Me.lastEnabled = Me.DataContainer.Enabled
             If (Me.lastEnabled) Then
-                Bot.Log("[Ultimate Questing] Plugin initialized.")
+                Bot.Log("[Bounty Hunter] -> Plugin initialized.")
             End If
             MyBase.OnPluginCreated()
         End Sub
@@ -124,9 +122,10 @@ Namespace BountyHunter
             Dim enabled As Boolean = Me.DataContainer.Enabled
             If (enabled <> Me.lastEnabled) Then
                 If (enabled) Then
-                    Bot.Log("[Ultimate Questing] Plugin enabled.")
+                    Bot.Log("[Bounty Hunter] -> Plugin enabled.")
                 Else
-                    Bot.Log("[Ultimate Questing] Plugin disabled.")
+                    Me.RestoreNormalSettings()
+                    Bot.Log("[Bounty Hunter] -> Plugin disabled.")
                 End If
                 Me.lastEnabled = enabled
             End If
@@ -139,16 +138,10 @@ Namespace BountyHunter
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Public Overrides Sub OnStarted()
-            If Me.DataContainer.Enabled Then
-                Bot.StopBot()
-
+            If (Me.DataContainer.Enabled) Then
                 Me.lastNormalBotMode = Bot.CurrentMode()
                 Me.lastNormalDeckName = Bot.CurrentDeck().Name
-                Me.hadQuest = False
-                Me.RerollUnfulfillableQuests()
-                Me.ChooseNewDeck()
-
-                Bot.StartBot()
+                Me.ChooseNextMode()
             End If
             MyBase.OnStarted()
         End Sub
@@ -160,9 +153,7 @@ Namespace BountyHunter
         ''' ----------------------------------------------------------------------------------------------------
         Public Overrides Sub OnStopped()
             If (Me.DataContainer.Enabled) Then
-                If (Me.hadQuest) Then
-                    Me.RevertToNormalMode()
-                End If
+                Me.RestoreNormalSettings()
             End If
             MyBase.OnStopped()
         End Sub
@@ -174,11 +165,7 @@ Namespace BountyHunter
         ''' ----------------------------------------------------------------------------------------------------
         Public Overrides Sub OnGameEnd()
             If (Me.DataContainer.Enabled) Then
-                If (Me.DataContainer.Reroll50GoldQuests) Then
-                    Me.RerollUnfulfillableQuests()
-                End If
-
-                Me.ChooseNewDeck()
+                Me.ChooseNextMode()
             End If
             MyBase.OnGameEnd()
         End Sub
@@ -189,6 +176,9 @@ Namespace BountyHunter
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Public Overrides Sub Dispose()
+            If (Me.DataContainer.Enabled) Then
+                Me.RestoreNormalSettings()
+            End If
             MyBase.Dispose()
         End Sub
 
@@ -198,96 +188,493 @@ Namespace BountyHunter
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Reverts bot mode and deck to normal.
+        ''' Builds the <see cref="List(Of Quest.QuestType)"/> specified in <see cref="BountyHunterPlugin.questTypesToKeep"/> 
+        ''' with the quest types to be kept/don't rerolled.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        Private Sub RevertToNormalMode()
-            Bot.ChangeMode(Me.lastNormalBotMode)
-            Bot.ChangeDeck(Me.lastNormalDeckName)
-            Bot.Log(String.Format("[Ultimate Questing] Questing finished, reverted to normal settings. Mode: {0}, Deck: {1}",
-                                  Me.lastNormalBotMode, Me.lastNormalDeckName))
+        Private Sub BuildQuestTypesToKeep()
+
+            Me.questTypesToKeep = New List(Of Quest.QuestType)
+
+            If (Me.DataContainer.KeepQuestCatchABigOne) Then
+                Me.questTypesToKeep.Add(Quest.QuestType.CatchaBigOne) ' Defeat 3 Monster Hunt Bosses.
+            End If
+
+            If (Me.DataContainer.KeepQuestSpelunker) Then
+                Me.questTypesToKeep.Add(Quest.QuestType.Spelunker) ' Defeat 3 Dungeon Run Bosses.
+            End If
+
+            If (Me.DataContainer.KeepQuestPlayAFriend) Then
+                Me.questTypesToKeep.Add(Quest.QuestType.ChallengeaFriend) ' Play a friend, you both earn a reward!.
+            End If
+
+            If (Me.DataContainer.KeepQuestWatchAndLearn) Then
+                Me.questTypesToKeep.Add(Quest.QuestType.WatchandLearn) ' Watch a friend win in spectator mode.
+            End If
+
         End Sub
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Builds the <see cref="List(Of Quest.QuestType)"/> specified in <see cref="BountyHunterPlugin.unfulfillableQuestTypes"/> 
+        ''' with the quest types to reroll.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        Private Sub BuildUnfulfillableQuestTypes()
+
+            Me.unfulfillableQuestTypes = New List(Of Quest.QuestType) From {
+                Quest.QuestType.EverybodyGetinhere ' Win 3 Tavern Brawls.
+            }.Concat(From quest As Quest In Bot.GetQuests()
+                     Where Not [Enum].IsDefined(GetType(Quest.QuestType), quest.Id) ' Workaround to include undefined and unsupported quests like The Witchwood Monster Hunt quests: https://hearthstone.gamepedia.com/Quest#The_Witchwood
+                     Select quest.GetQuestType()
+                    ).ToList()
+
+        End Sub
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Chooses the next <see cref="BountyHunterMode"/> mode to begin playing.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        Private Sub ChooseNextMode()
+
+            Dim isNextModeChoosed As Boolean
+
+            If (Me.DataContainer.EnableLadderScheduler) Then
+                Dim now As TimeSpan = Date.Now.TimeOfDay
+                Dim isLadderTime As Boolean = now.IsHourInRange(Me.DataContainer.LadderStartHour, Me.DataContainer.LadderEndHour)
+                If (isLadderTime) Then
+                    isNextModeChoosed = Me.ActivateMode(BountyHunterMode.Ladder)
+                End If
+            End If
+
+            If (Me.DataContainer.EnableQuestCompletion) AndAlso Not (isNextModeChoosed) Then
+                isNextModeChoosed = Me.ActivateMode(BountyHunterMode.Questing)
+            End If
+
+            If (Me.DataContainer.EnableHeroLevelling) AndAlso Not (isNextModeChoosed) Then
+                isNextModeChoosed = Me.ActivateMode(BountyHunterMode.HeroLevelling)
+            End If
+
+        End Sub
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Activates the specified <see cref="BountyHunterMode"/> to begin playing.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <returns>
+        ''' <see langword="True"/> if the specified mode is successfully activated, <see langword="False"/> otherwise.
+        ''' </returns>
+        ''' ----------------------------------------------------------------------------------------------------
+        Private Function ActivateMode(ByVal mode As BountyHunterMode) As Boolean
+
+            Select Case mode
+
+                Case BountyHunterMode.Questing
+                    Me.RerollQuests()
+
+                    Dim quests As List(Of Quest) =
+                        If(Me.DataContainer.Reroll50GoldQuests,
+                        Bot.GetQuests().FindAll(Function(quest As Quest) (quest.GetGoldReward() > 50) AndAlso Not Me.questTypesToKeep.Contains(quest.GetQuestType())),
+                        Bot.GetQuests().FindAll(Function(quest As Quest) Not Me.questTypesToKeep.Contains(quest.GetQuestType())))
+
+                    Dim questToDo As Quest = quests.FirstOrDefault(Function(quest As Quest) Me.GetBestDeckForQuest(quest) IsNot Nothing)
+                    If (questToDo IsNot Nothing) Then
+                        Dim newDeck As Deck = Me.GetBestDeckForQuest(questToDo)
+                        Dim botMode As Bot.Mode = Me.DataContainer.QuestMode
+                        Bot.Log(String.Format("[Bounty Hunter] -> Questing Mode | '{0}' | {1} | {2}", questToDo.Name, botMode, newDeck.Name))
+                        Bot.ChangeMode(botMode)
+                        Bot.ChangeDeck(newDeck.Name)
+                        Return True
+
+                    Else
+                        Me.RestoreNormalSettings()
+                        Return False
+
+                    End If
+
+                Case BountyHunterMode.HeroLevelling
+                    For Each heroClass As CClass In [Enum].GetValues(GetType(CClass))
+
+                        Dim currentLevel As Integer = Bot.GetPlayerDatas.GetLevel(heroClass)
+                        Dim targetLevel As Integer = Me.DataContainer.TargetHeroLevel(heroClass)
+
+                        If (currentLevel < targetLevel) Then
+                            Dim botMode As Bot.Mode = Me.DataContainer.LevelMode
+                            Dim preferredDeck As Deck = Me.DataContainer.PreferredDeck(heroClass)
+
+                            If (preferredDeck IsNot Nothing) Then
+                                Bot.Log(String.Format("[Bounty Hunter] -> Levelling Mode | {0} ({1} levels of {2}) | {3} | {4}",
+                                                      heroClass, currentLevel, targetLevel, botMode, preferredDeck.Name))
+                                Bot.ChangeMode(botMode)
+                                Bot.ChangeDeck(preferredDeck.Name)
+                                Return True
+
+                            Else
+                                Bot.Log(String.Format("[Bounty Hunter] -> Levelling Mode | No available deck for class: {0}. Switching to next class...", heroClass))
+
+                            End If
+                        End If
+
+                    Next
+                    Me.RestoreNormalSettings()
+                    Return False
+
+                Case BountyHunterMode.Ladder
+                    Dim botMode As Bot.Mode = Me.DataContainer.LadderMode
+                    Dim deck As Deck = Bot.GetDecks().FirstOrDefault(Function(d As Deck) (d.Name = Me.DataContainer.LadderPreferredDeck) AndAlso (d.IsValid()))
+
+                    If (deck Is Nothing) AndAlso (Me.DataContainer.LadderUseRandomDeckIfPreferredIsUnavailable) Then
+                        deck = Me.GetRandomDeck(botMode)
+                    End If
+
+                    If (deck IsNot Nothing) Then
+                        Bot.Log(String.Format("[Bounty Hunter] -> Ladder Mode | {0} | {1}", botMode, deck.Name))
+                        Bot.ChangeMode(botMode)
+                        Bot.ChangeDeck(deck.Name)
+                        Return True
+
+                    Else
+                        Bot.Log("[Bounty Hunter] -> Ladder Mode | No available deck.")
+                        Me.RestoreNormalSettings()
+                        Return False
+
+                    End If
+
+                Case Else
+                    Throw New InvalidEnumArgumentException(NameOf(mode), mode, GetType(BountyHunterMode))
+
+            End Select
+
+        End Function
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
         ''' Rerolls unfulfillable quests.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        Private Sub RerollUnfulfillableQuests()
+        Private Sub RerollQuests()
 
-            Dim unfulfillableQuestTypes As New List(Of Quest.QuestType) From {
-                Quest.QuestType.CatchaBigOne, ' Defeat 3 Monster Hunt Bosses. 
-                Quest.QuestType.EverybodyGetinhere, ' Win 3 Tavern Brawls. 
-                Quest.QuestType.Spelunker ' Defeat 3 Dungeon Run Bosses. 
-            }
-
-            If Not (Me.DataContainer.KeepPlayAFriendQuest) Then
-                unfulfillableQuestTypes.Add(Quest.QuestType.ChallengeaFriend) ' Play a friend, you both earn a reward!
-            End If
-
-            If Not (Me.DataContainer.KeepWatchAndLearnQuest) Then
-                unfulfillableQuestTypes.Add(Quest.QuestType.WatchandLearn) ' Watch a friend win in spectator mode.
-            End If
+            Me.BuildQuestTypesToKeep()
+            Me.BuildUnfulfillableQuestTypes()
 
             For Each quest As Quest In Bot.GetQuests()
 
-                If (unfulfillableQuestTypes.Contains(quest.GetQuestType())) OrElse
+                If (Me.unfulfillableQuestTypes.Contains(quest.GetQuestType())) OrElse
                    (quest.GetGoldReward() = 50 AndAlso Me.DataContainer.Reroll50GoldQuests) Then
 
                     If (Bot.CanCancelQuest()) Then
-                        Bot.Log(String.Format("[Ultimate Questing] {0} Gold Quest Reroll: {1}", quest.GetGoldReward(), quest.Name))
+                        Bot.Log(String.Format("[Bounty Hunter] -> {0} Gold Quest Reroll: {1}", quest.GetGoldReward(), quest.Name))
                         Bot.CancelQuest(quest)
                     End If
+
                 End If
 
             Next quest
 
         End Sub
 
-        'Private Sub ffffffffffff()
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Reverts bot mode and deck to normal settings.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        Private Sub RestoreNormalSettings()
 
-        '    Thread.Sleep(TimeSpan.FromSeconds(2))
+            If String.IsNullOrEmpty(Me.lastNormalDeckName) AndAlso (Me.lastNormalBotMode = Bot.Mode.None) Then
+                Exit Sub
+            End If
 
-        '    Do Until (Me.queue.Count = 0)
+            If (Bot.CurrentMode <> Me.lastNormalBotMode) OrElse (Bot.CurrentDeck?.Name <> Me.lastNormalDeckName) Then
+                Bot.ChangeMode(Me.lastNormalBotMode)
+                Bot.ChangeDeck(Me.lastNormalDeckName)
+                Bot.Log(String.Format("[Bounty Hunter] -> Reverted to normal settings: {0} | {1}",
+                                      Me.lastNormalBotMode, Me.lastNormalDeckName))
+            End If
 
-        '        Dim currentClass As CClass = Me.queue.Dequeue
-        '        If (currentClass = CClass.NONE) Then
-        '            Continue Do
-        '        End If
+        End Sub
 
-        '        Dim targetLevel As Integer = Me.DataContainer.TargetHeroLevel(currentClass)
-        '        Dim currentLevel As Integer = Bot.GetPlayerDatas.GetLevel(currentClass)
-        '        Bot.Log(String.Format("[Ultimate Questing] Class: {0} Level: {1}", currentClass.ToString(), currentLevel))
-        '        If (currentLevel >= targetLevel) Then
-        '            Bot.Log(String.Format("[Ultimate Questing] Level reached for class: {0}. Changing to next class...", currentClass.ToString()))
-        '            Continue Do
-        '        End If
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets the count of available decks for the specified <see cref="Quest"/>.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <param name="quest">
+        ''' The quest.
+        ''' </param>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <returns>
+        ''' The count of available decks for the specified <see cref="Quest"/>.
+        ''' </returns>
+        ''' ----------------------------------------------------------------------------------------------------
+        Private Function GetDecksCountForQuest(ByVal quest As Quest) As Integer
 
-        '        Dim preferedDeck As Deck = Me.DataContainer.PreferedDeck(currentClass)
-        '        If (preferedDeck IsNot Nothing) Then
-        '            API.Bot.ChangeDeck(preferedDeck.Name)
-        '        Else
-        '            Bot.Log(String.Format("[Ultimate Questing] No available decks for class: {0}. Changing to next class...", currentClass.ToString()))
-        '            Continue Do
-        '        End If
+            If (quest.GetClassRequired().Count = 0) Then
+                Return Me.GetQualifiedDecksForQuestMode(Me.DataContainer.QuestMode).AsEnumerable().Count()
 
-        '        Bot.ChangeMode(Me.DataContainer.BotMode)
-        '        Bot.ResumeBot()
+            Else
+                Return Me.GetQualifiedDecksForQuestMode(Me.DataContainer.QuestMode).AsEnumerable().Count(Function(deck As Deck) quest.IsDeckQualified(deck))
 
-        '        Do Until Bot.GetPlayerDatas.GetLevel(currentClass) >= targetLevel
-        '            Thread.Sleep(TimeSpan.FromSeconds(60))
-        '        Loop
-        '        Bot.Log(String.Format("[Ultimate Questing] Level reached for class: {0}. Changing to next class...", currentClass.ToString()))
-        '        Bot.Concede()
-        '        Bot.SuspendBot()
-        '        Thread.Sleep(TimeSpan.FromSeconds(2))
+            End If
 
+        End Function
 
-        '    Loop
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets the best available deck for the specified <see cref="Quest"/>.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <param name="quest">
+        ''' The quest.
+        ''' </param>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <returns>
+        ''' The best available deck for the specified <see cref="Quest"/>.
+        ''' </returns>
+        ''' ----------------------------------------------------------------------------------------------------
+        Private Function GetBestDeckForQuest(ByVal quest As Quest) As Deck
 
+            If Not (Me.unfulfillableQuestTypes.Contains(quest.GetQuestType())) AndAlso (quest.GetClassRequired().Count = 1) Then
+                If Me.HasAvailableDeckForClass(quest.GetClassRequired()(0), Me.DataContainer.QuestMode) Then
+                    Return Me.GetBestDeckForClass(quest.GetClassRequired()(0))
+                End If
 
+            ElseIf Not (Me.unfulfillableQuestTypes.Contains(quest.GetQuestType())) AndAlso (quest.GetClassRequired().Count > 1) Then
+                Dim bestClass As CClass = quest.GetClassRequired()(0)
+                Dim worstClass As CClass = quest.GetClassRequired().Find(Function(heroClass As CClass) heroClass <> bestClass)
+                If Me.HasAvailableDeckForClass(bestClass, Me.DataContainer.QuestMode) Then
+                    Return Me.GetBestDeckForClass(bestClass)
+                End If
+                If Me.HasAvailableDeckForClass(worstClass, Me.DataContainer.QuestMode) Then
+                    Return Me.GetBestDeckForClass(worstClass)
+                End If
 
-        'End Sub
+            ElseIf Not (Me.unfulfillableQuestTypes.Contains(quest.GetQuestType())) AndAlso (Me.HasAvailableDeckForQuest(quest)) Then
+                Dim decks As List(Of Deck) = Nothing
+                If (quest.GetClassRequired().Count = 0) Then
+                    decks = Me.GetQualifiedDecksForQuestMode(Me.DataContainer.QuestMode).FindAll(Function(deck As Deck) deck.IsValid())
+                Else
+                    decks = Me.GetQualifiedDecksForQuestMode(Me.DataContainer.QuestMode).FindAll(Function(deck As Deck) quest.IsDeckQualified(deck))
+                End If
+
+                If (decks.Count > 0) Then
+                    Dim preferredDecks As List(Of Deck) = decks.FindAll(Function(deck As Deck) Me.IsPreferredDeck(deck.Name) AndAlso quest.GetMostQualifiedDeck(decks).Equals(deck))
+                    If (preferredDecks.Count > 0) Then
+                        Return preferredDecks.Randomize().First()
+                    End If
+
+                    Dim mostQualified As Deck = quest.GetMostQualifiedDeck(decks)
+                    Dim highQualifiedDecks As List(Of Deck) = decks.FindAll(Function(deck As Deck) quest.GetQualifiedCardsCount(deck) >= quest.GetQualifiedCardsCount(mostQualified))
+                    Return highQualifiedDecks.Randomize().FirstOrDefault()
+                End If
+            End If
+
+            Bot.Log(String.Format("[Bounty Hunter] -> Questing Mode | No available deck for quest: '{0}', skipping it...", quest.Name))
+
+            If (Me.DataContainer.RerollUnfulfillableQuests) Then
+                If Bot.CanCancelQuest() Then
+                    Bot.CancelQuest(quest)
+                End If
+            End If
+
+            Return Nothing
+        End Function
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets the best available deck for the specified <see cref="CClass"/>.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <param name="heroClass">
+        ''' The hero class.
+        ''' </param>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <returns>
+        ''' The best available deck for the specified <see cref="CClass"/>.
+        ''' </returns>
+        ''' ----------------------------------------------------------------------------------------------------
+        Private Function GetBestDeckForClass(ByVal heroClass As Card.CClass) As Deck
+
+            If Me.HasPreferredDeckForClass(heroClass) Then
+                Return Me.GetPreferredDeckForClass(heroClass)
+            End If
+
+            If Me.HasAvailableDeckForClass(heroClass, Me.DataContainer.QuestMode) Then
+                Return Me.GetQualifiedDecksForQuestMode(Me.DataContainer.QuestMode).Find(Function(deck As Deck) deck.Class = heroClass)
+            End If
+
+            Return Nothing
+        End Function
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Determine whether the specified deck is a preferred deck.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <param name="deckName">
+        ''' The name of the deck to check.
+        ''' </param>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <returns>
+        ''' <see langword="True"/> if the specified deck is a preferred deck; otherwise, <see langword="False"/>.
+        ''' </returns>
+        ''' ----------------------------------------------------------------------------------------------------
+        Private Function IsPreferredDeck(ByVal deckName As String) As Boolean
+
+            For Each heroClass As CClass In [Enum].GetValues(GetType(Card.CClass))
+                If (deckName = Me.DataContainer.PreferredDeck(heroClass)?.Name) Then
+                    Return True
+                End If
+            Next heroClass
+
+            Return False
+
+        End Function
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets the preferred deck for the specified <see cref="Card.CClass"/>.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <param name="heroClass">
+        ''' The hero class.
+        ''' </param>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <returns>
+        ''' The preferred deck for the specified <see cref="Card.CClass"/>, 
+        ''' or <see langword="Nothing"/> if no preferred deck is available.
+        ''' </returns>
+        ''' ----------------------------------------------------------------------------------------------------
+        Private Function GetPreferredDeckForClass(ByVal heroClass As Card.CClass) As Deck
+
+            Return Me.GetQualifiedDecksForQuestMode(Me.DataContainer.QuestMode).
+                      Find(Function(deck As Deck) deck.Name = Me.DataContainer.PreferredDeck(heroClass)?.Name)
+
+        End Function
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Determine whether the specified <see cref="Card.CClass"/> has any available deck for the specified <see cref="Bot.Mode"/>.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <param name="heroClass">
+        ''' The hero class.
+        ''' </param>
+        ''' 
+        ''' <param name="botMode">
+        ''' The bot mode.
+        ''' </param>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <returns>
+        ''' <see langword="True"/> if the specified <see cref="Card.CClass"/> has 
+        ''' any available deck for the specified <see cref="Bot.Mode"/>; 
+        ''' otherwise, <see langword="False"/>.
+        ''' </returns>
+        ''' ----------------------------------------------------------------------------------------------------
+        Private Function HasAvailableDeckForClass(ByVal heroClass As Card.CClass, ByVal botMode As Bot.Mode) As Boolean
+
+            Return Me.GetQualifiedDecksForQuestMode(botMode).Any(Function(deck As Deck) deck.Class = heroClass)
+
+        End Function
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Determine whether there is any available deck for the specified <see cref="Quest"/>.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <param name="quest">
+        ''' The quest.
+        ''' </param>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <returns>
+        ''' <see langword="True"/> if there is any available deck for the specified <see cref="Quest"/>.; 
+        ''' otherwise, <see langword="False"/>.
+        ''' </returns>
+        ''' ----------------------------------------------------------------------------------------------------
+        Private Function HasAvailableDeckForQuest(ByVal quest As Quest) As Boolean
+
+            Return (Me.GetDecksCountForQuest(quest) <> 0)
+
+        End Function
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Determine whether there is a preferred deck available for the specified <see cref="Card.CClass"/>.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <param name="heroClass">
+        ''' The hero class.
+        ''' </param>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <returns>
+        ''' <see langword="True"/> if there is a preferred deck available for the specified <see cref="Card.CClass"/>; 
+        ''' otherwise, <see langword="False"/>.
+        ''' </returns>
+        ''' ----------------------------------------------------------------------------------------------------
+        Private Function HasPreferredDeckForClass(ByVal heroClass As Card.CClass) As Boolean
+            Return Me.GetPreferredDeckForClass(heroClass) IsNot Nothing
+        End Function
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets all the available qualified decks for the specified <see cref="Bot.Mode"/>.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <param name="botMode">
+        ''' The bot mode.
+        ''' </param>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <returns>
+        ''' The available qualified decks for the specified <see cref="Bot.Mode"/>.
+        ''' </returns>
+        ''' ----------------------------------------------------------------------------------------------------
+        Private Function GetQualifiedDecksForQuestMode(ByVal botMode As Bot.Mode) As List(Of Deck)
+
+            Select Case botMode
+
+                Case Bot.Mode.RankedStandard, Bot.Mode.UnrankedStandard
+                    Return Bot.GetDecks().FindAll(Function(deck As Deck) (deck.Type = Deck.DeckType.Standard) AndAlso (deck.IsValid()))
+
+                Case Else ' Wild, Practice, Arena
+                    Return Bot.GetDecks().FindAll(Function(deck As Deck) deck.IsValid())
+
+            End Select
+
+        End Function
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets a random deck for the specified <see cref="Quest"/>.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <param name="botMode">
+        ''' The bot mode.
+        ''' </param>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <returns>
+        ''' The resulting <see cref="Deck"/>.
+        ''' </returns>
+        ''' ----------------------------------------------------------------------------------------------------
+        Private Function GetRandomDeck(ByVal botMode As Bot.Mode) As Deck
+
+            Select Case botMode
+
+                Case Bot.Mode.RankedStandard, Bot.Mode.UnrankedStandard
+                    Return Bot.GetDecks().FindAll(Function(deck As Deck) (deck.Type = Deck.DeckType.Standard) AndAlso (deck.IsValid()))?.Randomize().FirstOrDefault()
+
+                Case Bot.Mode.RankedWild, Bot.Mode.UnrankedWild
+                    Return Bot.GetDecks().FindAll(Function(deck As Deck) (deck.Type = Deck.DeckType.Wild) AndAlso (deck.IsValid()))?.Randomize().FirstOrDefault()
+
+                Case Bot.Mode.Practice
+                    Return Bot.GetDecks().FindAll(Function(deck As Deck) (deck.IsValid()))?.Randomize().FirstOrDefault()
+
+                Case Else
+                    Throw New InvalidEnumArgumentException(NameOf(botMode), botMode, GetType(Bot.Mode))
+
+            End Select
+
+        End Function
 
 #End Region
 

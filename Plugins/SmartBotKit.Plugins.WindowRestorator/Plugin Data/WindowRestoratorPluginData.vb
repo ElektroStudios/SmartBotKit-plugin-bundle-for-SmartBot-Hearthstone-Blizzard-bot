@@ -9,11 +9,14 @@ Option Infer Off
 
 #Region " Imports "
 
+Imports Microsoft.VisualBasic.ApplicationServices
+
 Imports System.ComponentModel
 Imports System.Diagnostics
 Imports System.Drawing
+Imports System.IO
 Imports System.Reflection
-Imports Microsoft.VisualBasic.ApplicationServices
+
 Imports SmartBot.Plugins
 
 Imports SmartBotKit.Interop
@@ -53,27 +56,14 @@ Namespace WindowRestorator
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Gets the author of this plugin.
+        ''' Gets the assembly name.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         <Category("Plugin")>
-        <DisplayName("Author")>
-        Public ReadOnly Property Author As String
+        <DisplayName("Assembly Name")>
+        Public ReadOnly Property AssemblyName As String
             Get
-                Return Me.AssemblyInfo.CompanyName
-            End Get
-        End Property
-
-        ''' ----------------------------------------------------------------------------------------------------
-        ''' <summary>
-        ''' Gets the plugin name.
-        ''' </summary>
-        ''' ----------------------------------------------------------------------------------------------------
-        <Category("Plugin")>
-        <DisplayName("Name")>
-        Public ReadOnly Property ProductName As String
-            Get
-                Return Me.AssemblyInfo.Title
+                Return Path.ChangeExtension(Me.AssemblyInfo.AssemblyName, "dll")
             End Get
         End Property
 
@@ -86,7 +76,8 @@ Namespace WindowRestorator
         <DisplayName("Description")>
         Public ReadOnly Property Description As String
             Get
-                Return Me.AssemblyInfo.Description
+                Return "Reminds the last SmartBot's window size and position " & ControlChars.NewLine &
+                       "and restores it at the next program startup."
             End Get
         End Property
 
@@ -116,7 +107,7 @@ Namespace WindowRestorator
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         <Category("Info")>
-        <DisplayName("Current SmartBot's window position.")>
+        <DisplayName("Current SmartBot's window position")>
         <Browsable(True)>
         Public ReadOnly Property CurrentPosition As Point
             Get

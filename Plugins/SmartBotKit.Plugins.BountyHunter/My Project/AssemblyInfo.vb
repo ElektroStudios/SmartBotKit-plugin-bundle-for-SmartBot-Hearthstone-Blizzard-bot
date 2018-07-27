@@ -9,17 +9,17 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("Bounty Hunter")>
-<Assembly: AssemblyDescription("Complete quests and level up hero classes.")>
-<Assembly: AssemblyCompany("Elektro Studios")>
+<Assembly: AssemblyTitle("Bounty Hunter for SmartBot")>
+<Assembly: AssemblyDescription("A plugin that completes quests, schedules ranked mode and level up heroes.")>
+<Assembly: AssemblyCompany("")>
 <Assembly: AssemblyProduct("BountyHunter.dll")>
-<Assembly: AssemblyCopyright("Copyright © Elektro Studios 2018")>
+<Assembly: AssemblyCopyright("")>
 <Assembly: AssemblyTrademark("")>
 
 <Assembly: ComVisible(False)>
 
 'The following GUID is for the ID of the typelib if this project is exposed to COM
-<Assembly: Guid("02358E21-AA74-4D88-8C69-8E9EC13D65C1")>
+<Assembly: Guid("02358E21-AA74-4D88-8C69-8E9EC13D15C1")>
 
 ' Version information for an assembly consists of the following four values:
 '
@@ -32,6 +32,6 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")>
 
-<Assembly: AssemblyVersion("2.0.0.0")>
-<Assembly: AssemblyFileVersion("2.0.0.0")>
+<Assembly: AssemblyVersion("2.1.0.0")>
+<Assembly: AssemblyFileVersion("2.1.0.0")>
 <Assembly: NeutralResourcesLanguage("en")>

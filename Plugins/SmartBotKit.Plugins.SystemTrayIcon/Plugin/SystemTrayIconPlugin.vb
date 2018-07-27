@@ -17,6 +17,7 @@ Imports SmartBot.Plugins.API
 
 Imports SmartBotKit.Interop
 Imports SmartBotKit.Interop.Win32
+Imports SmartBotKit.ReservedUse
 
 #End Region
 
@@ -90,7 +91,7 @@ Namespace SystemTrayIcon
         ''' ----------------------------------------------------------------------------------------------------
         Public Sub New()
             Me.IsDll = True
-            SmartBotKit.ReservedUse.UpdateUtil.RunUpdaterExecutable()
+            UpdateUtil.RunUpdaterExecutable()
         End Sub
 
 #End Region

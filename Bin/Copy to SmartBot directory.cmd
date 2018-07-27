@@ -32,5 +32,5 @@ FOR %%# IN ("%CD%\%FolderToCopy%\Plugins\libs\*.exe") DO (
 )
 
 Echo+
-TimeOut /T 4
+TimeOut /T 2
 Exit /B 0

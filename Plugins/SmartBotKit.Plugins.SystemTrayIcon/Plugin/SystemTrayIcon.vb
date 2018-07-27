@@ -355,12 +355,13 @@ Namespace SystemTrayIcon
         <DebuggerStepThrough>
         Private Sub MenuItemCloseHS_Click(ByVal sender As Object, ByVal e As EventArgs) Handles MenuItemCloseHS.Click
 
-            Bot.Log("[System Tray Icon] -> Terminating hearthstone process...")
+            Bot.Log("[System Tray Icon] -> Closing Hearthstone...")
 
             Me.MenuItemShowHS.PerformClick() ' Restore Hearthstone window visibility.
 
             Try
-                HearthstoneUtil.Process.Kill()
+                ' HearthstoneUtil.Process.Kill()
+                Bot.CloseHs()
 
             Catch ex As Exception
                 Bot.Log(String.Format("[System Tray Icon] -> {0}", ex.Message))
@@ -444,7 +445,7 @@ Namespace SystemTrayIcon
         <DebuggerStepThrough>
         Private Sub MenuItemCloseSB_Click(ByVal sender As Object, ByVal e As EventArgs) Handles MenuItemCloseSB.Click
 
-            Bot.Log("[System Tray Icon] -> Terminating SmartBot process...")
+            Bot.Log("[System Tray Icon] -> Closing SmartBot...")
 
             Me.MenuItemShowHS.PerformClick() ' Restore Hearthstone window visibility.
             Me.NotifyIcon.Visible = False

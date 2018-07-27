@@ -19,6 +19,7 @@ Imports SmartBot.Plugins.API
 
 Imports SmartBotKit.Interop
 Imports SmartBotKit.Interop.Win32
+Imports SmartBotKit.ReservedUse
 
 #End Region
 
@@ -74,7 +75,7 @@ Namespace WindowRestorator
         ''' ----------------------------------------------------------------------------------------------------
         Public Sub New()
             Me.IsDll = True
-            SmartBotKit.ReservedUse.UpdateUtil.RunUpdaterExecutable()
+            UpdateUtil.RunUpdaterExecutable()
         End Sub
 
 #End Region
@@ -94,11 +95,11 @@ Namespace WindowRestorator
                 '#If DEBUG Then
                 Select Case Me.DataContainer.WindowState
                     Case WindowState.Maximize, WindowState.ShowMaximized
-                        Bot.Log(String.Format("[Window Restorator] -> Restored to: {0}",
+                        Bot.Log(String.Format("[Window Restorator] -> {0}",
                                               Me.DataContainer.WindowState.ToString()))
 
                     Case Else
-                        Bot.Log(String.Format("[Window Restorator] -> Restored to: {0}, {1}, {2}",
+                        Bot.Log(String.Format("[Window Restorator] -> Changed to: {0} | {1} | {2}",
                                           Me.DataContainer.WindowState.ToString(),
                                           Me.DataContainer.CurrentPosition.ToString(),
                                           Me.DataContainer.NormalSize.ToString()))

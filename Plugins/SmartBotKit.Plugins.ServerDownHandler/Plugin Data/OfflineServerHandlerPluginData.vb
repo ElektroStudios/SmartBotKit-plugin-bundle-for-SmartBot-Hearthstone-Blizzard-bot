@@ -13,6 +13,7 @@ Imports Microsoft.VisualBasic.ApplicationServices
 
 Imports System.ComponentModel
 Imports System.Diagnostics
+Imports System.IO
 Imports System.Reflection
 
 Imports SmartBot.Plugins
@@ -54,27 +55,14 @@ Namespace OfflineServerHandler
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Gets the author of this plugin.
+        ''' Gets the assembly name.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         <Category("Plugin")>
-        <DisplayName("Author")>
-        Public ReadOnly Property Author As String
+        <DisplayName("Assembly Name")>
+        Public ReadOnly Property AssemblyName As String
             Get
-                Return Me.AssemblyInfo.CompanyName
-            End Get
-        End Property
-
-        ''' ----------------------------------------------------------------------------------------------------
-        ''' <summary>
-        ''' Gets the plugin name.
-        ''' </summary>
-        ''' ----------------------------------------------------------------------------------------------------
-        <Category("Plugin")>
-        <DisplayName("Name")>
-        Public ReadOnly Property ProductName As String
-            Get
-                Return Me.AssemblyInfo.Title
+                Return Path.ChangeExtension(Me.AssemblyInfo.AssemblyName, "dll")
             End Get
         End Property
 
@@ -87,7 +75,8 @@ Namespace OfflineServerHandler
         <DisplayName("Description")>
         Public ReadOnly Property Description As String
             Get
-                Return Me.AssemblyInfo.Description
+                Return "Handles the bot behavior when the server gets down" & ControlChars.NewLine &
+                       "(not lag, ﻿local network inactivity﻿﻿ neither ﻿auth. problems)."
             End Get
         End Property
 
@@ -117,7 +106,7 @@ Namespace OfflineServerHandler
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         <Category("Info")>
-        <DisplayName("Last known server down time record for the current session.")>
+        <DisplayName("Last known server down time record for the current session")>
         <Browsable(True)>
         Public ReadOnly Property LastServerDownRecord As String
             Get
@@ -139,7 +128,7 @@ Namespace OfflineServerHandler
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         <Category("Notification")>
-        <DisplayName("Play sound file when server down is detected.")>
+        <DisplayName("Play sound file when server down is detected")>
         Public Property PlaySoundFile As Boolean
 
 #End Region
@@ -153,7 +142,7 @@ Namespace OfflineServerHandler
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         <Category("Disconnection")>
-        <DisplayName("Stop the bot if current mode is: AutoArena.")>
+        <DisplayName("Stop the bot if current mode is: AutoArena")>
         <Browsable(True)>
         Public Property StopTheBotIfArena As Boolean
 
@@ -164,7 +153,7 @@ Namespace OfflineServerHandler
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         <Category("Disconnection")>
-        <DisplayName("Stop the bot if current mode is: RankedStandard or RankedWild.")>
+        <DisplayName("Stop the bot if current mode is: RankedStandard or RankedWild")>
         <Browsable(True)>
         Public Property StopTheBotIfRanked As Boolean
 
@@ -175,7 +164,7 @@ Namespace OfflineServerHandler
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         <Category("Disconnection")>
-        <DisplayName("Stop the bot if current mode is: UnrankedStandard or UnrankedWild.")>
+        <DisplayName("Stop the bot if current mode is: UnrankedStandard or UnrankedWild")>
         <Browsable(True)>
         Public Property StopTheBotIfUnranked As Boolean
 
@@ -190,7 +179,7 @@ Namespace OfflineServerHandler
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         <Category("Reconnection")>
-        <DisplayName("Enable bot resume.")>
+        <DisplayName("Enable bot resumption")>
         Public Property ResumeEnabled As Boolean
 
         ''' ----------------------------------------------------------------------------------------------------
@@ -203,7 +192,7 @@ Namespace OfflineServerHandler
         ''' </value>
         ''' ----------------------------------------------------------------------------------------------------
         <Category("Reconnection")>
-        <DisplayName("The time interval, in minutes, to resume the bot and try reconnect to the server.")>
+        <DisplayName("The time interval, in minutes, to resume the bot and try reconnect to the server")>
         <Browsable(True)>
         Public Property ResumeInterval() As Integer
             Get

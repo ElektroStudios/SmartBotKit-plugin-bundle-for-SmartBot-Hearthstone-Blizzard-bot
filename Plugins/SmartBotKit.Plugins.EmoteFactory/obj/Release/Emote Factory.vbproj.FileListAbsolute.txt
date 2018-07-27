@@ -1,0 +1,8 @@
+P:\Documents\Source codes\VB.NET\SmartBotKit\Bin\Release\Plugins\EmoteFactory.dll
+P:\Documents\Source codes\VB.NET\SmartBotKit\Bin\Release\Plugins\EmoteFactory.xml
+P:\Documents\Source codes\VB.NET\SmartBotKit\Plugins\SmartBotKit.Plugins.EmoteFactory\obj\Release\SmartBotKit.Plugins.Resources.resources
+P:\Documents\Source codes\VB.NET\SmartBotKit\Plugins\SmartBotKit.Plugins.EmoteFactory\obj\Release\Emote Factory.vbproj.GenerateResource.cache
+P:\Documents\Source codes\VB.NET\SmartBotKit\Plugins\SmartBotKit.Plugins.EmoteFactory\obj\Release\Emote Factory.vbproj.CoreCompileInputs.cache
+P:\Documents\Source codes\VB.NET\SmartBotKit\Plugins\SmartBotKit.Plugins.EmoteFactory\obj\Release\EmoteFactory.dll
+P:\Documents\Source codes\VB.NET\SmartBotKit\Plugins\SmartBotKit.Plugins.EmoteFactory\obj\Release\EmoteFactory.xml
+P:\Documents\Source codes\VB.NET\SmartBotKit\Plugins\SmartBotKit.Plugins.EmoteFactory\obj\Release\Emote Factory.vbprojAssemblyReference.cache

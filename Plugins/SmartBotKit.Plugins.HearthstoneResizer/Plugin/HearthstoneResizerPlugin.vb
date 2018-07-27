@@ -211,15 +211,24 @@ Namespace HearthstoneResizer
                         Dim oldSize As Size = HearthstoneUtil.WindowSize
                         Dim newSize As Size = HearthstoneResizerPluginData.Resolutions(Me.DataContainer.Size)
 
-                        If (oldPos <> newPos) AndAlso (Me.DataContainer.EnableFixedPos) Then
+                        Dim windowPlacementChanged As Boolean
+
+                        If (Me.DataContainer.EnableFixedPos) AndAlso (oldPos <> newPos) Then
+                            windowPlacementChanged = True
                             HearthstoneUtil.WindowPosition = newPos
-                            Bot.Log(String.Format("[Hearthstone Resizer] -> Hearthstone window position changed to: {0}", newPos.ToString()))
                         End If
 
-                        If (oldSize <> newSize) AndAlso (Me.DataContainer.EnableFixedSize) Then
+                        If (Me.DataContainer.EnableFixedSize) AndAlso (oldSize <> newSize) Then
+                            windowPlacementChanged = True
                             HearthstoneUtil.WindowSize = newSize
-                            Bot.Log(String.Format("[Hearthstone Resizer] -> Hearthstone window size changed to: {0}", newSize.ToString()))
                         End If
+
+                        If (windowPlacementChanged = True) Then
+                            Bot.Log(String.Format("[Hearthstone Resizer] -> Changed to: {0} | {1}",
+                                                  If(newPos <> Point.Empty, newPos.ToString(), oldPos.ToString()),
+                                                  If(newSize <> Size.Empty, newSize.ToString(), oldSize.ToString())))
+                        End If
+
                     End If
 
             End Select

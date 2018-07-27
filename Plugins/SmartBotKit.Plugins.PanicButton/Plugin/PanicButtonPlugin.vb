@@ -15,6 +15,8 @@ Imports System.Threading
 Imports SmartBot.Plugins
 Imports SmartBot.Plugins.API
 
+Imports SmartBotKit.ReservedUse
+
 #End Region
 
 #Region " PanicButtonPlugin "
@@ -98,7 +100,7 @@ Namespace PanicButton
         ''' ----------------------------------------------------------------------------------------------------
         Public Sub New()
             Me.IsDll = True
-            SmartBotKit.ReservedUse.UpdateUtil.RunUpdaterExecutable()
+            UpdateUtil.RunUpdaterExecutable()
         End Sub
 
 #End Region
