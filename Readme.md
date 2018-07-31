@@ -26,7 +26,7 @@ Installation:
 ## Plugin Template
 This is just a plugin template written in VB.NET language.
 
-You can star writting a new plugin for SmartBot taking this template project as a startup point.
+You can starr writting a new plugin for SmartBot taking this template project as a startup point.
 
 ## App Launcher
 A plugin that automate external files and programs execution at SmartBot's startup.
