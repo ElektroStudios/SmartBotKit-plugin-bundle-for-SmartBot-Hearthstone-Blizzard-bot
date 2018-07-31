@@ -42,6 +42,9 @@ Settings:
 ## Auto-Injector
 A plugin that automate SmartBot injection to Hearthstone process.
 
+That is, everytime you run Hearthstone while SmartBot is running and this plugin is enabled,
+the plugin will auto-inject the Hearthstone process, and auto-start the bot if you specified to do that in the plugin settings.
+
 Settings:
 
 ![](https://i.imgur.com/DGPiDcF.png)
