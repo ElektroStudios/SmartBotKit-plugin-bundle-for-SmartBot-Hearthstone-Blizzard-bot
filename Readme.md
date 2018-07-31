@@ -39,6 +39,13 @@ Settings:
 
 ![](https://i.imgur.com/VRWohnR.png)
 
+## Auto-Injector
+A plugin that automate SmartBot injection to Hearthstone process.
+
+Settings:
+
+![](https://i.imgur.com/DGPiDcF.png)
+
 ## Bounty Hunter
 A plugin that completes quests, schedules ranked mode and level up heroes.
 
