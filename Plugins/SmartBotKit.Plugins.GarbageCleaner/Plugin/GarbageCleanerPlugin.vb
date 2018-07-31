@@ -13,6 +13,7 @@ Imports Microsoft.VisualBasic.FileIO
 
 Imports System.Collections.Generic
 Imports System.IO
+Imports System.Linq
 
 Imports SmartBot.Plugins
 Imports SmartBot.Plugins.API
@@ -178,12 +179,28 @@ Namespace GarbageCleaner
 
             ' Delete seeds
             If (Me.DataContainer.DeleteSeeds) Then
+
                 Dim seeds As New List(Of DirectoryInfo)
+                ' Dim lastSeedFile As FileInfo = Nothing
+
                 If (SmartBotUtil.SeedsDir.Exists) Then
                     seeds.AddRange(SmartBotUtil.SeedsDir.EnumerateDirectories("*", System.IO.SearchOption.TopDirectoryOnly))
+
+                    If (Me.DataContainer.CleanerEvent = SmartBotEvent.BotStart) OrElse (Me.DataContainer.CleanerEvent = SmartBotEvent.BotStop) Then
+
+                        Dim seedDirToKeep As DirectoryInfo = (From seedDir As DirectoryInfo In seeds
+                                                              Order By seedDir.LastWriteTime Descending).FirstOrDefault()
+
+                        If (seedDirToKeep IsNot Nothing) Then
+                            seeds.Remove(seedDirToKeep)
+                        End If
+
+                    End If
+
                 End If
 
                 For Each seed As DirectoryInfo In seeds
+
                     Dim daysDiff As Integer = CInt((Date.Now - seed.CreationTime).TotalDays)
                     If (daysDiff >= minDaysDiff) Then
                         Try

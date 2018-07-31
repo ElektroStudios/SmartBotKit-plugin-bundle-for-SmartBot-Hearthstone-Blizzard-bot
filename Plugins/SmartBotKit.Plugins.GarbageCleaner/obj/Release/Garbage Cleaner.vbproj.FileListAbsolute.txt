@@ -1,8 +1,0 @@
-P:\Documents\Source codes\VB.NET\SmartBotKit\Bin\Release\Plugins\GarbageCleaner.dll
-P:\Documents\Source codes\VB.NET\SmartBotKit\Bin\Release\Plugins\GarbageCleaner.xml
-P:\Documents\Source codes\VB.NET\SmartBotKit\Plugins\SmartBotKit.Plugins.GarbageCleaner\obj\Release\Garbage Cleaner.vbprojAssemblyReference.cache
-P:\Documents\Source codes\VB.NET\SmartBotKit\Plugins\SmartBotKit.Plugins.GarbageCleaner\obj\Release\SmartBotKit.Plugins.Resources.resources
-P:\Documents\Source codes\VB.NET\SmartBotKit\Plugins\SmartBotKit.Plugins.GarbageCleaner\obj\Release\Garbage Cleaner.vbproj.GenerateResource.cache
-P:\Documents\Source codes\VB.NET\SmartBotKit\Plugins\SmartBotKit.Plugins.GarbageCleaner\obj\Release\Garbage Cleaner.vbproj.CoreCompileInputs.cache
-P:\Documents\Source codes\VB.NET\SmartBotKit\Plugins\SmartBotKit.Plugins.GarbageCleaner\obj\Release\GarbageCleaner.dll
-P:\Documents\Source codes\VB.NET\SmartBotKit\Plugins\SmartBotKit.Plugins.GarbageCleaner\obj\Release\GarbageCleaner.xml

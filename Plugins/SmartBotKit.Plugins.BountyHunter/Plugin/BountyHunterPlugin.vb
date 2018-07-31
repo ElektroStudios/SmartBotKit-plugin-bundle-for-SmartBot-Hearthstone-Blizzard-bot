@@ -36,10 +36,6 @@ Namespace BountyHunter
     ''' ----------------------------------------------------------------------------------------------------
     Public NotInheritable Class BountyHunterPlugin : Inherits Plugin
 
-        Private unfulfillableQuestTypes As List(Of Quest.QuestType)
-
-        Private questTypesToKeep As List(Of Quest.QuestType)
-
 #Region " Properties "
 
         ''' ----------------------------------------------------------------------------------------------------
@@ -81,6 +77,27 @@ Namespace BountyHunter
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Private lastNormalBotMode As Bot.Mode = Bot.Mode.None
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Keeps track of the current <see cref="BountyHunterMode"/>.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        Private currentBountyHunterMode As BountyHunterMode = BountyHunterMode.None
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Keeps track of the unfulfillable quest types.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        Private unfulfillableQuestTypes As List(Of Quest.QuestType)
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Keeps track of the quest types to be kept/don't rerolled.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        Private questTypesToKeep As List(Of Quest.QuestType)
 
 #End Region
 
@@ -172,6 +189,36 @@ Namespace BountyHunter
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
+        ''' Called when the bot timer is ticked, every 300 milliseconds.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        Public Overrides Sub OnTick()
+
+            If (Me.DataContainer.Enabled) AndAlso (Me.DataContainer.EnableLadderScheduler) AndAlso
+               (Me.DataContainer.LadderModeAutoStart OrElse Me.DataContainer.LadderModeAutoStop) Then
+
+                Dim now As TimeSpan = Date.Now.TimeOfDay
+                Dim isLadderTime As Boolean = now.IsHourInRange(Me.DataContainer.LadderStartHour, Me.DataContainer.LadderEndHour)
+
+                If (isLadderTime) AndAlso (Me.currentBountyHunterMode <> BountyHunterMode.Ladder) Then
+                    Me.ActivateMode(BountyHunterMode.Ladder)
+
+                ElseIf Not (isLadderTime) AndAlso (Me.currentBountyHunterMode = BountyHunterMode.Ladder) Then
+                    Me.currentBountyHunterMode = BountyHunterMode.None
+                    If (Me.DataContainer.LadderModeAutoStop) AndAlso (Bot.IsBotRunning()) Then
+                        Bot.Log("[Bounty Hunter] -> Ladder Mode, auto-finishing bot...")
+                        Bot.Finish()
+                    End If
+
+                End If
+
+            End If
+
+            MyBase.OnTick()
+        End Sub
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
         ''' Releases all the resources used by this <see cref="BountyHunterPlugin"/> instance.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
@@ -243,9 +290,19 @@ Namespace BountyHunter
             If (Me.DataContainer.EnableLadderScheduler) Then
                 Dim now As TimeSpan = Date.Now.TimeOfDay
                 Dim isLadderTime As Boolean = now.IsHourInRange(Me.DataContainer.LadderStartHour, Me.DataContainer.LadderEndHour)
+
                 If (isLadderTime) Then
                     isNextModeChoosed = Me.ActivateMode(BountyHunterMode.Ladder)
+
+                ElseIf Not (isLadderTime) AndAlso (Me.currentBountyHunterMode = BountyHunterMode.Ladder) Then
+                    Me.currentBountyHunterMode = BountyHunterMode.None
+                    If (Me.DataContainer.LadderModeAutoStop) AndAlso (Bot.IsBotRunning()) Then
+                        Bot.Log("[Bounty Hunter] -> Ladder Mode, auto-finishing bot...")
+                        Bot.Finish()
+                    End If
+
                 End If
+
             End If
 
             If (Me.DataContainer.EnableQuestCompletion) AndAlso Not (isNextModeChoosed) Then
@@ -286,6 +343,7 @@ Namespace BountyHunter
                         Bot.Log(String.Format("[Bounty Hunter] -> Questing Mode | '{0}' | {1} | {2}", questToDo.Name, botMode, newDeck.Name))
                         Bot.ChangeMode(botMode)
                         Bot.ChangeDeck(newDeck.Name)
+                        Me.currentBountyHunterMode = mode
                         Return True
 
                     Else
@@ -309,6 +367,7 @@ Namespace BountyHunter
                                                       heroClass, currentLevel, targetLevel, botMode, preferredDeck.Name))
                                 Bot.ChangeMode(botMode)
                                 Bot.ChangeDeck(preferredDeck.Name)
+                                Me.currentBountyHunterMode = mode
                                 Return True
 
                             Else
@@ -322,6 +381,7 @@ Namespace BountyHunter
                     Return False
 
                 Case BountyHunterMode.Ladder
+                    Me.currentBountyHunterMode = mode
                     Dim botMode As Bot.Mode = Me.DataContainer.LadderMode
                     Dim deck As Deck = Bot.GetDecks().FirstOrDefault(Function(d As Deck) (d.Name = Me.DataContainer.LadderPreferredDeck) AndAlso (d.IsValid()))
 
@@ -333,6 +393,10 @@ Namespace BountyHunter
                         Bot.Log(String.Format("[Bounty Hunter] -> Ladder Mode | {0} | {1}", botMode, deck.Name))
                         Bot.ChangeMode(botMode)
                         Bot.ChangeDeck(deck.Name)
+                        If (Me.DataContainer.LadderModeAutoStart) AndAlso Not (Bot.IsBotRunning()) Then
+                            Bot.Log("[Bounty Hunter] -> Ladder Mode, auto-starting bot...")
+                            Bot.StartBot()
+                        End If
                         Return True
 
                     Else
@@ -389,6 +453,10 @@ Namespace BountyHunter
             If (Bot.CurrentMode <> Me.lastNormalBotMode) OrElse (Bot.CurrentDeck?.Name <> Me.lastNormalDeckName) Then
                 Bot.ChangeMode(Me.lastNormalBotMode)
                 Bot.ChangeDeck(Me.lastNormalDeckName)
+
+                Me.lastNormalBotMode = Bot.CurrentMode
+                Me.lastNormalDeckName = Bot.CurrentDeck?.Name
+
                 Bot.Log(String.Format("[Bounty Hunter] -> Reverted to normal settings: {0} | {1}",
                                       Me.lastNormalBotMode, Me.lastNormalDeckName))
             End If

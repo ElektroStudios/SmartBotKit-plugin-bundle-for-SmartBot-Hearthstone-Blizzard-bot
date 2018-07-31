@@ -99,7 +99,7 @@ Namespace WindowRestorator
                                               Me.DataContainer.WindowState.ToString()))
 
                     Case Else
-                        Bot.Log(String.Format("[Window Restorator] -> Changed to: {0} | {1} | {2}",
+                        Bot.Log(String.Format("[Window Restorator] -> Restored to: {0} | {1} | {2}",
                                           Me.DataContainer.WindowState.ToString(),
                                           Me.DataContainer.CurrentPosition.ToString(),
                                           Me.DataContainer.NormalSize.ToString()))

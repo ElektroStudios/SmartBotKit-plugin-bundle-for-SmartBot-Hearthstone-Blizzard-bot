@@ -25,7 +25,7 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Challenge Notifier", "Plugi
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Hearthstone Resizer", "Plugins\SmartBotKit.Plugins.HearthstoneResizer\Hearthstone Resizer.vbproj", "{2C9D9A26-6D46-432E-AC1A-F491156CA64A}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Offline Server Handler", "Plugins\SmartBotKit.Plugins.ServerDownHandler\Offline Server Handler.vbproj", "{733B95E8-B491-4267-A738-BA6A9A769FB1}"
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Offline Server Handler", "Plugins\SmartBotKit.Plugins.OfflineServerHandler\Offline Server Handler.vbproj", "{733B95E8-B491-4267-A738-BA6A9A769FB1}"
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "SmartBotkit.Updater", "Updater\SmartBotkitUpdater\SmartBotkit.Updater.vbproj", "{5CD69219-D481-4F0C-942E-788870E3D480}"
 EndProject
@@ -36,6 +36,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libs", "Libs", "{C2DE6C59-DC26-4DA4-BCD5-FD038445B892}"
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Bounty Hunter", "Plugins\SmartBotKit.Plugins.BountyHunter\Bounty Hunter.vbproj", "{0B45AA94-8329-474A-AFAC-0B924AF88D34}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "AutoInjector", "Plugins\SmartBotKit.Plugins.AutoInjector\AutoInjector.vbproj", "{17E1B7CD-D074-4074-89F2-4B86FF1631E9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -98,6 +100,10 @@ Global
 		{0B45AA94-8329-474A-AFAC-0B924AF88D34}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B45AA94-8329-474A-AFAC-0B924AF88D34}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B45AA94-8329-474A-AFAC-0B924AF88D34}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17E1B7CD-D074-4074-89F2-4B86FF1631E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17E1B7CD-D074-4074-89F2-4B86FF1631E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17E1B7CD-D074-4074-89F2-4B86FF1631E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17E1B7CD-D074-4074-89F2-4B86FF1631E9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -117,6 +123,7 @@ Global
 		{733B95E8-B491-4267-A738-BA6A9A769FB1} = {32CB3DF2-0E1F-4950-81E7-323D962471DE}
 		{5CD69219-D481-4F0C-942E-788870E3D480} = {ECD22E5A-F16D-43F0-9695-F9DDEA5C4DE6}
 		{0B45AA94-8329-474A-AFAC-0B924AF88D34} = {32CB3DF2-0E1F-4950-81E7-323D962471DE}
+		{17E1B7CD-D074-4074-89F2-4B86FF1631E9} = {32CB3DF2-0E1F-4950-81E7-323D962471DE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C1877C6E-9D64-4AEB-BE15-B0EA86B66D86}

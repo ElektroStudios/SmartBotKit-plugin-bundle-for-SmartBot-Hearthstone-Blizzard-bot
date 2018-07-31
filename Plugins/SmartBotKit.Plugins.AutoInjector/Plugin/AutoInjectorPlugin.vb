@@ -1,5 +1,4 @@
-﻿
-#Region " Option Statements "
+﻿#Region " Option Statements "
 
 Option Strict On
 Option Explicit On
@@ -9,31 +8,29 @@ Option Infer Off
 
 #Region " Imports "
 
-Imports System.Collections.Generic
-Imports System.Collections.ObjectModel
 Imports System.Diagnostics
-Imports System.IO
-Imports System.Linq
+Imports System.Threading
 
 Imports SmartBot.Plugins
 Imports SmartBot.Plugins.API
 
+Imports SmartBotKit.Interop
 Imports SmartBotKit.ReservedUse
 
 #End Region
 
-#Region " AppLauncherPlugin "
+#Region " AutoInjectorPlugin "
 
-Namespace AppLauncher
+Namespace AutoInjector
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>
-    ''' A plugin that automate external files and programs execution at SmartBot's startup.
+    ''' A plugin that automate SmartBot injection to Hearthstone process.
     ''' </summary>
     ''' ----------------------------------------------------------------------------------------------------
     ''' <seealso cref="Plugin"/>
     ''' ----------------------------------------------------------------------------------------------------
-    Public NotInheritable Class AppLauncherPlugin : Inherits Plugin
+    Public NotInheritable Class AutoInjectorPlugin : Inherits Plugin
 
 #Region " Properties "
 
@@ -46,9 +43,9 @@ Namespace AppLauncher
         ''' The plugin's data container.
         ''' </value>
         ''' ----------------------------------------------------------------------------------------------------
-        Public Shadows ReadOnly Property DataContainer As AppLauncherPluginData
+        Public Shadows ReadOnly Property DataContainer As AutoInjectorPluginData
             Get
-                Return DirectCast(MyBase.DataContainer, AppLauncherPluginData)
+                Return DirectCast(MyBase.DataContainer, AutoInjectorPluginData)
             End Get
         End Property
 
@@ -58,17 +55,24 @@ Namespace AppLauncher
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Keeps track of the last <see cref="AppLauncherPluginData.Enabled"/> value.
+        ''' Keeps track of the last <see cref="AutoInjectorPluginData.Enabled"/> value.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Private lastEnabled As Boolean
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' A collection that holds the processes that were ran by this <see cref="AppLauncherPlugin"/>.
+        ''' Keeps track of the last discovered Hearthstone process identifier (pid).
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        Private processes As ICollection(Of Process)
+        Private lastHsPid As Integer?
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Keeps track of the elapsed time.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        Private ReadOnly stopWatch As Stopwatch
 
 #End Region
 
@@ -76,12 +80,14 @@ Namespace AppLauncher
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Initializes a new instance of the <see cref="AppLauncherPlugin"/> class.
+        ''' Initializes a new instance of the <see cref="AutoInjectorPlugin"/> class.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Public Sub New()
             Me.IsDll = True
+
             UpdateUtil.RunUpdaterExecutable()
+            Me.stopWatch = New Stopwatch()
         End Sub
 
 #End Region
@@ -90,30 +96,32 @@ Namespace AppLauncher
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Called when this <see cref="AppLauncherPlugin"/> is created by the SmartBot plugin manager.
+        ''' Called when this <see cref="AutoInjectorPlugin"/> is created by the SmartBot plugin manager.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Public Overrides Sub OnPluginCreated()
             Me.lastEnabled = Me.DataContainer.Enabled
             If (Me.lastEnabled) Then
-                Bot.Log("[App Launcher] -> Plugin initialized.")
-                Me.RunProcesses()
+                Bot.Log("[Auto Injector] -> Plugin initialized.")
             End If
+            Me.stopWatch.Start()
             MyBase.OnPluginCreated()
         End Sub
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Called when the properties of <see cref="AppLauncherPluginData"/> are updated.
+        ''' Called when the properties of <see cref="AutoInjectorPluginData"/> are updated.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Public Overrides Sub OnDataContainerUpdated()
             Dim enabled As Boolean = Me.DataContainer.Enabled
             If (enabled <> Me.lastEnabled) Then
                 If (enabled) Then
-                    Bot.Log("[App Launcher] -> Plugin enabled.")
+                    Me.stopWatch.Restart()
+                    Bot.Log("[Auto Injector] -> Plugin enabled.")
                 Else
-                    Bot.Log("[App Launcher] -> Plugin disabled.")
+                    Me.stopWatch.Reset()
+                    Bot.Log("[Auto Injector] -> Plugin disabled.")
                 End If
                 Me.lastEnabled = enabled
             End If
@@ -122,92 +130,75 @@ Namespace AppLauncher
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Releases all the resources used by this <see cref="AppLauncherPlugin"/> instance.
+        ''' Called when the bot injects Hearthstone process.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        Public Overrides Sub OnInjection()
+            MyBase.OnInjection()
+            Me.lastHsPid = HearthstoneUtil.Process?.Id
+            Bot.StopRelogger()
+            If (Me.DataContainer.AutoStartBotAfterInjected) Then
+                Bot.Log("[Auto Injector] -> Auto-resuming bot...")
+                Thread.Sleep(TimeSpan.FromSeconds(5))
+                If Not (Bot.IsBotRunning()) Then
+                    Bot.StartBot()
+                End If
+            End If
+        End Sub
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Called when the bot is started.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        Public Overrides Sub OnStarted()
+            MyBase.OnStarted()
+            Me.lastHsPid = HearthstoneUtil.Process?.Id
+        End Sub
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Called when the bot timer is ticked, every 300 milliseconds.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        Public Overrides Sub OnTick()
+            If (Me.DataContainer.Enabled) AndAlso Not (Bot.IsBotRunning) Then
+
+                If Not (Me.stopWatch.IsRunning) Then
+                    Me.stopWatch.Start()
+                    Exit Sub
+                End If
+
+                If (Me.stopWatch.Elapsed.TotalSeconds >= Me.DataContainer.ProcessDiscoverInterval) Then
+                    Me.stopWatch.Reset()
+
+                    If Not Bot.IsBotRunning() Then
+                        Dim hsProcess As Process = HearthstoneUtil.Process
+                        If (hsProcess IsNot Nothing) AndAlso (hsProcess.Id <> Me.lastHsPid.GetValueOrDefault()) Then
+                            Me.lastHsPid = hsProcess?.Id
+                            Bot.Log("[Auto Injector] -> Waiting to inject Hearthstone...")
+                            Bot.StartRelogger()
+                        End If
+                    End If
+
+                    Me.stopWatch.Start()
+                End If
+
+            Else
+                Me.stopWatch.Reset()
+
+            End If
+
+            MyBase.OnTick()
+        End Sub
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Releases all the resources used by this <see cref="AutoInjectorPlugin"/> instance.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Public Overrides Sub Dispose()
-            If (Me.DataContainer.Enabled) AndAlso (Me.DataContainer.TerminateProgramsWhenClosingSmartBot) Then
-                Me.KillProcesses()
-            End If
             MyBase.Dispose()
-        End Sub
-
-#End Region
-
-#Region " Private Methods "
-
-        ''' ----------------------------------------------------------------------------------------------------
-        ''' <summary>
-        ''' Tries to run all the executable files that were specified in the <see cref="AppLauncherPlugin.DataContainer"/> properties.
-        ''' </summary>
-        ''' ----------------------------------------------------------------------------------------------------
-        <DebuggerStepThrough>
-        Private Sub RunProcesses()
-
-            If (Me.processes Is Nothing) Then
-                Me.processes = New Collection(Of Process)
-            End If
-
-            Dim files As IEnumerable(Of FileInfo) =
-                From filepath As String In {
-                    Me.DataContainer.ExecutablePath1,
-                    Me.DataContainer.ExecutablePath2,
-                    Me.DataContainer.ExecutablePath3,
-                    Me.DataContainer.ExecutablePath4,
-                    Me.DataContainer.ExecutablePath5,
-                    Me.DataContainer.ExecutablePath6,
-                    Me.DataContainer.ExecutablePath7,
-                    Me.DataContainer.ExecutablePath8,
-                    Me.DataContainer.ExecutablePath9
-                } Where Not String.IsNullOrWhiteSpace(filepath)
-                Select New FileInfo(filepath)
-
-            For Each fi As FileInfo In files
-
-                If Not (fi.Exists) Then
-                    Bot.Log(String.Format("[App Launcher] -> File not found: '{0}'", fi.FullName))
-                    Continue For
-                End If
-
-                Dim p As New Process()
-                p.StartInfo.FileName = fi.FullName
-                p.StartInfo.UseShellExecute = True
-
-                Try
-                    p.Start()
-                    Me.processes.Add(p)
-                    Bot.Log(String.Format("[App Launcher] -> Execution success : '{0}'", fi.FullName))
-
-                Catch ex As Exception
-                    Bot.Log(String.Format("[App Launcher] -> Execution failed: '{0}'", fi.FullName))
-                    Bot.Log(String.Format("[App Launcher] -> Exception message: '{0}'", ex.Message))
-
-                End Try
-
-            Next fi
-
-        End Sub
-
-        ''' ----------------------------------------------------------------------------------------------------
-        ''' <summary>
-        ''' Tries to kill all the processes that were ran as result of a call to <see cref="AppLauncherPlugin.RunProcesses"/> method.
-        ''' </summary>
-        ''' ----------------------------------------------------------------------------------------------------
-        <DebuggerStepThrough>
-        Private Sub KillProcesses()
-            For Each p As Process In Me.processes
-                If Not (p.HasExited) Then
-                    Try
-                        p.Kill()
-
-                    Finally
-                        p.Dispose()
-
-                    End Try
-                End If
-            Next p
-
-            Me.processes.Clear()
         End Sub
 
 #End Region

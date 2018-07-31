@@ -63,10 +63,9 @@ Namespace ChallengeNotifier
             {New Point(4, 3), New ImageCaptureInfo(New Point(4, 3), New Size(640, 480), New Rectangle(448, 216, 76, 56))}
         }
 
-
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' The directory where to save the generated screenshots.
+        ''' Keeps track of the elapsed time.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Private ReadOnly stopWatch As Stopwatch

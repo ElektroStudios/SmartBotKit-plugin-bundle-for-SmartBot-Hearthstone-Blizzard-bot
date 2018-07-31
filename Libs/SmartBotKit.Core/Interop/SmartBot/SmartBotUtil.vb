@@ -148,13 +148,11 @@ Namespace SmartBotKit.Interop
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Gets a <see cref="TimeSpan"/> that represents the exact hour that the SmartBot's server was down for last time.
+        ''' Gets the content of the current logfile shown in SmartBot UI.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        Public Shared ReadOnly Property LastServerDownRecord As TimeSpan
+        Public Shared ReadOnly Property CurrentLogContent As IEnumerable(Of String)
             Get
-                Dim serverIsDownString As String = "Board request sent for more than 30seconds ago,trying to resend request"
-
                 Dim files As IEnumerable(Of FileInfo) = SmartBotUtil.LogsDir.GetFiles("*.txt", SearchOption.TopDirectoryOnly)
                 Dim recentFile As FileInfo = (From fi As FileInfo In files
                                               Where fi.Name Like "#*-#*-####_#*-#*-#*_??.???"
@@ -162,19 +160,19 @@ Namespace SmartBotKit.Interop
                                              ).FirstOrDefault()
 
                 If (recentFile Is Nothing) Then
-                    Return Nothing
+                    Return Nothing ' Enumerable.Empty(Of String)
                 End If
 
                 Dim lines As IEnumerable(Of String)
                 Try
-                    lines = File.ReadLines(recentFile.FullName).Reverse()
+                    lines = File.ReadLines(recentFile.FullName)
 
                 Catch ex As IOException ' Unable to read log file because SmartBot has open it. This will occur at very specific circumstances.
                     ' Try to copy the file to a new location so we can finally read it.
                     Dim tmpFullPath As String = Path.Combine(Path.GetTempPath(), Path.GetTempFileName())
                     Try
                         My.Computer.FileSystem.CopyFile(recentFile.FullName, tmpFullPath, overwrite:=True)
-                        lines = File.ReadLines(tmpFullPath).Reverse()
+                        lines = File.ReadLines(tmpFullPath)
                     Catch ' In case it also fails to copy or read, return nothing.
                         Return Nothing
                     End Try
@@ -184,7 +182,32 @@ Namespace SmartBotKit.Interop
 
                 End Try
 
-                For Each line As String In lines
+                Return lines
+            End Get
+        End Property
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets the last logfile line shown in SmartBot UI.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        Public Shared ReadOnly Property LastLogLine As String
+            Get
+                Return SmartBotUtil.CurrentLogContent?.LastOrDefault()
+            End Get
+        End Property
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets a <see cref="TimeSpan"/> that represents the exact hour that the SmartBot's server was down for last time.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        Public Shared ReadOnly Property LastServerDownRecord As TimeSpan
+            Get
+                Dim serverIsDownString As String = "Board request sent for more than 30seconds ago,trying to resend request"
+
+                Dim lines As IEnumerable(Of String) = SmartBotUtil.CurrentLogContent
+                For Each line As String In lines?.Reverse()
                     If line.Contains(serverIsDownString) Then
                         Return TimeSpan.Parse(line.Substring(0, 10).TrimStart("["c).TrimEnd("]"c))
                     End If

@@ -1,8 +1,0 @@
-P:\Documents\Source codes\VB.NET\SmartBotKit\Bin\Release\Plugins\PanicButton.dll
-P:\Documents\Source codes\VB.NET\SmartBotKit\Bin\Release\Plugins\PanicButton.xml
-P:\Documents\Source codes\VB.NET\SmartBotKit\Plugins\SmartBotKit.Plugins.PanicButton\obj\Release\SmartBotKit.Plugins.Resources.resources
-P:\Documents\Source codes\VB.NET\SmartBotKit\Plugins\SmartBotKit.Plugins.PanicButton\obj\Release\Panic Button.vbproj.GenerateResource.cache
-P:\Documents\Source codes\VB.NET\SmartBotKit\Plugins\SmartBotKit.Plugins.PanicButton\obj\Release\Panic Button.vbproj.CoreCompileInputs.cache
-P:\Documents\Source codes\VB.NET\SmartBotKit\Plugins\SmartBotKit.Plugins.PanicButton\obj\Release\PanicButton.dll
-P:\Documents\Source codes\VB.NET\SmartBotKit\Plugins\SmartBotKit.Plugins.PanicButton\obj\Release\PanicButton.xml
-P:\Documents\Source codes\VB.NET\SmartBotKit\Plugins\SmartBotKit.Plugins.PanicButton\obj\Release\Panic Button.vbprojAssemblyReference.cache

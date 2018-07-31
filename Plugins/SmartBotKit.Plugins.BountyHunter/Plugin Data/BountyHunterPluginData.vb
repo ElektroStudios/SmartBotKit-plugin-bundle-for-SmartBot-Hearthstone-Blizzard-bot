@@ -562,7 +562,7 @@ Namespace BountyHunter
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         <Category("Mode: Ladder Scheduler")>
-        <DisplayName("Hour Initiate")>
+        <DisplayName("Hour Begin")>
         <Browsable(True)>
         Public Property LadderStartHour As TimeSpan
             Get
@@ -586,7 +586,7 @@ Namespace BountyHunter
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         <Category("Mode: Ladder Scheduler")>
-        <DisplayName("Hour Terminate")>
+        <DisplayName("Hour Finish")>
         <Browsable(True)>
         Public Property LadderEndHour As TimeSpan
             Get
@@ -603,6 +603,26 @@ Namespace BountyHunter
             End Set
         End Property
         Private ladderEndHourB As TimeSpan
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets or sets a value that determine whether SmartBot should be started at the initial ladder hour if it is stopped.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        <Category("Mode: Ladder Scheduler")>
+        <DisplayName("Auto-start SmartBot if it is stopped")>
+        <Browsable(True)>
+        Public Property LadderModeAutoStart As Boolean
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets or sets a value that determine whether SmartBot should be stopped when ladder scheduler ends.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        <Category("Mode: Ladder Scheduler")>
+        <DisplayName("Auto-stop SmartBot at the finish hour")>
+        <Browsable(True)>
+        Public Property LadderModeAutoStop As Boolean
 
 #End Region
 
@@ -865,6 +885,8 @@ Namespace BountyHunter
             Me.LadderUseRandomDeckIfPreferredIsUnavailable = False
             Me.ladderStartHourB = TimeSpan.Zero
             Me.ladderEndHourB = Me.ladderStartHourB.Add(TimeSpan.FromHours(10))
+            Me.LadderModeAutoStart = False
+            Me.LadderModeAutoStop = False
 
             Me.EnableHeroLevelling = False
             Me.LevelMode = Bot.Mode.UnrankedStandard

@@ -6,6 +6,11 @@ Namespace BountyHunter
     Public Enum BountyHunterMode As Integer
 
         ''' <summary>
+        ''' None.
+        ''' </summary>
+        None
+
+        ''' <summary>
         ''' Hero Levelling Mode.
         ''' </summary>
         HeroLevelling
