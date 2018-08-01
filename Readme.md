@@ -30,8 +30,6 @@ You can start writting a new plugin for SmartBot taking this template project as
 
 ![](https://i.imgur.com/PbH9PRY.png)
 
-![](https://camo.githubusercontent.com/99130020d6d88abfff794cdefc79fdde6cf1028a/68747470733a2f2f692e696d6775722e636f6d2f506248395052592e706e67)
-
 ## App Launcher
 A plugin that automate external files and programs execution at SmartBot's startup.
 
@@ -41,7 +39,7 @@ You can even run Blizzard's Battle.net client if you like.
 
 Settings:
 
-![](Images/App Launcher - Settings.png)
+![](Images/App%20Launcher%20-%20Settings.png)
 
 ## Auto-Injector
 A plugin that automate SmartBot injection to Hearthstone process.
