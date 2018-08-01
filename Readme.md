@@ -167,7 +167,7 @@ Preview:
 
 Settings:
 
-![](Images/TaskBar%20Informer%20-%20Settings.png)
+![](Images/Taskbar%20Informer%20-%20Settings.png)
 
 ## Window Restorator
 A plugin that reminds the last SmartBot's window size and position and restores it at the next program startup.
