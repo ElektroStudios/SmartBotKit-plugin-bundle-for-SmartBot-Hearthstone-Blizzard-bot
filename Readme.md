@@ -26,7 +26,9 @@ Installation:
 ## Plugin Template
 This is just a plugin template written in VB.NET language.
 
-You can star writting a new plugin for SmartBot taking this template project as a startup point.
+You can start writting a new plugin for SmartBot taking this template project as a startup point.
+
+![](https://i.imgur.com/PbH9PRY.png)
 
 ![](https://camo.githubusercontent.com/99130020d6d88abfff794cdefc79fdde6cf1028a/68747470733a2f2f692e696d6775722e636f6d2f506248395052592e706e67)
 
@@ -43,6 +45,9 @@ Settings:
 
 ## Auto-Injector
 A plugin that automate SmartBot injection to Hearthstone process.
+
+That is, everytime you run Hearthstone while SmartBot is running and this plugin is enabled,
+the plugin will auto-inject the Hearthstone process, and auto-start the bot if you specified to do that in the plugin settings.
 
 Settings:
 
