@@ -148,7 +148,7 @@ The program automatically shows a top-most advert window for around 20 seconds e
 
 This plugin will mute the audio volume of PlayVIG process and remove any advert window shown.
 
-Installation:
+Settings:
 
 ![](Images/PlayVIG%20Adverts%20Remover%20-%20Settings.png)
 
