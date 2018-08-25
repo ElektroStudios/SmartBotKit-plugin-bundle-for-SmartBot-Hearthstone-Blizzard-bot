@@ -141,6 +141,17 @@ Settings:
 
 ![](Images/Panic%20Button%20-%20Settings.png)
 
+## PlayVIG Adverts Remover
+PlayVIG is a software that pays you for playing Arena or Ranked mode in Hearthstone (and for other games).
+
+The program automatically shows a top-most advert window for around 20 seconds every time you end a game in Hearthstone while a PlayVIG quest is active.
+
+This plugin will mute the audio volume of PlayVIG process and remove any advert window shown.
+
+Installation:
+
+![](Images/PlayVIG%20Adverts%20Remover%20-%20Settings.png)
+
 ## System Tray Icon
 A plugin that creates a system tray icon with menu commands to handle SmartBot and Hearthstone visibility.
 

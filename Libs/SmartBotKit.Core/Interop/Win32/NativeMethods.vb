@@ -940,7 +940,7 @@ Namespace SmartBotKit.Interop.Win32
         <SuppressUnmanagedCodeSecurity>
         <DllImport("User32.dll", SetLastError:=True)>
         Public Shared Function ShowWindow(ByVal hwnd As IntPtr,
-            <MarshalAs(UnmanagedType.I4)> ByVal windowState As WindowState
+            <MarshalAs(UnmanagedType.I4)> ByVal windowState As NativeWindowState
         ) As <MarshalAs(UnmanagedType.Bool)> Boolean
         End Function
         ''' ----------------------------------------------------------------------------------------------------
@@ -976,6 +976,229 @@ Namespace SmartBotKit.Interop.Win32
         Public Shared Function UnregisterHotKey(ByVal hwnd As IntPtr,
                                                 ByVal id As Integer
         ) As <MarshalAs(UnmanagedType.Bool)> Boolean
+        End Function
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Retrieves the name of the class to which the specified window belongs.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <remarks>
+        ''' <see href="https://msdn.microsoft.com/en-us/library/windows/desktop/ms633582(v=vs.85).aspx"/>
+        ''' </remarks>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <param name="hwnd">
+        ''' A handle to the window and, indirectly, the class to which the window belongs.
+        ''' </param>
+        ''' 
+        ''' <param name="className">
+        ''' The class name string. 
+        ''' </param>
+        ''' 
+        ''' <param name="maxCount">
+        ''' The length of the <paramref name="className"/> buffer, in characters. 
+        ''' <para></para>
+        ''' The buffer must be large enough to include the terminating null character; 
+        ''' otherwise, the class name string is truncated to <paramref name="maxCount"/>-1 characters. 
+        ''' </param>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <returns>
+        ''' If the function succeeds, the return value is the number of characters copied to the buffer, 
+        ''' not including the terminating null character.
+        ''' <para></para>
+        ''' If the function fails, the return value is <c>0</c>. 
+        ''' <para></para>
+        ''' To get extended error information, call <see cref="Marshal.GetLastWin32Error()"/>.
+        ''' </returns>
+        ''' ----------------------------------------------------------------------------------------------------
+        <SuppressMessage("Microsoft.Interoperability", "CA1401:PInvokesShouldNotBeVisible", Justification:="Visible for API users")>
+        <SuppressUnmanagedCodeSecurity>
+        <DllImport("User32.dll", CharSet:=CharSet.Auto, SetLastError:=True, BestFitMapping:=False, ThrowOnUnmappableChar:=True)>
+        Public Shared Function GetClassName(ByVal hwnd As IntPtr,
+                                            ByVal className As StringBuilder,
+                                            ByVal maxCount As Integer
+        ) As Integer
+        End Function
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Retrieves information about the specified window.
+        ''' <para></para>
+        ''' The function also retrieves the 32-bit (<c>DWORD</c>) value at the specified offset into the extra window memory.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <remarks>
+        ''' <see href="https://msdn.microsoft.com/en-us/library/windows/desktop/ms633584%28v=vs.85%29.aspx"/>
+        ''' </remarks>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <param name="hwnd">
+        ''' A handle to the window and, indirectly, the class to which the window belongs.
+        ''' </param>
+        ''' 
+        ''' <param name="flags">
+        ''' The zero-based offset to the value to be retrieved.
+        ''' <para></para>
+        ''' Valid values are in the range zero through the number of bytes of extra window memory, 
+        ''' minus the size of an integer.
+        ''' </param>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <returns>
+        ''' If the function succeeds, the return value is the requested value.
+        ''' <para></para>
+        ''' If the function fails, the return value is zero.
+        ''' <para></para>
+        ''' If SetWindowLong has not been called previously, 
+        ''' <see cref="GetWindowLong"/> returns zero for values in the extra window or class memory.
+        ''' <para></para>
+        ''' To get extended error information, call <see cref="Marshal.GetLastWin32Error()"/>. 
+        ''' </returns>
+        ''' ----------------------------------------------------------------------------------------------------
+        <SuppressMessage("Microsoft.Interoperability", "CA1401:PInvokesShouldNotBeVisible", Justification:="Visible for API users")>
+        <SuppressUnmanagedCodeSecurity>
+        <DllImport("User32.dll", EntryPoint:="GetWindowLong", SetLastError:=True)>
+        Public Shared Function GetWindowLong(ByVal hwnd As IntPtr,
+               <MarshalAs(UnmanagedType.I4)> ByVal flags As WindowLongFlags
+        ) As UInteger
+        End Function
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Retrieves information about the specified window.
+        ''' <para></para>
+        ''' The function also retrieves the value at a specified offset into the extra window memory.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <remarks>
+        ''' <see href="https://msdn.microsoft.com/en-us/library/windows/desktop/ms633585%28v=vs.85%29.aspx"/>
+        ''' </remarks>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <param name="hwnd">
+        ''' A handle to the window and, indirectly, the class to which the window belongs.
+        ''' </param>
+        ''' 
+        ''' <param name="flags">
+        ''' The zero-based offset to the value to be retrieved.
+        ''' <para></para>
+        ''' Valid values are in the range zero through the number of bytes of extra window memory, 
+        ''' minus the size of an integer
+        ''' </param>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <returns>
+        ''' If the function succeeds, the return value is the requested value.
+        ''' <para></para>
+        ''' If the function fails, the return value is zero.
+        ''' <para></para>
+        ''' If SetWindowLongPtr has not been called previously, 
+        ''' <see cref="GetWindowLongPtr"/> returns zero for values in the extra window or class memory.
+        ''' <para></para>
+        ''' To get extended error information, call <see cref="Marshal.GetLastWin32Error()"/>. 
+        ''' </returns>
+        ''' ----------------------------------------------------------------------------------------------------
+        <SuppressMessage("Microsoft.Interoperability", "CA1400:PInvokeEntryPointsShouldExist",
+          Justification:="Code-Analysis is 32-Bit so it only checks for the entrypoint in the user32.dll of the Win32 API.")>
+        <SuppressMessage("Microsoft.Interoperability", "CA1401:PInvokesShouldNotBeVisible", Justification:="Visible for API users")>
+        <SuppressUnmanagedCodeSecurity>
+        <DllImport("User32.dll", EntryPoint:="GetWindowLongPtr", SetLastError:=True)>
+        Public Shared Function GetWindowLongPtr(ByVal hwnd As IntPtr,
+                  <MarshalAs(UnmanagedType.I4)> ByVal flags As WindowLongFlags
+        ) As IntPtr
+        End Function
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Changes an attribute of the specified window.
+        ''' <para></para>
+        ''' The function also sets the 32-bit (<c>LONG</c>) value at the specified offset into the extra window memory.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <remarks>
+        ''' <see href="https://msdn.microsoft.com/en-us/library/windows/desktop/ms633591%28v=vs.85%29.aspx"/>
+        ''' </remarks>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <param name="hwnd">
+        ''' A handle to the window and, indirectly, the class to which the window belongs.
+        ''' </param>
+        ''' 
+        ''' <param name="flags">
+        ''' The zero-based offset to the value to be set. 
+        ''' <para></para>
+        ''' Valid values are in the range zero through the number of bytes of extra window memory, 
+        ''' minus the size of an integer.
+        ''' </param>
+        ''' 
+        ''' <param name="newLong">
+        ''' The replacement value.
+        ''' </param>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <returns>
+        ''' If the function succeeds, the return value is the previous value of the specified 32-bit integer.
+        ''' <para></para>
+        ''' If the function fails, the return value is zero.
+        ''' <para></para>
+        ''' If the previous value of the specified 32-bit integer is zero, 
+        ''' and the function succeeds, the return value is zero.
+        ''' <para></para>
+        ''' To get extended error information, call <see cref="Marshal.GetLastWin32Error()"/>. 
+        ''' </returns>
+        ''' ----------------------------------------------------------------------------------------------------
+        <SuppressMessage("Microsoft.Interoperability", "CA1401:PInvokesShouldNotBeVisible", Justification:="Visible for API users")>
+        <SuppressUnmanagedCodeSecurity>
+        <DllImport("User32.dll", EntryPoint:="SetWindowLong", SetLastError:=True)>
+        Public Shared Function SetWindowLong(ByVal hwnd As IntPtr,
+               <MarshalAs(UnmanagedType.I4)> ByVal flags As WindowLongFlags,
+                                             ByVal newLong As UInteger
+        ) As UInteger
+        End Function
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Changes an attribute of the specified window.
+        ''' <para></para>
+        ''' The function also sets a value at the specified offset in the extra window memory.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <remarks>
+        ''' <see href="https://msdn.microsoft.com/es-es/library/windows/desktop/ms644898%28v=vs.85%29.aspx"/>
+        ''' </remarks>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <param name="hwnd">
+        ''' A handle to the window and, indirectly, the class to which the window belongs.
+        ''' <para></para>
+        ''' The SetWindowLongPtr function fails if the process that owns the window specified by the 
+        ''' <paramref name="hwnd"/> parameter is at a higher process privilege in the 
+        ''' <c>UIPI</c> hierarchy than the process the calling thread resides in.
+        ''' </param>
+        ''' 
+        ''' <param name="flags">
+        ''' The zero-based offset to the value to be set. 
+        ''' <para></para>
+        ''' Valid values are in the range zero through the number of bytes of extra window memory, 
+        ''' minus the size of an integer.
+        ''' </param>
+        ''' 
+        ''' <param name="newLong">
+        ''' The replacement value.
+        ''' </param>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <returns>
+        ''' If the function succeeds, the return value is the previous value of the specified offset.
+        ''' <para></para>
+        ''' If the function fails, the return value is zero.
+        ''' <para></para>
+        ''' If the previous value is zero and the function succeeds, the return value is zero.
+        ''' <para></para>
+        ''' To get extended error information, call <see cref="Marshal.GetLastWin32Error()"/>. 
+        ''' </returns>
+        ''' ----------------------------------------------------------------------------------------------------
+        <SuppressMessage("Microsoft.Interoperability", "CA1400:PInvokeEntryPointsShouldExist",
+          Justification:="Code-Analysis is 32-Bit so it only checks for the entrypoint in the user32.dll of the Win32 API.")>
+        <SuppressMessage("Microsoft.Interoperability", "CA1401:PInvokesShouldNotBeVisible", Justification:="Visible for API users")>
+        <SuppressUnmanagedCodeSecurity>
+        <DllImport("User32.dll", EntryPoint:="SetWindowLongPtr", SetLastError:=True)>
+        Public Shared Function SetWindowLongPtr(ByVal hwnd As IntPtr,
+                  <MarshalAs(UnmanagedType.I4)> ByVal flags As WindowLongFlags,
+                                                ByVal newLong As IntPtr
+        ) As IntPtr
         End Function
 
 #End Region

@@ -295,14 +295,14 @@ Namespace SystemTrayIcon
             Dim placement As WindowPlacement
             NativeMethods.GetWindowPlacement(hwnd, placement)
 
-            Dim newWindowState As WindowState
+            Dim newWindowState As NativeWindowState
             Select Case placement.WindowState
-                Case WindowState.Minimize, WindowState.ForceMinimize, WindowState.ShowMinimized
-                    newWindowState = WindowState.Restore
-                Case WindowState.Maximize, WindowState.ShowMaximized
-                    newWindowState = WindowState.ShowMaximized
+                Case NativeWindowState.Minimize, NativeWindowState.ForceMinimize, NativeWindowState.ShowMinimized
+                    newWindowState = NativeWindowState.Restore
+                Case NativeWindowState.Maximize, NativeWindowState.ShowMaximized
+                    newWindowState = NativeWindowState.ShowMaximized
                 Case Else
-                    newWindowState = WindowState.Normal
+                    newWindowState = NativeWindowState.Normal
             End Select
 
             NativeMethods.ShowWindow(hwnd, newWindowState)
@@ -328,8 +328,8 @@ Namespace SystemTrayIcon
         Private Sub MenuItemHideHS_Click(ByVal sender As Object, ByVal e As EventArgs) Handles MenuItemHideHS.Click
 
             Try
-                NativeMethods.ShowWindow(HearthstoneUtil.Process.MainWindowHandle, WindowState.Hide)
-                Bot.Log(String.Format("[System Tray Icon] -> Hearthstone window state changed to: {0}", NameOf(WindowState.Hide)))
+                NativeMethods.ShowWindow(HearthstoneUtil.Process.MainWindowHandle, NativeWindowState.Hide)
+                Bot.Log(String.Format("[System Tray Icon] -> Hearthstone window state changed to: {0}", NameOf(NativeWindowState.Hide)))
 
             Catch ex As Exception
                 Bot.Log("[System Tray Icon] -> Failed to hide Hearthstone window.")
@@ -390,17 +390,17 @@ Namespace SystemTrayIcon
             NativeMethods.GetWindowPlacement(SmartBotUtil.Process.MainWindowHandle, placement)
 
             Select Case placement.WindowState
-                Case WindowState.Minimize, WindowState.ForceMinimize, WindowState.ShowMinimized
-                    NativeMethods.ShowWindow(SmartBotUtil.Process.MainWindowHandle, WindowState.Restore)
-                    Bot.Log(String.Format("[System Tray Icon] -> SmartBot window state changed to: {0}", NameOf(WindowState.Restore)))
+                Case NativeWindowState.Minimize, NativeWindowState.ForceMinimize, NativeWindowState.ShowMinimized
+                    NativeMethods.ShowWindow(SmartBotUtil.Process.MainWindowHandle, NativeWindowState.Restore)
+                    Bot.Log(String.Format("[System Tray Icon] -> SmartBot window state changed to: {0}", NameOf(NativeWindowState.Restore)))
 
-                Case WindowState.Maximize, WindowState.ShowMaximized
-                    NativeMethods.ShowWindow(SmartBotUtil.Process.MainWindowHandle, WindowState.ShowMaximized)
-                    Bot.Log(String.Format("[System Tray Icon] -> SmartBot window state changed to: {0}", NameOf(WindowState.ShowMaximized)))
+                Case NativeWindowState.Maximize, NativeWindowState.ShowMaximized
+                    NativeMethods.ShowWindow(SmartBotUtil.Process.MainWindowHandle, NativeWindowState.ShowMaximized)
+                    Bot.Log(String.Format("[System Tray Icon] -> SmartBot window state changed to: {0}", NameOf(NativeWindowState.ShowMaximized)))
 
                 Case Else
-                    NativeMethods.ShowWindow(SmartBotUtil.Process.MainWindowHandle, WindowState.Normal)
-                    Bot.Log(String.Format("[System Tray Icon] -> SmartBot window state changed to: {0}", NameOf(WindowState.Normal)))
+                    NativeMethods.ShowWindow(SmartBotUtil.Process.MainWindowHandle, NativeWindowState.Normal)
+                    Bot.Log(String.Format("[System Tray Icon] -> SmartBot window state changed to: {0}", NameOf(NativeWindowState.Normal)))
 
             End Select
             NativeMethods.SetForegroundWindow(SmartBotUtil.Process.MainWindowHandle) ' Bring window to top and avtivate input.
@@ -423,9 +423,9 @@ Namespace SystemTrayIcon
         <DebuggerStepThrough>
         Private Sub MenuItemHideSB_Click(ByVal sender As Object, ByVal e As EventArgs) Handles MenuItemHideSB.Click
 
-            NativeMethods.ShowWindow(SmartBotUtil.Process.MainWindowHandle, WindowState.Hide)
+            NativeMethods.ShowWindow(SmartBotUtil.Process.MainWindowHandle, NativeWindowState.Hide)
 
-            Bot.Log(String.Format("[System Tray Icon] -> SmartBot window state changed to: {0}", NameOf(WindowState.Hide)))
+            Bot.Log(String.Format("[System Tray Icon] -> SmartBot window state changed to: {0}", NameOf(NativeWindowState.Hide)))
 
         End Sub
 

@@ -1,5 +1,4 @@
-﻿
-#Region " Option Statements "
+﻿#Region " Option Statements "
 
 Option Strict On
 Option Explicit On

@@ -77,6 +77,8 @@ Namespace ChallengeNotifier
         ''' ----------------------------------------------------------------------------------------------------
         Private lastEnabled As Boolean
 
+        Private currentScreenshot As Image
+
 #If DEBUG Then
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
@@ -182,6 +184,7 @@ Namespace ChallengeNotifier
 
                 If (Me.stopWatch.Elapsed.TotalSeconds >= Me.DataContainer.Interval) Then
                     Me.stopWatch.Reset()
+                    Me.UpdateScreenshot()
                     If Me.IsGoldChallengeDetected() Then
                         Me.NotifyNewChallenge(True)
                         Thread.Sleep(TimeSpan.FromSeconds(60)) ' A break of 60 seconds to avoid detecting the same challenge invitation.
@@ -204,6 +207,73 @@ Namespace ChallengeNotifier
 #End Region
 
 #Region " Private Methods "
+
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Takes a screenshot of Hearthstone window.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        Private Sub UpdateScreenshot()
+
+            Dim p As Process = HearthstoneUtil.Process
+            If (p Is Nothing) OrElse (p.HasExited) Then
+                Exit Sub
+            End If
+
+            If Not NativeMethods.IsWindowVisible(p.MainWindowHandle) Then
+                Exit Sub
+            End If
+
+            Dim currentWindowSize As Size = HearthstoneUtil.WindowSize
+            If ChallengeNotifierPluginData.SupportedResolutions.ContainsKey(currentWindowSize) Then
+                Dim pixelFormat As PixelFormat = PixelFormat.Format24bppRgb
+                If Me.currentScreenshot IsNot Nothing Then
+                    Me.currentScreenshot.Dispose()
+                    Me.currentScreenshot = Nothing
+                End If
+                Me.currentScreenshot = ImageUtil.TakeScreenshotFromObject(p.MainWindowHandle, pixelFormat)
+
+#If DEBUG Then
+                If (Me.DataContainer.SaveScreenshots) Then
+                    If Not Me.screenshotsDir.Exists Then
+                        Me.screenshotsDir.Create()
+                    End If
+
+                    Dim aspectRatio As Point = ChallengeNotifierPluginData.SupportedResolutions(currentWindowSize)
+                    Dim captureInfoNormal As ImageCaptureInfo = Me.AspectRatioDictNormalChallenge(aspectRatio).Scale(currentWindowSize)
+                    Dim captureInfoGold As ImageCaptureInfo = Me.AspectRatioDictGoldChallenge(aspectRatio).Scale(currentWindowSize)
+                    Dim sizeFormat As String = String.Format("{0}x{1}", captureInfoNormal.Resolution.Width, captureInfoNormal.Resolution.Height)
+                    Dim resourceNameFormat As String = String.Format("challenge_{0}", sizeFormat)
+                    Dim similarity As Double = 85.0R
+                    Dim numericSuffix As String = Interlocked.Increment(Me.screenshotCount).ToString().PadLeft(5, "0"c)
+                    Dim screenshotFilenameformat As String = String.Format("Screenshot_{0}_{1}.bmp", sizeFormat, numericSuffix)
+                    Dim croppedRegionFilenameformatNormal As String = String.Format("CroppedRegion_Normal_{0}_{1}.bmp", sizeFormat, numericSuffix)
+                    Dim croppedRegionFilenameformatGold As String = String.Format("CroppedRegion_Gold_{0}_{1}.bmp", sizeFormat, numericSuffix)
+
+                    ' Save full screenshot.
+                    Me.currentScreenshot.Save(Path.Combine(Me.screenshotsDir.FullName, screenshotFilenameformat), ImageFormat.Bmp)
+
+                    ' Save cropped region of normal challenge.
+                    Using croppedRegionNormal As Image = Extensions.ImageExtensions.Crop(Me.currentScreenshot, captureInfoNormal.CaptureRectangle)
+                        croppedRegionNormal.Save(Path.Combine(Me.screenshotsDir.FullName, croppedRegionFilenameformatNormal), ImageFormat.Bmp)
+                    End Using
+
+                    ' Save cropped region of 80 gold challenge.
+                    Using croppedRegionGold As Image = Extensions.ImageExtensions.Crop(Me.currentScreenshot, captureInfoGold.CaptureRectangle)
+                        croppedRegionGold.Save(Path.Combine(Me.screenshotsDir.FullName, croppedRegionFilenameformatGold), ImageFormat.Bmp)
+                    End Using
+
+                    Bot.Log("[Challenge Notifier] -> Screenshot Saved. ")
+
+                End If
+#End If
+            Else
+                Exit Sub
+
+            End If
+
+        End Sub
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
@@ -231,30 +301,13 @@ Namespace ChallengeNotifier
 
                 Dim aspectRatio As Point = ChallengeNotifierPluginData.SupportedResolutions(currentWindowSize)
                 Dim captureInfo As ImageCaptureInfo = Me.AspectRatioDictNormalChallenge(aspectRatio).Scale(currentWindowSize)
-
                 Dim sizeFormat As String = String.Format("{0}x{1}", captureInfo.Resolution.Width, captureInfo.Resolution.Height)
                 Dim resourceNameFormat As String = String.Format("challenge_{0}", sizeFormat)
-                Dim pixelFormat As PixelFormat = PixelFormat.Format24bppRgb
                 Dim similarity As Double = 85.0R
 
                 Using findImage As Image = DirectCast(My.Resources.ResourceManager.GetObject(resourceNameFormat), Image),
-                      screenshot As Image = ImageUtil.TakeScreenshotFromObject(p.MainWindowHandle, pixelFormat),
-                      croppedRegion As Image = Extensions.ImageExtensions.Crop(screenshot, captureInfo.CaptureRectangle)
-#If DEBUG Then
-                    If (Me.DataContainer.SaveScreenshots) Then
-                        If Not Me.screenshotsDir.Exists Then
-                            Me.screenshotsDir.Create()
-                        End If
+                      croppedRegion As Image = Extensions.ImageExtensions.Crop(Me.currentScreenshot, captureInfo.CaptureRectangle)
 
-                        Dim numericSuffix As String = Interlocked.Increment(Me.screenshotCount).ToString().PadLeft(5, "0"c)
-                        Dim screenshotFilenameformat As String = String.Format("Screenshot_Normal_{0}_{1}.bmp", sizeFormat, numericSuffix)
-                        Dim croppedRegionFilenameformat As String = String.Format("CroppedRegion_Normal_{0}_{1}.bmp", sizeFormat, numericSuffix)
-
-                        Bot.Log("[Challenge Notifier] -> Screenshot Saved. ")
-                        screenshot.Save(Path.Combine(Me.screenshotsDir.FullName, screenshotFilenameformat), ImageFormat.Bmp)
-                        croppedRegion.Save(Path.Combine(Me.screenshotsDir.FullName, croppedRegionFilenameformat), ImageFormat.Bmp)
-                    End If
-#End If
                     Dim matches As TemplateMatch() = AForgeUtil.MatchImage(croppedRegion, findImage, similarity)
 #If DEBUG Then
                     For Each match As TemplateMatch In matches
@@ -298,30 +351,13 @@ Namespace ChallengeNotifier
 
                 Dim aspectRatio As Point = ChallengeNotifierPluginData.SupportedResolutions(currentWindowSize)
                 Dim captureInfo As ImageCaptureInfo = Me.AspectRatioDictGoldChallenge(aspectRatio).Scale(currentWindowSize)
-
                 Dim sizeFormat As String = String.Format("{0}x{1}", captureInfo.Resolution.Width, captureInfo.Resolution.Height)
                 Dim resourceNameFormat As String = String.Format("gold_{0}", sizeFormat)
-                Dim pixelFormat As PixelFormat = PixelFormat.Format24bppRgb
                 Dim similarity As Double = 85.0R
 
                 Using findImage As Image = DirectCast(My.Resources.ResourceManager.GetObject(resourceNameFormat), Image),
-                      screenshot As Image = ImageUtil.TakeScreenshotFromObject(p.MainWindowHandle, pixelFormat),
-                      croppedRegion As Image = Extensions.ImageExtensions.Crop(screenshot, captureInfo.CaptureRectangle)
-#If DEBUG Then
-                    If (Me.DataContainer.SaveScreenshots) Then
-                        If Not Me.screenshotsDir.Exists Then
-                            Me.screenshotsDir.Create()
-                        End If
+                      croppedRegion As Image = Extensions.ImageExtensions.Crop(Me.currentScreenshot, captureInfo.CaptureRectangle)
 
-                        Dim numericSuffix As String = Interlocked.Increment(Me.screenshotCount).ToString().PadLeft(5, "0"c)
-                        Dim screenshotFilenameformat As String = String.Format("Screenshot_Gold_{0}_{1}.bmp", sizeFormat, numericSuffix)
-                        Dim croppedRegionFilenameformat As String = String.Format("CroppedRegion_Gold_{0}_{1}.bmp", sizeFormat, numericSuffix)
-
-                        Bot.Log("[Challenge Notifier] -> Screenshot Saved. ")
-                        screenshot.Save(Path.Combine(Me.screenshotsDir.FullName, screenshotFilenameformat), ImageFormat.Bmp)
-                        croppedRegion.Save(Path.Combine(Me.screenshotsDir.FullName, croppedRegionFilenameformat), ImageFormat.Bmp)
-                    End If
-#End If
                     Dim matches As TemplateMatch() = AForgeUtil.MatchImage(croppedRegion, findImage, similarity)
 #If DEBUG Then
                     For Each match As TemplateMatch In matches
@@ -365,7 +401,7 @@ Namespace ChallengeNotifier
             End If
 
             If (Me.DataContainer.SetHearthstoneWindowMaximized) Then
-                NativeMethods.ShowWindow(p.MainWindowHandle, WindowState.Maximize)
+                NativeMethods.ShowWindow(p.MainWindowHandle, NativeWindowState.Maximize)
             End If
 
             If (Me.DataContainer.SetHearthstoneWindowToForeground) Then

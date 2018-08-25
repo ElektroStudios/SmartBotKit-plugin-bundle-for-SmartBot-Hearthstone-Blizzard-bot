@@ -59,7 +59,7 @@ Namespace SmartBotKit.Interop.Win32
         ''' The current show state of the window.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        Public WindowState As WindowState
+        Public WindowState As NativeWindowState
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>

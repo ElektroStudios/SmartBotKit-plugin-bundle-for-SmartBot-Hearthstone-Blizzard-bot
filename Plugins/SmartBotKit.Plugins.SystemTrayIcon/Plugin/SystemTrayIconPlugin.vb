@@ -161,8 +161,12 @@ Namespace SystemTrayIcon
         Private Sub DeinitializeThread()
             If (HearthstoneUtil.Process IsNot Nothing) Then
                 Try
-                    NativeMethods.ShowWindow(HearthstoneUtil.Process.MainWindowHandle, WindowState.ShowDefault)
-                    Bot.Log(String.Format("[System Tray Icon] -> Hearthstone window state changed to: {0}", NameOf(WindowState.ShowDefault)))
+                    Dim isHSWindowVisible As Boolean = NativeMethods.IsWindowVisible(HearthstoneUtil.Process.MainWindowHandle)
+
+                    If Not (isHSWindowVisible) Then
+                        NativeMethods.ShowWindow(HearthstoneUtil.Process.MainWindowHandle, NativeWindowState.ShowDefault)
+                    End If
+                    Bot.Log(String.Format("[System Tray Icon] -> Hearthstone window state changed to: {0}", NameOf(NativeWindowState.ShowDefault)))
 
                 Catch ex As Exception
                     Bot.Log("[System Tray Icon] -> Failed to restore Hearthstone window.")

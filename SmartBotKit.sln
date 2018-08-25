@@ -37,7 +37,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libs", "Libs", "{C2DE6C59-D
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Bounty Hunter", "Plugins\SmartBotKit.Plugins.BountyHunter\Bounty Hunter.vbproj", "{0B45AA94-8329-474A-AFAC-0B924AF88D34}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "AutoInjector", "Plugins\SmartBotKit.Plugins.AutoInjector\AutoInjector.vbproj", "{17E1B7CD-D074-4074-89F2-4B86FF1631E9}"
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Auto-Injector", "Plugins\SmartBotKit.Plugins.AutoInjector\Auto-Injector.vbproj", "{17E1B7CD-D074-4074-89F2-4B86FF1631E9}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "PlayVIG Adverts Remover", "Plugins\SmartBotKit.Plugins.PlayVIGAdvertRemover\PlayVIG Adverts Remover.vbproj", "{1B212330-E50E-4CCC-99CB-FEB9087DCC6D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -104,6 +106,10 @@ Global
 		{17E1B7CD-D074-4074-89F2-4B86FF1631E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{17E1B7CD-D074-4074-89F2-4B86FF1631E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{17E1B7CD-D074-4074-89F2-4B86FF1631E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B212330-E50E-4CCC-99CB-FEB9087DCC6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B212330-E50E-4CCC-99CB-FEB9087DCC6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B212330-E50E-4CCC-99CB-FEB9087DCC6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B212330-E50E-4CCC-99CB-FEB9087DCC6D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -124,6 +130,7 @@ Global
 		{5CD69219-D481-4F0C-942E-788870E3D480} = {ECD22E5A-F16D-43F0-9695-F9DDEA5C4DE6}
 		{0B45AA94-8329-474A-AFAC-0B924AF88D34} = {32CB3DF2-0E1F-4950-81E7-323D962471DE}
 		{17E1B7CD-D074-4074-89F2-4B86FF1631E9} = {32CB3DF2-0E1F-4950-81E7-323D962471DE}
+		{1B212330-E50E-4CCC-99CB-FEB9087DCC6D} = {32CB3DF2-0E1F-4950-81E7-323D962471DE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C1877C6E-9D64-4AEB-BE15-B0EA86B66D86}

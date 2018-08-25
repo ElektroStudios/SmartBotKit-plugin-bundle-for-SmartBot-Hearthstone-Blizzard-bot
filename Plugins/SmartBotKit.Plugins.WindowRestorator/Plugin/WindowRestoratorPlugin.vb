@@ -94,7 +94,7 @@ Namespace WindowRestorator
                 Me.RestoreWindowPlacement()
                 '#If DEBUG Then
                 Select Case Me.DataContainer.WindowState
-                    Case WindowState.Maximize, WindowState.ShowMaximized
+                    Case NativeWindowState.Maximize, NativeWindowState.ShowMaximized
                         Bot.Log(String.Format("[Window Restorator] -> {0}",
                                               Me.DataContainer.WindowState.ToString()))
 
@@ -185,13 +185,13 @@ Namespace WindowRestorator
 #Enable Warning IDE0009 ' Member access should be qualified.
 
             Select Case wpl.WindowState
-                Case WindowState.ForceMinimize, WindowState.Minimize,
-                     WindowState.ShowMinimized, WindowState.ShowMinNoActive,
-                     WindowState.Hide
+                Case NativeWindowState.ForceMinimize, NativeWindowState.Minimize,
+                     NativeWindowState.ShowMinimized, NativeWindowState.ShowMinNoActive,
+                     NativeWindowState.Hide
 
                     ' This is because we don't want to set the window minimized or hidden when restoring it.
-                    wpl.WindowState = WindowState.Normal
-                    Me.DataContainer.WindowState = WindowState.Normal
+                    wpl.WindowState = NativeWindowState.Normal
+                    Me.DataContainer.WindowState = NativeWindowState.Normal
 
                 Case Else
                     ' Do nothing.

@@ -66,6 +66,13 @@ Namespace BountyHunter
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
+        ''' Keeps track of the decks selected before started to questing.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        Private lastNormalSelectedDeckNames As IEnumerable(Of String) = Nothing
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
         ''' Keeps track of the last deck name used before started to questing.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
@@ -157,6 +164,7 @@ Namespace BountyHunter
         Public Overrides Sub OnStarted()
             If (Me.DataContainer.Enabled) Then
                 Me.lastNormalBotMode = Bot.CurrentMode()
+                Me.lastNormalSelectedDeckNames = (From deck As Deck In Bot.GetSelectedDecks() Select deck.Name)
                 Me.lastNormalDeckName = Bot.CurrentDeck().Name
                 Me.ChooseNextMode()
             End If
@@ -208,6 +216,7 @@ Namespace BountyHunter
                     If (Me.DataContainer.LadderModeAutoStop) AndAlso (Bot.IsBotRunning()) Then
                         Bot.Log("[Bounty Hunter] -> Ladder Mode, auto-finishing bot...")
                         Bot.Finish()
+                        Me.RestoreNormalSettings()
                     End If
 
                 End If
@@ -299,6 +308,7 @@ Namespace BountyHunter
                     If (Me.DataContainer.LadderModeAutoStop) AndAlso (Bot.IsBotRunning()) Then
                         Bot.Log("[Bounty Hunter] -> Ladder Mode, auto-finishing bot...")
                         Bot.Finish()
+                        Me.RestoreNormalSettings()
                     End If
 
                 End If
@@ -450,8 +460,14 @@ Namespace BountyHunter
                 Exit Sub
             End If
 
-            If (Bot.CurrentMode <> Me.lastNormalBotMode) OrElse (Bot.CurrentDeck?.Name <> Me.lastNormalDeckName) Then
+            If (Bot.CurrentMode <> Me.lastNormalBotMode) OrElse
+               (Bot.CurrentDeck?.Name <> Me.lastNormalDeckName) OrElse
+               (Bot.GetSelectedDecks?.Count <> Me.lastNormalSelectedDeckNames?.Count) Then
+
                 Bot.ChangeMode(Me.lastNormalBotMode)
+                'For Each deckName As String In Me.lastNormalSelectedDeckNames
+                '    Bot.ChangeDeck(deckName)
+                'Next
                 Bot.ChangeDeck(Me.lastNormalDeckName)
 
                 Me.lastNormalBotMode = Bot.CurrentMode

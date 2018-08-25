@@ -25,7 +25,7 @@ Namespace AutoInjector
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>
-    ''' A plugin that automate SmartBot injection to Hearthstone process.
+    ''' A plugin that automate SmartBot injection when Hearthstone process is detected.
     ''' </summary>
     ''' ----------------------------------------------------------------------------------------------------
     ''' <seealso cref="Plugin"/>
@@ -102,7 +102,7 @@ Namespace AutoInjector
         Public Overrides Sub OnPluginCreated()
             Me.lastEnabled = Me.DataContainer.Enabled
             If (Me.lastEnabled) Then
-                Bot.Log("[Auto Injector] -> Plugin initialized.")
+                Bot.Log("[Auto-Injector] -> Plugin initialized.")
             End If
             Me.stopWatch.Start()
             MyBase.OnPluginCreated()
@@ -118,10 +118,10 @@ Namespace AutoInjector
             If (enabled <> Me.lastEnabled) Then
                 If (enabled) Then
                     Me.stopWatch.Restart()
-                    Bot.Log("[Auto Injector] -> Plugin enabled.")
+                    Bot.Log("[Auto-Injector] -> Plugin enabled.")
                 Else
                     Me.stopWatch.Reset()
-                    Bot.Log("[Auto Injector] -> Plugin disabled.")
+                    Bot.Log("[Auto-Injector] -> Plugin disabled.")
                 End If
                 Me.lastEnabled = enabled
             End If
@@ -134,16 +134,16 @@ Namespace AutoInjector
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Public Overrides Sub OnInjection()
-            MyBase.OnInjection()
             Me.lastHsPid = HearthstoneUtil.Process?.Id
             Bot.StopRelogger()
             If (Me.DataContainer.AutoStartBotAfterInjected) Then
-                Bot.Log("[Auto Injector] -> Auto-resuming bot...")
                 Thread.Sleep(TimeSpan.FromSeconds(5))
                 If Not (Bot.IsBotRunning()) Then
+                    Bot.Log("[Auto-Injector] -> Auto-resuming bot...")
                     Bot.StartBot()
                 End If
             End If
+            MyBase.OnInjection()
         End Sub
 
         ''' ----------------------------------------------------------------------------------------------------
@@ -152,8 +152,8 @@ Namespace AutoInjector
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Public Overrides Sub OnStarted()
-            MyBase.OnStarted()
             Me.lastHsPid = HearthstoneUtil.Process?.Id
+            MyBase.OnStarted()
         End Sub
 
         ''' ----------------------------------------------------------------------------------------------------
@@ -176,7 +176,7 @@ Namespace AutoInjector
                         Dim hsProcess As Process = HearthstoneUtil.Process
                         If (hsProcess IsNot Nothing) AndAlso (hsProcess.Id <> Me.lastHsPid.GetValueOrDefault()) Then
                             Me.lastHsPid = hsProcess?.Id
-                            Bot.Log("[Auto Injector] -> Waiting to inject Hearthstone...")
+                            Bot.Log("[Auto-Injector] -> Waiting to inject Hearthstone...")
                             Bot.StartRelogger()
                         End If
                     End If

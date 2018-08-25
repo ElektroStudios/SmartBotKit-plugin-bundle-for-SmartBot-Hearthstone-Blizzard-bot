@@ -198,9 +198,9 @@ Namespace HearthstoneResizer
             End If
 
             Select Case HearthstoneUtil.WindowPlacement.WindowState
-                Case WindowState.ForceMinimize, WindowState.Hide,
-                 WindowState.Maximize, WindowState.Minimize,
-                 WindowState.ShowMaximized, WindowState.ShowMinimized
+                Case NativeWindowState.ForceMinimize, NativeWindowState.Hide,
+                 NativeWindowState.Maximize, NativeWindowState.Minimize,
+                 NativeWindowState.ShowMaximized, NativeWindowState.ShowMinimized
                     ' Ignore all.
 
                 Case Else

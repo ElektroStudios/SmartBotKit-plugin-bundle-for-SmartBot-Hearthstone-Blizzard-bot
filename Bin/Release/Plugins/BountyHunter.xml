@@ -1,0 +1,1153 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+BountyHunter
+</name>
+</assembly>
+<members>
+<member name="T:SmartBotKit.Plugins.My.Resources.Resources">
+<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member>
+<member name="P:SmartBotKit.Plugins.My.Resources.Resources.ResourceManager">
+<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member>
+<member name="P:SmartBotKit.Plugins.My.Resources.Resources.Culture">
+<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member>
+<member name="T:SmartBotKit.Plugins.BountyHunter.LadderModeSource">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Provides the collection of values represented by a ComboBox for the <see cref="P:SmartBotKit.Plugins.BountyHunter.BountyHunterPluginData.LadderMode"/> property.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <seealso cref="T:Xceed.Wpf.Toolkit.PropertyGrid.Attributes.IItemsSource"/>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.BountyHunter.LadderModeSource.#ctor">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Initializes a new instance of the <see cref="T:SmartBotKit.Plugins.BountyHunter.LadderModeSource"/> class.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.BountyHunter.LadderModeSource.GetValues">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the collection of values.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <returns>
+ The resulting <see cref="T:Xceed.Wpf.Toolkit.PropertyGrid.Attributes.ItemCollection"/>.
+ </returns>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="T:SmartBotKit.Plugins.BountyHunter.LevelModeSource">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Provides the collection of values represented by a ComboBox for the <see cref="P:SmartBotKit.Plugins.BountyHunter.BountyHunterPluginData.LevelMode"/> property.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <seealso cref="T:Xceed.Wpf.Toolkit.PropertyGrid.Attributes.IItemsSource"/>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.BountyHunter.LevelModeSource.#ctor">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Initializes a new instance of the <see cref="T:SmartBotKit.Plugins.BountyHunter.LevelModeSource"/> class.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.BountyHunter.LevelModeSource.GetValues">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the collection of values.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <returns>
+ The resulting <see cref="T:Xceed.Wpf.Toolkit.PropertyGrid.Attributes.ItemCollection"/>.
+ </returns>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="T:SmartBotKit.Plugins.BountyHunter.QuestModeSource">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Provides the collection of values represented by a ComboBox for the <see cref="P:SmartBotKit.Plugins.BountyHunter.BountyHunterPluginData.QuestMode"/> property.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <seealso cref="T:Xceed.Wpf.Toolkit.PropertyGrid.Attributes.IItemsSource"/>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.BountyHunter.QuestModeSource.#ctor">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Initializes a new instance of the <see cref="T:SmartBotKit.Plugins.BountyHunter.QuestModeSource"/> class.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.BountyHunter.QuestModeSource.GetValues">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the collection of values.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <returns>
+ The resulting <see cref="T:Xceed.Wpf.Toolkit.PropertyGrid.Attributes.ItemCollection"/>.
+ </returns>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="T:SmartBotKit.Plugins.BountyHunter.DeckSource">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Provides the collection of values represented by a ComboBox for the <see cref="P:SmartBotKit.Plugins.BountyHunter.BountyHunterPluginData.LadderPreferredDeck"/> property.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <seealso cref="T:Xceed.Wpf.Toolkit.PropertyGrid.Attributes.IItemsSource"/>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.BountyHunter.DeckSource.#ctor">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Initializes a new instance of the <see cref="T:SmartBotKit.Plugins.BountyHunter.DeckSource"/> class.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.BountyHunter.DeckSource.GetValues">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the collection of values.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <returns>
+ The resulting <see cref="T:Xceed.Wpf.Toolkit.PropertyGrid.Attributes.ItemCollection"/>.
+ </returns>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="T:SmartBotKit.Plugins.BountyHunter.DeckSourceWarlock">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Provides the collection of values represented by a ComboBox for the <see cref="P:SmartBotKit.Plugins.BountyHunter.BountyHunterPluginData.DeckWarlock"/> property.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <seealso cref="T:Xceed.Wpf.Toolkit.PropertyGrid.Attributes.IItemsSource"/>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.BountyHunter.DeckSourceWarlock.#ctor">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Initializes a new instance of the <see cref="T:SmartBotKit.Plugins.BountyHunter.DeckSourceWarlock"/> class.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.BountyHunter.DeckSourceWarlock.GetValues">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the collection of values.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <returns>
+ The resulting <see cref="T:Xceed.Wpf.Toolkit.PropertyGrid.Attributes.ItemCollection"/>.
+ </returns>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="T:SmartBotKit.Plugins.BountyHunter.DeckSourceWarrior">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Provides the collection of values represented by a ComboBox for the <see cref="P:SmartBotKit.Plugins.BountyHunter.BountyHunterPluginData.DeckWarrior"/> property.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <seealso cref="T:Xceed.Wpf.Toolkit.PropertyGrid.Attributes.IItemsSource"/>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.BountyHunter.DeckSourceWarrior.#ctor">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Initializes a new instance of the <see cref="T:SmartBotKit.Plugins.BountyHunter.DeckSourceWarrior"/> class.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.BountyHunter.DeckSourceWarrior.GetValues">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the collection of values.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <returns>
+ The resulting <see cref="T:Xceed.Wpf.Toolkit.PropertyGrid.Attributes.ItemCollection"/>.
+ </returns>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="T:SmartBotKit.Plugins.BountyHunter.DeckSourcePaladin">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Provides the collection of values represented by a ComboBox for the <see cref="P:SmartBotKit.Plugins.BountyHunter.BountyHunterPluginData.DeckPaladin"/> property.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <seealso cref="T:Xceed.Wpf.Toolkit.PropertyGrid.Attributes.IItemsSource"/>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.BountyHunter.DeckSourcePaladin.#ctor">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Initializes a new instance of the <see cref="T:SmartBotKit.Plugins.BountyHunter.DeckSourcePaladin"/> class.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.BountyHunter.DeckSourcePaladin.GetValues">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the collection of values.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <returns>
+ The resulting <see cref="T:Xceed.Wpf.Toolkit.PropertyGrid.Attributes.ItemCollection"/>.
+ </returns>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="T:SmartBotKit.Plugins.BountyHunter.DeckSourcePriest">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Provides the collection of values represented by a ComboBox for the <see cref="P:SmartBotKit.Plugins.BountyHunter.BountyHunterPluginData.DeckPriest"/> property.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <seealso cref="T:Xceed.Wpf.Toolkit.PropertyGrid.Attributes.IItemsSource"/>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.BountyHunter.DeckSourcePriest.#ctor">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Initializes a new instance of the <see cref="T:SmartBotKit.Plugins.BountyHunter.DeckSourcePriest"/> class.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.BountyHunter.DeckSourcePriest.GetValues">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the collection of values.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <returns>
+ The resulting <see cref="T:Xceed.Wpf.Toolkit.PropertyGrid.Attributes.ItemCollection"/>.
+ </returns>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="T:SmartBotKit.Plugins.BountyHunter.DeckSourceRogue">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Provides the collection of values represented by a ComboBox for the <see cref="P:SmartBotKit.Plugins.BountyHunter.BountyHunterPluginData.DeckRogue"/> property.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <seealso cref="T:Xceed.Wpf.Toolkit.PropertyGrid.Attributes.IItemsSource"/>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.BountyHunter.DeckSourceRogue.#ctor">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Initializes a new instance of the <see cref="T:SmartBotKit.Plugins.BountyHunter.DeckSourceRogue"/> class.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.BountyHunter.DeckSourceRogue.GetValues">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the collection of values.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <returns>
+ The resulting <see cref="T:Xceed.Wpf.Toolkit.PropertyGrid.Attributes.ItemCollection"/>.
+ </returns>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="T:SmartBotKit.Plugins.BountyHunter.DeckSourceShaman">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Provides the collection of values represented by a ComboBox for the <see cref="P:SmartBotKit.Plugins.BountyHunter.BountyHunterPluginData.DeckShaman"/> property.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <seealso cref="T:Xceed.Wpf.Toolkit.PropertyGrid.Attributes.IItemsSource"/>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.BountyHunter.DeckSourceShaman.#ctor">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Initializes a new instance of the <see cref="T:SmartBotKit.Plugins.BountyHunter.DeckSourceShaman"/> class.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.BountyHunter.DeckSourceShaman.GetValues">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the collection of values.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <returns>
+ The resulting <see cref="T:Xceed.Wpf.Toolkit.PropertyGrid.Attributes.ItemCollection"/>.
+ </returns>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="T:SmartBotKit.Plugins.BountyHunter.DeckSourceHunter">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Provides the collection of values represented by a ComboBox for the <see cref="P:SmartBotKit.Plugins.BountyHunter.BountyHunterPluginData.DeckHunter"/> property.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <seealso cref="T:Xceed.Wpf.Toolkit.PropertyGrid.Attributes.IItemsSource"/>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.BountyHunter.DeckSourceHunter.#ctor">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Initializes a new instance of the <see cref="T:SmartBotKit.Plugins.BountyHunter.DeckSourceHunter"/> class.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.BountyHunter.DeckSourceHunter.GetValues">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the collection of values.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <returns>
+ The resulting <see cref="T:Xceed.Wpf.Toolkit.PropertyGrid.Attributes.ItemCollection"/>.
+ </returns>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="T:SmartBotKit.Plugins.BountyHunter.DeckSourceDruid">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Provides the collection of values represented by a ComboBox for the <see cref="P:SmartBotKit.Plugins.BountyHunter.BountyHunterPluginData.DeckDruid"/> property.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <seealso cref="T:Xceed.Wpf.Toolkit.PropertyGrid.Attributes.IItemsSource"/>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.BountyHunter.DeckSourceDruid.#ctor">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Initializes a new instance of the <see cref="T:SmartBotKit.Plugins.BountyHunter.DeckSourceDruid"/> class.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.BountyHunter.DeckSourceDruid.GetValues">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the collection of values.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <returns>
+ The resulting <see cref="T:Xceed.Wpf.Toolkit.PropertyGrid.Attributes.ItemCollection"/>.
+ </returns>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="T:SmartBotKit.Plugins.BountyHunter.DeckSourceMage">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Provides the collection of values represented by a ComboBox for the <see cref="P:SmartBotKit.Plugins.BountyHunter.BountyHunterPluginData.DeckMage"/> property.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <seealso cref="T:Xceed.Wpf.Toolkit.PropertyGrid.Attributes.IItemsSource"/>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.BountyHunter.DeckSourceMage.#ctor">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Initializes a new instance of the <see cref="T:SmartBotKit.Plugins.BountyHunter.DeckSourceMage"/> class.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.BountyHunter.DeckSourceMage.GetValues">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the collection of values.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <returns>
+ The resulting <see cref="T:Xceed.Wpf.Toolkit.PropertyGrid.Attributes.ItemCollection"/>.
+ </returns>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="T:SmartBotKit.Plugins.BountyHunter.BountyHunterPluginData">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Plugin data for <see cref="T:SmartBotKit.Plugins.BountyHunter.BountyHunterPlugin"/> plugin class.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <seealso cref="T:SmartBot.Plugins.PluginDataContainer"/>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.BountyHunter.BountyHunterPluginData.AssemblyInfo">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the <see cref="T:Microsoft.VisualBasic.ApplicationServices.AssemblyInfo"/> for this assembly.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.BountyHunter.BountyHunterPluginData.AssemblyName">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the assembly name.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.BountyHunter.BountyHunterPluginData.Description">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the plugin description.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.BountyHunter.BountyHunterPluginData.Version">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets a value that determine whether the plugin should delete log files.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.BountyHunter.BountyHunterPluginData.EnableQuestCompletion">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets or sets a value that determine whether the plugin should do quests.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.BountyHunter.BountyHunterPluginData.QuestMode">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets or sets the bot mode for questing.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.BountyHunter.BountyHunterPluginData.Reroll50GoldQuests">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets or sets a value that determine whether 50 gold quests should be reroll.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.BountyHunter.BountyHunterPluginData.RerollUnfulfillableQuests">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets or sets a value that determine whether unfulfillable quests should be reroll.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.BountyHunter.BountyHunterPluginData.KeepQuestWatchAndLearn">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets or sets a value that determine whether "Watch and Learn!" quest should be kept.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.BountyHunter.BountyHunterPluginData.KeepQuestPlayAFriend">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets or sets a value that determine whether "Play a Friend!" quest should be kept.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.BountyHunter.BountyHunterPluginData.KeepQuestCatchABigOne">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets or sets a value that determine whether "Catch a Big One!" quest should be kept.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.BountyHunter.BountyHunterPluginData.KeepQuestSpelunker">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets or sets a value that determine whether "Spelunker!" quest should be kept.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.BountyHunter.BountyHunterPluginData.EnableHeroLevelling">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets or sets a value that determine whether the plugin should level up heroes.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.BountyHunter.BountyHunterPluginData.LevelMode">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets or sets the bot mode for levelling.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.BountyHunter.BountyHunterPluginData.LvlMage">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets or sets the target level for Mage.
+ <para></para>
+ Valid range is between 1 and 60.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="F:SmartBotKit.Plugins.BountyHunter.BountyHunterPluginData.lvlMageB">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ ( Backing Field )
+ <para></para>
+ The target level for Mage.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.BountyHunter.BountyHunterPluginData.LvlPriest">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets or sets the target level for Priest.
+ <para></para>
+ Valid range is between 1 and 60.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="F:SmartBotKit.Plugins.BountyHunter.BountyHunterPluginData.lvlPriestB">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ ( Backing Field )
+ <para></para>
+ The target level for Priest.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.BountyHunter.BountyHunterPluginData.LvlWarrior">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets or sets the target level for Warrior.
+ <para></para>
+ Valid range is between 1 and 60.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="F:SmartBotKit.Plugins.BountyHunter.BountyHunterPluginData.lvlWarriorB">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ ( Backing Field )
+ <para></para>
+ The target level for Warrior.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.BountyHunter.BountyHunterPluginData.LvlWarlock">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets or sets the target level for Warlock.
+ <para></para>
+ Valid range is between 1 and 60.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="F:SmartBotKit.Plugins.BountyHunter.BountyHunterPluginData.lvlWarlockB">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ ( Backing Field )
+ <para></para>
+ The target level for Warlock.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.BountyHunter.BountyHunterPluginData.LvlRogue">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets or sets the target level for Rogue.
+ <para></para>
+ Valid range is between 1 and 60.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="F:SmartBotKit.Plugins.BountyHunter.BountyHunterPluginData.lvlRogueB">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ ( Backing Field )
+ <para></para>
+ The target level for Rogue.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.BountyHunter.BountyHunterPluginData.LvlDruid">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets or sets the target level for Druid.
+ <para></para>
+ Valid range is between 1 and 60.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="F:SmartBotKit.Plugins.BountyHunter.BountyHunterPluginData.lvlDruidB">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ ( Backing Field )
+ <para></para>
+ The target level for Druid.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.BountyHunter.BountyHunterPluginData.LvlHunter">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets or sets the target level for Hunter.
+ <para></para>
+ Valid range is between 1 and 60.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="F:SmartBotKit.Plugins.BountyHunter.BountyHunterPluginData.lvlHunterB">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ ( Backing Field )
+ <para></para>
+ The target level for Hunter.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.BountyHunter.BountyHunterPluginData.LvlShaman">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets or sets the target level for Shaman.
+ <para></para>
+ Valid range is between 1 and 60.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="F:SmartBotKit.Plugins.BountyHunter.BountyHunterPluginData.lvlShamanB">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ ( Backing Field )
+ <para></para>
+ The target level for Shaman.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.BountyHunter.BountyHunterPluginData.LvlPaladin">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets or sets the target level for Paladin.
+ <para></para>
+ Valid range is between 1 and 60.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="F:SmartBotKit.Plugins.BountyHunter.BountyHunterPluginData.lvlPaladinB">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ ( Backing Field )
+ <para></para>
+ The target level for Paladin.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.BountyHunter.BountyHunterPluginData.EnableLadderScheduler">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets or sets the hour to start playing ladder.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.BountyHunter.BountyHunterPluginData.LadderMode">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets or sets the ranked mode to play ladder.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.BountyHunter.BountyHunterPluginData.LadderPreferredDeck">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets or sets the preferred deck for playing ladder.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.BountyHunter.BountyHunterPluginData.LadderUseRandomDeckIfPreferredIsUnavailable">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets or sets a value that determine whether the bot should try to use a random available deck if 
+ the specified preferred deck in <see cref="P:SmartBotKit.Plugins.BountyHunter.BountyHunterPluginData.LadderPreferredDeck"/> is unavailable.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.BountyHunter.BountyHunterPluginData.LadderStartHour">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets or sets the hour to start playing ladder.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.BountyHunter.BountyHunterPluginData.LadderEndHour">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets or sets the hour to end playing ladder.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.BountyHunter.BountyHunterPluginData.LadderModeAutoStart">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets or sets a value that determine whether SmartBot should be started at the initial ladder hour if it is stopped.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.BountyHunter.BountyHunterPluginData.LadderModeAutoStop">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets or sets a value that determine whether SmartBot should be stopped when ladder scheduler ends.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.BountyHunter.BountyHunterPluginData.DeckDruid">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets or sets the preferred deck for Druid.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.BountyHunter.BountyHunterPluginData.DeckMage">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets or sets the preferred deck for Mage.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.BountyHunter.BountyHunterPluginData.DeckHunter">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets or sets the preferred deck for Hunter.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.BountyHunter.BountyHunterPluginData.DeckPaladin">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets or sets the preferred deck for Paladin.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.BountyHunter.BountyHunterPluginData.DeckPriest">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets or sets the preferred deck for Priest.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.BountyHunter.BountyHunterPluginData.DeckRogue">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets or sets the preferred deck for Rogue.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.BountyHunter.BountyHunterPluginData.DeckShaman">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets or sets the preferred deck for Shaman.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.BountyHunter.BountyHunterPluginData.DeckWarrior">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets or sets the preferred deck for Warrior.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.BountyHunter.BountyHunterPluginData.DeckWarlock">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets or sets the preferred deck for Warlock.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.BountyHunter.BountyHunterPluginData.PreferredDeck(SmartBot.Plugins.API.Card.CClass)">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the preferred deck for the specified hero class.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.BountyHunter.BountyHunterPluginData.TargetHeroLevel(SmartBot.Plugins.API.Card.CClass)">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the target level to reach for the specified hero class.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.BountyHunter.BountyHunterPluginData.#ctor">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Initializes a new instance of the <see cref="T:SmartBotKit.Plugins.BountyHunter.BountyHunterPluginData"/> class.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.BountyHunter.BountyHunterPluginData.GetPreferredDeck(SmartBot.Plugins.API.Card.CClass)">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the preferred deck for the specified hero class.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.BountyHunter.BountyHunterPluginData.GetTargetHeroLevel(SmartBot.Plugins.API.Card.CClass)">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the target level to reach for the specified hero class.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="T:SmartBotKit.Plugins.BountyHunter.BountyHunterPlugin">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ A plugin that completes quests, schedules ranked mode and level up hero heroClasss.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <seealso cref="T:SmartBot.Plugins.Plugin"/>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.BountyHunter.BountyHunterPlugin.DataContainer">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the plugin's data container.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <value>
+ The plugin's data container.
+ </value>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="F:SmartBotKit.Plugins.BountyHunter.BountyHunterPlugin.lastEnabled">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Keeps track of the last <see cref="P:SmartBot.Plugins.PluginDataContainer.Enabled"/> value.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="F:SmartBotKit.Plugins.BountyHunter.BountyHunterPlugin.lastNormalSelectedDeckNames">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Keeps track of the decks selected before started to questing.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="F:SmartBotKit.Plugins.BountyHunter.BountyHunterPlugin.lastNormalDeckName">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Keeps track of the last deck name used before started to questing.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="F:SmartBotKit.Plugins.BountyHunter.BountyHunterPlugin.lastNormalBotMode">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Keeps track of the last bot mode used before started to questing.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="F:SmartBotKit.Plugins.BountyHunter.BountyHunterPlugin.currentBountyHunterMode">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Keeps track of the current <see cref="T:SmartBotKit.Plugins.BountyHunter.BountyHunterMode"/>.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="F:SmartBotKit.Plugins.BountyHunter.BountyHunterPlugin.unfulfillableQuestTypes">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Keeps track of the unfulfillable quest types.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="F:SmartBotKit.Plugins.BountyHunter.BountyHunterPlugin.questTypesToKeep">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Keeps track of the quest types to be kept/don't rerolled.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.BountyHunter.BountyHunterPlugin.#ctor">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Initializes a new instance of the <see cref="T:SmartBotKit.Plugins.BountyHunter.BountyHunterPlugin"/> class.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.BountyHunter.BountyHunterPlugin.OnPluginCreated">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Called when this <see cref="T:SmartBotKit.Plugins.BountyHunter.BountyHunterPlugin"/> is created by the SmartBot plugin manager.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.BountyHunter.BountyHunterPlugin.OnDataContainerUpdated">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Called when the properties of <see cref="T:SmartBotKit.Plugins.BountyHunter.BountyHunterPluginData"/> are updated.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.BountyHunter.BountyHunterPlugin.OnStarted">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Called when the bot is started.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.BountyHunter.BountyHunterPlugin.OnStopped">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Called when the bot is stopped.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.BountyHunter.BountyHunterPlugin.OnGameEnd">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Called when a game ends.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.BountyHunter.BountyHunterPlugin.OnTick">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Called when the bot timer is ticked, every 300 milliseconds.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.BountyHunter.BountyHunterPlugin.Dispose">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Releases all the resources used by this <see cref="T:SmartBotKit.Plugins.BountyHunter.BountyHunterPlugin"/> instance.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.BountyHunter.BountyHunterPlugin.BuildQuestTypesToKeep">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Builds the <see cref="T:System.Collections.Generic.List`1"/> specified in <see cref="F:SmartBotKit.Plugins.BountyHunter.BountyHunterPlugin.questTypesToKeep"/> 
+ with the quest types to be kept/don't rerolled.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.BountyHunter.BountyHunterPlugin.BuildUnfulfillableQuestTypes">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Builds the <see cref="T:System.Collections.Generic.List`1"/> specified in <see cref="F:SmartBotKit.Plugins.BountyHunter.BountyHunterPlugin.unfulfillableQuestTypes"/> 
+ with the quest types to reroll.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.BountyHunter.BountyHunterPlugin.ChooseNextMode">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Chooses the next <see cref="T:SmartBotKit.Plugins.BountyHunter.BountyHunterMode"/> mode to begin playing.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.BountyHunter.BountyHunterPlugin.ActivateMode(SmartBotKit.Plugins.BountyHunter.BountyHunterMode)">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Activates the specified <see cref="T:SmartBotKit.Plugins.BountyHunter.BountyHunterMode"/> to begin playing.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <returns>
+ <see langword="True"/> if the specified mode is successfully activated, <see langword="False"/> otherwise.
+ </returns>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.BountyHunter.BountyHunterPlugin.RerollQuests">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Rerolls unfulfillable quests.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.BountyHunter.BountyHunterPlugin.RestoreNormalSettings">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Reverts bot mode and deck to normal settings.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.BountyHunter.BountyHunterPlugin.GetDecksCountForQuest(SmartBot.Plugins.API.Quest)">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the count of available decks for the specified <see cref="T:SmartBot.Plugins.API.Quest"/>.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <param name="quest">
+ The quest.
+ </param>
+ ----------------------------------------------------------------------------------------------------
+ <returns>
+ The count of available decks for the specified <see cref="T:SmartBot.Plugins.API.Quest"/>.
+ </returns>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.BountyHunter.BountyHunterPlugin.GetBestDeckForQuest(SmartBot.Plugins.API.Quest)">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the best available deck for the specified <see cref="T:SmartBot.Plugins.API.Quest"/>.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <param name="quest">
+ The quest.
+ </param>
+ ----------------------------------------------------------------------------------------------------
+ <returns>
+ The best available deck for the specified <see cref="T:SmartBot.Plugins.API.Quest"/>.
+ </returns>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.BountyHunter.BountyHunterPlugin.GetBestDeckForClass(SmartBot.Plugins.API.Card.CClass)">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the best available deck for the specified <see cref="T:SmartBot.Plugins.API.Card.CClass"/>.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <param name="heroClass">
+ The hero class.
+ </param>
+ ----------------------------------------------------------------------------------------------------
+ <returns>
+ The best available deck for the specified <see cref="T:SmartBot.Plugins.API.Card.CClass"/>.
+ </returns>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.BountyHunter.BountyHunterPlugin.IsPreferredDeck(System.String)">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Determine whether the specified deck is a preferred deck.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <param name="deckName">
+ The name of the deck to check.
+ </param>
+ ----------------------------------------------------------------------------------------------------
+ <returns>
+ <see langword="True"/> if the specified deck is a preferred deck; otherwise, <see langword="False"/>.
+ </returns>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.BountyHunter.BountyHunterPlugin.GetPreferredDeckForClass(SmartBot.Plugins.API.Card.CClass)">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the preferred deck for the specified <see cref="T:SmartBot.Plugins.API.Card.CClass"/>.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <param name="heroClass">
+ The hero class.
+ </param>
+ ----------------------------------------------------------------------------------------------------
+ <returns>
+ The preferred deck for the specified <see cref="T:SmartBot.Plugins.API.Card.CClass"/>, 
+ or <see langword="Nothing"/> if no preferred deck is available.
+ </returns>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.BountyHunter.BountyHunterPlugin.HasAvailableDeckForClass(SmartBot.Plugins.API.Card.CClass,SmartBot.Plugins.API.Bot.Mode)">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Determine whether the specified <see cref="T:SmartBot.Plugins.API.Card.CClass"/> has any available deck for the specified <see cref="T:SmartBot.Plugins.API.Bot.Mode"/>.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <param name="heroClass">
+ The hero class.
+ </param>
+ 
+ <param name="botMode">
+ The bot mode.
+ </param>
+ ----------------------------------------------------------------------------------------------------
+ <returns>
+ <see langword="True"/> if the specified <see cref="T:SmartBot.Plugins.API.Card.CClass"/> has 
+ any available deck for the specified <see cref="T:SmartBot.Plugins.API.Bot.Mode"/>; 
+ otherwise, <see langword="False"/>.
+ </returns>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.BountyHunter.BountyHunterPlugin.HasAvailableDeckForQuest(SmartBot.Plugins.API.Quest)">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Determine whether there is any available deck for the specified <see cref="T:SmartBot.Plugins.API.Quest"/>.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <param name="quest">
+ The quest.
+ </param>
+ ----------------------------------------------------------------------------------------------------
+ <returns>
+ <see langword="True"/> if there is any available deck for the specified <see cref="T:SmartBot.Plugins.API.Quest"/>.; 
+ otherwise, <see langword="False"/>.
+ </returns>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.BountyHunter.BountyHunterPlugin.HasPreferredDeckForClass(SmartBot.Plugins.API.Card.CClass)">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Determine whether there is a preferred deck available for the specified <see cref="T:SmartBot.Plugins.API.Card.CClass"/>.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <param name="heroClass">
+ The hero class.
+ </param>
+ ----------------------------------------------------------------------------------------------------
+ <returns>
+ <see langword="True"/> if there is a preferred deck available for the specified <see cref="T:SmartBot.Plugins.API.Card.CClass"/>; 
+ otherwise, <see langword="False"/>.
+ </returns>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.BountyHunter.BountyHunterPlugin.GetQualifiedDecksForQuestMode(SmartBot.Plugins.API.Bot.Mode)">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets all the available qualified decks for the specified <see cref="T:SmartBot.Plugins.API.Bot.Mode"/>.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <param name="botMode">
+ The bot mode.
+ </param>
+ ----------------------------------------------------------------------------------------------------
+ <returns>
+ The available qualified decks for the specified <see cref="T:SmartBot.Plugins.API.Bot.Mode"/>.
+ </returns>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.BountyHunter.BountyHunterPlugin.GetRandomDeck(SmartBot.Plugins.API.Bot.Mode)">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets a random deck for the specified <see cref="T:SmartBot.Plugins.API.Quest"/>.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <param name="botMode">
+ The bot mode.
+ </param>
+ ----------------------------------------------------------------------------------------------------
+ <returns>
+ The resulting <see cref="T:SmartBot.Plugins.API.Deck"/>.
+ </returns>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="F:SmartBotKit.Plugins.BountyHunter.BountyHunterMode.None">
+ <summary>
+ None.
+ </summary>
+</member>
+<member name="F:SmartBotKit.Plugins.BountyHunter.BountyHunterMode.HeroLevelling">
+ <summary>
+ Hero Levelling Mode.
+ </summary>
+</member>
+<member name="F:SmartBotKit.Plugins.BountyHunter.BountyHunterMode.Ladder">
+ <summary>
+ Ladder Mode.
+ </summary>
+</member>
+<member name="F:SmartBotKit.Plugins.BountyHunter.BountyHunterMode.Questing">
+ <summary>
+ Quest Completion Mode.
+ </summary>
+</member>
+</members>
+</doc>

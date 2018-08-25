@@ -20,7 +20,7 @@ Namespace SmartBotKit.Interop.Win32
     ''' <see href="http://msdn.microsoft.com/en-us/library/windows/desktop/ms633548%28v=vs.85%29.aspx"/>
     ''' </remarks>
     ''' ----------------------------------------------------------------------------------------------------
-    Public Enum WindowState As Integer
+    Public Enum NativeWindowState As Integer
 
         ''' <summary>
         ''' Hides the window and activates another window.
@@ -47,11 +47,11 @@ Namespace SmartBotKit.Interop.Win32
         ''' <summary>
         ''' Activates the window and displays it as a maximized window.
         ''' </summary>      
-        ShowMaximized = WindowState.Maximize
+        ShowMaximized = NativeWindowState.Maximize
 
         ''' <summary>
         ''' Displays a window in its most recent size and position. 
-        ''' This value is similar to <see cref="WindowState.Normal"/>, except the window is not actived.
+        ''' This value is similar to <see cref="NativeWindowState.Normal"/>, except the window is not actived.
         ''' </summary>
         ShowNoActivate = 4
 
@@ -67,13 +67,13 @@ Namespace SmartBotKit.Interop.Win32
 
         ''' <summary>
         ''' Displays the window as a minimized window. 
-        ''' This value is similar to <see cref="WindowState.ShowMinimized"/>, except the window is not activated.
+        ''' This value is similar to <see cref="NativeWindowState.ShowMinimized"/>, except the window is not activated.
         ''' </summary>
         ShowMinNoActive = 7
 
         ''' <summary>
         ''' Displays the window in its current size and position.
-        ''' This value is similar to <see cref="WindowState.Show"/>, except the window is not activated.
+        ''' This value is similar to <see cref="NativeWindowState.Show"/>, except the window is not activated.
         ''' </summary>
         ShowNA = 8
 

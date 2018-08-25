@@ -77,6 +77,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Application\TaskBarManager.vb" />
+    <Compile Include="Audio\AudioUtil.vb" />
     <Compile Include="Extensions\TimeSpanExtensions.vb" />
     <Compile Include="Extensions\IListExtensions.vb" />
     <Compile Include="Extensions\IEnumerableExtensions.vb" />
@@ -88,10 +89,22 @@
     <Compile Include="Imaging\ImageUtil.vb" />
     <Compile Include="Interop\Hearthstone\Hearthstone.vb" />
     <Compile Include="Interop\SmartBot\SmartBotEvent.vb" />
+    <Compile Include="Interop\Win32\EDataFlow.vb" />
+    <Compile Include="Interop\Win32\ERole.vb" />
+    <Compile Include="Interop\Win32\IAudioSessionControl.vb" />
+    <Compile Include="Interop\Win32\IAudioSessionControl2.vb" />
+    <Compile Include="Interop\Win32\IAudioSessionEnumerator.vb" />
+    <Compile Include="Interop\Win32\IAudioSessionManager2.vb" />
+    <Compile Include="Interop\Win32\IMMDevice.vb" />
+    <Compile Include="Interop\Win32\IMMDeviceEnumerator.vb" />
+    <Compile Include="Interop\Win32\ISimpleAudioVolume.vb" />
+    <Compile Include="Interop\Win32\MMDeviceEnumerator.vb" />
     <Compile Include="Interop\Win32\SetWindowPosFlags.vb" />
     <Compile Include="Interop\Win32\TernaryRasterOperations.vb" />
     <Compile Include="Interop\Win32\HResult.vb" />
     <Compile Include="Interop\Win32\DwmWindowAttribute.vb" />
+    <Compile Include="Interop\Win32\WindowLongFlags.vb" />
+    <Compile Include="Interop\Win32\WindowStylesEx.vb" />
     <Compile Include="ReservedUse\UpdateUtil.vb" />
     <Compile Include="System\SystemInfoUtil.vb" />
     <Compile Include="Text\StringCase.vb" />

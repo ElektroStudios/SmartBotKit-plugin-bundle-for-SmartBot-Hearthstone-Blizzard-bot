@@ -1,0 +1,286 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+PanicButton
+</name>
+</assembly>
+<members>
+<member name="T:SmartBotKit.Plugins.My.Resources.Resources">
+<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member>
+<member name="P:SmartBotKit.Plugins.My.Resources.Resources.ResourceManager">
+<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member>
+<member name="P:SmartBotKit.Plugins.My.Resources.Resources.Culture">
+<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member>
+<member name="T:SmartBotKit.Plugins.PanicButton.HotkeyModifiersSource">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Provides the collection of values represented by a ComboBox for the 
+ <see cref="P:SmartBotKit.Plugins.PanicButton.PanicButtonPluginData.ModifierA"/> and <see cref="P:SmartBotKit.Plugins.PanicButton.PanicButtonPluginData.ModifierB"/> properties.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <seealso cref="T:Xceed.Wpf.Toolkit.PropertyGrid.Attributes.IItemsSource"/>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.PanicButton.HotkeyModifiersSource.#ctor">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Initializes a new instance of the <see cref="T:SmartBotKit.Plugins.PanicButton.HotkeyModifiersSource"/> class.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.PanicButton.HotkeyModifiersSource.GetValues">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the collection of values.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <returns>
+ The resulting <see cref="T:Xceed.Wpf.Toolkit.PropertyGrid.Attributes.ItemCollection"/>.
+ </returns>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="T:SmartBotKit.Plugins.PanicButton.KeysSource">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Provides the collection of values represented by a ComboBox for the <see cref="P:SmartBotKit.Plugins.PanicButton.PanicButtonPluginData.Key"/> property.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <seealso cref="T:Xceed.Wpf.Toolkit.PropertyGrid.Attributes.IItemsSource"/>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.PanicButton.KeysSource.#ctor">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Initializes a new instance of the <see cref="T:SmartBotKit.Plugins.PanicButton.KeysSource"/> class.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.PanicButton.KeysSource.GetValues">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the collection of values.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <returns>
+ The resulting <see cref="T:Xceed.Wpf.Toolkit.PropertyGrid.Attributes.ItemCollection"/>.
+ </returns>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="T:SmartBotKit.Plugins.PanicButton.PanicButtonPluginData">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Plugin data for <see cref="T:SmartBotKit.Plugins.PanicButton.PanicButtonPlugin"/> plugin class.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <seealso cref="T:SmartBot.Plugins.PluginDataContainer"/>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.PanicButton.PanicButtonPluginData.AssemblyInfo">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the <see cref="T:Microsoft.VisualBasic.ApplicationServices.AssemblyInfo"/> for this assembly.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.PanicButton.PanicButtonPluginData.AssemblyName">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the assembly name.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.PanicButton.PanicButtonPluginData.Description">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the plugin description.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.PanicButton.PanicButtonPluginData.Version">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets a value that determine whether the plugin should delete log files.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.PanicButton.PanicButtonPluginData.StopBot">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets or sets a value that determine whether the bot should be stopped when the hotkey is pressed.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.PanicButton.PanicButtonPluginData.KillProcess">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets or sets a value that determine whether SmartBot process should be terminated when the hotkey is pressed.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.PanicButton.PanicButtonPluginData.Key">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets or sets the keyboard key.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.PanicButton.PanicButtonPluginData.ModifierA">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets or sets the primary keyboard modifier key.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.PanicButton.PanicButtonPluginData.ModifierB">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets or sets the secondary keyboard modifier key.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.PanicButton.PanicButtonPluginData.#ctor">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Initializes a new instance of the <see cref="T:SmartBotKit.Plugins.PanicButton.PanicButtonPluginData"/> class.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="T:SmartBotKit.Plugins.PanicButton.PanicButtonPlugin">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ A plugin that stops or terminates SmartBot process when a specified hotkey combination is pressed.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <seealso cref="T:SmartBot.Plugins.Plugin"/>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.PanicButton.PanicButtonPlugin.DataContainer">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the plugin's data container.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <value>
+ The plugin's data container.
+ </value>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="F:SmartBotKit.Plugins.PanicButton.PanicButtonPlugin.panicButton">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets the <see cref="T:SmartBotKit.Plugins.PanicButton.PanicButton"/>.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="F:SmartBotKit.Plugins.PanicButton.PanicButtonPlugin.hotkeyThread">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ A <see cref="T:System.Threading.Thread"/> on which <see cref="F:SmartBotKit.Plugins.PanicButton.PanicButtonPlugin.panicButton"/> will be run within a message-loop.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="F:SmartBotKit.Plugins.PanicButton.PanicButtonPlugin.hotkeyMethodDelegate">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ A delegate that represents the method to be invoked when <see cref="F:SmartBotKit.Plugins.PanicButton.PanicButtonPlugin.hotkeyThread"/> begins executed.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="F:SmartBotKit.Plugins.PanicButton.PanicButtonPlugin.warningIsSent">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ A flag to determine whether a warning log message is sent when the user modifies plugin settings.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.PanicButton.PanicButtonPlugin.#ctor">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Initializes a new instance of the <see cref="T:SmartBotKit.Plugins.PanicButton.PanicButtonPlugin"/> class.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.PanicButton.PanicButtonPlugin.OnPluginCreated">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Called when this <see cref="T:SmartBotKit.Plugins.PanicButton.PanicButtonPlugin"/> is created by the SmartBot plugin manager.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.PanicButton.PanicButtonPlugin.OnDataContainerUpdated">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Called when the properties of <see cref="T:SmartBotKit.Plugins.PanicButton.PanicButtonPluginData"/> are updated.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.PanicButton.PanicButtonPlugin.Dispose">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Releases all the resources used by this <see cref="T:SmartBotKit.Plugins.PanicButton.PanicButtonPlugin"/> instance.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.PanicButton.PanicButtonPlugin.InitializeThread">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Initializes the <see cref="T:System.Threading.Thread"/> on which <see cref="F:SmartBotKit.Plugins.PanicButton.PanicButtonPlugin.panicButton"/> will run within a message-loop.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.PanicButton.PanicButtonPlugin.DeinitializeThread">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Deinitializes the <see cref="T:System.Threading.Thread"/> on which <see cref="F:SmartBotKit.Plugins.PanicButton.PanicButtonPlugin.panicButton"/> is running.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="T:SmartBotKit.Plugins.PanicButton.PanicButton">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Represents a system-wide hotkey that will kill SmartBot program when is pressed.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="F:SmartBotKit.Plugins.PanicButton.PanicButton.dataContainer">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ The plugin's data container.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.PanicButton.PanicButton.#ctor(SmartBotKit.Plugins.PanicButton.PanicButtonPluginData)">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Initializes a new instance of the <see cref="T:SmartBotKit.Plugins.PanicButton.PanicButton"/> class.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.PanicButton.PanicButton.PanicButton_Press(System.Object,SmartBotKit.IO.HotkeyPressEventArgs)">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Handles the <see cref="E:SmartBotKit.IO.Hotkey.Press"/> event of this <see cref="T:SmartBotKit.Plugins.PanicButton.PanicButton"/>.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+ <param name="sender">
+ The source of the event.
+ </param>
+ 
+ <param name="e">
+ The <see cref="T:SmartBotKit.IO.HotkeyPressEventArgs"/> instance containing the event data.
+ </param>
+ ----------------------------------------------------------------------------------------------------
+</member>
+</members>
+</doc>

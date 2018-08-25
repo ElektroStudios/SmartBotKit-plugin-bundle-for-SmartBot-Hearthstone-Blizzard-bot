@@ -162,7 +162,7 @@ Namespace WindowRestorator
         ''' ----------------------------------------------------------------------------------------------------
         <Category("Reserved")>
         <Browsable(False)>
-        Public Property WindowState As WindowState
+        Public Property WindowState As NativeWindowState
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
@@ -211,13 +211,13 @@ Namespace WindowRestorator
             Dim position As Point
             Select Case wpl.WindowState
 
-                Case WindowState.Minimize, WindowState.ShowMinimized, WindowState.ForceMinimize
+                Case NativeWindowState.Minimize, NativeWindowState.ShowMinimized, NativeWindowState.ForceMinimize
                     position = wpl.MinPosition
                     If (position.X = -1) AndAlso (position.Y = -1) Then
                         position = Point.Empty
                     End If
 
-                Case WindowState.Maximize, WindowState.ShowMaximized
+                Case NativeWindowState.Maximize, NativeWindowState.ShowMaximized
                     position = wpl.MaxPosition
                     If (position.X = -1) AndAlso (position.Y = -1) Then
                         position = Point.Empty

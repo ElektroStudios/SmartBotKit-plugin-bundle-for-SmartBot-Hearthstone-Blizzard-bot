@@ -72,7 +72,7 @@ Namespace AutoInjector
         Public ReadOnly Property Description As String
             Get
                 Return "Automate SmartBot injection" & ControlChars.NewLine &
-                       "to Hearthstone process."
+                       "when Hearthstone process is detected."
             End Get
         End Property
 
