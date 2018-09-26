@@ -95,6 +95,54 @@ EmoteFactory
  The amount of maximum emote replies per game.
  </summary>
 </member>
+<member name="P:SmartBotKit.Plugins.EmoteFactory.EmoteFactoryPluginData.EmoteToReplyGrettings">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets or sets a value that determine the emote that will be sent 
+ when <see cref="F:SmartBot.Plugins.API.Bot.EmoteType.Greetings"/> is sent by the enemy.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.EmoteFactory.EmoteFactoryPluginData.EmoteToReplyOops">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets or sets a value that determine the emote that will be sent 
+ when <see cref="F:SmartBot.Plugins.API.Bot.EmoteType.Oops"/> is sent by the enemy.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.EmoteFactory.EmoteFactoryPluginData.EmoteToReplyThanks">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets or sets a value that determine the emote that will be sent 
+ when <see cref="F:SmartBot.Plugins.API.Bot.EmoteType.Thanks"/> is sent by the enemy.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.EmoteFactory.EmoteFactoryPluginData.EmoteToReplyThreaten">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets or sets a value that determine the emote that will be sent 
+ when <see cref="F:SmartBot.Plugins.API.Bot.EmoteType.Threaten"/> is sent by the enemy.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.EmoteFactory.EmoteFactoryPluginData.EmoteToReplyWellPlayed">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets or sets a value that determine the emote that will be sent 
+ when <see cref="F:SmartBot.Plugins.API.Bot.EmoteType.WellPlayed"/> is sent by the enemy.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.EmoteFactory.EmoteFactoryPluginData.EmoteToReplyWow">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets or sets a value that determine the emote that will be sent 
+ when <see cref="F:SmartBot.Plugins.API.Bot.EmoteType.Wow"/> is sent by the enemy.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
 <member name="P:SmartBotKit.Plugins.EmoteFactory.EmoteFactoryPluginData.SendEmoteOnConditionsPercent">
  ----------------------------------------------------------------------------------------------------
  <summary>
@@ -140,6 +188,21 @@ EmoteFactory
  <summary>
  Gets or sets a value that determine the emote that will be sent 
  when <see cref="P:SmartBotKit.Plugins.EmoteFactory.EmoteFactoryPluginData.EmoteOnLethal"/> is enabled.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.EmoteFactory.EmoteFactoryPluginData.EmoteOnDefeat">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets or sets a value that determine whether an emote should be sent when the hero is defeated by enemy.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="P:SmartBotKit.Plugins.EmoteFactory.EmoteFactoryPluginData.EmoteOnDefeatType">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Gets or sets a value that determine the emote that will be sent 
+ when <see cref="P:SmartBotKit.Plugins.EmoteFactory.EmoteFactoryPluginData.EmoteOnDefeat"/> is enabled.
  </summary>
  ----------------------------------------------------------------------------------------------------
 </member>
@@ -253,7 +316,7 @@ EmoteFactory
 <member name="F:SmartBotKit.Plugins.EmoteFactory.EmoteFactoryPlugin.emotedFirstTurn">
  ----------------------------------------------------------------------------------------------------
  <summary>
- A <see cref="T:System.Boolean"/> flag that determine whether the plugin already has sent a emote on first hero's or enemy's turn.
+ A <see cref="T:System.Boolean"/> flag that determine whether the plugin already has sent a emote on first hero's turn.
  </summary>
  ----------------------------------------------------------------------------------------------------
 </member>
@@ -320,6 +383,13 @@ EmoteFactory
  </summary>
  ----------------------------------------------------------------------------------------------------
 </member>
+<member name="M:SmartBotKit.Plugins.EmoteFactory.EmoteFactoryPlugin.OnDefeat">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Called when our hero is defeated by the opponent.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
 <member name="M:SmartBotKit.Plugins.EmoteFactory.EmoteFactoryPlugin.Dispose">
  ----------------------------------------------------------------------------------------------------
  <summary>
@@ -342,6 +412,13 @@ EmoteFactory
  ----------------------------------------------------------------------------------------------------
 </member>
 <member name="M:SmartBotKit.Plugins.EmoteFactory.EmoteFactoryPlugin.MaybeDoEmoteOnConcede">
+ ----------------------------------------------------------------------------------------------------
+ <summary>
+ Randomly decides to send a emote when the bot concedes the game.
+ </summary>
+ ----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:SmartBotKit.Plugins.EmoteFactory.EmoteFactoryPlugin.MaybeDoEmoteOnDefeat">
  ----------------------------------------------------------------------------------------------------
  <summary>
  Randomly decides to send a emote when the bot concedes the game.

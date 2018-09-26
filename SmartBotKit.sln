@@ -41,6 +41,8 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Auto-Injector", "Plugins\Sm
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "PlayVIG Adverts Remover", "Plugins\SmartBotKit.Plugins.PlayVIGAdvertRemover\PlayVIG Adverts Remover.vbproj", "{1B212330-E50E-4CCC-99CB-FEB9087DCC6D}"
 EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Auto-Concede Scheduler", "Plugins\SmartBotKit.Plugins.AutoConcedeScheduler\Auto-Concede Scheduler.vbproj", "{0617186D-B61C-4C70-A5D4-C38186CC8FC1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -110,6 +112,10 @@ Global
 		{1B212330-E50E-4CCC-99CB-FEB9087DCC6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B212330-E50E-4CCC-99CB-FEB9087DCC6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B212330-E50E-4CCC-99CB-FEB9087DCC6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0617186D-B61C-4C70-A5D4-C38186CC8FC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0617186D-B61C-4C70-A5D4-C38186CC8FC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0617186D-B61C-4C70-A5D4-C38186CC8FC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0617186D-B61C-4C70-A5D4-C38186CC8FC1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -131,6 +137,7 @@ Global
 		{0B45AA94-8329-474A-AFAC-0B924AF88D34} = {32CB3DF2-0E1F-4950-81E7-323D962471DE}
 		{17E1B7CD-D074-4074-89F2-4B86FF1631E9} = {32CB3DF2-0E1F-4950-81E7-323D962471DE}
 		{1B212330-E50E-4CCC-99CB-FEB9087DCC6D} = {32CB3DF2-0E1F-4950-81E7-323D962471DE}
+		{0617186D-B61C-4C70-A5D4-C38186CC8FC1} = {32CB3DF2-0E1F-4950-81E7-323D962471DE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C1877C6E-9D64-4AEB-BE15-B0EA86B66D86}

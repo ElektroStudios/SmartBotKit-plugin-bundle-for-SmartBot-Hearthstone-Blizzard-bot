@@ -41,6 +41,13 @@ Settings:
 
 ![](Images/App%20Launcher%20-%20Settings.png)
 
+## Auto-Concede Scheduler
+A plugin to schedule auto-concede after winning a match.
+
+Settings:
+
+![](Images/Auto-Concede%20Scheduler%20-%20Settings.png)
+
 ## Auto-Injector
 A plugin that automate SmartBot injection to Hearthstone process.
 

@@ -107,7 +107,7 @@ Namespace EmoteFactory
         ''' A value between 1% and 100%.
         ''' </value>
         ''' ----------------------------------------------------------------------------------------------------
-        <Category("Reply to Enemy Emotes")>
+        <Category("Reply To Enemy Emotes")>
         <DisplayName("The percentage chance to reply an emote")>
         <Browsable(True)>
         Public Property ReplyEmotePercent() As Integer
@@ -140,7 +140,7 @@ Namespace EmoteFactory
         ''' A value between 1 and 20.
         ''' </value>
         ''' ----------------------------------------------------------------------------------------------------
-        <Category("Reply to Enemy Emotes")>
+        <Category("Reply To Enemy Emotes")>
         <DisplayName("The amount of maximum emote replies per game")>
         <Browsable(True)>
         Public Property MaxReplies() As Integer
@@ -163,6 +163,72 @@ Namespace EmoteFactory
         ''' The amount of maximum emote replies per game.
         ''' </summary>
         Private maxRepliesB As Integer
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets or sets a value that determine the emote that will be sent 
+        ''' when <see cref="Bot.EmoteType.Greetings"/> is sent by the enemy.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        <Category("Reply To Enemy Emotes")>
+        <DisplayName("Reply to emote: 'Grettings' with:")>
+        <Browsable(True)>
+        Public Property EmoteToReplyGrettings() As Bot.EmoteType
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets or sets a value that determine the emote that will be sent 
+        ''' when <see cref="Bot.EmoteType.Oops"/> is sent by the enemy.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        <Category("Reply To Enemy Emotes")>
+        <DisplayName("Reply to emote: 'Oops' with:")>
+        <Browsable(True)>
+        Public Property EmoteToReplyOops() As Bot.EmoteType
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets or sets a value that determine the emote that will be sent 
+        ''' when <see cref="Bot.EmoteType.Thanks"/> is sent by the enemy.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        <Category("Reply To Enemy Emotes")>
+        <DisplayName("Reply to emote: 'Thanks' with:")>
+        <Browsable(True)>
+        Public Property EmoteToReplyThanks() As Bot.EmoteType
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets or sets a value that determine the emote that will be sent 
+        ''' when <see cref="Bot.EmoteType.Threaten"/> is sent by the enemy.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        <Category("Reply To Enemy Emotes")>
+        <DisplayName("Reply to emote: 'Threaten' with:")>
+        <Browsable(True)>
+        Public Property EmoteToReplyThreaten() As Bot.EmoteType
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets or sets a value that determine the emote that will be sent 
+        ''' when <see cref="Bot.EmoteType.WellPlayed"/> is sent by the enemy.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        <Category("Reply To Enemy Emotes")>
+        <DisplayName("Reply to emote: 'Well Played' with:")>
+        <Browsable(True)>
+        Public Property EmoteToReplyWellPlayed() As Bot.EmoteType
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets or sets a value that determine the emote that will be sent 
+        ''' when <see cref="Bot.EmoteType.Wow"/> is sent by the enemy.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        <Category("Reply To Enemy Emotes")>
+        <DisplayName("Reply to emote: 'Wow' with:")>
+        <Browsable(True)>
+        Public Property EmoteToReplyWow() As Bot.EmoteType
 
 #End Region
 
@@ -207,7 +273,7 @@ Namespace EmoteFactory
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         <Category("Send Emote On Conditions")>
-        <DisplayName("Send emote at first turn")>
+        <DisplayName("Send emote at hero's first turn")>
         <Browsable(True)>
         Public Property EmoteOnFirstTurn As Boolean
 
@@ -218,7 +284,7 @@ Namespace EmoteFactory
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         <Category("Send Emote On Conditions")>
-        <DisplayName("Emote type to send at first turn")>
+        <DisplayName("Emote type to send at hero's first turn")>
         <Browsable(True)>
         Public Property EmoteOnFirstTurnType As Bot.EmoteType
 
@@ -228,7 +294,7 @@ Namespace EmoteFactory
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         <Category("Send Emote On Conditions")>
-        <DisplayName("Send emote when the bot detects a lethal move")>
+        <DisplayName("Send emote when the hero has lethal")>
         <Browsable(True)>
         Public Property EmoteOnLethal As Boolean
 
@@ -239,9 +305,30 @@ Namespace EmoteFactory
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         <Category("Send Emote On Conditions")>
-        <DisplayName("Emote type to send when bot detects a lethal move")>
+        <DisplayName("Emote type to send when the hero has lethal")>
         <Browsable(True)>
         Public Property EmoteOnLethalType As Bot.EmoteType
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets or sets a value that determine whether an emote should be sent when the hero is defeated by enemy.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        <Category("Send Emote On Conditions")>
+        <DisplayName("Send emote when the hero is defeated by enemy")>
+        <Browsable(True)>
+        Public Property EmoteOnDefeat As Boolean
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets or sets a value that determine the emote that will be sent 
+        ''' when <see cref="EmoteFactoryPluginData.EmoteOnDefeat"/> is enabled.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        <Category("Send Emote On Conditions")>
+        <DisplayName("Emote type to send when the hero is defeated by enemy")>
+        <Browsable(True)>
+        Public Property EmoteOnDefeatType() As Bot.EmoteType
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
@@ -371,6 +458,9 @@ Namespace EmoteFactory
             Me.EmoteOnConcede = False
             Me.EmoteOnConcedeType = Bot.EmoteType.WellPlayed
 
+            Me.EmoteOnDefeat = False
+            Me.EmoteOnDefeatType = Bot.EmoteType.WellPlayed
+
             Me.SquelchEnemny = False
 
             Me.MaxReplies = 5
@@ -378,6 +468,13 @@ Namespace EmoteFactory
             Me.SendEmoteOnConditionsPercent = 20
             Me.SquelchEnemnyPercent = 5
             Me.MaxDelay = 4000
+
+            Me.EmoteToReplyGrettings = Bot.EmoteType.Greetings
+            Me.EmoteToReplyOops = Bot.EmoteType.Oops
+            Me.EmoteToReplyThanks = Bot.EmoteType.Thanks
+            Me.EmoteToReplyThreaten = Bot.EmoteType.Threaten
+            Me.EmoteToReplyWellPlayed = Bot.EmoteType.WellPlayed
+            Me.EmoteToReplyWow = Bot.EmoteType.Wow
         End Sub
 
 #End Region

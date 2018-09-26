@@ -79,7 +79,7 @@ Namespace EmoteFactory
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' A <see cref="Boolean"/> flag that determine whether the plugin already has sent a emote on first hero's or enemy's turn.
+        ''' A <see cref="Boolean"/> flag that determine whether the plugin already has sent a emote on first hero's turn.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Private emotedFirstTurn As Boolean
@@ -206,6 +206,18 @@ Namespace EmoteFactory
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
+        ''' Called when our hero is defeated by the opponent.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        Public Overrides Sub OnDefeat()
+            If (Me.DataContainer.Enabled) AndAlso (Bot.IsBotRunning) Then
+                Me.MaybeDoEmoteOnDefeat()
+            End If
+            MyBase.OnDefeat()
+        End Sub
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
         ''' Releases all the resources used by this <see cref="EmoteFactoryPlugin"/> instance.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
@@ -289,19 +301,68 @@ Namespace EmoteFactory
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
+        ''' Randomly decides to send a emote when the bot concedes the game.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        Private Async Sub MaybeDoEmoteOnDefeat()
+            If (Me.DataContainer.EmoteOnDefeat) Then
+                Dim emote As Bot.EmoteType = Me.DataContainer.EmoteOnDefeatType
+
+                Dim t As Task = Task.Factory.StartNew(
+                    Sub()
+                        Dim queued As Boolean = Me.MaybeSendEmote(Me.DataContainer.SendEmoteOnConditionsPercent, emote)
+                        If (queued) Then
+                            Bot.Log(String.Format("[Emote Factory] -> Sending emote '{0}' due to condition: '{1}'.", emote.ToString(), NameOf(Me.DataContainer.EmoteOnDefeat)))
+                        End If
+                    End Sub, TaskCreationOptions.LongRunning)
+
+                Await t
+                t.Dispose()
+            End If
+        End Sub
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
         ''' Randomly decides to reply a enemy's emote.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Private Async Sub MaybeDoReplyEmote(ByVal emoteReceived As EmoteType)
 
             If (Interlocked.Increment(Me.replyCount) <= Me.DataContainer.MaxReplies) Then
-                Dim emote As EmoteType = DirectCast(Me.Rng.Next(1, 5), EmoteType) ' Send a random emote.
+
+                Dim emoteToSend As EmoteType
+                Select Case emoteReceived
+                    Case EmoteType.Greetings
+                        ' Fixes an issue on which the plugin can send two times the "Greetings" emote on the first turn.
+                        ' https://smartbot.pw/index.php?/topic/9071-plugin-emote-factory/&do=findComment&comment=54069
+                        If (Bot.CurrentBoard.TurnCount < 2) AndAlso (Me.emotedFirstTurn) Then
+                            Exit Sub
+                        End If
+                        emoteToSend = Me.DataContainer.EmoteToReplyGrettings
+
+                    Case EmoteType.Oops
+                        emoteToSend = Me.DataContainer.EmoteToReplyOops
+
+                    Case EmoteType.Thanks
+                        emoteToSend = Me.DataContainer.EmoteToReplyThanks
+
+                    Case EmoteType.Threaten
+                        emoteToSend = Me.DataContainer.EmoteToReplyThreaten
+
+                    Case EmoteType.WellPlayed
+                        emoteToSend = Me.DataContainer.EmoteToReplyWellPlayed
+
+                    Case EmoteType.Wow
+                        emoteToSend = Me.DataContainer.EmoteToReplyWow
+                End Select
+
+                ' Dim emoteToSend As EmoteType = DirectCast(Me.Rng.Next(1, 5), EmoteType) ' Random emote.
 
                 Dim t As Task = Task.Factory.StartNew(
                     Sub()
-                        Dim queued As Boolean = Me.MaybeSendEmote(Me.DataContainer.SendEmoteOnConditionsPercent, emote)
+                        Dim queued As Boolean = Me.MaybeSendEmote(Me.DataContainer.SendEmoteOnConditionsPercent, emoteToSend)
                         If (queued) Then
-                            Bot.Log(String.Format("[Emote Factory] -> Sending emote '{0}' as a reply to enemy emote: '{1}'.", emote.ToString(), emoteReceived.ToString()))
+                            Bot.Log(String.Format("[Emote Factory] -> Sending emote '{0}' as a reply to enemy emote: '{1}'.", emoteToSend.ToString(), emoteReceived.ToString()))
                         End If
                     End Sub, TaskCreationOptions.LongRunning)
 
