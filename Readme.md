@@ -41,13 +41,6 @@ Settings:
 
 ![](Images/App%20Launcher%20-%20Settings.png)
 
-## Auto-Concede Scheduler
-A plugin to schedule auto-concede after winning a match.
-
-Settings:
-
-![](Images/Auto-Concede%20Scheduler%20-%20Settings.png)
-
 ## Auto-Injector
 A plugin that automate SmartBot injection to Hearthstone process.
 
@@ -149,6 +142,7 @@ Settings:
 ![](Images/Panic%20Button%20-%20Settings.png)
 
 ## PlayVIG Adverts Remover
+( SUPPORT FOR THIS PLUGIN IS DISCONTINUED )
 PlayVIG is a software that pays you for playing Arena or Ranked mode in Hearthstone (and for other games).
 
 The program automatically shows a top-most advert window for around 20 seconds every time you end a game in Hearthstone while a PlayVIG quest is active.
