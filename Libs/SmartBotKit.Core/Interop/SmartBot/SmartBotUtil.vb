@@ -204,7 +204,7 @@ Namespace SmartBotKit.Interop
         ''' ----------------------------------------------------------------------------------------------------
         Public Shared ReadOnly Property LastServerDownRecord As TimeSpan
             Get
-                Dim serverIsDownString As String = "Board request sent for more than 30seconds ago,trying to resend request"
+                Dim serverIsDownString As String = "Board request sent for more than"
 
                 Dim lines As IEnumerable(Of String) = SmartBotUtil.CurrentLogContent
                 For Each line As String In lines?.Reverse()
