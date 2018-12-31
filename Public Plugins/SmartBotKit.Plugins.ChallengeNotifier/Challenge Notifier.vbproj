@@ -4,15 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D2D33EB8-ED7B-4800-92B8-6302934F2082}</ProjectGuid>
+    <ProjectGuid>{20A3438D-C7E7-425A-B8E9-CCF42DD622CF}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>
-    </RootNamespace>
-    <AssemblyName>SmartBotKit.Core</AssemblyName>
+    <RootNamespace>SmartBotKit.Plugins</RootNamespace>
+    <AssemblyName>ChallengeNotifier</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>Windows</MyType>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup>
     <OptionExplicit>On</OptionExplicit>
@@ -32,28 +30,26 @@
     <DebugType>full</DebugType>
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
-    <OutputPath>..\..\Bin\Debug\Plugins\libs\</OutputPath>
-    <DocumentationFile>SmartBotKit.Core.xml</DocumentationFile>
+    <OutputPath>..\..\Bin\Debug\Plugins\</OutputPath>
+    <DocumentationFile>ChallengeNotifier.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <DebugType>none</DebugType>
     <DefineDebug>false</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\Bin\Release\Plugins\libs\</OutputPath>
-    <DocumentationFile>SmartBotKit.Core.xml</DocumentationFile>
+    <OutputPath>..\..\Bin\Release\Plugins\</OutputPath>
+    <DocumentationFile>ChallengeNotifier.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
-    <OutputPath>..\..\Bin\Debug\Plugins\libs\</OutputPath>
-    <DocumentationFile>SmartBotKit.Core.xml</DocumentationFile>
+    <OutputPath>..\..\Bin\Debug\Plugins\</OutputPath>
+    <DocumentationFile>ChallengeNotifier.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
     <DebugType>full</DebugType>
     <PlatformTarget>x86</PlatformTarget>
@@ -61,8 +57,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <DefineTrace>true</DefineTrace>
-    <OutputPath>..\..\Bin\Release\Plugins\libs\</OutputPath>
-    <DocumentationFile>SmartBotKit.Core.xml</DocumentationFile>
+    <OutputPath>..\..\Bin\Release\Plugins\</OutputPath>
+    <DocumentationFile>ChallengeNotifier.xml</DocumentationFile>
     <Optimize>true</Optimize>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
     <PlatformTarget>x86</PlatformTarget>
@@ -71,9 +67,11 @@
   <ItemGroup>
     <Reference Include="HearthMirror">
       <HintPath>..\..\References\HearthMirror.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="HearthWatcher">
       <HintPath>..\..\References\HearthWatcher.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="SBAPI">
       <HintPath>..\..\References\SBAPI.dll</HintPath>
@@ -81,75 +79,16 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Management" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Xml.Serialization" />
-    <Reference Include="UIAutomationClient" />
-    <Reference Include="UIAutomationTypes" />
+    <Reference Include="Xceed.Wpf.Toolkit">
+      <HintPath>..\..\References\Xceed.Wpf.Toolkit.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Import Include="Microsoft.VisualBasic" />
     <Import Include="System" />
-    <Import Include="System.Diagnostics" />
-    <Import Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Application\TaskBarManager.vb" />
-    <Compile Include="Audio\AudioUtil.vb" />
-    <Compile Include="Extensions\TimeSpanExtensions.vb" />
-    <Compile Include="Extensions\IListExtensions.vb" />
-    <Compile Include="Extensions\IEnumerableExtensions.vb" />
-    <Compile Include="Extensions\RectangleExtensions.vb" />
-    <Compile Include="Extensions\BitmapExtensions.vb" />
-    <Compile Include="Extensions\ImageExtensions.vb" />
-    <Compile Include="Imaging\ImageCaptureInfo.vb" />
-    <Compile Include="Imaging\ImageUtil.vb" />
-    <Compile Include="Imaging\PixelInfo.vb" />
-    <Compile Include="Interop\Hearthstone\FriendChallengeType.vb" />
-    <Compile Include="Interop\Hearthstone\HearthstoneUtil.vb" />
-    <Compile Include="Interop\SmartBot\SmartBotEvent.vb" />
-    <Compile Include="Interop\Win32\EDataFlow.vb" />
-    <Compile Include="Interop\Win32\ERole.vb" />
-    <Compile Include="Interop\Win32\IAudioSessionControl.vb" />
-    <Compile Include="Interop\Win32\IAudioSessionControl2.vb" />
-    <Compile Include="Interop\Win32\IAudioSessionEnumerator.vb" />
-    <Compile Include="Interop\Win32\IAudioSessionManager2.vb" />
-    <Compile Include="Interop\Win32\IMMDevice.vb" />
-    <Compile Include="Interop\Win32\IMMDeviceEnumerator.vb" />
-    <Compile Include="Interop\Win32\ISimpleAudioVolume.vb" />
-    <Compile Include="Interop\Win32\MMDeviceEnumerator.vb" />
-    <Compile Include="Interop\Win32\SetWindowPosFlags.vb" />
-    <Compile Include="Interop\Win32\TernaryRasterOperations.vb" />
-    <Compile Include="Interop\Win32\HResult.vb" />
-    <Compile Include="Interop\Win32\DwmWindowAttribute.vb" />
-    <Compile Include="Interop\Win32\WindowLongFlags.vb" />
-    <Compile Include="Interop\Win32\WindowStylesEx.vb" />
-    <Compile Include="ReservedUse\UpdateUtil.vb" />
-    <Compile Include="System\SystemInfoUtil.vb" />
-    <Compile Include="Interop\Hearthstone\HearthMirrorFriendlyChallengeProvider.vb" />
-    <Compile Include="Text\StringCase.vb" />
-    <Compile Include="Extensions\StringExtensions.vb" />
-    <Compile Include="Interop\Win32\CTaskbarList.vb" />
-    <Compile Include="Interop\Win32\ITaskbarList4.vb" />
-    <Compile Include="Interop\Win32\TaskbarList.vb" />
-    <Compile Include="Interop\Win32\TaskbarProgressBarState.vb" />
-    <Compile Include="IO\HotkeyIsNotRegisteredException.vb" />
-    <Compile Include="IO\HotkeyIsRegisteredException.vb" />
-    <Compile Include="IO\HotkeyPressEventArgs.vb" />
-    <Compile Include="IO\HotkeyModifiers.vb" />
-    <Compile Include="IO\Hotkey.vb" />
-    <Compile Include="Interop\Win32\NativeHotkeyModifiers.vb" />
-    <Compile Include="Interop\Win32\WindowsMessages.vb" />
-    <Compile Include="Interop\SmartBot\SmartBotUtil.vb" />
-    <Compile Include="Interop\Win32\NativeMethods.vb" />
-    <Compile Include="Interop\Win32\NativePoint.vb" />
-    <Compile Include="Interop\Win32\NativeRectangle.vb" />
-    <Compile Include="Interop\Win32\WindowState.vb" />
-    <Compile Include="Interop\Win32\WindowPlacement.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -165,13 +104,15 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Plugin Data\ChallengeNotifierPluginData.vb" />
+    <Compile Include="Plugin\ChallengeNotifierPlugin.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -183,6 +124,46 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Libs\SmartBotKit.Core\SmartBotKit.Core.vbproj">
+      <Project>{d2d33eb8-ed7b-4800-92b8-6302934f2082}</Project>
+      <Name>SmartBotKit.Core</Name>
+      <Private>False</Private>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gold_640x480.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ChallengeNotifier-PlayAFriend.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gold_800x600.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gold_1280x768.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ChallengeNotifier-Normal.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\challenge_640x480.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\challenge_800x600.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\challenge_1280x768.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ChallengeNotifier-Undetermined.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

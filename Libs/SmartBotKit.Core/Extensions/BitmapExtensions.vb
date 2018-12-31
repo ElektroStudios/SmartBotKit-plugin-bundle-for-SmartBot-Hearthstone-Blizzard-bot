@@ -9,6 +9,7 @@ Option Infer Off
 
 #Region " Imports "
 
+Imports System.Collections.Generic
 Imports System.ComponentModel
 Imports System.Drawing
 Imports System.Drawing.Imaging
@@ -167,6 +168,71 @@ Namespace SmartBotKit.Extensions.BitmapExtensions
                              ByVal rect As Rectangle) As Image
 
             Return DirectCast(Extensions.ImageExtensions.Crop(sender, rect), Bitmap)
+
+        End Function
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' For each pixel in the source image, gets the <see cref="Global.System.Drawing.Color"/>, pixel position, 
+        ''' and coordinates location respectivelly to the image.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <example> This is a code example.
+        ''' <code>
+        ''' Dim color As Color = color.FromArgb(117, 228, 26)
+        ''' Dim bmp As Bitmap = CreateSolidcolorBitmap(New Size(2, 2), color, PixelFormat.Format32bppArgb)
+        ''' Dim pxInfoCol As IEnumerable(Of PixelInfo) = bmp.GetPixelInfo()
+        ''' 
+        ''' For Each pxInfo As PixelInfo In pxInfoCol
+        '''     Console.WriteLine(String.Format("Position: {0}, Location: {1}, Color: {2}",
+        '''                                     pxInfo.Position, pxInfo.Location.ToString(), pxInfo.Color.ToString()))
+        ''' Next
+        ''' </code>
+        ''' </example>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <returns>
+        ''' A <see cref="IEnumerable(Of SmartBotKit.Core.Imaging.PixelInfo)"/> containing the <see cref="Global.System.Drawing.Color"/>, pixel position, 
+        ''' and coordinates location respectivelly to the image, of each pixel in the image.
+        ''' </returns>
+        ''' ----------------------------------------------------------------------------------------------------
+        <DebuggerStepThrough>
+        <Extension>
+        <EditorBrowsable(EditorBrowsableState.Always)>
+        Public Function GetPixelInfo(ByVal sender As Global.System.Drawing.Bitmap) As IEnumerable(Of SmartBotKit.Imaging.PixelInfo)
+
+            Return Extensions.ImageExtensions.GetPixelInfo(sender)
+
+        End Function
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Resizes an <see cref="Global.System.Drawing.Bitmap"/>.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <param name="sender">
+        ''' The source <see cref="Global.System.Drawing.Bitmap"/>.
+        ''' </param>
+        ''' 
+        ''' <param name="size">
+        ''' The new size.
+        ''' </param>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <returns>
+        ''' The resized <see cref="Global.System.Drawing.Bitmap"/>.
+        ''' </returns>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <exception cref="ArgumentException">
+        ''' Value greater than 0 is required.;width
+        ''' or
+        ''' Value greater than 0 is required.;height
+        ''' </exception>
+        ''' ----------------------------------------------------------------------------------------------------
+        <DebuggerStepThrough>
+        <Extension>
+        <EditorBrowsable(EditorBrowsableState.Always)>
+        Public Function Resize(ByVal sender As Bitmap, ByVal size As Size) As Bitmap
+
+            Return DirectCast(ImageExtensions.Resize(sender, size), Bitmap)
 
         End Function
 

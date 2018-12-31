@@ -9,10 +9,12 @@ Option Infer Off
 
 #Region " Imports "
 
+Imports System.Collections.Generic
 Imports System.ComponentModel
 Imports System.Drawing
 Imports System.Drawing.Imaging
 Imports System.Runtime.CompilerServices
+Imports System.Runtime.InteropServices
 
 #End Region
 
@@ -165,6 +167,126 @@ Namespace SmartBotKit.Extensions.ImageExtensions
             End Using
 
             Return bmp
+
+        End Function
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' For each pixel in the source image, gets the <see cref="Global.System.Drawing.Color"/>, pixel position, 
+        ''' and coordinates location respectivelly to the image.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <example> This is a code example.
+        ''' <code>
+        ''' Dim color As Color = color.FromArgb(117, 228, 26)
+        ''' Dim bmp As Bitmap = CreateSolidcolorBitmap(New Size(2, 2), color, PixelFormat.Format32bppArgb)
+        ''' Dim pxInfoCol As IEnumerable(Of PixelInfo) = bmp.GetPixelInfo()
+        ''' 
+        ''' For Each pxInfo As PixelInfo In pxInfoCol
+        '''     Console.WriteLine(String.Format("Position: {0}, Location: {1}, Color: {2}",
+        '''                                     pxInfo.Position, pxInfo.Location.ToString(), pxInfo.Color.ToString()))
+        ''' Next
+        ''' </code>
+        ''' </example>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <returns>
+        ''' A <see cref="IEnumerable(Of SmartBotKit.Imaging.PixelInfo)"/> containing the <see cref="Global.System.Drawing.Color"/>, pixel position, 
+        ''' and coordinates location respectivelly to the image, of each pixel in the image.
+        ''' </returns>
+        ''' ----------------------------------------------------------------------------------------------------
+        <DebuggerStepThrough>
+        <Extension>
+        <EditorBrowsable(EditorBrowsableState.Always)>
+        Public Iterator Function GetPixelInfo(ByVal sender As Global.System.Drawing.Image) As IEnumerable(Of SmartBotKit.Imaging.PixelInfo)
+
+            Dim bmp As Global.System.Drawing.Bitmap = DirectCast(sender, Global.System.Drawing.Bitmap)
+
+            ' Lock the bitmap bits.
+            Dim pixelFormat As PixelFormat = PixelFormat.Format32bppArgb
+            Dim bytesPerPixel As Integer = 4 ' PixelFormat.Format32bppArgb
+            Dim rect As New Global.System.Drawing.Rectangle(Global.System.Drawing.Point.Empty, bmp.Size)
+            Dim bmpData As BitmapData = bmp.LockBits(rect, ImageLockMode.ReadOnly, pixelFormat)
+
+            ' Get the address of the first row.
+            Dim address As Global.System.IntPtr = bmpData.Scan0
+
+            ' Declare an array to hold the bytes of the bitmap. 
+            Dim numBytes As Integer = (Math.Abs(bmpData.Stride) * rect.Height)
+            Dim rawImageData As Byte() = New Byte(numBytes - 1) {}
+
+            ' Copy the RGB values into the array.
+            Marshal.Copy(address, rawImageData, 0, numBytes)
+
+            ' Unlock the bitmap bits and free th cloned bitmap.
+            bmp.UnlockBits(bmpData)
+
+            ' Iterate the pixels.
+            For i As Integer = 0 To (rawImageData.Length - bytesPerPixel) Step bytesPerPixel
+
+                Dim color As Global.System.Drawing.Color =
+                            Global.System.Drawing.Color.FromArgb(alpha:=rawImageData(i + 3),
+                                                                 red:=rawImageData(i + 2),
+                                                                 green:=rawImageData(i + 1),
+                                                                 blue:=rawImageData(i))
+
+                Dim position As Integer = (i \ bytesPerPixel)
+
+                Dim location As New Global.System.Drawing.Point(x:=(position Mod rect.Width),
+                                                                y:=(position - (position Mod rect.Width)) \ rect.Width)
+
+                Yield New SmartBotKit.Imaging.PixelInfo(color, position, location)
+
+            Next i
+
+        End Function
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Resizes an <see cref="Global.System.Drawing.Image"/>.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <param name="sender">
+        ''' The source <see cref="Global.System.Drawing.Image"/>.
+        ''' </param>
+        ''' 
+        ''' <param name="size">
+        ''' The new size.
+        ''' </param>
+        ''' 
+        ''' <param name="quality">
+        ''' A <see cref="GraphicsQualityContainer"/> object that contains the target image quality.
+        ''' </param>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <returns>
+        ''' The resized <see cref="Global.System.Drawing.Image"/>.
+        ''' </returns>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <exception cref="ArgumentException">
+        ''' Value greater than 0 is required.;width
+        ''' or
+        ''' Value greater than 0 is required.;height
+        ''' </exception>
+        ''' ----------------------------------------------------------------------------------------------------
+        <DebuggerStepThrough>
+        <Extension>
+        <EditorBrowsable(EditorBrowsableState.Always)>
+        Public Function Resize(ByVal sender As Image, ByVal size As Size) As Image
+
+            If (size.Width <= 0) Then
+                Throw New ArgumentException(message:="Width bigger than 0 is reqired.", paramName:=NameOf(size.Width))
+
+            ElseIf (size.Height <= 0) Then
+                Throw New ArgumentException(message:="Height bigger than 0 is reqired.", paramName:=NameOf(size.Height))
+
+            Else
+                Dim bmp As New Bitmap(size.Width, size.Height, sender.PixelFormat)
+
+                Using g As Graphics = Graphics.FromImage(bmp)
+                    g.DrawImage(sender, 0, 0, bmp.Width, bmp.Height)
+                End Using
+
+                Return bmp
+            End If
 
         End Function
 
