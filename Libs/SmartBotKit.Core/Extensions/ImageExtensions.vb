@@ -252,10 +252,6 @@ Namespace SmartBotKit.Extensions.ImageExtensions
         ''' <param name="size">
         ''' The new size.
         ''' </param>
-        ''' 
-        ''' <param name="quality">
-        ''' A <see cref="GraphicsQualityContainer"/> object that contains the target image quality.
-        ''' </param>
         ''' ----------------------------------------------------------------------------------------------------
         ''' <returns>
         ''' The resized <see cref="Global.System.Drawing.Image"/>.

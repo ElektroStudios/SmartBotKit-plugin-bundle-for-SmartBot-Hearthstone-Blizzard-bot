@@ -10,10 +10,10 @@ These plugins were developed just for fun, and are shared here only for educativ
 
 I don't use bots, I'm just a enthusiastic programmer that like to learn new things about how are built and how functions this kind of software for video games.
 
-# **The Plugins**
+# **Libraries**
 
 ## SmartBotKit.Core
-This is the main assembly required ﻿for all my plugins. So you need to install this.﻿ 
+This is the main assembly required for all my plugins. So you need to install this.﻿ 
 
 This is a public API that extends the official SB API (nothing special, just a little bit of reusable code used ﻿for my plugins).
 
@@ -23,12 +23,14 @@ Installation:
 
 ![](https://i.imgur.com/wdB95Aa.png)
 
-## Plugin Template
-This is just a plugin template written in VB.NET language.
+# **Plugins**
 
-You can start writting a new plugin for SmartBot taking this template project as a startup point.
+## Advanced Auto-Concede
+A plugin to build auto-concede rules.
 
-![](https://i.imgur.com/PbH9PRY.png)
+Settings:
+
+![](Images/Advanced%20Auto-Concede%20-%20Settings.png)
 
 ## App Launcher
 A plugin that automate external files and programs execution at SmartBot's startup.
@@ -51,30 +53,25 @@ Settings:
 
 ![](Images/Auto-Injector%20-%20Settings.png)
 
+## BattleTag Crawler
+A plugin that collects BattleTag ids from opponents into a csv file.
+
+It also includes a simple script made in Power-Shell to parse the CSV table.
+
+Settings:
+
+![](Images/BattleTag%20Crawler%20-%20Settings.png)
+
+Preview:
+
+![](Images/BattleTag%20Crawler%20-%20Preview.png)
+
 ## Bounty Hunter
 A plugin that completes quests, schedules ranked mode and level up heroes.
 
 Settings:
 
 ![](Images/Bounty%20Hunter%20-%20Settings.png)
-
-## Challenge Notifier
-A plugin that notifies when a friend challenge is received, like the 'Play a Friend' challenge.
-
-PLEASE NOTE THAT THIS PLUGIN IS EXPERIMENTAL, UNFINISHED, AND IT WAS INTENDED FOR MY PERSONAL USAGE ONLY,
-
-BUT IM SHARING IT SO YOU CAN USE IT IN CASE OF YOU ACCOMPLISH THE CONDITIONS TO USE IT.
-
-FOR BEST RESULTS I SUGGEST TO USE THIS PLUGIN IN ADDITION TO MY OTHER PLUGIN: 'HEARTHSTONE RESIZER', SPECIFYING A RESOLUTION OF 640X480, THAT WAY IT WILL NEVER FAIL TO DETECT A CHALLENGE INVITATION.
-
-IF YOU WANT TO SEE MORE RESOLUTIONS SUPPORTED BY THIS PLUGIN,
-YOU CAN CONTRIBUTE BY SENDING ME A SCREENSHOT OF HEARTHSTONE WINDOW RUNNING IN THE DESIRED SIZE THAT YOU WANT TO SUPPORT WHEN A FRIEND CHALLENGES YOU. SEE THIS SCREENSHOT AS A EXAMPLE
-
-![](https://i.imgur.com/pIeRQyy.jpg)
-
-Settings:
-
-![](Images/Challenge%20Notifier%20-%20Settings.png)
 
 ## Emote Factory
 A plugin that builds configurable rule conditions to send or answer to opponent emotes.
@@ -141,20 +138,6 @@ Settings:
 
 ![](Images/Panic%20Button%20-%20Settings.png)
 
-## PlayVIG Adverts Remover
-
-( SUPPORT FOR THIS PLUGIN IS DISCONTINUED )
-
-PlayVIG is a software that pays you for playing Arena or Ranked mode in Hearthstone (and for other games).
-
-The program automatically shows a top-most advert window for around 20 seconds every time you end a game in Hearthstone while a PlayVIG quest is active.
-
-This plugin will mute the audio volume of PlayVIG process and remove any advert window shown.
-
-Settings:
-
-![](Images/PlayVIG%20Adverts%20Remover%20-%20Settings.png)
-
 ## System Tray Icon
 A plugin that creates a system tray icon with menu commands to handle SmartBot and Hearthstone visibility.
 
@@ -193,3 +176,37 @@ It will don't restore the minimized state since I consider it useless. (who want
 Settings:
 
 ![](Images/Window%20Restorator%20-%20Settings.png)
+
+# **Discontinued Plugins**
+
+## Challenge Notifier
+A plugin that notifies when a friend challenge is received, like the 'Play a Friend' challenge.
+
+PLEASE NOTE THAT THIS PLUGIN IS EXPERIMENTAL, UNFINISHED, AND IT WAS INTENDED FOR MY PERSONAL USAGE ONLY,
+
+BUT IM SHARING IT SO YOU CAN USE IT IN CASE OF YOU ACCOMPLISH THE CONDITIONS TO USE IT.
+
+FOR BEST RESULTS I SUGGEST TO USE THIS PLUGIN IN ADDITION TO MY OTHER PLUGIN: 'HEARTHSTONE RESIZER', SPECIFYING A RESOLUTION OF 640X480, THAT WAY IT WILL NEVER FAIL TO DETECT A CHALLENGE INVITATION.
+
+IF YOU WANT TO SEE MORE RESOLUTIONS SUPPORTED BY THIS PLUGIN,
+YOU CAN CONTRIBUTE BY SENDING ME A SCREENSHOT OF HEARTHSTONE WINDOW RUNNING IN THE DESIRED SIZE THAT YOU WANT TO SUPPORT WHEN A FRIEND CHALLENGES YOU. SEE THIS SCREENSHOT AS A EXAMPLE
+
+![](https://i.imgur.com/pIeRQyy.jpg)
+
+Settings:
+
+![](Images/Challenge%20Notifier%20-%20Settings.png)
+
+## PlayVIG Adverts Remover
+
+( SUPPORT FOR THIS PLUGIN IS DISCONTINUED )
+
+PlayVIG is a software that pays you for playing Arena or Ranked mode in Hearthstone (and for other games).
+
+The program automatically shows a top-most advert window for around 20 seconds every time you end a game in Hearthstone while a PlayVIG quest is active.
+
+This plugin will mute the audio volume of PlayVIG process and remove any advert window shown.
+
+Settings:
+
+![](Images/PlayVIG%20Adverts%20Remover%20-%20Settings.png)
