@@ -11,7 +11,7 @@ Imports System.Runtime.InteropServices
 
 <Assembly: AssemblyTitle("BattleTag Crawler for SmartBot")>
 <Assembly: AssemblyDescription("A plugin that collects BattleTag ids from opponents into a csv file.")>
-<Assembly: AssemblyCompany("")>
+<Assembly: AssemblyCompany("ElektroStudios")>
 <Assembly: AssemblyProduct("BattleTagCrawler.dll")>
 <Assembly: AssemblyCopyright("© ElektroStudios 2019")>
 <Assembly: AssemblyTrademark("")>
@@ -19,7 +19,7 @@ Imports System.Runtime.InteropServices
 <Assembly: ComVisible(False)>
 
 'The following GUID is for the ID of the typelib if this project is exposed to COM
-<Assembly: Guid("CEAE68E0-6F68-4729-982F-70FFEA6840F4")>
+<Assembly: Guid("76893DE9-2008-488A-8BCE-6F2BAFF3C880")>
 
 ' Version information for an assembly consists of the following four values:
 '

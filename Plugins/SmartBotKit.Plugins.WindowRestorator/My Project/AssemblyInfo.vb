@@ -11,7 +11,7 @@ Imports System.Runtime.InteropServices
 
 <Assembly: AssemblyTitle("Window Restorator for SmartBot")>
 <Assembly: AssemblyDescription("A plugin that reminds the last SmartBot's window size and position and restores it at the next program startup.")>
-<Assembly: AssemblyCompany("")>
+<Assembly: AssemblyCompany("ElektroStudios")>
 <Assembly: AssemblyProduct("WindowRestorator.dll")>
 <Assembly: AssemblyCopyright("© ElektroStudios 2019")>
 <Assembly: AssemblyTrademark("")>
@@ -19,7 +19,7 @@ Imports System.Runtime.InteropServices
 <Assembly: ComVisible(False)>
 
 'The following GUID is for the ID of the typelib if this project is exposed to COM
-<Assembly: Guid("02358E26-AA74-4D88-8C69-8E9EC13D65B1")>
+<Assembly: Guid("93DF6A32-80B5-4A22-88AF-C29CB65371F5")>
 
 ' Version information for an assembly consists of the following four values:
 '

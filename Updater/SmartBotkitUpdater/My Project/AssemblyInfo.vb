@@ -9,17 +9,17 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("SmartBotkitUpdater")>
+<Assembly: AssemblyTitle("SmartBotkit Updater")>
 <Assembly: AssemblyDescription("Updater for SmartBotKit plugin bundle.")>
-<Assembly: AssemblyCompany("Elektro Studios")>
-<Assembly: AssemblyProduct("SmartBotkitUpdater")>
-<Assembly: AssemblyCopyright("Copyright © Elektro Studios 2018")>
+<Assembly: AssemblyCompany("ElektroStudios")>
+<Assembly: AssemblyProduct("SmartBotkitUpdater.exe")>
+<Assembly: AssemblyCopyright("© Elektro Studios 2019")>
 <Assembly: AssemblyTrademark("")>
 
 <Assembly: ComVisible(False)>
 
 'The following GUID is for the ID of the typelib if this project is exposed to COM
-<Assembly: Guid("2f408812-e0a1-1894-8dc3-bbdd00bd0616")>
+<Assembly: Guid("2EB8A224-90C0-414D-8B34-3D7D22CC4157")>
 
 ' Version information for an assembly consists of the following four values:
 '

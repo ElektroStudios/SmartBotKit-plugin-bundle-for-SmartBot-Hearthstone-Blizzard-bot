@@ -11,7 +11,7 @@ Imports System.Runtime.InteropServices
 
 <Assembly: AssemblyTitle("Panic Button for SmartBot")>
 <Assembly: AssemblyDescription("A plugin that stops or terminates SmartBot process when a specified hotkey combination is pressed.")>
-<Assembly: AssemblyCompany("")>
+<Assembly: AssemblyCompany("ElektroStudios")>
 <Assembly: AssemblyProduct("PanicButton.dll")>
 <Assembly: AssemblyCopyright("© ElektroStudios 2019")>
 <Assembly: AssemblyTrademark("")>
@@ -19,7 +19,7 @@ Imports System.Runtime.InteropServices
 <Assembly: ComVisible(False)>
 
 'The following GUID is for the ID of the typelib if this project is exposed to COM
-<Assembly: Guid("7BBA29A2-309F-47EE-BB46-3737A1B83FC1")>
+<Assembly: Guid("11AC70DD-62AC-4A61-AEC7-899B79F1516B")>
 
 ' Version information for an assembly consists of the following four values:
 '

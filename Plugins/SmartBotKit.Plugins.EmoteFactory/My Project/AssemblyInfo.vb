@@ -11,7 +11,7 @@ Imports System.Runtime.InteropServices
 
 <Assembly: AssemblyTitle("Emote Factory for SmartBot")>
 <Assembly: AssemblyDescription("A plugin that builds configurable rule conditions to send or answer to opponent emotes.")>
-<Assembly: AssemblyCompany("")>
+<Assembly: AssemblyCompany("ElektroStudios")>
 <Assembly: AssemblyProduct("EmoteFactory.dll")>
 <Assembly: AssemblyCopyright("© ElektroStudios 2019")>
 <Assembly: AssemblyTrademark("")>
@@ -19,7 +19,7 @@ Imports System.Runtime.InteropServices
 <Assembly: ComVisible(False)>
 
 'The following GUID is for the ID of the typelib if this project is exposed to COM
-<Assembly: Guid("5B588561-A412-4A4C-8A34-A623E0604476")>
+<Assembly: Guid("4F278D21-B3FA-4FFE-A5B0-AC7495AF4342")>
 
 ' Version information for an assembly consists of the following four values:
 '

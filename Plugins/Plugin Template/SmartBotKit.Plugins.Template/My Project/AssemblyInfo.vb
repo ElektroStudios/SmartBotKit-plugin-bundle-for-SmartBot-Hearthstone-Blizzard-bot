@@ -11,7 +11,7 @@ Imports System.Runtime.InteropServices
 
 <Assembly: AssemblyTitle("Plugin Template for SmartBot")>
 <Assembly: AssemblyDescription("A plugin template for SmartBot.")>
-<Assembly: AssemblyCompany("")>
+<Assembly: AssemblyCompany("ElektroStudios")>
 <Assembly: AssemblyProduct("PluginTemplate.dll")>
 <Assembly: AssemblyCopyright("© ElektroStudios 2019")>
 <Assembly: AssemblyTrademark("")>
@@ -19,7 +19,7 @@ Imports System.Runtime.InteropServices
 <Assembly: ComVisible(False)>
 
 'The following GUID is for the ID of the typelib if this project is exposed to COM
-<Assembly: Guid("A09BB0AE-E591-2DB9-A406-A9DB0F907ED2")>
+<Assembly: Guid("FB526525-0D38-4F8F-BDE8-1F91B44487A8")>
 
 ' Version information for an assembly consists of the following four values:
 '

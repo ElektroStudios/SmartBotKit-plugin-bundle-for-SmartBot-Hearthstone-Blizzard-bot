@@ -228,6 +228,7 @@ Namespace GarbageCleaner
                 logs.Add(New FileInfo(Path.Combine(SmartBotUtil.SmartBotDir.FullName, "CompileErrorsDiscoverCC.txt")))
                 logs.Add(New FileInfo(Path.Combine(SmartBotUtil.SmartBotDir.FullName, "CompileErrorsProfile.txt")))
                 logs.Add(New FileInfo(Path.Combine(SmartBotUtil.SmartBotDir.FullName, "SmartBotDiagTool_report.txt")))
+                logs.Add(New FileInfo(Path.Combine(SmartBotUtil.SmartBotDir.FullName, "Stats.ini")))
 
                 For Each log As FileInfo In logs
                     Dim daysDiff As Integer = CInt((Date.Now - log.CreationTime).TotalDays)

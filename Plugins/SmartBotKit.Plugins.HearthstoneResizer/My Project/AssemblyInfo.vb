@@ -11,7 +11,7 @@ Imports System.Runtime.InteropServices
 
 <Assembly: AssemblyTitle("Hearthstone Resizer for SmartBot")>
 <Assembly: AssemblyDescription("A plugin that maintains a fixed size and location for Hearthstone window.")>
-<Assembly: AssemblyCompany("")>
+<Assembly: AssemblyCompany("ElektroStudios")>
 <Assembly: AssemblyProduct("HearthstoneResizer.dll")>
 <Assembly: AssemblyCopyright("© ElektroStudios 2019")>
 <Assembly: AssemblyTrademark("")>
@@ -19,7 +19,7 @@ Imports System.Runtime.InteropServices
 <Assembly: ComVisible(False)>
 
 'The following GUID is for the ID of the typelib if this project is exposed to COM
-<Assembly: Guid("47B0C7C0-FE45-4730-AE5C-D6153CEE3754")>
+<Assembly: Guid("B759B093-201B-4383-8D03-58EC10796400")>
 
 ' Version information for an assembly consists of the following four values:
 '

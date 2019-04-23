@@ -11,7 +11,7 @@ Imports System.Runtime.InteropServices
 
 <Assembly: AssemblyTitle("Bounty Hunter for SmartBot")>
 <Assembly: AssemblyDescription("A plugin that completes quests, schedules ranked mode and level up heroes.")>
-<Assembly: AssemblyCompany("")>
+<Assembly: AssemblyCompany("ElektroStudios")>
 <Assembly: AssemblyProduct("BountyHunter.dll")>
 <Assembly: AssemblyCopyright("© ElektroStudios 2019")>
 <Assembly: AssemblyTrademark("")>
@@ -19,7 +19,7 @@ Imports System.Runtime.InteropServices
 <Assembly: ComVisible(False)>
 
 'The following GUID is for the ID of the typelib if this project is exposed to COM
-<Assembly: Guid("02358E21-AA74-4D88-8C69-8E9EC13D15C1")>
+<Assembly: Guid("24B42476-1C62-4515-B701-576EC83EEC80")>
 
 ' Version information for an assembly consists of the following four values:
 '

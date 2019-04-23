@@ -11,7 +11,7 @@ Imports System.Runtime.InteropServices
 
 <Assembly: AssemblyTitle("Taskbar Informer for SmartBot")>
 <Assembly: AssemblyDescription("A plugin that Prints statistical info. on the taskbar icon and also displays a progress bar for Arena mode.")>
-<Assembly: AssemblyCompany("")>
+<Assembly: AssemblyCompany("ElektroStudios")>
 <Assembly: AssemblyProduct("TaskbarInformer.dll")>
 <Assembly: AssemblyCopyright("© ElektroStudios 2019")>
 <Assembly: AssemblyTrademark("")>
@@ -19,7 +19,7 @@ Imports System.Runtime.InteropServices
 <Assembly: ComVisible(False)>
 
 'The following GUID is for the ID of the typelib if this project is exposed to COM
-<Assembly: Guid("9754CA01-DE5A-444D-8582-7E0D75EB242F")>
+<Assembly: Guid("A5619ADE-0300-4827-BD17-890D3B767055")>
 
 ' Version information for an assembly consists of the following four values:
 '

@@ -11,7 +11,7 @@ Imports System.Runtime.InteropServices
 
 <Assembly: AssemblyTitle("Offline Server Handler for SmartBot")>
 <Assembly: AssemblyDescription("A plugin that handles the bot behavior when the server gets down (not lag, ﻿local network inactivity﻿﻿ neither ﻿auth. problems).")>
-<Assembly: AssemblyCompany("")>
+<Assembly: AssemblyCompany("ElektroStudios")>
 <Assembly: AssemblyProduct("OfflineServerHandler.dll")>
 <Assembly: AssemblyCopyright("© ElektroStudios 2019")>
 <Assembly: AssemblyTrademark("")>
@@ -19,7 +19,7 @@ Imports System.Runtime.InteropServices
 <Assembly: ComVisible(False)>
 
 'The following GUID is for the ID of the typelib if this project is exposed to COM
-<Assembly: Guid("2F59BD12-CBAC-4B4D-BE8C-7A5757648E60")>
+<Assembly: Guid("4D27395A-2A91-4388-976C-CFE2FFEEC8C4")>
 
 ' Version information for an assembly consists of the following four values:
 '

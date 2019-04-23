@@ -11,7 +11,7 @@ Imports System.Runtime.InteropServices
 
 <Assembly: AssemblyTitle("System Tray Icon for SmartBot")>
 <Assembly: AssemblyDescription("A plugin that creates a system tray icon with menu commands to handle SmartBot and Hearthstone visibility.")>
-<Assembly: AssemblyCompany("")>
+<Assembly: AssemblyCompany("ElektroStudios")>
 <Assembly: AssemblyProduct("SystemTrayIcon.dll")>
 <Assembly: AssemblyCopyright("© ElektroStudios 2019")>
 <Assembly: AssemblyTrademark("")>
@@ -19,7 +19,7 @@ Imports System.Runtime.InteropServices
 <Assembly: ComVisible(False)>
 
 'The following GUID is for the ID of the typelib if this project is exposed to COM
-<Assembly: Guid("1be676ed-c8f3-4146-8cc0-7e6665f6e239")>
+<Assembly: Guid("D9B5009F-719E-4FD1-8EF3-D7B8159F7C92")>
 
 ' Version information for an assembly consists of the following four values:
 '

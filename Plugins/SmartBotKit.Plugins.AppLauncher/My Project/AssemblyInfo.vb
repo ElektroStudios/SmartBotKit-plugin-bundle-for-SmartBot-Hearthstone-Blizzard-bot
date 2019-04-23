@@ -11,7 +11,7 @@ Imports System.Runtime.InteropServices
 
 <Assembly: AssemblyTitle("App Launcher for SmartBot")>
 <Assembly: AssemblyDescription("A plugin that automates external files and programs execution at SmartBot's startup.")>
-<Assembly: AssemblyCompany("")>
+<Assembly: AssemblyCompany("ElektroStudios")>
 <Assembly: AssemblyProduct("AppLauncher.dll")>
 <Assembly: AssemblyCopyright("© ElektroStudios 2019")>
 <Assembly: AssemblyTrademark("")>
@@ -19,7 +19,7 @@ Imports System.Runtime.InteropServices
 <Assembly: ComVisible(False)>
 
 'The following GUID is for the ID of the typelib if this project is exposed to COM
-<Assembly: Guid("3985CB62-7531-41F5-866B-B0B9DE0D8B31")>
+<Assembly: Guid("CF0D0CF3-C5BA-4C15-B1B6-2F4F4EBB2BCA")>
 
 ' Version information for an assembly consists of the following four values:
 '

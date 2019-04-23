@@ -202,7 +202,7 @@ Namespace PluginTemplate
                         End If
 
                         Bot.Log(String.Format("[Advanced Auto Concede] -> (Ranked Mode) Current wins count: {0}", Me.rankedWinsCount))
-                        If (Me.rankedWinsCount >= Me.DataContainer.MaxRankedWins) Then
+                        If (Me.rankedWinsCount >= Me.DataContainer.MaxRankedWins) AndAlso (Me.DataContainer.EnableRankedModeAutoConcede) Then
                             Bot.Log("[Advanced Auto Concede] -> (Ranked Mode) Conceding the current match, reason: max. ranked wins")
                             Me.isMatchAutoConceded = True
                             Bot.Concede()
@@ -210,7 +210,7 @@ Namespace PluginTemplate
                         End If
 
                         If (Me.concedesCount <> 0) Then
-                            If (Me.concedesCount < Me.DataContainer.MaxRankedConcedes) Then
+                            If (Me.concedesCount < Me.DataContainer.MaxRankedConcedes) AndAlso (Me.DataContainer.EnableRankedModeAutoConcede) Then
                                 Bot.Log(String.Format("[Advanced Auto Concede] -> (Ranked Mode) Conceding the current match, reason: repeat concede ({0} of {1})", (Me.concedesCount + 1), Me.DataContainer.MaxRankedConcedes))
                                 Me.isMatchAutoConceded = True
                                 Bot.Concede()
@@ -221,14 +221,14 @@ Namespace PluginTemplate
 
                     Case Mode.UnrankedStandard, Mode.UnrankedWild
                         Bot.Log(String.Format("[Advanced Auto Concede] -> (Unranked Mode) Current wins count: {0}", Me.unrankedWinsCount))
-                        If (Me.unrankedWinsCount >= Me.DataContainer.MaxUnrankedWins) Then
+                        If (Me.unrankedWinsCount >= Me.DataContainer.MaxUnrankedWins) AndAlso (Me.DataContainer.EnableUnrankedModeAutoConcede) Then
                             Bot.Log("[Advanced Auto Concede] -> (Ranked Mode) Conceding the current match, reason: max. unranked wins")
                             Me.isMatchAutoConceded = True
                             Bot.Concede()
                         End If
 
                         If (Me.concedesCount <> 0) Then
-                            If (Me.concedesCount < Me.DataContainer.MaxUnrankedConcedes) Then
+                            If (Me.concedesCount < Me.DataContainer.MaxUnrankedConcedes) AndAlso (Me.DataContainer.EnableUnrankedModeAutoConcede) Then
                                 Bot.Log(String.Format("[Advanced Auto Concede] -> (Unranked Mode) Conceding the current match, reason: repeat concede ({0} of {1})", (Me.concedesCount + 1), Me.DataContainer.MaxRankedConcedes))
                                 Me.isMatchAutoConceded = True
                                 Bot.Concede()
@@ -262,13 +262,13 @@ Namespace PluginTemplate
                         End If
 
                         Dim isWild As Boolean = (Me.currentMode = Mode.RankedWild)
-                        If Not (isWild) AndAlso (Bot.GetPlayerDatas.GetRank(wild:=False) >= Me.DataContainer.MaxRankStandard) Then
+                        If Not (isWild) AndAlso (Bot.GetPlayerDatas.GetRank(wild:=False) <= Me.DataContainer.MaxRankStandard) Then
                             Bot.Log("[Advanced Auto Concede] -> (Ranked Mode) Max. standard rank reached, switching to mode: unranked standard")
                             Bot.ChangeMode(Mode.UnrankedStandard)
                             Me.currentMode = Mode.UnrankedStandard
                         End If
 
-                        If (isWild) AndAlso (Bot.GetPlayerDatas.GetRank(wild:=True) >= Me.DataContainer.MaxRankWild) Then
+                        If (isWild) AndAlso (Bot.GetPlayerDatas.GetRank(wild:=True) <= Me.DataContainer.MaxRankWild) Then
                             Bot.Log("[Advanced Auto Concede] -> (Ranked Mode) Max. wild rank reached, switching to mode: unranked wild")
                             Bot.ChangeMode(Mode.UnrankedWild)
                             Me.currentMode = Mode.UnrankedWild

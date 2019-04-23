@@ -11,7 +11,7 @@ Imports System.Runtime.InteropServices
 
 <Assembly: AssemblyTitle("Auto-Injector for SmartBot")>
 <Assembly: AssemblyDescription("A plugin that automate SmartBot injection when Hearthstone process is detected.")>
-<Assembly: AssemblyCompany("")>
+<Assembly: AssemblyCompany("ElektroStudios")>
 <Assembly: AssemblyProduct("AutoInjector.dll")>
 <Assembly: AssemblyCopyright("© ElektroStudios 2019")>
 <Assembly: AssemblyTrademark("")>
@@ -19,7 +19,7 @@ Imports System.Runtime.InteropServices
 <Assembly: ComVisible(False)>
 
 'The following GUID is for the ID of the typelib if this project is exposed to COM
-<Assembly: Guid("3985C162-7131-41F5-811B-B0B9DE2D8B31")>
+<Assembly: Guid("18570F83-F0AB-4FA1-8701-F726C7157D35")>
 
 ' Version information for an assembly consists of the following four values:
 '

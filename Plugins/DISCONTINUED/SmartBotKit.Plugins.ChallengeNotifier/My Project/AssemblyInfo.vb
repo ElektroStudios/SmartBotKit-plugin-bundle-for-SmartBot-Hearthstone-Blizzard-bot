@@ -11,7 +11,7 @@ Imports System.Runtime.InteropServices
 
 <Assembly: AssemblyTitle("Challenge Notifier for SmartBot")>
 <Assembly: AssemblyDescription("A plugin that notifies when a friend challenge is received, like the 'Play a Friend' challenge.")>
-<Assembly: AssemblyCompany("")>
+<Assembly: AssemblyCompany("ElektroStudios")>
 <Assembly: AssemblyProduct("ChallengeNotifier.dll")>
 <Assembly: AssemblyCopyright("© ElektroStudios 2019")>
 <Assembly: AssemblyTrademark("")>
@@ -19,7 +19,7 @@ Imports System.Runtime.InteropServices
 <Assembly: ComVisible(False)>
 
 'The following GUID is for the ID of the typelib if this project is exposed to COM
-<Assembly: Guid("D3911C32-C652-403F-85DB-E658A37C8C7D")>
+<Assembly: Guid("50253F66-DD52-4AB7-8669-F932F0EFCDA5")>
 
 ' Version information for an assembly consists of the following four values:
 '

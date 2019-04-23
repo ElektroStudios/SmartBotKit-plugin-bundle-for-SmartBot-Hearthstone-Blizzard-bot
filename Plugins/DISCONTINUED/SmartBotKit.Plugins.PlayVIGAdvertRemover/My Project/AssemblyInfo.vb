@@ -11,15 +11,15 @@ Imports System.Runtime.InteropServices
 
 <Assembly: AssemblyTitle("PlayVIG Adverts Remover for SmartBot")>
 <Assembly: AssemblyDescription("A plugin that removes and mute adverts from PlayVIG application.")>
-<Assembly: AssemblyCompany("")>
+<Assembly: AssemblyCompany("ElektroStudios")>
 <Assembly: AssemblyProduct("PlayVIGAdvertsRemover.dll")>
-<Assembly: AssemblyCopyright("")>
+<Assembly: AssemblyCopyright("© ElektroStudios 2019")>
 <Assembly: AssemblyTrademark("")>
 
 <Assembly: ComVisible(False)>
 
 'The following GUID is for the ID of the typelib if this project is exposed to COM
-<Assembly: Guid("01358E11-AA74-4D88-8C69-1E9EC13D65B1")>
+<Assembly: Guid("DB0788E4-8034-46FD-AA7E-CB8BEF1F37FC")>
 
 ' Version information for an assembly consists of the following four values:
 '

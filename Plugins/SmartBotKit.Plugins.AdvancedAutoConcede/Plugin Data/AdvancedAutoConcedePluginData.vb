@@ -420,8 +420,8 @@ Namespace PluginTemplate
             Me.maxUnrankedConcedesB = 1
             Me.minRankstandardB = 25
             Me.minRankWildB = 25
-            Me.maxRankStandardB = 1
-            Me.maxRankWildB = 1
+            Me.maxRankStandardB = 0
+            Me.maxRankWildB = 0
         End Sub
 
 #End Region
