@@ -66,21 +66,21 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="HearthMirror">
-      <HintPath>..\..\References\HearthMirror.dll</HintPath>
+      <HintPath>..\..\..\References\HearthMirror.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="HearthWatcher">
-      <HintPath>..\..\References\HearthWatcher.dll</HintPath>
+      <HintPath>..\..\..\References\HearthWatcher.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="SBAPI">
-      <HintPath>..\..\References\SBAPI.dll</HintPath>
+      <HintPath>..\..\..\References\SBAPI.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
     <Reference Include="Xceed.Wpf.Toolkit">
-      <HintPath>..\..\References\Xceed.Wpf.Toolkit.dll</HintPath>
+      <HintPath>..\..\..\References\Xceed.Wpf.Toolkit.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>

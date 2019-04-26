@@ -1,5 +1,5 @@
 # ---------------------------------
-# BattleTag Crawler CSV Reader v1.0
+# BattleTag Crawler CSV Reader v1.1
 # ---------------------------------
 
 Function Select-File($initialDirectory) {
@@ -25,7 +25,7 @@ If([String]::IsNullOrEmpty($filepath)) {
     Exit(1)
 }
 $csv      = Import-Csv -Path ([Management.Automation.WildcardPattern]::Escape($filepath)) -Delimiter "," -Encoding "Unicode"
-$columns  = ($csv | select "Time", "Game Mode", "Standard Rank", "Wild Rank", "BattleTag")
+$columns  = ($csv | select "Date", "Game Mode", "Standard Rank", "Wild Rank", "BattleTag")
 
 $columns | Out-GridView -PassThru -Title ([System.IO.Path]::GetFileName($filepath))
 Exit(0)

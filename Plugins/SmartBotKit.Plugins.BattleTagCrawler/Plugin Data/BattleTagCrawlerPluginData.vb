@@ -100,10 +100,30 @@ Namespace PluginTemplate
         ''' Gets a value that determine whether or not to log duplicated BattleTag ids.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        <Category("Settings")>
-        <DisplayName("Add duplicated BattleTag ids to log file")>
+        <Category("General Settings")>
+        <DisplayName("Add new entries at beginning of file instead of end of file")>
+        <Browsable(True)>
+        Public Property AddNewEntriesAtBeginningOfFile As Boolean
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets a value that determine whether or not to log duplicated BattleTag ids.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        <Category("General Settings")>
+        <DisplayName("Log duplicated BattleTags")>
         <Browsable(True)>
         Public Property LogDuplicates As Boolean
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets a value that determine whether or not to write to a single log file instead of creating multiple logs.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        <Category("General Settings")>
+        <DisplayName("Write to a single log file instead of creating multiple logs")>
+        <Browsable(True)>
+        Public Property UseSingleLogFile As Boolean
 
 #End Region
 
@@ -162,6 +182,10 @@ Namespace PluginTemplate
         ''' ----------------------------------------------------------------------------------------------------
         Public Sub New()
             MyBase.Name = Me.AssemblyInfo.AssemblyName
+
+            Me.AddNewEntriesAtBeginningOfFile = True
+            Me.LogDuplicates = False
+            Me.UseSingleLogFile = True
 
             Me.CrawlRankedStandardGames = True
             Me.CrawlUnrankedStandardGames = True
