@@ -185,6 +185,7 @@ Namespace PluginTemplate
                 Me.currentMode = Bot.CurrentMode()
 
                 Select Case Me.currentMode
+
                     Case Mode.RankedStandard, Mode.RankedWild
                         If (Me.DataContainer.EnableRankedModeAutoConcede) Then
                             Dim isWildMode As Boolean = (Me.currentMode = Mode.RankedWild)
@@ -258,37 +259,44 @@ Namespace PluginTemplate
         Public Overrides Sub OnDefeat()
             If (Me.DataContainer.Enabled) Then
                 Select Case Me.currentMode
+
                     Case Mode.RankedStandard, Mode.RankedWild
-                        If (Me.DataContainer.ResetWinsCountAfterLose) Then
-                            Me.rankedWinsCount = 0
-                            If Not (Me.isMatchAutoConceded) Then
-                                Bot.Log("[Advanced Auto Concede] -> (Ranked Mode) Wins count resets to zero, reason: defeat.")
+                        If (Me.DataContainer.EnableRankedModeAutoConcede) Then
+                            If (Me.DataContainer.ResetWinsCountAfterLose) Then
+                                Me.rankedWinsCount = 0
+                                If Not (Me.isMatchAutoConceded) Then
+                                    Bot.Log("[Advanced Auto Concede] -> (Ranked Mode) Wins count resets to zero, reason: defeat.")
+                                End If
                             End If
-                        End If
 
-                        Dim isWild As Boolean = (Me.currentMode = Mode.RankedWild)
-                        If Not (isWild) AndAlso (Bot.GetPlayerDatas.GetRank(wild:=False) <= Me.DataContainer.MaxRankStandard) Then
-                            Bot.Log("[Advanced Auto Concede] -> (Ranked Mode) Max. standard rank reached, switching to mode: unranked standard")
-                            Bot.ChangeMode(Mode.UnrankedStandard)
-                            Me.currentMode = Mode.UnrankedStandard
-                        End If
+                            Dim isWild As Boolean = (Me.currentMode = Mode.RankedWild)
+                            If Not (isWild) AndAlso (Bot.GetPlayerDatas.GetRank(wild:=False) <= Me.DataContainer.MaxRankStandard) Then
+                                Bot.Log("[Advanced Auto Concede] -> (Ranked Mode) Max. standard rank reached, switching to mode: unranked standard")
+                                Bot.ChangeMode(Mode.UnrankedStandard)
+                                Me.currentMode = Mode.UnrankedStandard
+                            End If
 
-                        If (isWild) AndAlso (Bot.GetPlayerDatas.GetRank(wild:=True) <= Me.DataContainer.MaxRankWild) Then
-                            Bot.Log("[Advanced Auto Concede] -> (Ranked Mode) Max. wild rank reached, switching to mode: unranked wild")
-                            Bot.ChangeMode(Mode.UnrankedWild)
-                            Me.currentMode = Mode.UnrankedWild
+                            If (isWild) AndAlso (Bot.GetPlayerDatas.GetRank(wild:=True) <= Me.DataContainer.MaxRankWild) Then
+                                Bot.Log("[Advanced Auto Concede] -> (Ranked Mode) Max. wild rank reached, switching to mode: unranked wild")
+                                Bot.ChangeMode(Mode.UnrankedWild)
+                                Me.currentMode = Mode.UnrankedWild
+                            End If
+
                         End If
 
                     Case Mode.UnrankedStandard, Mode.UnrankedWild
-                        If (Me.DataContainer.ResetWinsCountAfterLose) Then
-                            Me.unrankedWinsCount = 0
-                            If Not (Me.isMatchAutoConceded) Then
-                                Bot.Log("[Advanced Auto Concede] -> (Unranked Mode) Wins count resets to zero, reason: defeat.")
+                        If (Me.DataContainer.EnableUnrankedModeAutoConcede) Then
+                            If (Me.DataContainer.ResetWinsCountAfterLose) Then
+                                Me.unrankedWinsCount = 0
+                                If Not (Me.isMatchAutoConceded) Then
+                                    Bot.Log("[Advanced Auto Concede] -> (Unranked Mode) Wins count resets to zero, reason: defeat.")
+                                End If
                             End If
                         End If
 
-                    Case Else
+                    Case Else ' Mode.Arena, Mode.ArenaAuto, Mode.Practice
                         ' Do nothing.
+
                 End Select
             End If
             If (Me.isMatchAutoConceded) Then
@@ -308,16 +316,22 @@ Namespace PluginTemplate
         Public Overrides Sub OnVictory()
             If (Me.DataContainer.Enabled) Then
                 Select Case Me.currentMode
+
                     Case Mode.RankedStandard, Mode.RankedWild
-                        Me.rankedWinsCount += 1
-                        Bot.Log(String.Format("[Advanced Auto Concede] -> (Ranked Mode) Current wins count: {0}", Me.rankedWinsCount))
+                        If (Me.DataContainer.EnableRankedModeAutoConcede) Then
+                            Me.rankedWinsCount += 1
+                            Bot.Log(String.Format("[Advanced Auto Concede] -> (Ranked Mode) Current wins count: {0}", Me.rankedWinsCount))
+                        End If
 
                     Case Mode.UnrankedStandard, Mode.UnrankedWild
-                        Me.unrankedWinsCount += 1
-                        Bot.Log(String.Format("[Advanced Auto Concede] -> (Unranked Mode) Current wins count: {0}", Me.unrankedWinsCount))
+                        If (Me.DataContainer.EnableUnrankedModeAutoConcede) Then
+                            Me.unrankedWinsCount += 1
+                            Bot.Log(String.Format("[Advanced Auto Concede] -> (Unranked Mode) Current wins count: {0}", Me.unrankedWinsCount))
+                        End If
 
-                    Case Else
+                    Case Else ' Mode.Arena, Mode.ArenaAuto, Mode.Practice
                         ' Do nothing.
+
                 End Select
             End If
             MyBase.OnVictory()
