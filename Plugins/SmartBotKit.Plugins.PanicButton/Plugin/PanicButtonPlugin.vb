@@ -21,7 +21,10 @@ Imports SmartBotKit.ReservedUse
 
 #Region " PanicButtonPlugin "
 
+' ReSharper disable once CheckNamespace
+
 Namespace PanicButton
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>
@@ -35,6 +38,21 @@ Namespace PanicButton
                                      The real problem is with the design of the 'SmartBot.Plugins.Plugin' class 
                                      which does not implement a IDIsposable iterface but a Dispose() method.")>
     Public NotInheritable Class PanicButtonPlugin : Inherits Plugin
+
+#Region " Private Fields "
+
+        ' ReSharper disable InconsistentNaming
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets the <see cref="Plugins.PanicButton.PanicButton"/>.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        Private panicButton As PanicButton
+
+        ' ReSharper restore InconsistentNaming
+
+#End Region
 
 #Region " Properties "
 
@@ -53,16 +71,11 @@ Namespace PanicButton
             End Get
         End Property
 
-        ''' ----------------------------------------------------------------------------------------------------
-        ''' <summary>
-        ''' Gets the <see cref="SmartBotKit.Plugins.PanicButton.PanicButton"/>.
-        ''' </summary>
-        ''' ----------------------------------------------------------------------------------------------------
-        Private panicButton As PanicButton
-
 #End Region
 
 #Region " Private Fields "
+
+        ' ReSharper disable InconsistentNaming
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
@@ -88,6 +101,8 @@ Namespace PanicButton
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Private warningIsSent As Boolean
+
+        ' ReSharper restore InconsistentNaming
 
 #End Region
 
@@ -142,7 +157,7 @@ Namespace PanicButton
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Releases all the resources used by this <see cref="PanicButtonPlugin"/> instance.
+        ''' Releases all the Global.System.Resources.used by this <see cref="PanicButtonPlugin"/> instance.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Public Overrides Sub Dispose()

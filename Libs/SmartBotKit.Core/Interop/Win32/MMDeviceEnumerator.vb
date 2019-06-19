@@ -14,7 +14,10 @@ Imports System.Runtime.InteropServices
 
 #Region " MMDeviceEnumerator "
 
+' ReSharper disable once CheckNamespace
+
 Namespace SmartBotKit.Interop.Win32
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>

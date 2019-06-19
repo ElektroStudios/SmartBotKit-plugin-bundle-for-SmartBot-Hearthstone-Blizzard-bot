@@ -16,7 +16,10 @@ Imports Xceed.Wpf.Toolkit.PropertyGrid.Attributes
 
 #Region " QuestModeSource "
 
+' ReSharper disable once CheckNamespace
+
 Namespace BountyHunter
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>

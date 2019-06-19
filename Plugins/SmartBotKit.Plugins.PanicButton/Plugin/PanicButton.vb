@@ -19,7 +19,10 @@ Imports SmartBotKit.IO
 
 #Region " PanicButton "
 
+' ReSharper disable once CheckNamespace
+
 Namespace PanicButton
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>
@@ -30,12 +33,16 @@ Namespace PanicButton
 
 #Region " Private Fields "
 
+        ' ReSharper disable InconsistentNaming
+
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
         ''' The plugin's data container.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Private ReadOnly dataContainer As PanicButtonPluginData
+
+        ' ReSharper restore InconsistentNaming
 
 #End Region
 
@@ -53,8 +60,9 @@ Namespace PanicButton
 
             Me.Register()
 
-            Bot.Log(String.Format("[PanicKey] Plugin initialized. Active hotkey is: {{ {0} + {1} + {2} }} ",
-                                  dataContainer.ModifierA.ToString(), dataContainer.ModifierB.ToString(), dataContainer.Key.ToString()))
+            Bot.Log(
+                $"[PanicKey] Plugin initialized. Active hotkey is: {{ {dataContainer.ModifierA.ToString()} + { _
+                       dataContainer.ModifierB.ToString()} + {dataContainer.Key.ToString()} }} ")
         End Sub
 
 #End Region
@@ -63,13 +71,13 @@ Namespace PanicButton
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Handles the <see cref="SmartBotKit.IO.HotKey.Press"/> event of this <see cref="PanicButton"/>.
+        ''' Handles the <see cref="HotKey.Press"/> event of this <see cref="PanicButton"/>.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         ''' <param name="sender">
         ''' The source of the event.
         ''' </param>
-        ''' 
+        '''
         ''' <param name="e">
         ''' The <see cref="HotkeyPressEventArgs"/> instance containing the event data.
         ''' </param>
@@ -95,12 +103,12 @@ Namespace PanicButton
 
         '''' ----------------------------------------------------------------------------------------------------
         '''' <summary>
-        '''' Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        '''' Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged Global.System.Resources.
         '''' </summary>
         '''' ----------------------------------------------------------------------------------------------------
         '''' <param name="isDisposing">
-        '''' <see langword="True"/>  to release both managed and unmanaged resources; 
-        '''' <see langword="False"/> to release only unmanaged resources.
+        '''' <see langword="True"/>  to release both managed and unmanaged Global.System.Resources.
+        '''' <see langword="False"/> to release only unmanaged Global.System.Resources.
         '''' </param>
         '''' ----------------------------------------------------------------------------------------------------
         Protected Overrides Sub Dispose(isDisposing As Boolean)

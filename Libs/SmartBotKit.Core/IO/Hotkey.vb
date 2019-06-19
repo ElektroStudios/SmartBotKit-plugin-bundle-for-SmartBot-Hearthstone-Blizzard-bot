@@ -77,7 +77,7 @@
 '    Private Sub HotKey_Press(ByVal sender As Object, ByVal e As HotkeyPressEventArgs) _
 '    Handles hotkey.Press
 '
-'        Dim sb As New Global.System.Text.StringBuilder
+'        Dim sb As New Text.StringBuilder
 '        With sb
 '            .AppendLine(String.Format("Key.......: {0}", e.Key.ToString()))
 '            .AppendLine(String.Format("Modifiers.: {0}", e.Modifiers.ToString()))
@@ -118,7 +118,10 @@ Imports SmartBotKit.Interop.Win32
 
 #Region " Hotkey "
 
+' ReSharper disable once CheckNamespace
+
 Namespace SmartBotKit.IO
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>
@@ -163,7 +166,7 @@ Namespace SmartBotKit.IO
     '''     Private Sub HotKey_Press(ByVal sender As Object, ByVal e As HotkeyPressEventArgs) _
     '''     Handles hotkey.Press
     ''' 
-    '''         Dim sb As New Global.System.Text.StringBuilder
+    '''         Dim sb As New Text.StringBuilder
     '''         With sb
     '''             .AppendLine(String.Format("Key.......: {0}", e.Key.ToString()))
     '''             .AppendLine(String.Format("Modifiers.: {0}", e.Modifiers.ToString()))
@@ -219,7 +222,7 @@ Namespace SmartBotKit.IO
         Public Overridable ReadOnly Property Key As Keys
             <DebuggerStepThrough>
             Get
-                Return Me.keyB
+                Return Me.key_
             End Get
         End Property
         ''' ----------------------------------------------------------------------------------------------------
@@ -228,7 +231,7 @@ Namespace SmartBotKit.IO
         ''' The key assigned to the hotkey.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        Private ReadOnly keyB As Keys
+        Private ReadOnly key_ As Keys
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
@@ -242,7 +245,7 @@ Namespace SmartBotKit.IO
         Public Overridable ReadOnly Property Modifier As HotkeyModifiers
             <DebuggerStepThrough>
             Get
-                Return Me.modifierB
+                Return Me.modifier_
             End Get
         End Property
         ''' ----------------------------------------------------------------------------------------------------
@@ -251,7 +254,7 @@ Namespace SmartBotKit.IO
         ''' The key-modifier assigned to the hotkey.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        Private ReadOnly modifierB As HotkeyModifiers
+        Private ReadOnly modifier_ As HotkeyModifiers
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
@@ -265,7 +268,7 @@ Namespace SmartBotKit.IO
         Public Overridable ReadOnly Property Id As Integer
             <DebuggerStepThrough>
             Get
-                Return Me.idB
+                Return Me.id_
             End Get
         End Property
         ''' ----------------------------------------------------------------------------------------------------
@@ -274,7 +277,7 @@ Namespace SmartBotKit.IO
         ''' The unique identifier assigned to the hotkey.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        Private ReadOnly idB As Integer
+        Private ReadOnly id_ As Integer
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
@@ -296,7 +299,7 @@ Namespace SmartBotKit.IO
         ''' A list of event delegates.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        Protected ReadOnly events As EventHandlerList
+        Protected ReadOnly Events As EventHandlerList
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
@@ -308,20 +311,20 @@ Namespace SmartBotKit.IO
             <DebuggerNonUserCode>
             <DebuggerStepThrough>
             AddHandler(ByVal value As EventHandler(Of HotkeyPressEventArgs))
-                Me.events.AddHandler("PressEvent", value)
+                Me.Events.AddHandler("PressEvent", value)
             End AddHandler
 
             <DebuggerNonUserCode>
             <DebuggerStepThrough>
             RemoveHandler(ByVal value As EventHandler(Of HotkeyPressEventArgs))
-                Me.events.RemoveHandler("PressEvent", value)
+                Me.Events.RemoveHandler("PressEvent", value)
             End RemoveHandler
 
             <DebuggerNonUserCode>
             <DebuggerStepThrough>
             RaiseEvent(ByVal sender As Object, ByVal e As HotkeyPressEventArgs)
                 Dim handler As EventHandler(Of HotkeyPressEventArgs) =
-                    DirectCast(Me.events("PressEvent"), EventHandler(Of HotkeyPressEventArgs))
+                    DirectCast(Me.Events("PressEvent"), EventHandler(Of HotkeyPressEventArgs))
 
                 If (handler IsNot Nothing) Then
                     handler.Invoke(sender, e)
@@ -334,6 +337,7 @@ Namespace SmartBotKit.IO
 
 #Region " Constructors "
 
+        ' ReSharper disable UnusedMember.Local
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
         ''' Prevents a default instance of the <see cref="Hotkey"/> class from being created.
@@ -341,6 +345,7 @@ Namespace SmartBotKit.IO
         ''' ----------------------------------------------------------------------------------------------------
         <DebuggerNonUserCode>
         Private Sub New()
+            ' ReSharper restore UnusedMember.Local
         End Sub
 
         ''' ----------------------------------------------------------------------------------------------------
@@ -351,7 +356,7 @@ Namespace SmartBotKit.IO
         ''' <param name="modifier">
         ''' One or more key-modifiers to assign to the hotkey.
         ''' </param>
-        ''' 
+        '''
         ''' <param name="key">
         ''' The key to assign to the hotkey.
         ''' </param>
@@ -362,10 +367,10 @@ Namespace SmartBotKit.IO
 
             MyBase.CreateHandle(New CreateParams())
 
-            Me.events = New EventHandlerList()
-            Me.keyB = key
-            Me.modifierB = modifier
-            Me.idB = MyBase.GetHashCode()
+            Me.Events = New EventHandlerList()
+            Me.key_ = key
+            Me.modifier_ = modifier
+            Me.id_ = MyBase.GetHashCode()
 
         End Sub
 
@@ -386,7 +391,7 @@ Namespace SmartBotKit.IO
         Public Overridable Function IsRegistered() As Boolean
 
             ' Try to unregister the hotkey.
-            Select Case NativeMethods.UnregisterHotKey(Me.Handle, Me.idB)
+            Select Case NativeMethods.UnregisterHotKey(Me.Handle, Me.id_)
 
                 Case False ' Unregistration failed.
                     Return False
@@ -410,7 +415,7 @@ Namespace SmartBotKit.IO
         <DebuggerStepThrough>
         Public Overridable Sub Register()
 
-            If Not NativeMethods.RegisterHotKey(Me.Handle, Me.idB, CUInt(Me.modifierB), CUInt(Me.keyB)) Then
+            If Not NativeMethods.RegisterHotKey(Me.Handle, Me.id_, CUInt(Me.modifier_), CUInt(Me.key_)) Then
                 Throw New HotkeyIsRegisteredException()
             End If
 
@@ -429,7 +434,7 @@ Namespace SmartBotKit.IO
         <DebuggerStepThrough>
         Public Overridable Sub Unregister()
 
-            If Not (NativeMethods.UnregisterHotKey(Me.Handle, Me.idB)) Then
+            If Not (NativeMethods.UnregisterHotKey(Me.Handle, Me.id_)) Then
                 Throw New HotkeyIsNotRegisteredException()
             End If
 
@@ -475,7 +480,7 @@ Namespace SmartBotKit.IO
 
                 Case WindowsMessages.WM_Hotkey ' A hotkey is pressed.
                     ' Raise the Press event.
-                    Me.OnHotkeyPress(New HotkeyPressEventArgs(Me.keyB, Me.modifierB, Me.idB))
+                    Me.OnHotkeyPress(New HotkeyPressEventArgs(Me.key_, Me.modifier_, Me.id_))
 
                 Case Else
                     MyBase.WndProc(m)
@@ -488,16 +493,18 @@ Namespace SmartBotKit.IO
 
 #Region " IDisposable Implementation "
 
+        ' ReSharper disable InconsistentNaming
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
         ''' Flag to detect redundant calls when disposing.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Protected isDisposed As Boolean
+        ' ReSharper restore InconsistentNaming
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Releases all the resources used by this instance.
+        ''' Releases all the Global.System.Resources.used by this instance.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         <DebuggerStepThrough>
@@ -510,13 +517,13 @@ Namespace SmartBotKit.IO
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-        ''' Releases unmanaged and, optionally, managed resources.
+        ''' Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged Global.System.Resources.
+        ''' Releases unmanaged and, optionally, managed Global.System.Resources.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         ''' <param name="isDisposing">
-        ''' <see langword="True"/>  to release both managed and unmanaged resources; 
-        ''' <see langword="False"/> to release only unmanaged resources.
+        ''' <see langword="True"/>  to release both managed and unmanaged Global.System.Resources. 
+        ''' <see langword="False"/> to release only unmanaged Global.System.Resources.
         ''' </param>
         ''' ----------------------------------------------------------------------------------------------------
         <DebuggerStepThrough>
@@ -524,10 +531,11 @@ Namespace SmartBotKit.IO
 
             If (Not Me.isDisposed) AndAlso (isDisposing) Then
 
-                Me.events.Dispose()
+                Me.Events.Dispose()
                 Try
-                    Dim success As Boolean = NativeMethods.UnregisterHotKey(Me.Handle, Me.idB)
-                    Dim win32err As Integer = Marshal.GetLastWin32Error()
+                    ' ReSharper disable once UnusedVariable
+                    Dim success As Boolean = NativeMethods.UnregisterHotKey(Me.Handle, Me.id_)
+                    ' Dim win32err As Integer = Marshal.GetLastWin32Error()
                 Catch ex As Exception
                 End Try
                 MyBase.ReleaseHandle()

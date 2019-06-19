@@ -8,7 +8,10 @@ Option Infer Off
 
 #Region " WindowLong Flags "
 
+' ReSharper disable once CheckNamespace
+
 Namespace SmartBotKit.Interop.Win32
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>

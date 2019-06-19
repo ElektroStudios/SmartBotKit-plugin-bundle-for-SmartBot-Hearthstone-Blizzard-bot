@@ -9,7 +9,10 @@ Option Infer Off
 
 #Region " Windows Messages "
 
+' ReSharper disable once CheckNamespace
+
 Namespace SmartBotKit.Interop.Win32
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>
@@ -27,6 +30,8 @@ Namespace SmartBotKit.Interop.Win32
     ''' </remarks>
     ''' ----------------------------------------------------------------------------------------------------
     Public Enum WindowsMessages As Integer
+
+        ' ReSharper disable InconsistentNaming
 
         ' *****************************************************************************
         '                            WARNING!, NEED TO KNOW...

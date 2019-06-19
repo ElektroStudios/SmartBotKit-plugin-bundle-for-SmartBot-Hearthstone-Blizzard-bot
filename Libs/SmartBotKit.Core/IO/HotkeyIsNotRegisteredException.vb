@@ -18,7 +18,10 @@ Imports System.Xml.Serialization
 
 #Region " HotkeyIsNotRegistered Exception "
 
+' ReSharper disable once CheckNamespace
+
 Namespace SmartBotKit.IO
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>
@@ -62,7 +65,7 @@ Namespace SmartBotKit.IO
         ''' info
         ''' </exception>
         ''' ----------------------------------------------------------------------------------------------------
-        <SecurityPermissionAttribute(SecurityAction.LinkDemand, Flags:=SecurityPermissionFlag.SerializationFormatter)>
+        <SecurityPermission(SecurityAction.LinkDemand, Flags:=SecurityPermissionFlag.SerializationFormatter)>
         <EditorBrowsable(EditorBrowsableState.Never)>
         <DebuggerStepThrough>
         Public Overrides Sub GetObjectData(ByVal info As SerializationInfo, ByVal context As StreamingContext)

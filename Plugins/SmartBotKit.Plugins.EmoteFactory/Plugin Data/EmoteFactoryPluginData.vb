@@ -23,7 +23,10 @@ Imports SmartBot.Plugins.API
 
 #Region " EmoteFactoryPluginData "
 
+' ReSharper disable once CheckNamespace
+
 Namespace EmoteFactory
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>
@@ -112,15 +115,15 @@ Namespace EmoteFactory
         <Browsable(True)>
         Public Property ReplyEmotePercent() As Integer
             Get
-                Return Me.replyEmotePercentB
+                Return Me.replyEmotePercent_
             End Get
             Set(ByVal value As Integer)
                 If value < 1 Then
-                    Me.replyEmotePercentB = 1
+                    Me.replyEmotePercent_ = 1
                 ElseIf value > 100 Then
-                    Me.replyEmotePercentB = 100
+                    Me.replyEmotePercent_ = 100
                 Else
-                    Me.replyEmotePercentB = value
+                    Me.replyEmotePercent_ = value
                 End If
             End Set
         End Property
@@ -129,7 +132,7 @@ Namespace EmoteFactory
         ''' <para></para>
         ''' The percentage chance to reply an emote.
         ''' </summary>
-        Private replyEmotePercentB As Integer
+        Private replyEmotePercent_ As Integer
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
@@ -145,15 +148,15 @@ Namespace EmoteFactory
         <Browsable(True)>
         Public Property MaxReplies() As Integer
             Get
-                Return Me.maxRepliesB
+                Return Me.maxReplies_
             End Get
             Set(ByVal value As Integer)
                 If (value < 1) Then
-                    Me.maxRepliesB = 1
+                    Me.maxReplies_ = 1
                 ElseIf (value > 20) Then
-                    Me.maxRepliesB = 20
+                    Me.maxReplies_ = 20
                 Else
-                    Me.maxRepliesB = value
+                    Me.maxReplies_ = value
                 End If
             End Set
         End Property
@@ -162,7 +165,7 @@ Namespace EmoteFactory
         ''' <para></para>
         ''' The amount of maximum emote replies per game.
         ''' </summary>
-        Private maxRepliesB As Integer
+        Private maxReplies_ As Integer
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
@@ -248,15 +251,15 @@ Namespace EmoteFactory
         <Browsable(True)>
         Public Property SendEmoteOnConditionsPercent As Integer
             Get
-                Return Me.sendEmoteOnConditionsPercentB
+                Return Me.sendEmoteOnConditionsPercent_
             End Get
             Set(ByVal value As Integer)
                 If (value < 1) Then
-                    Me.sendEmoteOnConditionsPercentB = 1
+                    Me.sendEmoteOnConditionsPercent_ = 1
                 ElseIf (value > 100) Then
-                    Me.sendEmoteOnConditionsPercentB = 100
+                    Me.sendEmoteOnConditionsPercent_ = 100
                 Else
-                    Me.sendEmoteOnConditionsPercentB = value
+                    Me.sendEmoteOnConditionsPercent_ = value
                 End If
             End Set
         End Property
@@ -265,7 +268,7 @@ Namespace EmoteFactory
         ''' <para></para>
         ''' The percentage chance to send an emote on conditions.
         ''' </summary>
-        Private sendEmoteOnConditionsPercentB As Integer
+        Private sendEmoteOnConditionsPercent_ As Integer
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
@@ -379,15 +382,15 @@ Namespace EmoteFactory
         <Browsable(True)>
         Public Property SquelchEnemnyPercent() As Integer
             Get
-                Return Me.squelchEnemnyPercentB
+                Return Me.squelchEnemnyPercent_
             End Get
             Set(ByVal value As Integer)
                 If value < 1 Then
-                    Me.squelchEnemnyPercentB = 1
+                    Me.squelchEnemnyPercent_ = 1
                 ElseIf value > 100 Then
-                    Me.squelchEnemnyPercentB = 100
+                    Me.squelchEnemnyPercent_ = 100
                 Else
-                    Me.squelchEnemnyPercentB = value
+                    Me.squelchEnemnyPercent_ = value
                 End If
             End Set
         End Property
@@ -396,7 +399,7 @@ Namespace EmoteFactory
         ''' <para></para>
         ''' The percentage chance to squelch/mute the enemy when he sends a emote.
         ''' </summary>
-        Private squelchEnemnyPercentB As Integer
+        Private squelchEnemnyPercent_ As Integer
 
 #End Region
 
@@ -416,15 +419,15 @@ Namespace EmoteFactory
         <Browsable(True)>
         Public Property MaxDelay() As Integer
             Get
-                Return Me.maxDelayB
+                Return Me.maxDelay_
             End Get
             Set(ByVal value As Integer)
                 If (value < 2000) Then
-                    Me.maxDelayB = 2000
+                    Me.maxDelay_ = 2000
                 ElseIf (value > 5000) Then
-                    Me.maxDelayB = 5000
+                    Me.maxDelay_ = 5000
                 Else
-                    Me.maxDelayB = value
+                    Me.maxDelay_ = value
                 End If
             End Set
         End Property
@@ -433,7 +436,7 @@ Namespace EmoteFactory
         ''' <para></para>
         ''' The maximum delay to send a emote, in milliseconds.
         ''' </summary>
-        Private maxDelayB As Integer
+        Private maxDelay_ As Integer
 
 #End Region
 

@@ -18,7 +18,10 @@ Imports System.Text
 
 #Region " P/Invoking "
 
+' ReSharper disable once CheckNamespace
+
 Namespace SmartBotKit.Interop.Win32
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>
@@ -235,7 +238,7 @@ Namespace SmartBotKit.Interop.Win32
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
         ''' Deletes a logical pen, brush, font, bitmap, region, or palette,
-        ''' freeing all system resources associated with the object.
+        ''' freeing all system Global.System.Resources.associated with the object.
         ''' <para></para>
         ''' After the object is deleted, the specified handle is no longer valid.
         ''' <para></para>

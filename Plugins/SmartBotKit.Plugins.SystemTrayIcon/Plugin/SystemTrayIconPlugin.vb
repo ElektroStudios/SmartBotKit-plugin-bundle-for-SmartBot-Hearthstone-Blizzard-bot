@@ -23,7 +23,10 @@ Imports SmartBotKit.ReservedUse
 
 #Region " SystemTrayIconPlugin "
 
+' ReSharper disable once CheckNamespace
+
 Namespace SystemTrayIcon
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>
@@ -62,6 +65,8 @@ Namespace SystemTrayIcon
 
 #Region " Private Fields "
 
+        ' ReSharper disable InconsistentNaming
+
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
         ''' A <see cref="Thread"/> on which <see cref="SystemTrayIconPlugin.Icon"/> will be run within a message-loop.
@@ -77,8 +82,10 @@ Namespace SystemTrayIcon
         Private ReadOnly iconMethodDelegate As New ParameterizedThreadStart(
             Sub()
                 Me.Icon = New SystemTrayIcon(Me)
-                Global.System.Windows.Forms.Application.Run()
+                Windows.Forms.Application.Run()
             End Sub)
+
+        ' ReSharper restore InconsistentNaming
 
 #End Region
 
@@ -124,7 +131,7 @@ Namespace SystemTrayIcon
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Releases all the resources used by this <see cref="SystemTrayIconPlugin"/> instance.
+        ''' Releases all the Global.System.Resources.used by this <see cref="SystemTrayIconPlugin"/> instance.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Public Overrides Sub Dispose()
@@ -161,16 +168,18 @@ Namespace SystemTrayIcon
         Private Sub DeinitializeThread()
             If (HearthstoneUtil.Process IsNot Nothing) Then
                 Try
-                    Dim isHSWindowVisible As Boolean = NativeMethods.IsWindowVisible(HearthstoneUtil.Process.MainWindowHandle)
+                    Dim isHsWindowVisible As Boolean = NativeMethods.IsWindowVisible(HearthstoneUtil.Process.MainWindowHandle)
 
-                    If Not (isHSWindowVisible) Then
+                    If Not (isHsWindowVisible) Then
                         NativeMethods.ShowWindow(HearthstoneUtil.Process.MainWindowHandle, NativeWindowState.ShowDefault)
                     End If
-                    Bot.Log(String.Format("[System Tray Icon] -> Hearthstone window state changed to: {0}", NameOf(NativeWindowState.ShowDefault)))
+                    Bot.Log(
+                        $"[System Tray Icon] -> Hearthstone window state changed to: { _
+                               NameOf(NativeWindowState.ShowDefault)}")
 
                 Catch ex As Exception
                     Bot.Log("[System Tray Icon] -> Failed to restore Hearthstone window.")
-                    Bot.Log(String.Format("[System Tray Icon] -> Exception message. {0}", ex.Message))
+                    Bot.Log($"[System Tray Icon] -> Exception message. {ex.Message}")
 
                 End Try
 

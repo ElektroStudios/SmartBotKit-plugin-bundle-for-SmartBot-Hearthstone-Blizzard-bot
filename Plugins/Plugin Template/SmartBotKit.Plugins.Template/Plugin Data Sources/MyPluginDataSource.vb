@@ -16,7 +16,10 @@ Imports Xceed.Wpf.Toolkit.PropertyGrid.Attributes
 
 #Region " MyPluginDataSource "
 
+' ReSharper disable once CheckNamespace
+
 Namespace PluginTemplate
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>

@@ -16,7 +16,10 @@ Imports System.Runtime.CompilerServices
 
 #Region " TimeSpan Extensions "
 
+' ReSharper disable once CheckNamespace
+
 Namespace SmartBotKit.Extensions.TimeSpanExtensions
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>

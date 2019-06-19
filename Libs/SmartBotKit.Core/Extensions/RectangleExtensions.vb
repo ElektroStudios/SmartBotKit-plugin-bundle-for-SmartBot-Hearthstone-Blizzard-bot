@@ -18,7 +18,10 @@ Imports System.Runtime.CompilerServices
 
 #Region " Rectangle Extensions "
 
+' ReSharper disable once CheckNamespace
+
 Namespace SmartBotKit.Extensions.RectangleExtensions
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>

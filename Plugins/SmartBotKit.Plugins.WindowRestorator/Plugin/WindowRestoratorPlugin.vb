@@ -25,7 +25,10 @@ Imports SmartBotKit.ReservedUse
 
 #Region " WindowRestoratorPlugin "
 
+' ReSharper disable once CheckNamespace
+
 Namespace WindowRestorator
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>
@@ -57,12 +60,16 @@ Namespace WindowRestorator
 
 #Region " Private Fields "
 
+        ' ReSharper disable InconsistentNaming
+
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
         ''' Keeps track of the last <see cref="WindowRestoratorPluginData.Enabled"/> value.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Private lastEnabled As Boolean
+
+        ' ReSharper restore InconsistentNaming
 
 #End Region
 
@@ -95,14 +102,13 @@ Namespace WindowRestorator
                 '#If DEBUG Then
                 Select Case Me.DataContainer.WindowState
                     Case NativeWindowState.Maximize, NativeWindowState.ShowMaximized
-                        Bot.Log(String.Format("[Window Restorator] -> {0}",
-                                              Me.DataContainer.WindowState.ToString()))
+                        Bot.Log($"[Window Restorator] -> {Me.DataContainer.WindowState.ToString()}")
 
                     Case Else
-                        Bot.Log(String.Format("[Window Restorator] -> Restored to: {0} | {1} | {2}",
-                                          Me.DataContainer.WindowState.ToString(),
-                                          Me.DataContainer.CurrentPosition.ToString(),
-                                          Me.DataContainer.NormalSize.ToString()))
+                        Bot.Log(
+                            $"[Window Restorator] -> Restored to: {Me.DataContainer.WindowState.ToString()} | { _
+                                   Me.DataContainer.CurrentPosition.ToString()} | { _
+                                   Me.DataContainer.NormalSize.ToString()}")
 
                 End Select
                 '#End If
@@ -130,7 +136,7 @@ Namespace WindowRestorator
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Releases all the resources used by this <see cref="WindowRestoratorPlugin"/> instance.
+        ''' Releases all the Global.System.Resources.used by this <see cref="WindowRestoratorPlugin"/> instance.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Public Overrides Sub Dispose()

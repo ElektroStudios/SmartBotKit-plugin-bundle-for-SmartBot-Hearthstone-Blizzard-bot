@@ -13,7 +13,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyDescription("The core assembly used by my plugins for SmartBot.")>
 <Assembly: AssemblyCompany("Elektro Studios")>
 <Assembly: AssemblyProduct("SmartBotKit.Core")>
-<Assembly: AssemblyCopyright("Copyright © Elektro Studios 2018")>
+<Assembly: AssemblyCopyright("Copyright © Elektro Studios 2019")>
 <Assembly: AssemblyTrademark("")>
 
 <Assembly: ComVisible(False)>
@@ -32,6 +32,6 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")>
 
-<Assembly: AssemblyVersion("2.7.0.0")>
-<Assembly: AssemblyFileVersion("2.7.0.0")>
+<Assembly: AssemblyVersion("2.8.0.0")>
+<Assembly: AssemblyFileVersion("2.8.0.0")>
 <Assembly: NeutralResourcesLanguage("en")>

@@ -20,7 +20,10 @@ Imports System.Runtime.InteropServices
 
 #Region " Image Extensions "
 
+' ReSharper disable once CheckNamespace
+
 Namespace SmartBotKit.Extensions.ImageExtensions
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>
@@ -172,7 +175,7 @@ Namespace SmartBotKit.Extensions.ImageExtensions
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' For each pixel in the source image, gets the <see cref="Global.System.Drawing.Color"/>, pixel position, 
+        ''' For each pixel in the source image, gets the <see cref="Color"/>, pixel position, 
         ''' and coordinates location respectivelly to the image.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
@@ -190,25 +193,25 @@ Namespace SmartBotKit.Extensions.ImageExtensions
         ''' </example>
         ''' ----------------------------------------------------------------------------------------------------
         ''' <returns>
-        ''' A <see cref="IEnumerable(Of SmartBotKit.Imaging.PixelInfo)"/> containing the <see cref="Global.System.Drawing.Color"/>, pixel position, 
+        ''' A <see cref="IEnumerable(Of SmartBotKit.Imaging.PixelInfo)"/> containing the <see cref="Color"/>, pixel position, 
         ''' and coordinates location respectivelly to the image, of each pixel in the image.
         ''' </returns>
         ''' ----------------------------------------------------------------------------------------------------
         <DebuggerStepThrough>
         <Extension>
         <EditorBrowsable(EditorBrowsableState.Always)>
-        Public Iterator Function GetPixelInfo(ByVal sender As Global.System.Drawing.Image) As IEnumerable(Of SmartBotKit.Imaging.PixelInfo)
+        Public Iterator Function GetPixelInfo(ByVal sender As Image) As IEnumerable(Of Imaging.PixelInfo)
 
-            Dim bmp As Global.System.Drawing.Bitmap = DirectCast(sender, Global.System.Drawing.Bitmap)
+            Dim bmp As Bitmap = DirectCast(sender, Bitmap)
 
             ' Lock the bitmap bits.
             Dim pixelFormat As PixelFormat = PixelFormat.Format32bppArgb
             Dim bytesPerPixel As Integer = 4 ' PixelFormat.Format32bppArgb
-            Dim rect As New Global.System.Drawing.Rectangle(Global.System.Drawing.Point.Empty, bmp.Size)
+            Dim rect As New Rectangle(Drawing.Point.Empty, bmp.Size)
             Dim bmpData As BitmapData = bmp.LockBits(rect, ImageLockMode.ReadOnly, pixelFormat)
 
             ' Get the address of the first row.
-            Dim address As Global.System.IntPtr = bmpData.Scan0
+            Dim address As IntPtr = bmpData.Scan0
 
             ' Declare an array to hold the bytes of the bitmap. 
             Dim numBytes As Integer = (Math.Abs(bmpData.Stride) * rect.Height)
@@ -223,18 +226,18 @@ Namespace SmartBotKit.Extensions.ImageExtensions
             ' Iterate the pixels.
             For i As Integer = 0 To (rawImageData.Length - bytesPerPixel) Step bytesPerPixel
 
-                Dim color As Global.System.Drawing.Color =
-                            Global.System.Drawing.Color.FromArgb(alpha:=rawImageData(i + 3),
+                Dim color As Color =
+                            Drawing.Color.FromArgb(alpha:=rawImageData(i + 3),
                                                                  red:=rawImageData(i + 2),
                                                                  green:=rawImageData(i + 1),
                                                                  blue:=rawImageData(i))
 
                 Dim position As Integer = (i \ bytesPerPixel)
 
-                Dim location As New Global.System.Drawing.Point(x:=(position Mod rect.Width),
+                Dim location As New Point(x:=(position Mod rect.Width),
                                                                 y:=(position - (position Mod rect.Width)) \ rect.Width)
 
-                Yield New SmartBotKit.Imaging.PixelInfo(color, position, location)
+                Yield New Imaging.PixelInfo(color, position, location)
 
             Next i
 
@@ -242,11 +245,11 @@ Namespace SmartBotKit.Extensions.ImageExtensions
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Resizes an <see cref="Global.System.Drawing.Image"/>.
+        ''' Resizes an <see cref="Image"/>.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         ''' <param name="sender">
-        ''' The source <see cref="Global.System.Drawing.Image"/>.
+        ''' The source <see cref="Image"/>.
         ''' </param>
         ''' 
         ''' <param name="size">
@@ -254,7 +257,7 @@ Namespace SmartBotKit.Extensions.ImageExtensions
         ''' </param>
         ''' ----------------------------------------------------------------------------------------------------
         ''' <returns>
-        ''' The resized <see cref="Global.System.Drawing.Image"/>.
+        ''' The resized <see cref="Image"/>.
         ''' </returns>
         ''' ----------------------------------------------------------------------------------------------------
         ''' <exception cref="ArgumentException">

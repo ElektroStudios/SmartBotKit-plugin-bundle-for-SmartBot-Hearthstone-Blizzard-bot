@@ -43,7 +43,10 @@ Imports System.Xml.Serialization
 
 #Region " Pixel Info "
 
+' ReSharper disable once CheckNamespace
+
 Namespace SmartBotKit.[Imaging]
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>

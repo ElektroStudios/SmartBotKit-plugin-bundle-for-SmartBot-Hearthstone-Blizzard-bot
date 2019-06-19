@@ -18,7 +18,12 @@ Imports System.Runtime.CompilerServices
 
 #Region " IList Extensions "
 
+' ReSharper disable once CheckNamespace
+
 Namespace SmartBotKit.Extensions.IListExtensions
+
+
+    ' ReSharper disable InconsistentNaming
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>
@@ -28,6 +33,8 @@ Namespace SmartBotKit.Extensions.IListExtensions
     <ImmutableObject(True)>
     <HideModuleName>
     Public Module IListExtensions
+
+        ' ReSharper restore InconsistentNaming
 
 #Region " Public Extension Methods "
 
@@ -60,7 +67,7 @@ Namespace SmartBotKit.Extensions.IListExtensions
         <EditorBrowsable(EditorBrowsableState.Always)>
         Public Function Randomize(Of T)(ByVal sender As IList(Of T)) As IList(Of T)
 
-            Return IEnumerableExtensions.Randomize(Of T)(sender).ToList()
+            Return IEnumerableExtensions.Randomize(sender).ToList()
 
         End Function
 

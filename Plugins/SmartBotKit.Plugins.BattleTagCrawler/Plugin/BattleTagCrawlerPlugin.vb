@@ -29,7 +29,10 @@ Imports System.Linq
 
 #Region " BattleTagCrawlerPlugin "
 
+' ReSharper disable once CheckNamespace
+
 Namespace PluginTemplate
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>
@@ -62,12 +65,16 @@ Namespace PluginTemplate
 
 #Region " Private Fields "
 
+        ' ReSharper disable InconsistentNaming
+
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
         ''' Keeps track of the last <see cref="BattleTagCrawlerPluginData.Enabled"/> value.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Private lastEnabled As Boolean
+
+        ' ReSharper restore InconsistentNaming
 
 #End Region
 
@@ -154,7 +161,8 @@ Namespace PluginTemplate
                 Dim dirInfo As New DirectoryInfo(Path.Combine(SmartBotUtil.LogsDir.FullName, "BattleTag Crawler"))
                 Dim filename As String = If(Me.DataContainer.UseSingleLogFile,
                                             "[BattleTag Crawler].csv",
-                                            String.Format("[BattleTag Crawler] {0}.csv", Date.Now.ToShortDateString().Replace("/"c, "-"c)))
+                                            $"[BattleTag Crawler] {Date.Now.ToShortDateString().Replace("/"c, "-"c) _
+                                               }.csv")
 
                 Dim fileInfo As New FileInfo(Path.Combine(dirInfo.FullName, filename))
 
@@ -164,13 +172,13 @@ Namespace PluginTemplate
                         dirInfo.Create()
                         dirInfo.Refresh()
                     Catch ex As Exception
-                        Bot.Log(String.Format("[BattleTag Crawler] -> Error creating log directory: {0}", ex.Message))
+                        Bot.Log($"[BattleTag Crawler] -> Error creating log directory: {ex.Message}")
                     End Try
                 End If
 
                 If (dirInfo.Exists) Then
                     Dim player As Player = HearthMirror.Reflection.GetMatchInfo().OpposingPlayer
-                    Dim battletag As String = String.Format("{0}#{1}", player.BattleTag.Name, player.BattleTag.Number)
+                    Dim battletag As String = $"{player.BattleTag.Name}#{player.BattleTag.Number}"
                     Dim standardRank As Integer = player.StandardRank
                     Dim wildrank As Integer = player.WildRank
 
@@ -185,19 +193,17 @@ Namespace PluginTemplate
                             File.WriteAllText(fileInfo.FullName, "Date,Game Mode,Standard Rank,Wild Rank,BattleTag" & Environment.NewLine, Encoding.Unicode)
 
                         Catch ex As Exception
-                            Bot.Log(String.Format("[BattleTag Crawler] -> Error writing to file: {0}", ex.Message))
+                            Bot.Log($"[BattleTag Crawler] -> Error writing to file: {ex.Message}")
 
                         End Try
                     End If
 
-                    Dim newLine As String = String.Format("{0},{1},{2},{3},{4}",
-                                                          Date.Now.ToString("yyyy-MM-dd hh\:mm\:ss"),
-                                                          Bot.CurrentMode.ToString(),
-                                                          standardRank, wildrank,
-                                                          battletag)
+                    Dim newLine As String =
+                            $"{Date.Now.ToString("yyyy-MM-dd hh\:mm\:ss")},{Bot.CurrentMode.ToString()},{standardRank},{ _
+                            wildrank},{battletag}"
 
                     Try
-                        Bot.Log(String.Format("[BattleTag Crawler] -> Logging opponent id: {0}", battletag))
+                        Bot.Log($"[BattleTag Crawler] -> Logging opponent id: {battletag}")
 
                         If (Me.DataContainer.AddNewEntriesAtBeginningOfFile) Then
                             Dim lines As List(Of String) = File.ReadLines(fileInfo.FullName, Encoding.Unicode).ToList()
@@ -210,7 +216,7 @@ Namespace PluginTemplate
                         End If
 
                     Catch ex As Exception
-                        Bot.Log(String.Format("[BattleTag Crawler] -> Error writing to file: {0}", ex.Message))
+                        Bot.Log($"[BattleTag Crawler] -> Error writing to file: {ex.Message}")
 
                     End Try
                 End If
@@ -222,7 +228,7 @@ Namespace PluginTemplate
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Releases all the resources used by this <see cref="BattleTagCrawlerPlugin"/> instance.
+        ''' Releases all the Global.System.Resources.used by this <see cref="BattleTagCrawlerPlugin"/> instance.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Public Overrides Sub Dispose()

@@ -18,7 +18,10 @@ Imports Xceed.Wpf.Toolkit.PropertyGrid.Attributes
 
 #Region " DeckSource "
 
+' ReSharper disable once CheckNamespace
+
 Namespace BountyHunter
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>

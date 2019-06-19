@@ -18,7 +18,12 @@ Imports System.Runtime.CompilerServices
 
 #Region " IEnumerable Extensions "
 
+' ReSharper disable once CheckNamespace
+
 Namespace SmartBotKit.Extensions.IEnumerableExtensions
+
+
+    ' ReSharper disable InconsistentNaming
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>
@@ -29,14 +34,20 @@ Namespace SmartBotKit.Extensions.IEnumerableExtensions
     <HideModuleName>
     Public Module IEnumerableExtensions
 
+        ' ReSharper restore InconsistentNaming
+
 #Region " Private Fields "
+
+        ' ReSharper disable InconsistentNaming
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
         ''' A <see cref="Random"/> instance to generate random secuences of numbers.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        Private rand As Random
+        Private Rng As Random
+
+        ' ReSharper restore InconsistentNaming
 
 #End Region
 
@@ -71,12 +82,12 @@ Namespace SmartBotKit.Extensions.IEnumerableExtensions
         <EditorBrowsable(EditorBrowsableState.Always)>
         Public Function Randomize(Of T)(ByVal sender As IEnumerable(Of T)) As IEnumerable(Of T)
 
-            If (IEnumerableExtensions.rand Is Nothing) Then
-                IEnumerableExtensions.rand = New Random(Seed:=Environment.TickCount)
+            If (IEnumerableExtensions.Rng Is Nothing) Then
+                IEnumerableExtensions.Rng = New Random(Seed:=Environment.TickCount)
             End If
 
             Return From item As T In sender
-                   Order By rand.Next()
+                   Order By Rng.Next()
 
         End Function
 

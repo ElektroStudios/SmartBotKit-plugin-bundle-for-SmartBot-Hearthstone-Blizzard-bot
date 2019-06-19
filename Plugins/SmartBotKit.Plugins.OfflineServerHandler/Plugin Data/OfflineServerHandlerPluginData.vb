@@ -25,7 +25,10 @@ Imports SmartBotKit.Interop
 
 #Region " OfflineServerHandlerPluginData "
 
+' ReSharper disable once CheckNamespace
+
 Namespace OfflineServerHandler
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>
@@ -196,15 +199,15 @@ Namespace OfflineServerHandler
         <Browsable(True)>
         Public Property ResumeInterval() As Integer
             Get
-                Return Me.resumeIntervalB
+                Return Me.resumeInterval_
             End Get
             Set(ByVal value As Integer)
                 If (value < 5) Then
-                    Me.resumeIntervalB = 5
+                    Me.resumeInterval_ = 5
                 ElseIf value > 1440 Then
-                    Me.resumeIntervalB = 1440
+                    Me.resumeInterval_ = 1440
                 Else
-                    Me.resumeIntervalB = value
+                    Me.resumeInterval_ = value
                 End If
             End Set
         End Property
@@ -213,7 +216,7 @@ Namespace OfflineServerHandler
         ''' <para></para>
         ''' The time interval, in minutes, to resume the bot and try reconnect to the server.
         ''' </summary>
-        Private resumeIntervalB As Integer
+        Private resumeInterval_ As Integer
 
 #End Region
 

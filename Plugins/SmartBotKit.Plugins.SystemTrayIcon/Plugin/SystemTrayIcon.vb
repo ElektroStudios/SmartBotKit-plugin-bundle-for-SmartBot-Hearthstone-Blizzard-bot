@@ -24,7 +24,10 @@ Imports SmartBotKit.Interop.Win32
 
 #Region " SystemTrayIcon "
 
+' ReSharper disable once CheckNamespace
+
 Namespace SystemTrayIcon
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>
@@ -35,6 +38,8 @@ Namespace SystemTrayIcon
 
 #Region " Private Fields "
 
+        ' ReSharper disable InconsistentNaming
+
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
         ''' The <see cref="Windows.Forms.NotifyIcon"/>.
@@ -44,7 +49,7 @@ Namespace SystemTrayIcon
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' The <see cref="Windows.Forms.ContextMenuStrip"/> used by <see cref="SystemTrayIcon.NotifyIcon"/>.
+        ''' The <see cref="ContextMenuStrip"/> used by <see cref="SystemTrayIcon.NotifyIcon"/>.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Private WithEvents Menu As ContextMenuStrip
@@ -92,6 +97,8 @@ Namespace SystemTrayIcon
         Private WithEvents MenuItemCloseSB As ToolStripMenuItem
 
         Private ReadOnly ownerPlugin As SystemTrayIconPlugin
+
+        ' ReSharper restore InconsistentNaming
 
 #End Region
 
@@ -141,7 +148,7 @@ Namespace SystemTrayIcon
         Public Sub ToggleSmartBotWindowVisibility()
             Me.Menu.Visible = False
 
-            Dim isSBWindowVisible As Boolean = NativeMethods.IsWindowVisible(SmartBotUtil.Process.MainWindowHandle)
+            Dim isSbWindowVisible As Boolean = NativeMethods.IsWindowVisible(SmartBotUtil.Process.MainWindowHandle)
 
             If (isSBWindowVisible) Then
                 Me.MenuItemHideSB.Visible = True
@@ -181,9 +188,9 @@ Namespace SystemTrayIcon
                 Me.MenuItemCloseHS.Visible = False
 
             Else
-                Dim isHSWindowVisible As Boolean = NativeMethods.IsWindowVisible(HearthstoneUtil.Process.MainWindowHandle)
-                Me.MenuItemHideHS.Visible = isHSWindowVisible
-                Me.MenuItemShowHS.Visible = Not isHSWindowVisible
+                Dim isHsWindowVisible As Boolean = NativeMethods.IsWindowVisible(HearthstoneUtil.Process.MainWindowHandle)
+                Me.MenuItemHideHS.Visible = isHsWindowVisible
+                Me.MenuItemShowHS.Visible = Not isHsWindowVisible
                 Me.MenuItemCloseHS.Visible = True
 
             End If
@@ -195,9 +202,9 @@ Namespace SystemTrayIcon
                 Me.MenuItemCloseSB.Visible = False
 
             Else
-                Dim isSBWindowVisible As Boolean = NativeMethods.IsWindowVisible(SmartBotUtil.Process.MainWindowHandle)
-                Me.MenuItemHideSB.Visible = isSBWindowVisible
-                Me.MenuItemShowSB.Visible = Not isSBWindowVisible
+                Dim isSbWindowVisible As Boolean = NativeMethods.IsWindowVisible(SmartBotUtil.Process.MainWindowHandle)
+                Me.MenuItemHideSB.Visible = isSbWindowVisible
+                Me.MenuItemShowSB.Visible = Not isSbWindowVisible
                 Me.MenuItemCloseSB.Visible = True
 
             End If
@@ -206,13 +213,13 @@ Namespace SystemTrayIcon
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Handles the <see cref="Windows.Forms.NotifyIcon.MouseMove"/> event of the <see cref="SystemTrayIcon.NotifyIcon"/> component.
+        ''' Handles the <see cref="System.Windows.Forms.NotifyIcon.MouseMove"/> event of the <see cref="SystemTrayIcon.NotifyIcon"/> component.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         ''' <param name="sender">
         ''' The source of the event.
         ''' </param>
-        ''' 
+        '''
         ''' <param name="e">
         ''' The <see cref="MouseEventArgs"/> instance containing the event data.
         ''' </param>
@@ -232,11 +239,11 @@ Namespace SystemTrayIcon
             Dim str As String
             Select Case winsRatio
                 Case = 0
-                    str = String.Format("{0}W {1}L {2}C - WR: 0%", wins, losses, concedes)
+                    str = $"{wins}W {losses}L {concedes}C - WR: 0%"
                 Case = 100.0R
-                    str = String.Format("{0}W {1}L {2}C - WR: 100%", wins, losses, concedes)
+                    str = $"{wins}W {losses}L {concedes}C - WR: 100%"
                 Case Else
-                    str = String.Format("{0}W {1}L {2}C - WR: {3:F2}%", wins, losses, concedes, winsRatio)
+                    str = $"{wins}W {losses}L {concedes}C - WR: {winsRatio:F2}%"
             End Select
 
             Dim sb As New StringBuilder(64, 64) ' 64 character length is the max. capacity allowed for a NotifyIcon.
@@ -252,13 +259,13 @@ Namespace SystemTrayIcon
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Handles the <see cref="Windows.Forms.NotifyIcon.MouseDoubleClick"/> event of the <see cref="SystemTrayIcon.NotifyIcon"/> component.
+        ''' Handles the <see cref="System.Windows.Forms.NotifyIcon.MouseDoubleClick"/> event of the <see cref="SystemTrayIcon.NotifyIcon"/> component.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         ''' <param name="sender">
         ''' The source of the event.
         ''' </param>
-        ''' 
+        '''
         ''' <param name="e">
         ''' The <see cref="MouseEventArgs"/> instance containing the event data.
         ''' </param>
@@ -307,7 +314,7 @@ Namespace SystemTrayIcon
 
             NativeMethods.ShowWindow(hwnd, newWindowState)
             NativeMethods.SetForegroundWindow(hwnd) ' Bring window to top and avtivate input.
-            Bot.Log(String.Format("[System Tray Icon] -> Hearthstone window state changed to: {0}", newWindowState.ToString()))
+            Bot.Log($"[System Tray Icon] -> Hearthstone window state changed to: {newWindowState.ToString()}")
 
         End Sub
 
@@ -329,11 +336,11 @@ Namespace SystemTrayIcon
 
             Try
                 NativeMethods.ShowWindow(HearthstoneUtil.Process.MainWindowHandle, NativeWindowState.Hide)
-                Bot.Log(String.Format("[System Tray Icon] -> Hearthstone window state changed to: {0}", NameOf(NativeWindowState.Hide)))
+                Bot.Log($"[System Tray Icon] -> Hearthstone window state changed to: {NameOf(NativeWindowState.Hide)}")
 
             Catch ex As Exception
                 Bot.Log("[System Tray Icon] -> Failed to hide Hearthstone window.")
-                Bot.Log(String.Format("[System Tray Icon] -> Exception message. {0}", ex.Message))
+                Bot.Log($"[System Tray Icon] -> Exception message. {ex.Message}")
 
             End Try
 
@@ -364,7 +371,7 @@ Namespace SystemTrayIcon
                 Bot.CloseHs()
 
             Catch ex As Exception
-                Bot.Log(String.Format("[System Tray Icon] -> {0}", ex.Message))
+                Bot.Log($"[System Tray Icon] -> {ex.Message}")
 
             End Try
 
@@ -384,7 +391,7 @@ Namespace SystemTrayIcon
         ''' </param>
         ''' ----------------------------------------------------------------------------------------------------
         <DebuggerStepThrough>
-        Private Sub MenuItemShowSB_Click(ByVal sender As Object, ByVal e As EventArgs) Handles MenuItemShowSB.Click
+        Private Sub MenuItemShowS_Click(ByVal sender As Object, ByVal e As EventArgs) Handles MenuItemShowSB.Click
 
             Dim placement As WindowPlacement
             NativeMethods.GetWindowPlacement(SmartBotUtil.Process.MainWindowHandle, placement)
@@ -392,15 +399,19 @@ Namespace SystemTrayIcon
             Select Case placement.WindowState
                 Case NativeWindowState.Minimize, NativeWindowState.ForceMinimize, NativeWindowState.ShowMinimized
                     NativeMethods.ShowWindow(SmartBotUtil.Process.MainWindowHandle, NativeWindowState.Restore)
-                    Bot.Log(String.Format("[System Tray Icon] -> SmartBot window state changed to: {0}", NameOf(NativeWindowState.Restore)))
+                    Bot.Log(
+                        $"[System Tray Icon] -> SmartBot window state changed to: {NameOf(NativeWindowState.Restore)}")
 
                 Case NativeWindowState.Maximize, NativeWindowState.ShowMaximized
                     NativeMethods.ShowWindow(SmartBotUtil.Process.MainWindowHandle, NativeWindowState.ShowMaximized)
-                    Bot.Log(String.Format("[System Tray Icon] -> SmartBot window state changed to: {0}", NameOf(NativeWindowState.ShowMaximized)))
+                    Bot.Log(
+                        $"[System Tray Icon] -> SmartBot window state changed to: { _
+                               NameOf(NativeWindowState.ShowMaximized)}")
 
                 Case Else
                     NativeMethods.ShowWindow(SmartBotUtil.Process.MainWindowHandle, NativeWindowState.Normal)
-                    Bot.Log(String.Format("[System Tray Icon] -> SmartBot window state changed to: {0}", NameOf(NativeWindowState.Normal)))
+                    Bot.Log(
+                        $"[System Tray Icon] -> SmartBot window state changed to: {NameOf(NativeWindowState.Normal)}")
 
             End Select
             NativeMethods.SetForegroundWindow(SmartBotUtil.Process.MainWindowHandle) ' Bring window to top and avtivate input.
@@ -421,11 +432,11 @@ Namespace SystemTrayIcon
         ''' </param>
         ''' ----------------------------------------------------------------------------------------------------
         <DebuggerStepThrough>
-        Private Sub MenuItemHideSB_Click(ByVal sender As Object, ByVal e As EventArgs) Handles MenuItemHideSB.Click
+        Private Sub MenuItemHideS_Click(ByVal sender As Object, ByVal e As EventArgs) Handles MenuItemHideSB.Click
 
             NativeMethods.ShowWindow(SmartBotUtil.Process.MainWindowHandle, NativeWindowState.Hide)
 
-            Bot.Log(String.Format("[System Tray Icon] -> SmartBot window state changed to: {0}", NameOf(NativeWindowState.Hide)))
+            Bot.Log($"[System Tray Icon] -> SmartBot window state changed to: {NameOf(NativeWindowState.Hide)}")
 
         End Sub
 
@@ -443,7 +454,7 @@ Namespace SystemTrayIcon
         ''' </param>
         ''' ----------------------------------------------------------------------------------------------------
         <DebuggerStepThrough>
-        Private Sub MenuItemCloseSB_Click(ByVal sender As Object, ByVal e As EventArgs) Handles MenuItemCloseSB.Click
+        Private Sub MenuItemCloseS_Click(ByVal sender As Object, ByVal e As EventArgs) Handles MenuItemCloseSB.Click
 
             Bot.Log("[System Tray Icon] -> Closing SmartBot...")
 
@@ -460,32 +471,34 @@ Namespace SystemTrayIcon
 
 #Region " IDisposable Implementation "
 
+        ' ReSharper disable InconsistentNaming
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
         ''' Flag to detect redundant calls when disposing.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Private isDisposed As Boolean = False
+        ' ReSharper restore InconsistentNaming
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Releases all the resources used by this <see cref="SystemTrayIcon"/> instance.
+        ''' Releases all the Global.System.Resources.used by this <see cref="SystemTrayIcon"/> instance.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         <DebuggerStepThrough>
         Public Sub Dispose() Implements IDisposable.Dispose
             Me.Dispose(isDisposing:=True)
-            GC.SuppressFinalize(obj:=Me)
+            ' GC.SuppressFinalize(obj:=Me)
         End Sub
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        ''' Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged Global.System.Resources.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         ''' <param name="isDisposing">
-        ''' <see langword="True"/>  to release both managed and unmanaged resources; 
-        ''' <see langword="False"/> to release only unmanaged resources.
+        ''' <see langword="True"/>  to release both managed and unmanaged Global.System.Resources.
+        ''' <see langword="False"/> to release only unmanaged Global.System.Resources.
         ''' </param>
         ''' ----------------------------------------------------------------------------------------------------
         <DebuggerStepThrough>

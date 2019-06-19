@@ -25,7 +25,10 @@ Imports SmartBotKit.ReservedUse
 
 #Region " OfflineServerHandlerPlugin "
 
+' ReSharper disable once CheckNamespace
+
 Namespace OfflineServerHandler
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>
@@ -59,6 +62,8 @@ Namespace OfflineServerHandler
 
 #Region " Private Fields "
 
+        ' ReSharper disable InconsistentNaming
+
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
         ''' Keeps track of the last <see cref="OfflineServerHandlerPluginData.Enabled"/> value.
@@ -72,6 +77,8 @@ Namespace OfflineServerHandler
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Private lastDateActive As Date
+
+        ' ReSharper restore InconsistentNaming
 
 #End Region
 
@@ -217,7 +224,7 @@ Namespace OfflineServerHandler
                         If (Me.DataContainer.ResumeEnabled()) Then
                             Dim minutes As Integer = Me.DataContainer.ResumeInterval
                             Me.ScheduleResume(minutes)
-                            Bot.Log(String.Format("[Offline Server Handler] -> Bot resumption scheduled to {0} minutes.", minutes))
+                            Bot.Log($"[Offline Server Handler] -> Bot resumption scheduled to {minutes} minutes.")
                         End If
                     End If
 
@@ -242,7 +249,7 @@ Namespace OfflineServerHandler
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Releases all the resources used by this <see cref="OfflineServerHandlerPlugin"/> instance.
+        ''' Releases all the Global.System.Resources.used by this <see cref="OfflineServerHandlerPlugin"/> instance.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Public Overrides Sub Dispose()

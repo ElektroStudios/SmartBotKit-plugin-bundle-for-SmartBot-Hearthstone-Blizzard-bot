@@ -9,7 +9,10 @@ Option Infer Off
 
 #Region " SetWindowPos Flags "
 
+' ReSharper disable once CheckNamespace
+
 Namespace SmartBotKit.Interop.Win32
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>

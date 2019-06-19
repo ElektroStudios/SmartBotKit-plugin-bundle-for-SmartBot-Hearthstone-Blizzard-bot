@@ -16,7 +16,10 @@ Imports SmartBotKit.Interop.Win32
 
 #Region " Taskbar Manager "
 
+' ReSharper disable once CheckNamespace
+
 Namespace SmartBotKit.Application
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>
@@ -32,7 +35,7 @@ Namespace SmartBotKit.Application
         ''' Object to lock on instance.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        Private Shared ReadOnly lock As New Object()
+        Private Shared ReadOnly Lock As New Object()
 
 #End Region
 
@@ -45,15 +48,15 @@ Namespace SmartBotKit.Application
         ''' ----------------------------------------------------------------------------------------------------
         Public Shared ReadOnly Property Instance As TaskBarManager
             Get
-                If (TaskBarManager.instanceB Is Nothing) Then
-                    SyncLock lock
-                        If (TaskBarManager.instanceB Is Nothing) Then
-                            TaskBarManager.instanceB = New TaskBarManager()
+                If (TaskBarManager.instance_ Is Nothing) Then
+                    SyncLock Lock
+                        If (TaskBarManager.instance_ Is Nothing) Then
+                            TaskBarManager.instance_ = New TaskBarManager()
                         End If
                     End SyncLock
                 End If
 
-                Return TaskBarManager.instanceB
+                Return TaskBarManager.instance_
             End Get
         End Property
         ''' ----------------------------------------------------------------------------------------------------
@@ -62,7 +65,7 @@ Namespace SmartBotKit.Application
         ''' A instance of the Windows Taskbar.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        Private Shared instanceB As TaskBarManager
+        Private Shared instance_ As TaskBarManager
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
@@ -71,17 +74,17 @@ Namespace SmartBotKit.Application
         ''' ----------------------------------------------------------------------------------------------------
         Public ReadOnly Property OwnerHandle As IntPtr
             Get
-                If (Me.ownerHandleB = IntPtr.Zero) Then
+                If (Me.ownerHandle_ = IntPtr.Zero) Then
                     Dim currentProcess As Process = Process.GetCurrentProcess()
 
                     If (currentProcess Is Nothing) OrElse (currentProcess.MainWindowHandle = IntPtr.Zero) Then
                         Throw New InvalidOperationException("A valid active Window is needed to update the Taskbar.")
                     End If
 
-                    Me.ownerHandleB = currentProcess.MainWindowHandle
+                    Me.ownerHandle_ = currentProcess.MainWindowHandle
                 End If
 
-                Return Me.ownerHandleB
+                Return Me.ownerHandle_
             End Get
         End Property
         ''' ----------------------------------------------------------------------------------------------------
@@ -90,7 +93,7 @@ Namespace SmartBotKit.Application
         ''' The handle of the window whose taskbar button will be used to display progress.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        Private ownerHandleB As IntPtr
+        Private ownerHandle_ As IntPtr
 
 #End Region
 
@@ -101,7 +104,7 @@ Namespace SmartBotKit.Application
         ''' Prevents a default instance of the <see cref="TaskbarManager"/> class from being created.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        ''' <exception cref="Global.System.PlatformNotSupportedException">
+        ''' <exception cref="PlatformNotSupportedException">
         ''' Taskbar features are only supported on Windows 7 or newer.
         ''' </exception>
         ''' ----------------------------------------------------------------------------------------------------
@@ -225,6 +228,7 @@ Namespace SmartBotKit.Application
         <DebuggerStepThrough>
         Public Sub SetThumbnailClip(ByVal clipRect As Rectangle)
 
+            ' ReSharper disable once UnusedVariable
             Dim result As HResult = TaskbarList.Instance.SetThumbnailClip(Me.OwnerHandle, clipRect)
 
         End Sub
@@ -249,6 +253,7 @@ Namespace SmartBotKit.Application
         <DebuggerStepThrough>
         Public Sub SetThumbnailClip(ByVal clipRect As Rectangle, ByVal windowHandle As IntPtr)
 
+            ' ReSharper disable once UnusedVariable
             Dim result As HResult = TaskbarList.Instance.SetThumbnailClip(windowHandle, clipRect)
 
         End Sub

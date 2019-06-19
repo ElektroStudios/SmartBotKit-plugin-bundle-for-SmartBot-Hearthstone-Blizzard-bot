@@ -20,7 +20,10 @@ Imports SmartBot.Plugins.API.Bot
 
 #Region " MyPlugin "
 
+' ReSharper disable once CheckNamespace
+
 Namespace PluginTemplate
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>
@@ -53,12 +56,16 @@ Namespace PluginTemplate
 
 #Region " Private Fields "
 
+        ' ReSharper disable InconsistentNaming
+
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
         ''' A <see cref="Boolean"/> flag for testing purposes.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Private ReadOnly testFlag As Boolean
+
+        ' ReSharper restore InconsistentNaming
 
 #End Region
 
@@ -316,7 +323,7 @@ Namespace PluginTemplate
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Called when <see cref="Bot.Mode.ArenaAuto"/> mode ends.
+        ''' Called when <see cref="Mode.ArenaAuto"/> mode ends.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Public Overrides Sub OnArenaEnd()
@@ -424,7 +431,7 @@ Namespace PluginTemplate
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Releases all the resources used by this <see cref="MyPlugin"/> instance.
+        ''' Releases all the Global.System.Resources.used by this <see cref="MyPlugin"/> instance.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Public Overrides Sub Dispose()
@@ -448,7 +455,7 @@ Namespace PluginTemplate
         <DebuggerStepThrough>
         Private Sub LogMethodName(<CallerMemberName> ByVal Optional methodName As String = "")
             If (Me.DataContainer.Enabled) Then
-                Bot.Log(String.Format("[{0}] -> {1}", NameOf(MyPlugin), methodName))
+                Bot.Log($"[{NameOf(MyPlugin)}] -> {methodName}")
             End If
         End Sub
 

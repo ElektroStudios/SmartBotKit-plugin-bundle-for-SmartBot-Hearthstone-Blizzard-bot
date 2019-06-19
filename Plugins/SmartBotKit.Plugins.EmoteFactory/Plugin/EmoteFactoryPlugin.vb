@@ -23,7 +23,10 @@ Imports SmartBotKit.ReservedUse
 
 #Region " EmoteFactoryPlugin "
 
+' ReSharper disable once CheckNamespace
+
 Namespace EmoteFactory
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>
@@ -55,6 +58,8 @@ Namespace EmoteFactory
 #End Region
 
 #Region " Private Fields "
+
+        ' ReSharper disable InconsistentNaming
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
@@ -90,6 +95,8 @@ Namespace EmoteFactory
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Private isEnemySquelched As Boolean
+
+        ' ReSharper restore InconsistentNaming
 
 #End Region
 
@@ -218,7 +225,7 @@ Namespace EmoteFactory
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Releases all the resources used by this <see cref="EmoteFactoryPlugin"/> instance.
+        ''' Releases all the Global.System.Resources.used by this <see cref="EmoteFactoryPlugin"/> instance.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Public Overrides Sub Dispose()
@@ -240,13 +247,15 @@ Namespace EmoteFactory
                    (Bot.CurrentBoard.TurnCount < 2) Then
 
                 Me.emotedFirstTurn = True
-                Dim emote As Bot.EmoteType = Me.DataContainer.EmoteOnFirstTurnType
+                Dim emote As EmoteType = Me.DataContainer.EmoteOnFirstTurnType
 
                 Dim t As Task = Task.Factory.StartNew(
                     Sub()
                         Dim queued As Boolean = Me.MaybeSendEmote(Me.DataContainer.SendEmoteOnConditionsPercent, emote)
                         If (queued) Then
-                            Bot.Log(String.Format("[Emote Factory] -> Sending emote '{0}' due to condition: '{1}'.", emote.ToString(), NameOf(Me.DataContainer.EmoteOnFirstTurn)))
+                            Bot.Log(
+                                $"[Emote Factory] -> Sending emote '{emote.ToString()}' due to condition: '{ _
+                                       NameOf(Me.DataContainer.EmoteOnFirstTurn)}'.")
                         End If
                     End Sub, TaskCreationOptions.LongRunning)
 
@@ -262,13 +271,15 @@ Namespace EmoteFactory
         ''' ----------------------------------------------------------------------------------------------------
         Private Async Sub MaybeDoEmoteOnLethal()
             If (Me.DataContainer.EmoteOnLethal) Then
-                Dim emote As Bot.EmoteType = Me.DataContainer.EmoteOnLethalType
+                Dim emote As EmoteType = Me.DataContainer.EmoteOnLethalType
 
                 Dim t As Task = Task.Factory.StartNew(
                     Sub()
                         Dim queued As Boolean = Me.MaybeSendEmote(Me.DataContainer.SendEmoteOnConditionsPercent, emote)
                         If (queued) Then
-                            Bot.Log(String.Format("[Emote Factory] -> Sending emote '{0}' due to condition: '{1}'.", emote.ToString(), NameOf(Me.DataContainer.EmoteOnLethal)))
+                            Bot.Log(
+                                $"[Emote Factory] -> Sending emote '{emote.ToString()}' due to condition: '{ _
+                                       NameOf(Me.DataContainer.EmoteOnLethal)}'.")
                         End If
                     End Sub, TaskCreationOptions.LongRunning)
 
@@ -284,13 +295,15 @@ Namespace EmoteFactory
         ''' ----------------------------------------------------------------------------------------------------
         Private Async Sub MaybeDoEmoteOnConcede()
             If (Me.DataContainer.EmoteOnConcede) Then
-                Dim emote As Bot.EmoteType = Me.DataContainer.EmoteOnConcedeType
+                Dim emote As EmoteType = Me.DataContainer.EmoteOnConcedeType
 
                 Dim t As Task = Task.Factory.StartNew(
                     Sub()
                         Dim queued As Boolean = Me.MaybeSendEmote(Me.DataContainer.SendEmoteOnConditionsPercent, emote)
                         If (queued) Then
-                            Bot.Log(String.Format("[Emote Factory] -> Sending emote '{0}' due to condition: '{1}'.", emote.ToString(), NameOf(Me.DataContainer.EmoteOnConcede)))
+                            Bot.Log(
+                                $"[Emote Factory] -> Sending emote '{emote.ToString()}' due to condition: '{ _
+                                       NameOf(Me.DataContainer.EmoteOnConcede)}'.")
                         End If
                     End Sub, TaskCreationOptions.LongRunning)
 
@@ -306,13 +319,15 @@ Namespace EmoteFactory
         ''' ----------------------------------------------------------------------------------------------------
         Private Async Sub MaybeDoEmoteOnDefeat()
             If (Me.DataContainer.EmoteOnDefeat) Then
-                Dim emote As Bot.EmoteType = Me.DataContainer.EmoteOnDefeatType
+                Dim emote As EmoteType = Me.DataContainer.EmoteOnDefeatType
 
                 Dim t As Task = Task.Factory.StartNew(
                     Sub()
                         Dim queued As Boolean = Me.MaybeSendEmote(Me.DataContainer.SendEmoteOnConditionsPercent, emote)
                         If (queued) Then
-                            Bot.Log(String.Format("[Emote Factory] -> Sending emote '{0}' due to condition: '{1}'.", emote.ToString(), NameOf(Me.DataContainer.EmoteOnDefeat)))
+                            Bot.Log(
+                                $"[Emote Factory] -> Sending emote '{emote.ToString()}' due to condition: '{ _
+                                       NameOf(Me.DataContainer.EmoteOnDefeat)}'.")
                         End If
                     End Sub, TaskCreationOptions.LongRunning)
 
@@ -362,7 +377,9 @@ Namespace EmoteFactory
                     Sub()
                         Dim queued As Boolean = Me.MaybeSendEmote(Me.DataContainer.SendEmoteOnConditionsPercent, emoteToSend)
                         If (queued) Then
-                            Bot.Log(String.Format("[Emote Factory] -> Sending emote '{0}' as a reply to enemy emote: '{1}'.", emoteToSend.ToString(), emoteReceived.ToString()))
+                            Bot.Log(
+                                $"[Emote Factory] -> Sending emote '{emoteToSend.ToString() _
+                                       }' as a reply to enemy emote: '{emoteReceived.ToString()}'.")
                         End If
                     End Sub, TaskCreationOptions.LongRunning)
 
@@ -382,7 +399,7 @@ Namespace EmoteFactory
         ''' </param>
         ''' ----------------------------------------------------------------------------------------------------
         <DebuggerStepperBoundary>
-        Private Function MaybeSendEmote(ByVal percent As Integer, ByVal emote As Bot.EmoteType) As Boolean
+        Private Function MaybeSendEmote(ByVal percent As Integer, ByVal emote As EmoteType) As Boolean
 
             Dim chance As Integer = Me.Rng.Next(1, 101)
             Dim isWinner As Boolean = (chance <= percent)

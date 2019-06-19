@@ -23,7 +23,10 @@ Imports SmartBotKit.ReservedUse
 
 #Region " HearthstoneResizerPlugin "
 
+' ReSharper disable once CheckNamespace
+
 Namespace HearthstoneResizer
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>
@@ -55,6 +58,8 @@ Namespace HearthstoneResizer
 
 #Region " Private Fields "
 
+        ' ReSharper disable InconsistentNaming
+
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
         ''' Keeps track of the last <see cref="HearthstoneResizerPluginData.Enabled"/> value.
@@ -68,6 +73,8 @@ Namespace HearthstoneResizer
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Private curTickCount As Integer
+
+        ' ReSharper restore InconsistentNaming
 
 #End Region
 
@@ -224,9 +231,10 @@ Namespace HearthstoneResizer
                         End If
 
                         If (windowPlacementChanged = True) Then
-                            Bot.Log(String.Format("[Hearthstone Resizer] -> Changed to: {0} | {1}",
-                                                  If(newPos <> Point.Empty, newPos.ToString(), oldPos.ToString()),
-                                                  If(newSize <> Size.Empty, newSize.ToString(), oldSize.ToString())))
+                            Bot.Log(
+                                $"[Hearthstone Resizer] -> Changed to: { _
+                                       If(newPos <> Point.Empty, newPos.ToString(), oldPos.ToString())} | { _
+                                       If(newSize <> Size.Empty, newSize.ToString(), oldSize.ToString())}")
                         End If
 
                     End If

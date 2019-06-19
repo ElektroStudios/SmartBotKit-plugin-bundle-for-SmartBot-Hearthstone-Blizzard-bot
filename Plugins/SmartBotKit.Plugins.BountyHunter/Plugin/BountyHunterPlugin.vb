@@ -25,7 +25,10 @@ Imports SmartBotKit.ReservedUse
 
 #Region " BountyHunterPlugin "
 
+' ReSharper disable once CheckNamespace
+
 Namespace BountyHunter
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>
@@ -56,6 +59,8 @@ Namespace BountyHunter
 #End Region
 
 #Region " Private Fields "
+
+        ' ReSharper disable InconsistentNaming
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
@@ -105,6 +110,8 @@ Namespace BountyHunter
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Private questTypesToKeep As List(Of Quest.QuestType)
+
+        ' ReSharper restore InconsistentNaming
 
 #End Region
 
@@ -228,7 +235,7 @@ Namespace BountyHunter
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Releases all the resources used by this <see cref="BountyHunterPlugin"/> instance.
+        ''' Releases all the Global.System.Resources.used by this <see cref="BountyHunterPlugin"/> instance.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Public Overrides Sub Dispose()
@@ -350,7 +357,7 @@ Namespace BountyHunter
                     If (questToDo IsNot Nothing) Then
                         Dim newDeck As Deck = Me.GetBestDeckForQuest(questToDo)
                         Dim botMode As Bot.Mode = Me.DataContainer.QuestMode
-                        Bot.Log(String.Format("[Bounty Hunter] -> Questing Mode | '{0}' | {1} | {2}", questToDo.Name, botMode, newDeck.Name))
+                        Bot.Log($"[Bounty Hunter] -> Questing Mode | '{questToDo.Name}' | {botMode} | {newDeck.Name}")
                         Bot.ChangeMode(botMode)
                         Bot.ChangeDeck(newDeck.Name)
                         Me.currentBountyHunterMode = mode
@@ -373,15 +380,18 @@ Namespace BountyHunter
                             Dim preferredDeck As Deck = Me.DataContainer.PreferredDeck(heroClass)
 
                             If (preferredDeck IsNot Nothing) Then
-                                Bot.Log(String.Format("[Bounty Hunter] -> Levelling Mode | {0} ({1} levels of {2}) | {3} | {4}",
-                                                      heroClass, currentLevel, targetLevel, botMode, preferredDeck.Name))
+                                Bot.Log(
+                                    $"[Bounty Hunter] -> Levelling Mode | {heroClass} ({currentLevel} levels of { _
+                                           targetLevel}) | {botMode} | {preferredDeck.Name}")
                                 Bot.ChangeMode(botMode)
                                 Bot.ChangeDeck(preferredDeck.Name)
                                 Me.currentBountyHunterMode = mode
                                 Return True
 
                             Else
-                                Bot.Log(String.Format("[Bounty Hunter] -> Levelling Mode | No available deck for class: {0}. Switching to next class...", heroClass))
+                                Bot.Log(
+                                    $"[Bounty Hunter] -> Levelling Mode | No available deck for class: {heroClass _
+                                           }. Switching to next class...")
 
                             End If
                         End If
@@ -400,7 +410,7 @@ Namespace BountyHunter
                     End If
 
                     If (deck IsNot Nothing) Then
-                        Bot.Log(String.Format("[Bounty Hunter] -> Ladder Mode | {0} | {1}", botMode, deck.Name))
+                        Bot.Log($"[Bounty Hunter] -> Ladder Mode | {botMode} | {deck.Name}")
                         Bot.ChangeMode(botMode)
                         Bot.ChangeDeck(deck.Name)
                         If (Me.DataContainer.LadderModeAutoStart) AndAlso Not (Bot.IsBotRunning()) Then
@@ -439,7 +449,7 @@ Namespace BountyHunter
                    (quest.GetGoldReward() = 50 AndAlso Me.DataContainer.Reroll50GoldQuests) Then
 
                     If (Bot.CanCancelQuest()) Then
-                        Bot.Log(String.Format("[Bounty Hunter] -> {0} Gold Quest Reroll: {1}", quest.GetGoldReward(), quest.Name))
+                        Bot.Log($"[Bounty Hunter] -> {quest.GetGoldReward()} Gold Quest Reroll: {quest.Name}")
                         Bot.CancelQuest(quest)
                     End If
 
@@ -473,8 +483,8 @@ Namespace BountyHunter
                 Me.lastNormalBotMode = Bot.CurrentMode
                 Me.lastNormalDeckName = Bot.CurrentDeck?.Name
 
-                Bot.Log(String.Format("[Bounty Hunter] -> Reverted to normal settings: {0} | {1}",
-                                      Me.lastNormalBotMode, Me.lastNormalDeckName))
+                Bot.Log(
+                    $"[Bounty Hunter] -> Reverted to normal settings: {Me.lastNormalBotMode} | {Me.lastNormalDeckName}")
             End If
 
         End Sub
@@ -554,7 +564,7 @@ Namespace BountyHunter
                 End If
             End If
 
-            Bot.Log(String.Format("[Bounty Hunter] -> Questing Mode | No available deck for quest: '{0}', skipping it...", quest.Name))
+            Bot.Log($"[Bounty Hunter] -> Questing Mode | No available deck for quest: '{quest.Name}', skipping it...")
 
             If (Me.DataContainer.RerollUnfulfillableQuests) Then
                 If Bot.CanCancelQuest() Then
@@ -578,7 +588,7 @@ Namespace BountyHunter
         ''' The best available deck for the specified <see cref="CClass"/>.
         ''' </returns>
         ''' ----------------------------------------------------------------------------------------------------
-        Private Function GetBestDeckForClass(ByVal heroClass As Card.CClass) As Deck
+        Private Function GetBestDeckForClass(ByVal heroClass As CClass) As Deck
 
             If Me.HasPreferredDeckForClass(heroClass) Then
                 Return Me.GetPreferredDeckForClass(heroClass)
@@ -606,7 +616,7 @@ Namespace BountyHunter
         ''' ----------------------------------------------------------------------------------------------------
         Private Function IsPreferredDeck(ByVal deckName As String) As Boolean
 
-            For Each heroClass As CClass In [Enum].GetValues(GetType(Card.CClass))
+            For Each heroClass As CClass In [Enum].GetValues(GetType(CClass))
                 If (deckName = Me.DataContainer.PreferredDeck(heroClass)?.Name) Then
                     Return True
                 End If
@@ -618,7 +628,7 @@ Namespace BountyHunter
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Gets the preferred deck for the specified <see cref="Card.CClass"/>.
+        ''' Gets the preferred deck for the specified <see cref="CClass"/>.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         ''' <param name="heroClass">
@@ -626,11 +636,11 @@ Namespace BountyHunter
         ''' </param>
         ''' ----------------------------------------------------------------------------------------------------
         ''' <returns>
-        ''' The preferred deck for the specified <see cref="Card.CClass"/>, 
+        ''' The preferred deck for the specified <see cref="CClass"/>, 
         ''' or <see langword="Nothing"/> if no preferred deck is available.
         ''' </returns>
         ''' ----------------------------------------------------------------------------------------------------
-        Private Function GetPreferredDeckForClass(ByVal heroClass As Card.CClass) As Deck
+        Private Function GetPreferredDeckForClass(ByVal heroClass As CClass) As Deck
 
             Return Me.GetQualifiedDecksForQuestMode(Me.DataContainer.QuestMode).
                       Find(Function(deck As Deck) deck.Name = Me.DataContainer.PreferredDeck(heroClass)?.Name)
@@ -639,7 +649,7 @@ Namespace BountyHunter
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Determine whether the specified <see cref="Card.CClass"/> has any available deck for the specified <see cref="Bot.Mode"/>.
+        ''' Determine whether the specified <see cref="CClass"/> has any available deck for the specified <see cref="Bot.Mode"/>.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         ''' <param name="heroClass">
@@ -651,12 +661,12 @@ Namespace BountyHunter
         ''' </param>
         ''' ----------------------------------------------------------------------------------------------------
         ''' <returns>
-        ''' <see langword="True"/> if the specified <see cref="Card.CClass"/> has 
+        ''' <see langword="True"/> if the specified <see cref="CClass"/> has 
         ''' any available deck for the specified <see cref="Bot.Mode"/>; 
         ''' otherwise, <see langword="False"/>.
         ''' </returns>
         ''' ----------------------------------------------------------------------------------------------------
-        Private Function HasAvailableDeckForClass(ByVal heroClass As Card.CClass, ByVal botMode As Bot.Mode) As Boolean
+        Private Function HasAvailableDeckForClass(ByVal heroClass As CClass, ByVal botMode As Bot.Mode) As Boolean
 
             Return Me.GetQualifiedDecksForQuestMode(botMode).Any(Function(deck As Deck) deck.Class = heroClass)
 
@@ -684,7 +694,7 @@ Namespace BountyHunter
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Determine whether there is a preferred deck available for the specified <see cref="Card.CClass"/>.
+        ''' Determine whether there is a preferred deck available for the specified <see cref="CClass"/>.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         ''' <param name="heroClass">
@@ -692,11 +702,11 @@ Namespace BountyHunter
         ''' </param>
         ''' ----------------------------------------------------------------------------------------------------
         ''' <returns>
-        ''' <see langword="True"/> if there is a preferred deck available for the specified <see cref="Card.CClass"/>; 
+        ''' <see langword="True"/> if there is a preferred deck available for the specified <see cref="CClass"/>; 
         ''' otherwise, <see langword="False"/>.
         ''' </returns>
         ''' ----------------------------------------------------------------------------------------------------
-        Private Function HasPreferredDeckForClass(ByVal heroClass As Card.CClass) As Boolean
+        Private Function HasPreferredDeckForClass(ByVal heroClass As CClass) As Boolean
             Return Me.GetPreferredDeckForClass(heroClass) IsNot Nothing
         End Function
 

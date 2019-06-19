@@ -21,7 +21,10 @@ Imports SmartBot.Plugins
 
 #Region " AutoInjectorPluginData "
 
+' ReSharper disable once CheckNamespace
+
 Namespace AutoInjector
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>
@@ -123,15 +126,15 @@ Namespace AutoInjector
         <Browsable(True)>
         Public Property ProcessDiscoverInterval() As Integer
             Get
-                Return Me.processDiscoverIntervalB
+                Return Me.processDiscoverInterval_
             End Get
             Set(ByVal value As Integer)
                 If (value < 1) Then
-                    Me.processDiscoverIntervalB = 1
+                    Me.processDiscoverInterval_ = 1
                 ElseIf value > 10 Then
-                    Me.processDiscoverIntervalB = 10
+                    Me.processDiscoverInterval_ = 10
                 Else
-                    Me.processDiscoverIntervalB = value
+                    Me.processDiscoverInterval_ = value
                 End If
             End Set
         End Property
@@ -140,7 +143,7 @@ Namespace AutoInjector
         ''' <para></para>
         ''' The time interval, in seconds, to discover new Hearthstone processes.
         ''' </summary>
-        Private processDiscoverIntervalB As Integer
+        Private processDiscoverInterval_ As Integer
 
 #End Region
 
@@ -157,7 +160,7 @@ Namespace AutoInjector
             MyBase.Name = Me.AssemblyInfo.AssemblyName
 
             Me.AutoStartBotAfterInjected = False
-            Me.processDiscoverIntervalB = 5
+            Me.processDiscoverInterval_ = 5
         End Sub
 
 #End Region

@@ -15,7 +15,10 @@ Imports Xceed.Wpf.Toolkit.PropertyGrid.Attributes
 
 #Region " SizeSource "
 
+' ReSharper disable once CheckNamespace
+
 Namespace HearthstoneResizer
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>

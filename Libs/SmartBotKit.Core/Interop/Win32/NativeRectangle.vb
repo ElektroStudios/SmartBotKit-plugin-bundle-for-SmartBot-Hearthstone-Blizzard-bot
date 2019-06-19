@@ -16,7 +16,10 @@ Imports System.Runtime.InteropServices
 
 #Region " NativeRectangle (RECT) "
 
+' ReSharper disable once CheckNamespace
+
 Namespace SmartBotKit.Interop.Win32
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>

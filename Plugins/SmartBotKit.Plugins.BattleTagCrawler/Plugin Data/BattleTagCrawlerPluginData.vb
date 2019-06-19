@@ -21,7 +21,10 @@ Imports SmartBot.Plugins
 
 #Region " BattleTagCrawlerPluginData "
 
+' ReSharper disable once CheckNamespace
+
 Namespace PluginTemplate
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>

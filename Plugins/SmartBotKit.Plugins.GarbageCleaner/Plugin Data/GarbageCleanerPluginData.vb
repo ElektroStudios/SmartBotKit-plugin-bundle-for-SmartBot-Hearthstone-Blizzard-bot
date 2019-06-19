@@ -25,7 +25,10 @@ Imports SmartBotKit.Interop
 
 #Region " GarbageCleanerPluginData "
 
+' ReSharper disable once CheckNamespace
+
 Namespace GarbageCleaner
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>
@@ -177,15 +180,15 @@ Namespace GarbageCleaner
         <Browsable(True)>
         Public Property OlderThanDays() As Integer
             Get
-                Return Me.olderThanDaysB
+                Return Me.olderThanDays_
             End Get
             Set(ByVal value As Integer)
                 If (value < 0) Then
-                    Me.olderThanDaysB = 0
+                    Me.olderThanDays_ = 0
                 ElseIf (value > 90) Then
-                    Me.olderThanDaysB = 90
+                    Me.olderThanDays_ = 90
                 Else
-                    Me.olderThanDaysB = value
+                    Me.olderThanDays_ = value
                 End If
             End Set
         End Property
@@ -194,7 +197,7 @@ Namespace GarbageCleaner
         ''' <para></para>
         ''' The minimum number of days that a directory or file must have to be cleaned.
         ''' </summary>
-        Private olderThanDaysB As Integer
+        Private olderThanDays_ As Integer
 
 #End Region
 

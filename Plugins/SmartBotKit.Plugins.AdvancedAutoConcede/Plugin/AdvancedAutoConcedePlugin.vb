@@ -1,4 +1,4 @@
-#Region " Option Statements "
+﻿#Region " Option Statements "
 
 Option Strict On
 Option Explicit On
@@ -18,7 +18,10 @@ Imports SmartBot.Plugins.API.Bot
 
 #Region " AdvancedAutoConcedePlugin "
 
+' ReSharper disable once CheckNamespace
+
 Namespace PluginTemplate
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>
@@ -49,6 +52,8 @@ Namespace PluginTemplate
 #End Region
 
 #Region " Private Fields "
+
+        ' ReSharper disable InconsistentNaming
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
@@ -90,7 +95,7 @@ Namespace PluginTemplate
         ''' Keeps track of the current bot mode.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        Private currentMode As Bot.Mode = Bot.Mode.None
+        Private currentMode As Mode = Bot.Mode.None
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
@@ -98,6 +103,8 @@ Namespace PluginTemplate
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Private isMatchAutoConceded As Boolean
+
+        ' ReSharper restore InconsistentNaming
 
 #End Region
 
@@ -203,7 +210,7 @@ Namespace PluginTemplate
                                 End If
                             End If
 
-                            Bot.Log(String.Format("[Advanced Auto Concede] -> (Ranked Mode) Current wins count: {0}", Me.rankedWinsCount))
+                            Bot.Log($"[Advanced Auto Concede] -> (Ranked Mode) Current wins count: {Me.rankedWinsCount}")
                             If (Me.rankedWinsCount >= Me.DataContainer.MaxRankedWins) Then
                                 Bot.Log("[Advanced Auto Concede] -> (Ranked Mode) Conceding the current match, reason: max. ranked wins")
                                 Me.isMatchAutoConceded = True
@@ -213,7 +220,9 @@ Namespace PluginTemplate
 
                             If (Me.concedesCount <> 0) Then
                                 If (Me.concedesCount < Me.DataContainer.MaxRankedConcedes) Then
-                                    Bot.Log(String.Format("[Advanced Auto Concede] -> (Ranked Mode) Conceding the current match, reason: repeat concede ({0} of {1})", (Me.concedesCount + 1), Me.DataContainer.MaxRankedConcedes))
+                                    Bot.Log(
+                                        $"[Advanced Auto Concede] -> (Ranked Mode) Conceding the current match, reason: repeat concede ({ _
+                                               (Me.concedesCount + 1)} of {Me.DataContainer.MaxRankedConcedes})")
                                     Me.isMatchAutoConceded = True
                                     Bot.Concede()
                                 Else
@@ -224,7 +233,8 @@ Namespace PluginTemplate
 
                     Case Mode.UnrankedStandard, Mode.UnrankedWild
                         If (Me.DataContainer.EnableUnrankedModeAutoConcede) Then
-                            Bot.Log(String.Format("[Advanced Auto Concede] -> (Unranked Mode) Current wins count: {0}", Me.unrankedWinsCount))
+                            Bot.Log(
+                                $"[Advanced Auto Concede] -> (Unranked Mode) Current wins count: {Me.unrankedWinsCount}")
                             If (Me.unrankedWinsCount >= Me.DataContainer.MaxUnrankedWins) Then
                                 Bot.Log("[Advanced Auto Concede] -> (Ranked Mode) Conceding the current match, reason: max. unranked wins")
                                 Me.isMatchAutoConceded = True
@@ -233,7 +243,9 @@ Namespace PluginTemplate
 
                             If (Me.concedesCount <> 0) Then
                                 If (Me.concedesCount < Me.DataContainer.MaxUnrankedConcedes) Then
-                                    Bot.Log(String.Format("[Advanced Auto Concede] -> (Unranked Mode) Conceding the current match, reason: repeat concede ({0} of {1})", (Me.concedesCount + 1), Me.DataContainer.MaxRankedConcedes))
+                                    Bot.Log(
+                                        $"[Advanced Auto Concede] -> (Unranked Mode) Conceding the current match, reason: repeat concede ({ _
+                                               (Me.concedesCount + 1)} of {Me.DataContainer.MaxRankedConcedes})")
                                     Me.isMatchAutoConceded = True
                                     Bot.Concede()
                                 Else
@@ -320,13 +332,14 @@ Namespace PluginTemplate
                     Case Mode.RankedStandard, Mode.RankedWild
                         If (Me.DataContainer.EnableRankedModeAutoConcede) Then
                             Me.rankedWinsCount += 1
-                            Bot.Log(String.Format("[Advanced Auto Concede] -> (Ranked Mode) Current wins count: {0}", Me.rankedWinsCount))
+                            Bot.Log($"[Advanced Auto Concede] -> (Ranked Mode) Current wins count: {Me.rankedWinsCount}")
                         End If
 
                     Case Mode.UnrankedStandard, Mode.UnrankedWild
                         If (Me.DataContainer.EnableUnrankedModeAutoConcede) Then
                             Me.unrankedWinsCount += 1
-                            Bot.Log(String.Format("[Advanced Auto Concede] -> (Unranked Mode) Current wins count: {0}", Me.unrankedWinsCount))
+                            Bot.Log(
+                                $"[Advanced Auto Concede] -> (Unranked Mode) Current wins count: {Me.unrankedWinsCount}")
                         End If
 
                     Case Else ' Mode.Arena, Mode.ArenaAuto, Mode.Practice
@@ -362,7 +375,7 @@ Namespace PluginTemplate
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Releases all the resources used by this <see cref="AdvancedAutoConcedePlugin"/> instance.
+        ''' Releases all the Global.System.Resources.used by this <see cref="AdvancedAutoConcedePlugin"/> instance.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Public Overrides Sub Dispose()

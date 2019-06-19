@@ -17,7 +17,10 @@ Imports Xceed.Wpf.Toolkit.PropertyGrid.Attributes
 
 #Region " KeysSource "
 
+' ReSharper disable once CheckNamespace
+
 Namespace PanicButton
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>

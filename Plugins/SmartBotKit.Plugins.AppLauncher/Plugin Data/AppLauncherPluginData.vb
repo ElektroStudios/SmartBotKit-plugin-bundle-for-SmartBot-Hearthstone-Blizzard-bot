@@ -22,7 +22,10 @@ Imports SmartBot.Plugins
 
 #Region " AppLauncherPluginData "
 
+' ReSharper disable once CheckNamespace
+
 Namespace AppLauncher
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>

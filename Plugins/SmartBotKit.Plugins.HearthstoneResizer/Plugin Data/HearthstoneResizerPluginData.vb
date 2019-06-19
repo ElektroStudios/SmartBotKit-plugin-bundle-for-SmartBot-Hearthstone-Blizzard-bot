@@ -27,7 +27,10 @@ Imports SmartBotKit.Interop
 
 #Region " HearthstoneResizerPluginData "
 
+' ReSharper disable once CheckNamespace
+
 Namespace HearthstoneResizer
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>
@@ -253,15 +256,15 @@ Namespace HearthstoneResizer
         <DisplayName("The required tick count to fix size and position")>
         Public Property TickCount As Integer
             Get
-                Return Me.tickCountB
+                Return Me.tickCount_
             End Get
             Set(ByVal value As Integer)
                 If (value < 1) Then
-                    Me.tickCountB = 1
+                    Me.tickCount_ = 1
                 ElseIf (value > 100) Then
-                    Me.tickCountB = 100
+                    Me.tickCount_ = 100
                 Else
-                    Me.tickCountB = value
+                    Me.tickCount_ = value
                 End If
             End Set
         End Property
@@ -270,7 +273,7 @@ Namespace HearthstoneResizer
         ''' <para></para>
         ''' The required tick count to change the Hearthstone's window size.
         ''' </summary>
-        Private tickCountB As Integer
+        Private tickCount_ As Integer
 
 #End Region
 

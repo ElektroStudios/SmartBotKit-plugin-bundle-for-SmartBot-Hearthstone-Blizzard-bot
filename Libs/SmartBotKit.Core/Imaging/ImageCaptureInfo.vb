@@ -18,7 +18,10 @@ Imports SmartBotKit.Extensions.RectangleExtensions
 
 #Region " ImageCaptureInfo "
 
+' ReSharper disable once CheckNamespace
+
 Namespace SmartBotKit.[Imaging]
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>
@@ -54,6 +57,7 @@ Namespace SmartBotKit.[Imaging]
 
 #Region " Cosntructors "
 
+        ' ReSharper disable UnusedMember.Local
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
         ''' Prevents a default instance of the <see cref="ImageCaptureInfo"/> class from being created.
@@ -61,6 +65,7 @@ Namespace SmartBotKit.[Imaging]
         ''' ----------------------------------------------------------------------------------------------------
         Private Sub New()
         End Sub
+        ' ReSharper restore UnusedMember.Local
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
@@ -70,11 +75,11 @@ Namespace SmartBotKit.[Imaging]
         ''' <param name="aspectRatio">
         ''' The aspect ratio of Hearthstone window, represented as X:Y. (for example: 16:9)
         ''' </param>
-        ''' 
+        '''
         ''' <param name="resolution">
         ''' The resolution of Hearthstone window. (for example: 1920x1080)
         ''' </param>
-        ''' 
+        '''
         ''' <param name="captureRectangle">
         ''' The rectangle that contains the location and size to capture the image in Hearthstone window.
         ''' </param>
@@ -96,7 +101,7 @@ Namespace SmartBotKit.[Imaging]
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Returns a <see cref="ImageCaptureInfo"/> object 
+        ''' Returns a <see cref="ImageCaptureInfo"/> object
         ''' whose <see cref="ImageCaptureInfo.CaptureRectangle"/> member is scaled to the specified size.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
@@ -129,11 +134,11 @@ Namespace SmartBotKit.[Imaging]
         ''' ----------------------------------------------------------------------------------------------------
         Public Overrides Function ToString() As String
             Dim sb As New StringBuilder()
-            sb.AppendLine(String.Format("{0}={1}; ", NameOf(Me.AspectRatio), Me.AspectRatio.ToString()))
-            sb.AppendLine(String.Format("{0}={1}; ", NameOf(Me.Resolution), Me.Resolution.ToString()))
-            sb.AppendLine(String.Format("{0}={1}", NameOf(Me.CaptureRectangle), Me.CaptureRectangle.ToString()))
+            sb.AppendLine($"{NameOf(Me.AspectRatio)}={Me.AspectRatio.ToString()}; ")
+            sb.AppendLine($"{NameOf(Me.Resolution)}={Me.Resolution.ToString()}; ")
+            sb.AppendLine($"{NameOf(Me.CaptureRectangle)}={Me.CaptureRectangle.ToString()}")
 
-            Return String.Format("{{{0}}}", sb.ToString())
+            Return $"{{{sb.ToString()}}}"
         End Function
 
 #End Region

@@ -25,7 +25,10 @@ Imports SmartBotKit.ReservedUse
 
 #Region " GarbageCleanerPlugin "
 
+' ReSharper disable once CheckNamespace
+
 Namespace GarbageCleaner
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>
@@ -57,12 +60,16 @@ Namespace GarbageCleaner
 
 #Region " Private Fields "
 
+        ' ReSharper disable InconsistentNaming
+
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
         ''' Keeps track of the last <see cref="GarbageCleanerPluginData.Enabled"/> value.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Private lastEnabled As Boolean
+
+        ' ReSharper restore InconsistentNaming
 
 #End Region
 
@@ -142,7 +149,7 @@ Namespace GarbageCleaner
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Releases all the resources used by this <see cref="GarbageCleanerPlugin"/> instance.
+        ''' Releases all the Global.System.Resources.used by this <see cref="GarbageCleanerPlugin"/> instance.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Public Overrides Sub Dispose()
@@ -206,7 +213,9 @@ Namespace GarbageCleaner
                         Try
                             My.Computer.FileSystem.DeleteDirectory(seed.FullName, UIOption.OnlyErrorDialogs, recycleOption)
                             If (verboseMode) Then
-                                Bot.Log(String.Format("[Garbage Cleaner] -> Seed directory deleted: '{0}'. Older than {1} days.", seed.Name, daysDiff))
+                                Bot.Log(
+                                    $"[Garbage Cleaner] -> Seed directory deleted: '{seed.Name}'. Older than {daysDiff _
+                                           } days.")
                             End If
                         Catch ex As Exception
                             ' Ignore all.
@@ -236,7 +245,8 @@ Namespace GarbageCleaner
                         Try
                             My.Computer.FileSystem.DeleteFile(log.FullName, UIOption.OnlyErrorDialogs, recycleOption)
                             If (verboseMode) Then
-                                Bot.Log(String.Format("[Garbage Cleaner] -> Log file deleted: '{0}'. Older than {1} days.", log.Name, daysDiff))
+                                Bot.Log(
+                                    $"[Garbage Cleaner] -> Log file deleted: '{log.Name}'. Older than {daysDiff} days.")
                             End If
                         Catch ex As Exception
                             ' Ignore all.
@@ -259,7 +269,8 @@ Namespace GarbageCleaner
                         Try
                             My.Computer.FileSystem.DeleteFile(log.FullName, UIOption.OnlyErrorDialogs, recycleOption)
                             If (verboseMode) Then
-                                Bot.Log(String.Format("[Garbage Cleaner] -> Log file deleted: '{0}'. Older than {1} days.", log.Name, daysDiff))
+                                Bot.Log(
+                                    $"[Garbage Cleaner] -> Log file deleted: '{log.Name}'. Older than {daysDiff} days.")
                             End If
                         Catch ex As Exception
                             ' Ignore all.
@@ -282,7 +293,8 @@ Namespace GarbageCleaner
                         Try
                             My.Computer.FileSystem.DeleteFile(log.FullName, UIOption.OnlyErrorDialogs, recycleOption)
                             If (verboseMode) Then
-                                Bot.Log(String.Format("[Garbage Cleaner] -> Log file deleted: '{0}'. Older than {1} days.", log.Name, daysDiff))
+                                Bot.Log(
+                                    $"[Garbage Cleaner] -> Log file deleted: '{log.Name}'. Older than {daysDiff} days.")
                             End If
                         Catch ex As Exception
                             ' Ignore all.
@@ -304,7 +316,9 @@ Namespace GarbageCleaner
                         Try
                             My.Computer.FileSystem.DeleteFile(screenshot.FullName, UIOption.OnlyErrorDialogs, recycleOption)
                             If (verboseMode) Then
-                                Bot.Log(String.Format("[Garbage Cleaner] -> Screenshot deleted: '{0}'. Older than {1} days.", screenshot.Name, daysDiff))
+                                Bot.Log(
+                                    $"[Garbage Cleaner] -> Screenshot deleted: '{screenshot.Name}'. Older than {daysDiff _
+                                           } days.")
                             End If
                         Catch ex As Exception
                             ' Ignore all.

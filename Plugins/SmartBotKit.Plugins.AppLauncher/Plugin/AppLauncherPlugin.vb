@@ -24,7 +24,10 @@ Imports SmartBotKit.ReservedUse
 
 #Region " AppLauncherPlugin "
 
+' ReSharper disable once CheckNamespace
+
 Namespace AppLauncher
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>
@@ -56,6 +59,8 @@ Namespace AppLauncher
 
 #Region " Private Fields "
 
+        ' ReSharper disable InconsistentNaming
+
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
         ''' Keeps track of the last <see cref="AppLauncherPluginData.Enabled"/> value.
@@ -69,6 +74,8 @@ Namespace AppLauncher
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Private processes As ICollection(Of Process)
+
+        ' ReSharper restore InconsistentNaming
 
 #End Region
 
@@ -122,7 +129,7 @@ Namespace AppLauncher
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Releases all the resources used by this <see cref="AppLauncherPlugin"/> instance.
+        ''' Releases all the Global.System.Resources.used by this <see cref="AppLauncherPlugin"/> instance.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Public Overrides Sub Dispose()
@@ -165,7 +172,7 @@ Namespace AppLauncher
             For Each fi As FileInfo In files
 
                 If Not (fi.Exists) Then
-                    Bot.Log(String.Format("[App Launcher] -> File not found: '{0}'", fi.FullName))
+                    Bot.Log($"[App Launcher] -> File not found: '{fi.FullName}'")
                     Continue For
                 End If
 
@@ -176,11 +183,11 @@ Namespace AppLauncher
                 Try
                     p.Start()
                     Me.processes.Add(p)
-                    Bot.Log(String.Format("[App Launcher] -> Execution success : '{0}'", fi.FullName))
+                    Bot.Log($"[App Launcher] -> Execution success : '{fi.FullName}'")
 
                 Catch ex As Exception
-                    Bot.Log(String.Format("[App Launcher] -> Execution failed: '{0}'", fi.FullName))
-                    Bot.Log(String.Format("[App Launcher] -> Exception message: '{0}'", ex.Message))
+                    Bot.Log($"[App Launcher] -> Execution failed: '{fi.FullName}'")
+                    Bot.Log($"[App Launcher] -> Exception message: '{ex.Message}'")
 
                 End Try
 

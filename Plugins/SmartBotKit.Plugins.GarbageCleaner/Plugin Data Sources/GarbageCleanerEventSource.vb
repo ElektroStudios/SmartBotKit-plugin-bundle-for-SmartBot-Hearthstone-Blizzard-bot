@@ -17,7 +17,10 @@ Imports Xceed.Wpf.Toolkit.PropertyGrid.Attributes
 
 #Region " GarbageCleanerEventSource "
 
+' ReSharper disable once CheckNamespace
+
 Namespace GarbageCleaner
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>

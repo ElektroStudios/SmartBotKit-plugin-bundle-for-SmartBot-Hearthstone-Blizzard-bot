@@ -28,7 +28,10 @@ Imports SmartBotKit.Extensions.IEnumerableExtensions
 
 #Region " BountyHunterPluginData "
 
+' ReSharper disable once CheckNamespace
+
 Namespace BountyHunter
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>
@@ -221,15 +224,15 @@ Namespace BountyHunter
         <Browsable(True)>
         Public Property LvlMage As Integer
             Get
-                Return Me.lvlMageB
+                Return Me.lvlMage_
             End Get
             Set(ByVal value As Integer)
                 If (value < 1) Then
-                    Me.lvlMageB = 1
+                    Me.lvlMage_ = 1
                 ElseIf (value > 60) Then
-                    Me.lvlMageB = 60
+                    Me.lvlMage_ = 60
                 Else
-                    Me.lvlMageB = value
+                    Me.lvlMage_ = value
                 End If
             End Set
         End Property
@@ -240,7 +243,7 @@ Namespace BountyHunter
         ''' The target level for Mage.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        Private lvlMageB As Integer
+        Private lvlMage_ As Integer
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
@@ -254,15 +257,15 @@ Namespace BountyHunter
         <Browsable(True)>
         Public Property LvlPriest As Integer
             Get
-                Return Me.lvlPriestB
+                Return Me.lvlPriest_
             End Get
             Set(ByVal value As Integer)
                 If (value < 1) Then
-                    Me.lvlPriestB = 1
+                    Me.lvlPriest_ = 1
                 ElseIf (value > 60) Then
-                    Me.lvlPriestB = 60
+                    Me.lvlPriest_ = 60
                 Else
-                    Me.lvlPriestB = value
+                    Me.lvlPriest_ = value
                 End If
             End Set
         End Property
@@ -273,7 +276,7 @@ Namespace BountyHunter
         ''' The target level for Priest.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        Private lvlPriestB As Integer
+        Private lvlPriest_ As Integer
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
@@ -287,15 +290,15 @@ Namespace BountyHunter
         <Browsable(True)>
         Public Property LvlWarrior As Integer
             Get
-                Return Me.lvlWarriorB
+                Return Me.lvlWarrior_
             End Get
             Set(ByVal value As Integer)
                 If (value < 1) Then
-                    Me.lvlWarriorB = 1
+                    Me.lvlWarrior_ = 1
                 ElseIf (value > 60) Then
-                    Me.lvlWarriorB = 60
+                    Me.lvlWarrior_ = 60
                 Else
-                    Me.lvlWarriorB = value
+                    Me.lvlWarrior_ = value
                 End If
             End Set
         End Property
@@ -306,7 +309,7 @@ Namespace BountyHunter
         ''' The target level for Warrior.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        Private lvlWarriorB As Integer
+        Private lvlWarrior_ As Integer
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
@@ -320,15 +323,15 @@ Namespace BountyHunter
         <Browsable(True)>
         Public Property LvlWarlock As Integer
             Get
-                Return Me.lvlWarlockB
+                Return Me.lvlWarlock_
             End Get
             Set(ByVal value As Integer)
                 If (value < 1) Then
-                    Me.lvlWarlockB = 1
+                    Me.lvlWarlock_ = 1
                 ElseIf (value > 60) Then
-                    Me.lvlWarlockB = 60
+                    Me.lvlWarlock_ = 60
                 Else
-                    Me.lvlWarlockB = value
+                    Me.lvlWarlock_ = value
                 End If
             End Set
         End Property
@@ -339,7 +342,7 @@ Namespace BountyHunter
         ''' The target level for Warlock.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        Private lvlWarlockB As Integer
+        Private lvlWarlock_ As Integer
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
@@ -353,15 +356,15 @@ Namespace BountyHunter
         <Browsable(True)>
         Public Property LvlRogue As Integer
             Get
-                Return Me.lvlRogueB
+                Return Me.lvlRogue_
             End Get
             Set(ByVal value As Integer)
                 If (value < 1) Then
-                    Me.lvlRogueB = 1
+                    Me.lvlRogue_ = 1
                 ElseIf (value > 60) Then
-                    Me.lvlRogueB = 60
+                    Me.lvlRogue_ = 60
                 Else
-                    Me.lvlRogueB = value
+                    Me.lvlRogue_ = value
                 End If
             End Set
         End Property
@@ -372,7 +375,7 @@ Namespace BountyHunter
         ''' The target level for Rogue.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        Private lvlRogueB As Integer
+        Private lvlRogue_ As Integer
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
@@ -386,15 +389,15 @@ Namespace BountyHunter
         <Browsable(True)>
         Public Property LvlDruid As Integer
             Get
-                Return Me.lvlDruidB
+                Return Me.lvlDruid_
             End Get
             Set(ByVal value As Integer)
                 If (value < 1) Then
-                    Me.lvlDruidB = 1
+                    Me.lvlDruid_ = 1
                 ElseIf (value > 60) Then
-                    Me.lvlDruidB = 60
+                    Me.lvlDruid_ = 60
                 Else
-                    Me.lvlDruidB = value
+                    Me.lvlDruid_ = value
                 End If
             End Set
         End Property
@@ -405,7 +408,7 @@ Namespace BountyHunter
         ''' The target level for Druid.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        Private lvlDruidB As Integer
+        Private lvlDruid_ As Integer
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
@@ -419,15 +422,15 @@ Namespace BountyHunter
         <Browsable(True)>
         Public Property LvlHunter As Integer
             Get
-                Return Me.lvlHunterB
+                Return Me.lvlHunter_
             End Get
             Set(ByVal value As Integer)
                 If (value < 1) Then
-                    Me.lvlHunterB = 1
+                    Me.lvlHunter_ = 1
                 ElseIf (value > 60) Then
-                    Me.lvlHunterB = 60
+                    Me.lvlHunter_ = 60
                 Else
-                    Me.lvlHunterB = value
+                    Me.lvlHunter_ = value
                 End If
             End Set
         End Property
@@ -438,7 +441,7 @@ Namespace BountyHunter
         ''' The target level for Hunter.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        Private lvlHunterB As Integer
+        Private lvlHunter_ As Integer
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
@@ -452,15 +455,15 @@ Namespace BountyHunter
         <Browsable(True)>
         Public Property LvlShaman As Integer
             Get
-                Return Me.lvlShamanB
+                Return Me.lvlShaman_
             End Get
             Set(ByVal value As Integer)
                 If (value < 1) Then
-                    Me.lvlShamanB = 1
+                    Me.lvlShaman_ = 1
                 ElseIf (value > 60) Then
-                    Me.lvlShamanB = 60
+                    Me.lvlShaman_ = 60
                 Else
-                    Me.lvlShamanB = value
+                    Me.lvlShaman_ = value
                 End If
             End Set
         End Property
@@ -471,7 +474,7 @@ Namespace BountyHunter
         ''' The target level for Shaman.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        Private lvlShamanB As Integer
+        Private lvlShaman_ As Integer
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
@@ -485,15 +488,15 @@ Namespace BountyHunter
         <Browsable(True)>
         Public Property LvlPaladin As Integer
             Get
-                Return Me.lvlPaladinB
+                Return Me.lvlPaladin_
             End Get
             Set(ByVal value As Integer)
                 If (value < 1) Then
-                    Me.lvlPaladinB = 1
+                    Me.lvlPaladin_ = 1
                 ElseIf (value > 60) Then
-                    Me.lvlPaladinB = 60
+                    Me.lvlPaladin_ = 60
                 Else
-                    Me.lvlPaladinB = value
+                    Me.lvlPaladin_ = value
                 End If
             End Set
         End Property
@@ -504,7 +507,7 @@ Namespace BountyHunter
         ''' The target level for Paladin.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        Private lvlPaladinB As Integer
+        Private lvlPaladin_ As Integer
 
 #End Region
 
@@ -566,7 +569,7 @@ Namespace BountyHunter
         <Browsable(True)>
         Public Property LadderStartHour As TimeSpan
             Get
-                Return Me.ladderStartHourB
+                Return Me.ladderStartHour_
             End Get
             Set(value As TimeSpan)
                 If (value < TimeSpan.Zero) Then
@@ -575,10 +578,10 @@ Namespace BountyHunter
                 If (value >= TimeSpan.FromHours(24)) Then
                     value = TimeSpan.FromHours(24).Add(TimeSpan.FromSeconds(-1))
                 End If
-                Me.ladderStartHourB = value
+                Me.ladderStartHour_ = value
             End Set
         End Property
-        Private ladderStartHourB As TimeSpan
+        Private ladderStartHour_ As TimeSpan
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
@@ -590,7 +593,7 @@ Namespace BountyHunter
         <Browsable(True)>
         Public Property LadderEndHour As TimeSpan
             Get
-                Return Me.ladderEndHourB
+                Return Me.ladderEndHour_
             End Get
             Set(value As TimeSpan)
                 If (value < TimeSpan.Zero) Then
@@ -599,10 +602,10 @@ Namespace BountyHunter
                 If (value >= TimeSpan.FromHours(24)) Then
                     value = TimeSpan.FromHours(24).Add(TimeSpan.FromSeconds(-1))
                 End If
-                Me.ladderEndHourB = value
+                Me.ladderEndHour_ = value
             End Set
         End Property
-        Private ladderEndHourB As TimeSpan
+        Private ladderEndHour_ As TimeSpan
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
@@ -639,16 +642,16 @@ Namespace BountyHunter
         <ItemsSource(GetType(DeckSourceDruid))>
         Public Property DeckDruid As String
             Get
-                If String.IsNullOrEmpty(Me.deckDruidB) Then
-                    Me.deckDruidB = "None"
+                If String.IsNullOrEmpty(Me.deckDruid_) Then
+                    Me.deckDruid_ = "None"
                 End If
-                Return Me.deckDruidB
+                Return Me.deckDruid_
             End Get
             Set(value As String)
-                Me.deckDruidB = value
+                Me.deckDruid_ = value
             End Set
         End Property
-        Private deckDruidB As String
+        Private deckDruid_ As String
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
@@ -661,16 +664,16 @@ Namespace BountyHunter
         <ItemsSource(GetType(DeckSourceMage))>
         Public Property DeckMage As String
             Get
-                If String.IsNullOrEmpty(Me.deckMageB) Then
-                    Me.deckMageB = "None"
+                If String.IsNullOrEmpty(Me.deckMage_) Then
+                    Me.deckMage_ = "None"
                 End If
-                Return Me.deckMageB
+                Return Me.deckMage_
             End Get
             Set(value As String)
-                Me.deckMageB = value
+                Me.deckMage_ = value
             End Set
         End Property
-        Private deckMageB As String
+        Private deckMage_ As String
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
@@ -683,16 +686,16 @@ Namespace BountyHunter
         <ItemsSource(GetType(DeckSourceHunter))>
         Public Property DeckHunter As String
             Get
-                If String.IsNullOrEmpty(Me.deckHunterB) Then
-                    Me.deckHunterB = "None"
+                If String.IsNullOrEmpty(Me.deckHunter_) Then
+                    Me.deckHunter_ = "None"
                 End If
-                Return Me.deckHunterB
+                Return Me.deckHunter_
             End Get
             Set(value As String)
-                Me.deckHunterB = value
+                Me.deckHunter_ = value
             End Set
         End Property
-        Private deckHunterB As String
+        Private deckHunter_ As String
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
@@ -705,16 +708,16 @@ Namespace BountyHunter
         <ItemsSource(GetType(DeckSourcePaladin))>
         Public Property DeckPaladin As String
             Get
-                If String.IsNullOrEmpty(Me.deckPaladinB) Then
-                    Me.deckPaladinB = "None"
+                If String.IsNullOrEmpty(Me.deckPaladin_) Then
+                    Me.deckPaladin_ = "None"
                 End If
-                Return Me.deckPaladinB
+                Return Me.deckPaladin_
             End Get
             Set(value As String)
-                Me.deckPaladinB = value
+                Me.deckPaladin_ = value
             End Set
         End Property
-        Private deckPaladinB As String
+        Private deckPaladin_ As String
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
@@ -727,16 +730,16 @@ Namespace BountyHunter
         <ItemsSource(GetType(DeckSourcePriest))>
         Public Property DeckPriest As String
             Get
-                If String.IsNullOrEmpty(Me.deckPriestB) Then
-                    Me.deckPriestB = "None"
+                If String.IsNullOrEmpty(Me.deckPriest_) Then
+                    Me.deckPriest_ = "None"
                 End If
-                Return Me.deckPriestB
+                Return Me.deckPriest_
             End Get
             Set(value As String)
-                Me.deckPriestB = value
+                Me.deckPriest_ = value
             End Set
         End Property
-        Private deckPriestB As String
+        Private deckPriest_ As String
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
@@ -749,16 +752,16 @@ Namespace BountyHunter
         <ItemsSource(GetType(DeckSourceRogue))>
         Public Property DeckRogue As String
             Get
-                If String.IsNullOrEmpty(Me.deckRogueB) Then
-                    Me.deckRogueB = "None"
+                If String.IsNullOrEmpty(Me.deckRogue_) Then
+                    Me.deckRogue_ = "None"
                 End If
-                Return Me.deckRogueB
+                Return Me.deckRogue_
             End Get
             Set(value As String)
-                Me.deckRogueB = value
+                Me.deckRogue_ = value
             End Set
         End Property
-        Private deckRogueB As String
+        Private deckRogue_ As String
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
@@ -771,16 +774,16 @@ Namespace BountyHunter
         <ItemsSource(GetType(DeckSourceShaman))>
         Public Property DeckShaman As String
             Get
-                If String.IsNullOrEmpty(Me.deckShamanB) Then
-                    Me.deckShamanB = "None"
+                If String.IsNullOrEmpty(Me.deckShaman_) Then
+                    Me.deckShaman_ = "None"
                 End If
-                Return Me.deckShamanB
+                Return Me.deckShaman_
             End Get
             Set(value As String)
-                Me.deckShamanB = value
+                Me.deckShaman_ = value
             End Set
         End Property
-        Private deckShamanB As String
+        Private deckShaman_ As String
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
@@ -793,16 +796,16 @@ Namespace BountyHunter
         <ItemsSource(GetType(DeckSourceWarrior))>
         Public Property DeckWarrior As String
             Get
-                If String.IsNullOrEmpty(Me.deckWarriorB) Then
-                    Me.deckWarriorB = "None"
+                If String.IsNullOrEmpty(Me.deckWarrior_) Then
+                    Me.deckWarrior_ = "None"
                 End If
-                Return Me.deckWarriorB
+                Return Me.deckWarrior_
             End Get
             Set(value As String)
-                Me.deckWarriorB = value
+                Me.deckWarrior_ = value
             End Set
         End Property
-        Private deckWarriorB As String
+        Private deckWarrior_ As String
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
@@ -815,16 +818,16 @@ Namespace BountyHunter
         <ItemsSource(GetType(DeckSourceWarlock))>
         Public Property DeckWarlock As String
             Get
-                If String.IsNullOrEmpty(Me.deckWarlockB) Then
-                    Me.deckWarlockB = "None"
+                If String.IsNullOrEmpty(Me.deckWarlock_) Then
+                    Me.deckWarlock_ = "None"
                 End If
-                Return Me.deckWarlockB
+                Return Me.deckWarlock_
             End Get
             Set(value As String)
-                Me.deckWarlockB = value
+                Me.deckWarlock_ = value
             End Set
         End Property
-        Private deckWarlockB As String
+        Private deckWarlock_ As String
 
 #End Region
 
@@ -883,32 +886,32 @@ Namespace BountyHunter
             Me.LadderMode = Bot.Mode.RankedStandard
             Me.LadderPreferredDeck = "None"
             Me.LadderUseRandomDeckIfPreferredIsUnavailable = False
-            Me.ladderStartHourB = TimeSpan.Zero
-            Me.ladderEndHourB = Me.ladderStartHourB.Add(TimeSpan.FromHours(10))
+            Me.ladderStartHour_ = TimeSpan.Zero
+            Me.ladderEndHour_ = Me.ladderStartHour_.Add(TimeSpan.FromHours(10))
             Me.LadderModeAutoStart = False
             Me.LadderModeAutoStop = False
 
             Me.EnableHeroLevelling = False
             Me.LevelMode = Bot.Mode.UnrankedStandard
-            Me.lvlDruidB = 1
-            Me.lvlHunterB = 1
-            Me.lvlMageB = 1
-            Me.lvlPaladinB = 1
-            Me.lvlPriestB = 1
-            Me.lvlRogueB = 1
-            Me.lvlShamanB = 1
-            Me.lvlWarlockB = 1
-            Me.lvlWarriorB = 1
+            Me.lvlDruid_ = 1
+            Me.lvlHunter_ = 1
+            Me.lvlMage_ = 1
+            Me.lvlPaladin_ = 1
+            Me.lvlPriest_ = 1
+            Me.lvlRogue_ = 1
+            Me.lvlShaman_ = 1
+            Me.lvlWarlock_ = 1
+            Me.lvlWarrior_ = 1
 
-            Me.deckDruidB = "None"
-            Me.deckHunterB = "None"
-            Me.deckMageB = "None"
-            Me.deckPaladinB = "None"
-            Me.deckPriestB = "None"
-            Me.deckRogueB = "None"
-            Me.deckShamanB = "None"
-            Me.deckWarlockB = "None"
-            Me.deckWarriorB = "None"
+            Me.deckDruid_ = "None"
+            Me.deckHunter_ = "None"
+            Me.deckMage_ = "None"
+            Me.deckPaladin_ = "None"
+            Me.deckPriest_ = "None"
+            Me.deckRogue_ = "None"
+            Me.deckShaman_ = "None"
+            Me.deckWarlock_ = "None"
+            Me.deckWarrior_ = "None"
         End Sub
 
 #End Region

@@ -26,7 +26,10 @@ Imports SmartBotKit.IO
 
 #Region " PanicButtonPluginData "
 
+' ReSharper disable once CheckNamespace
+
 Namespace PanicButton
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>

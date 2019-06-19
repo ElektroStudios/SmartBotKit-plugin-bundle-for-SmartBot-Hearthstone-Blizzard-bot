@@ -14,7 +14,10 @@ Option Infer Off
 
 #Region " TaskbarList "
 
+' ReSharper disable once CheckNamespace
+
 Namespace SmartBotKit.Interop.Win32
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>
@@ -24,8 +27,12 @@ Namespace SmartBotKit.Interop.Win32
     ''' ----------------------------------------------------------------------------------------------------
     Public NotInheritable Class TaskbarList
 
-        Private Shared ReadOnly lock As New Object()
+        ' ReSharper disable InconsistentNaming
+
+        Private Shared ReadOnly Lock As New Object()
         Private Shared taskbarList As ITaskbarList4
+
+        ' ReSharper restore InconsistentNaming
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
@@ -40,6 +47,7 @@ Namespace SmartBotKit.Interop.Win32
                 If (taskbarList Is Nothing) Then
                     SyncLock lock
                         If (taskbarList Is Nothing) Then
+                            ' ReSharper disable once SuspiciousTypeConversion.Global
                             taskbarList = DirectCast(New CTaskbarList(), ITaskbarList4)
                             taskbarList.HrInit()
                         End If

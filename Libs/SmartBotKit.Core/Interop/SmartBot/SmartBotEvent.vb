@@ -7,7 +7,10 @@ Imports SmartBot.Plugins
 
 #Region " SmartBotEvent "
 
+' ReSharper disable once CheckNamespace
+
 Namespace SmartBotKit.Interop
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>

@@ -27,7 +27,10 @@ Imports SmartBotKit.Text
 
 #Region " TaskbarInformerPlugin "
 
+' ReSharper disable once CheckNamespace
+
 Namespace TaskbarInformer
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>
@@ -59,12 +62,16 @@ Namespace TaskbarInformer
 
 #Region " Private Fields "
 
+        ' ReSharper disable InconsistentNaming
+
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
         ''' Keeps track of the last <see cref="TaskbarInformerPluginData.Enabled"/> value.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Private lastEnabled As Boolean
+
+        ' ReSharper restore InconsistentNaming
 
 #End Region
 
@@ -179,7 +186,7 @@ Namespace TaskbarInformer
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Releases all the resources used by this <see cref="TaskbarInformerPlugin"/> instance.
+        ''' Releases all the Global.System.Resources.used by this <see cref="TaskbarInformerPlugin"/> instance.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Public Overrides Sub Dispose()
@@ -221,19 +228,21 @@ Namespace TaskbarInformer
                     state = TaskbarProgressBarState.NoProgress
                     minValue = 0
                     maxValue = 0
-                    title = String.Format("SmartBot {{ {0} }}", pr.MainModule.ModuleName)
+                    title = $"SmartBot {{ {pr.MainModule.ModuleName} }}"
 
                 Case Bot.Mode.Arena, Bot.Mode.ArenaAuto
                     state = TaskbarProgressBarState.Normal
                     minValue = Statistics.ArenaWins
                     maxValue = 12
-                    title = String.Format("Arena|{0}/12W|{1}/3L", minValue, Statistics.ArenaLosses)
+                    title = $"Arena|{minValue}/12W|{Statistics.ArenaLosses}/3L"
 
                 Case Else
                     state = TaskbarProgressBarState.NoProgress
                     minValue = 0
                     maxValue = 0
-                    title = String.Format("{0} vs. {1}", heroClass.ToString().Rename(StringCase.WordCase), enemyClass.ToString().Rename(StringCase.WordCase))
+                    title =
+                        $"{heroClass.ToString().Rename(StringCase.WordCase)} vs. { _
+                            enemyClass.ToString().Rename(StringCase.WordCase)}"
 
             End Select
 

@@ -7,7 +7,10 @@ Imports SmartBotKit.Interop
 
 #End Region
 
+' ReSharper disable once CheckNamespace
+
 Namespace SmartBotKit.ReservedUse
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>

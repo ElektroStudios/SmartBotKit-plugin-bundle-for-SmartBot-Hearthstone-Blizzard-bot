@@ -20,7 +20,10 @@ Imports SmartBotKit.Text
 
 #Region " String Extensions "
 
+' ReSharper disable once CheckNamespace
+
 Namespace SmartBotKit.Extensions.StringExtensions
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>
@@ -73,23 +76,27 @@ Namespace SmartBotKit.Extensions.StringExtensions
                     Return sender.ToUpper
 
                 Case StringCase.TitleCase
-                    Return String.Format("{0}{1}", Char.ToUpper(sender.First()), sender.Remove(0, 1).ToLower())
+                    Return $"{Char.ToUpper(sender.First())}{sender.Remove(0, 1).ToLower()}"
 
                 Case StringCase.WordCase
                     Return CultureInfo.InvariantCulture.TextInfo.ToTitleCase(sender.ToLower())
 
                 Case StringCase.CamelCaseLower
-                    Return String.Format("{0}{1}", Char.ToLower(sender.First()), CultureInfo.InvariantCulture.TextInfo.ToTitleCase(sender.ToLower()).
-                                         Replace(" "c, String.Empty).
-                                         Remove(0, 1))
+                    Return _
+                        $"{Char.ToLower(sender.First())}{ _
+                            CultureInfo.InvariantCulture.TextInfo.ToTitleCase(sender.ToLower()).
+                                Replace(" "c, String.Empty).
+                                Remove(0, 1)}"
 
                 Case StringCase.CamelCaseUpper
-                    Return String.Format("{0}{1}", Char.ToUpper(sender.First()), CultureInfo.InvariantCulture.TextInfo.ToTitleCase(sender.ToLower()).
-                    Replace(" "c, String.Empty).
-                    Remove(0, 1))
+                    Return _
+                        $"{Char.ToUpper(sender.First())}{ _
+                            CultureInfo.InvariantCulture.TextInfo.ToTitleCase(sender.ToLower()).
+                                Replace(" "c, String.Empty).
+                                Remove(0, 1)}"
 
                 Case StringCase.MixedTitleCaseLower
-                    Dim sb As New Global.System.Text.StringBuilder
+                    Dim sb As New System.Text.StringBuilder
                     For i As Integer = 0 To (sender.Length - 1) Step 2
                         If Not (i + 1) >= sender.Length Then
                             sb.AppendFormat("{0}{1}", Char.ToLower(sender(i)), Char.ToUpper(sender(i + 1)))
@@ -100,7 +107,7 @@ Namespace SmartBotKit.Extensions.StringExtensions
                     Return sb.ToString()
 
                 Case StringCase.MixedTitleCaseUpper
-                    Dim sb As New Global.System.Text.StringBuilder
+                    Dim sb As New System.Text.StringBuilder
                     For i As Integer = 0 To (sender.Length - 1) Step 2
                         If Not (i + 1) >= sender.Length Then
                             sb.AppendFormat("{0}{1}", Char.ToUpper(sender(i)), Char.ToLower(sender(i + 1)))
@@ -111,35 +118,35 @@ Namespace SmartBotKit.Extensions.StringExtensions
                     Return sb.ToString()
 
                 Case StringCase.MixedWordCaseLower
-                    Dim sb As New Global.System.Text.StringBuilder
+                    Dim sb As New System.Text.StringBuilder
                     For Each word As String In sender.Split
                         sb.AppendFormat("{0} ", Rename(word, StringCase.MixedTitleCaseLower))
                     Next word
                     Return sb.ToString()
 
                 Case StringCase.MixedWordCaseUpper
-                    Dim sb As New Global.System.Text.StringBuilder
+                    Dim sb As New System.Text.StringBuilder
                     For Each word As String In sender.Split
                         sb.AppendFormat("{0} ", Rename(word, StringCase.MixedTitleCaseUpper))
                     Next word
                     Return sb.ToString()
 
                 Case StringCase.ToggleCase
-                    Dim sb As New Global.System.Text.StringBuilder
+                    Dim sb As New System.Text.StringBuilder
                     For Each word As String In sender.Split
                         sb.AppendFormat("{0}{1} ", Char.ToLower(word.First()), word.Remove(0, 1).ToUpper)
                     Next word
                     Return sb.ToString()
 
                 Case StringCase.DuplicateChars
-                    Dim sb As New Global.System.Text.StringBuilder
+                    Dim sb As New System.Text.StringBuilder
                     For Each c As Char In sender
                         sb.Append(New String(c, 2))
                     Next c
                     Return sb.ToString()
 
                 Case StringCase.AlternateChars
-                    Dim sb As New Global.System.Text.StringBuilder
+                    Dim sb As New System.Text.StringBuilder
                     For Each c As Char In sender
                         Select Case Char.IsLower(c)
                             Case True

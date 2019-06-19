@@ -21,7 +21,10 @@ Imports SmartBotKit.ReservedUse
 
 #Region " AutoInjectorPlugin "
 
+' ReSharper disable once CheckNamespace
+
 Namespace AutoInjector
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>
@@ -53,6 +56,8 @@ Namespace AutoInjector
 
 #Region " Private Fields "
 
+        ' ReSharper disable InconsistentNaming
+
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
         ''' Keeps track of the last <see cref="AutoInjectorPluginData.Enabled"/> value.
@@ -73,6 +78,8 @@ Namespace AutoInjector
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Private ReadOnly stopWatch As Stopwatch
+
+        ' ReSharper restore InconsistentNaming
 
 #End Region
 
@@ -194,7 +201,7 @@ Namespace AutoInjector
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Releases all the resources used by this <see cref="AutoInjectorPlugin"/> instance.
+        ''' Releases all the Global.System.Resources.used by this <see cref="AutoInjectorPlugin"/> instance.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Public Overrides Sub Dispose()

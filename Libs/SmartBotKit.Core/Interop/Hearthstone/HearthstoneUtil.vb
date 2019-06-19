@@ -23,7 +23,10 @@ Imports System.Collections.Generic
 
 #Region " HearthstoneUtil "
 
+' ReSharper disable once CheckNamespace
+
 Namespace SmartBotKit.Interop
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>
@@ -47,11 +50,11 @@ Namespace SmartBotKit.Interop
             <DebuggerStepThrough>
             Get
 
-                If (HearthstoneUtil.processB Is Nothing) OrElse (HearthstoneUtil.processB.HasExited) Then
-                    HearthstoneUtil.processB = Process.GetProcessesByName("Hearthstone").DefaultIfEmpty(Nothing).SingleOrDefault()
+                If (HearthstoneUtil.process_ Is Nothing) OrElse (HearthstoneUtil.process_.HasExited) Then
+                    HearthstoneUtil.process_ = Process.GetProcessesByName("Hearthstone").DefaultIfEmpty(Nothing).SingleOrDefault()
                 End If
-                ' HearthstoneUtil.processB.Refresh() ' Refresh window title and main window handle.
-                Return HearthstoneUtil.processB
+                ' HearthstoneUtil.process_.Refresh() ' Refresh window title and main window handle.
+                Return HearthstoneUtil.process_
             End Get
         End Property
         ''' ----------------------------------------------------------------------------------------------------
@@ -61,7 +64,7 @@ Namespace SmartBotKit.Interop
         ''' Gets the Hearthstone <see cref="Diagnostics.Process"/>.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        Private Shared processB As Process
+        Private Shared process_ As Process
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>

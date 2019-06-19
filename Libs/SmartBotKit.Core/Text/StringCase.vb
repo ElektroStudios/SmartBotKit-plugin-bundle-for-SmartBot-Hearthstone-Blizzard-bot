@@ -9,7 +9,10 @@ Option Infer Off
 
 #Region " String Case "
 
+' ReSharper disable once CheckNamespace
+
 Namespace SmartBotKit.Text
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>

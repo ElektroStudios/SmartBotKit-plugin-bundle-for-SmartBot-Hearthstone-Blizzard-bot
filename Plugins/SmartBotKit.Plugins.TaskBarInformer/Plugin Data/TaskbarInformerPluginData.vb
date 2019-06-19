@@ -21,7 +21,10 @@ Imports SmartBot.Plugins
 
 #Region " TaskbarInformerPluginData "
 
+' ReSharper disable once CheckNamespace
+
 Namespace TaskbarInformer
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>

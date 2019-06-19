@@ -8,7 +8,10 @@ Option Infer Off
 
 #Region " ERole "
 
+' ReSharper disable once CheckNamespace
+
 Namespace SmartBotKit.Interop.Win32
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>
@@ -23,6 +26,8 @@ Namespace SmartBotKit.Interop.Win32
     ''' </remarks>
     ''' ----------------------------------------------------------------------------------------------------
     Public Enum ERole As Integer
+
+        ' ReSharper disable InconsistentNaming
 
         ''' <summary>
         ''' Games, system notification sounds, and voice commands.

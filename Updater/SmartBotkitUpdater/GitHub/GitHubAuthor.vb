@@ -65,7 +65,10 @@ Imports System.Xml.Linq
 
 #Region " GitHubAuthor "
 
+' ReSharper disable once CheckNamespace
+
 Namespace SmartBotKitUpdater.GitHub
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>
@@ -243,8 +246,8 @@ Namespace SmartBotKitUpdater.GitHub
             {NameOf(Me.UriHtml), Me.UriHtml.AbsoluteUri}
         }
 
-            Return String.Format("{{{0}}}", String.Join(", ", (From key In kvPairs.AllKeys, value In kvPairs.GetValues(key)
-                                                               Select String.Format("{0}={1}", key, value))))
+            Return $"{{{String.Join(", ", (From key In kvPairs.AllKeys, value In kvPairs.GetValues(key)
+                                           Select $"{key}={value}"))}}}"
         End Function
 
 #End Region

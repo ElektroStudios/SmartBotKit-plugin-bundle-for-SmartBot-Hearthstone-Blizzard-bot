@@ -9,7 +9,10 @@ Option Infer Off
 
 #Region " Window State (showcmd) "
 
+' ReSharper disable once CheckNamespace
+
 Namespace SmartBotKit.Interop.Win32
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>
@@ -21,6 +24,8 @@ Namespace SmartBotKit.Interop.Win32
     ''' </remarks>
     ''' ----------------------------------------------------------------------------------------------------
     Public Enum NativeWindowState As Integer
+
+        ' ReSharper disable InconsistentNaming
 
         ''' <summary>
         ''' Hides the window and activates another window.

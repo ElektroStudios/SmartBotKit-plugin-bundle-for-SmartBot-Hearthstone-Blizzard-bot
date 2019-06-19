@@ -24,7 +24,10 @@ Imports Xceed.Wpf.Toolkit.PropertyGrid.Attributes
 
 #Region " AdvancedAutoConcedePluginData "
 
+' ReSharper disable once CheckNamespace
+
 Namespace PluginTemplate
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>
@@ -150,15 +153,15 @@ Namespace PluginTemplate
         <Browsable(True)>
         Public Property MaxRankedWins As Integer
             Get
-                Return Me.maxRankedWinsB
+                Return Me.maxRankedWins_
             End Get
             Set(ByVal value As Integer)
                 If value < 1 Then
-                    Me.maxRankedWinsB = 1
+                    Me.maxRankedWins_ = 1
                 ElseIf value > 99 Then
-                    Me.maxRankedWinsB = 99
+                    Me.maxRankedWins_ = 99
                 Else
-                    Me.maxRankedWinsB = value
+                    Me.maxRankedWins_ = value
                 End If
             End Set
         End Property
@@ -167,7 +170,7 @@ Namespace PluginTemplate
         ''' <para></para>
         ''' The required amount of wins in ranked mode to start conceding the next match.
         ''' </summary>
-        Private maxRankedWinsB As Integer
+        Private maxRankedWins_ As Integer
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
@@ -179,15 +182,15 @@ Namespace PluginTemplate
         <Browsable(True)>
         Public Property MaxRankedConcedes As Integer
             Get
-                Return Me.maxRankedConcedesB
+                Return Me.maxRankedConcedes_
             End Get
             Set(ByVal value As Integer)
                 If value < 1 Then
-                    Me.maxRankedConcedesB = 1
+                    Me.maxRankedConcedes_ = 1
                 ElseIf value > 99 Then
-                    Me.maxRankedConcedesB = 99
+                    Me.maxRankedConcedes_ = 99
                 Else
-                    Me.maxRankedConcedesB = value
+                    Me.maxRankedConcedes_ = value
                 End If
             End Set
         End Property
@@ -196,7 +199,7 @@ Namespace PluginTemplate
         ''' <para></para>
         ''' The concede count for ranked mode.
         ''' </summary>
-        Private maxRankedConcedesB As Integer
+        Private maxRankedConcedes_ As Integer
 
 #End Region
 
@@ -212,15 +215,15 @@ Namespace PluginTemplate
         <Browsable(True)>
         Public Property MinRankStandard As Integer
             Get
-                Return Me.minRankStandardB
+                Return Me.minRankStandard_
             End Get
             Set(ByVal value As Integer)
                 If value < 1 Then
-                    Me.minRankStandardB = 1
+                    Me.minRankStandard_ = 1
                 ElseIf value > 25 Then
-                    Me.minRankStandardB = 25
+                    Me.minRankStandard_ = 25
                 Else
-                    Me.minRankStandardB = value
+                    Me.minRankStandard_ = value
                 End If
             End Set
         End Property
@@ -229,7 +232,7 @@ Namespace PluginTemplate
         ''' <para></para>
         ''' The required rank to apply auto-concede settings for ranked mode.
         ''' </summary>
-        Private minRankStandardB As Integer
+        Private minRankStandard_ As Integer
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
@@ -241,15 +244,15 @@ Namespace PluginTemplate
         <Browsable(True)>
         Public Property MaxRankStandard As Integer
             Get
-                Return Me.maxRankStandardB
+                Return Me.maxRankStandard_
             End Get
             Set(ByVal value As Integer)
                 If value < 0 Then
-                    Me.maxRankStandardB = 0
+                    Me.maxRankStandard_ = 0
                 ElseIf value > 24 Then
-                    Me.maxRankStandardB = 24
+                    Me.maxRankStandard_ = 24
                 Else
-                    Me.maxRankStandardB = value
+                    Me.maxRankStandard_ = value
                 End If
             End Set
         End Property
@@ -258,7 +261,7 @@ Namespace PluginTemplate
         ''' <para></para>
         ''' A value that determine when to switch to unranked mode after reaching standard rank.
         ''' </summary>
-        Private maxRankStandardB As Integer
+        Private maxRankStandard_ As Integer
 
 #End Region
 
@@ -274,15 +277,15 @@ Namespace PluginTemplate
         <Browsable(True)>
         Public Property MinRankWild As Integer
             Get
-                Return Me.minRankWildB
+                Return Me.minRankWild_
             End Get
             Set(ByVal value As Integer)
                 If value < 1 Then
-                    Me.minRankWildB = 1
+                    Me.minRankWild_ = 1
                 ElseIf value > 25 Then
-                    Me.minRankWildB = 25
+                    Me.minRankWild_ = 25
                 Else
-                    Me.minRankWildB = value
+                    Me.minRankWild_ = value
                 End If
             End Set
         End Property
@@ -291,7 +294,7 @@ Namespace PluginTemplate
         ''' <para></para>
         ''' The required rank to apply auto-concede settings for ranked mode.
         ''' </summary>
-        Private minRankWildB As Integer
+        Private minRankWild_ As Integer
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
@@ -303,15 +306,15 @@ Namespace PluginTemplate
         <Browsable(True)>
         Public Property MaxRankWild As Integer
             Get
-                Return Me.maxRankWildB
+                Return Me.maxRankWild_
             End Get
             Set(ByVal value As Integer)
                 If value < 0 Then
-                    Me.maxRankWildB = 0
+                    Me.maxRankWild_ = 0
                 ElseIf value > 24 Then
-                    Me.maxRankWildB = 24
+                    Me.maxRankWild_ = 24
                 Else
-                    Me.maxRankWildB = value
+                    Me.maxRankWild_ = value
                 End If
             End Set
         End Property
@@ -320,7 +323,7 @@ Namespace PluginTemplate
         ''' <para></para>
         ''' A value that determine when to switch to unranked mode after reaching wild rank.
         ''' </summary>
-        Private maxRankWildB As Integer
+        Private maxRankWild_ As Integer
 
 #End Region
 
@@ -346,15 +349,15 @@ Namespace PluginTemplate
         <Browsable(True)>
         Public Property MaxUnrankedWins As Integer
             Get
-                Return Me.maxUnrankedWinsB
+                Return Me.maxUnrankedWins_
             End Get
             Set(ByVal value As Integer)
                 If value < 1 Then
-                    Me.maxUnrankedWinsB = 1
+                    Me.maxUnrankedWins_ = 1
                 ElseIf value > 99 Then
-                    Me.maxUnrankedWinsB = 99
+                    Me.maxUnrankedWins_ = 99
                 Else
-                    Me.maxUnrankedWinsB = value
+                    Me.maxUnrankedWins_ = value
                 End If
             End Set
         End Property
@@ -363,7 +366,7 @@ Namespace PluginTemplate
         ''' <para></para>
         ''' The required amount of wins in unranked mode to start conceding the next match.
         ''' </summary>
-        Private maxUnrankedWinsB As Integer
+        Private maxUnrankedWins_ As Integer
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
@@ -375,15 +378,15 @@ Namespace PluginTemplate
         <Browsable(True)>
         Public Property MaxUnrankedConcedes As Integer
             Get
-                Return Me.maxUnrankedConcedesB
+                Return Me.maxUnrankedConcedes_
             End Get
             Set(ByVal value As Integer)
                 If value < 1 Then
-                    Me.maxUnrankedConcedesB = 1
+                    Me.maxUnrankedConcedes_ = 1
                 ElseIf value > 99 Then
-                    Me.maxUnrankedConcedesB = 99
+                    Me.maxUnrankedConcedes_ = 99
                 Else
-                    Me.maxUnrankedConcedesB = value
+                    Me.maxUnrankedConcedes_ = value
                 End If
             End Set
         End Property
@@ -392,7 +395,7 @@ Namespace PluginTemplate
         ''' <para></para>
         ''' The concede count for unranked mode.
         ''' </summary>
-        Private maxUnrankedConcedesB As Integer
+        Private maxUnrankedConcedes_ As Integer
 
 #End Region
 
@@ -414,14 +417,14 @@ Namespace PluginTemplate
             Me.EnableUnrankedModeAutoConcede = False
             Me.ResetWinsCountAfterLose = False
             Me.ResetWinsCountAfterBotStop = False
-            Me.maxRankedWinsB = 1
-            Me.maxRankedConcedesB = 1
-            Me.maxUnrankedWinsB = 1
-            Me.maxUnrankedConcedesB = 1
-            Me.minRankstandardB = 25
-            Me.minRankWildB = 25
-            Me.maxRankStandardB = 0
-            Me.maxRankWildB = 0
+            Me.maxRankedWins_ = 1
+            Me.maxRankedConcedes_ = 1
+            Me.maxUnrankedWins_ = 1
+            Me.maxUnrankedConcedes_ = 1
+            Me.minRankStandard_ = 25
+            Me.minRankWild_ = 25
+            Me.maxRankStandard_ = 0
+            Me.maxRankWild_ = 0
         End Sub
 
 #End Region

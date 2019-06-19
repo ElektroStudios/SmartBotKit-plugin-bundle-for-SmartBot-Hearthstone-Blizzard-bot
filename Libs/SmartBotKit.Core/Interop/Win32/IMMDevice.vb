@@ -15,18 +15,21 @@ Imports System.Runtime.InteropServices
 
 #Region " IMMDevice "
 
+' ReSharper disable once CheckNamespace
+
 Namespace SmartBotKit.Interop.Win32
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>
-    ''' Provides methods for enumerating multimedia device resources. 
+    ''' Provides methods for enumerating multimedia device Global.System.Resources. 
     ''' <para></para>
     ''' In the current implementation of the MMDevice API, 
-    ''' the only device resources that this interface can enumerate are audio endpoint devices. 
+    ''' the only device Global.System.Resources.that this interface can enumerate are audio endpoint devices. 
     ''' <para></para>
     ''' A client obtains a reference to an <see cref="IMMDeviceEnumerator"/> interface by calling the CoCreateInstance.
     ''' <para></para>
-    ''' The device resources enumerated by the methods in the IMMDeviceEnumerator interface are represented as 
+    ''' The device Global.System.Resources.enumerated by the methods in the IMMDeviceEnumerator interface are represented as 
     ''' collections of objects with <see cref="IMMDevice"/> interfaces. 
     ''' <para></para>
     ''' A collection has an IMMDeviceCollection interface. 

@@ -19,7 +19,10 @@ Imports SmartBotKit.Interop.Win32
 
 #Region " AudioUtil "
 
+' ReSharper disable once CheckNamespace
+
 Namespace SmartBotKit.Audio
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>
@@ -166,14 +169,15 @@ Namespace SmartBotKit.Audio
         Private Shared Iterator Function EnumerateAudioSessionControls() As IEnumerable(Of IAudioSessionControl2)
 
             ' Get the (1st render + multimedia) aodio device.
+            ' ReSharper disable once SuspiciousTypeConversion.Global
             Dim deviceEnumerator As IMMDeviceEnumerator = DirectCast(New MMDeviceEnumerator(), IMMDeviceEnumerator)
             Dim device As IMMDevice = Nothing
             deviceEnumerator.GetDefaultAudioEndpoint(EDataFlow.Render, ERole.Multimedia, device)
 
             ' Activate the session manager.
-            Dim IID_IAudioSessionManager2 As Guid = GetType(IAudioSessionManager2).GUID
+            Dim iidIAudioSessionManager2 As Guid = GetType(IAudioSessionManager2).GUID
             Dim obj As Object = Nothing
-            device.Activate(IID_IAudioSessionManager2, 0, IntPtr.Zero, obj)
+            device.Activate(iidIAudioSessionManager2, 0, IntPtr.Zero, obj)
             Dim manager As IAudioSessionManager2 = DirectCast(obj, IAudioSessionManager2)
 
             ' Enumerate sessions for on this device.
@@ -186,6 +190,7 @@ Namespace SmartBotKit.Audio
                 Dim ctl As IAudioSessionControl = Nothing
                 Dim ctl2 As IAudioSessionControl2
                 sessionEnumerator.GetSession(i, ctl)
+                ' ReSharper disable once SuspiciousTypeConversion.Global
                 ctl2 = DirectCast(ctl, IAudioSessionControl2)
                 Yield ctl2
                 Marshal.ReleaseComObject(ctl2)
@@ -224,6 +229,7 @@ Namespace SmartBotKit.Audio
                 ctl.GetProcessId(pId)
 
                 If (pId = pr.Id) Then
+                    ' ReSharper disable once SuspiciousTypeConversion.Global
                     Return DirectCast(ctl, ISimpleAudioVolume)
                 End If
             Next ctl

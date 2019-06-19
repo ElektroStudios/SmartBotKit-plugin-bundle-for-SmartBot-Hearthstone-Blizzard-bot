@@ -18,7 +18,10 @@ Imports System.Management
 
 #Region " SystemInfo ( Windows ) "
 
+' ReSharper disable once CheckNamespace
+
 Namespace SmartBotKit.SystemInfo
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>
@@ -79,7 +82,7 @@ Namespace SmartBotKit.SystemInfo
         ''' A value that determines whether the current operating system is <c>Windows XP</c>.
         ''' </value>
         ''' ----------------------------------------------------------------------------------------------------
-        Public Shared ReadOnly Property IsWinXP() As Boolean
+        Public Shared ReadOnly Property IsWinXp() As Boolean
             <DebuggerStepThrough>
             Get
                 Return (Environment.OSVersion.Platform = PlatformID.Win32NT) AndAlso
@@ -104,7 +107,7 @@ Namespace SmartBotKit.SystemInfo
         ''' A value that determines whether the current operating system is <c>Windows XP</c>, or greater.
         ''' </value>
         ''' ----------------------------------------------------------------------------------------------------
-        Public Shared ReadOnly Property IsWinXPOrGreater() As Boolean
+        Public Shared ReadOnly Property IsWinXpOrGreater() As Boolean
             <DebuggerStepThrough>
             Get
                 Return (Environment.OSVersion.Platform = PlatformID.Win32NT) AndAlso

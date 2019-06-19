@@ -22,7 +22,10 @@ Imports SmartBot.Plugins
 
 #Region " SystemTrayIconPluginData "
 
+' ReSharper disable once CheckNamespace
+
 Namespace SystemTrayIcon
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>

@@ -25,7 +25,10 @@ Imports SmartBotKit.Interop.Win32
 
 #Region " SmartBotUtil "
 
+' ReSharper disable once CheckNamespace
+
 Namespace SmartBotKit.Interop
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>
@@ -48,11 +51,11 @@ Namespace SmartBotKit.Interop
         Public Shared ReadOnly Property Process As Process
             <DebuggerStepThrough>
             Get
-                If (SmartBotUtil.processB Is Nothing) OrElse (SmartBotUtil.processB.HasExited) Then
-                    SmartBotUtil.processB = Process.GetCurrentProcess()
+                If (SmartBotUtil._processB Is Nothing) OrElse (SmartBotUtil._processB.HasExited) Then
+                    SmartBotUtil._processB = Process.GetCurrentProcess()
                 End If
                 ' SmartBotUtil.processB.Refresh() ' Refresh window title and main window handle.
-                Return SmartBotUtil.processB
+                Return SmartBotUtil._processB
             End Get
         End Property
         ''' ----------------------------------------------------------------------------------------------------
@@ -62,7 +65,7 @@ Namespace SmartBotKit.Interop
         ''' Gets the SmartBot <see cref="Diagnostics.Process"/>.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        Private Shared processB As Process
+        Private Shared _processB As Process
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
@@ -100,7 +103,7 @@ Namespace SmartBotKit.Interop
         ''' Gets the <see cref="AutomationElement"/> that represents the 'TextBoxLog' control.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        Public Shared ReadOnly Property UIElementTextBoxLog As AutomationElement
+        Public Shared ReadOnly Property UiElementTextBoxLog As AutomationElement
             Get
                 Return SmartBotUtil.GetAutomationElement(SmartBotUtil.Process, "TextBoxLog")
             End Get
@@ -111,7 +114,7 @@ Namespace SmartBotKit.Interop
         ''' Gets the <see cref="AutomationElement"/> that represents the 'Statslabel' control.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        Public Shared ReadOnly Property UIElementStatsLabel As AutomationElement
+        Public Shared ReadOnly Property UiElementStatsLabel As AutomationElement
             Get
                 Return SmartBotUtil.GetAutomationElement(SmartBotUtil.Process, "Statslabel")
             End Get
@@ -133,8 +136,8 @@ Namespace SmartBotKit.Interop
         ''' <summary>
         ''' Gets the text of the 'TextBoxLog' control.
         ''' <para></para>
-        ''' Note that a call to <see cref="SmartBotUtil.TextBoxLogText"/> property will throw a 
-        ''' <see cref="System.NullReferenceException"/> exception if the 'TextBoxLog' control is not visible in the UI. 
+        ''' Note that a call to <see cref="SmartBotUtil.TextBoxLogText"/> property will throw a
+        ''' <see cref="NullReferenceException"/> exception if the 'TextBoxLog' control is not visible in the UI.
         ''' That is, if the 'Missplays', 'Changelog' or 'Debug' tab is the active one.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
@@ -439,7 +442,7 @@ Namespace SmartBotKit.Interop
                     str = "100%"
 
                 Case Else
-                    str = String.Format("{0:F2}%", winsRatio)
+                    str = $"{winsRatio:F2}%"
 
             End Select
 

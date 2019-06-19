@@ -33,7 +33,10 @@ Imports System.ComponentModel
 
 #Region " HotkeyPress EventArgs "
 
+' ReSharper disable once CheckNamespace
+
 Namespace SmartBotKit.IO
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>

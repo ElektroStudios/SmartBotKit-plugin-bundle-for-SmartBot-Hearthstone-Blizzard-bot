@@ -19,7 +19,10 @@ Imports System.Runtime.CompilerServices
 
 #Region " Bitmap Extensions "
 
+' ReSharper disable once CheckNamespace
+
 Namespace SmartBotKit.Extensions.BitmapExtensions
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>
@@ -140,7 +143,7 @@ Namespace SmartBotKit.Extensions.BitmapExtensions
                              ByVal location As Point,
                              ByVal size As Size) As Bitmap
 
-            Return DirectCast(Extensions.ImageExtensions.Crop(sender, New Rectangle(location, size)), Drawing.Bitmap)
+            Return DirectCast(Extensions.ImageExtensions.Crop(sender, New Rectangle(location, size)), Bitmap)
 
         End Function
 
@@ -173,7 +176,7 @@ Namespace SmartBotKit.Extensions.BitmapExtensions
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' For each pixel in the source image, gets the <see cref="Global.System.Drawing.Color"/>, pixel position, 
+        ''' For each pixel in the source image, gets the <see cref="Color"/>, pixel position, 
         ''' and coordinates location respectivelly to the image.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
@@ -191,14 +194,14 @@ Namespace SmartBotKit.Extensions.BitmapExtensions
         ''' </example>
         ''' ----------------------------------------------------------------------------------------------------
         ''' <returns>
-        ''' A <see cref="IEnumerable(Of SmartBotKit.Core.Imaging.PixelInfo)"/> containing the <see cref="Global.System.Drawing.Color"/>, pixel position, 
+        ''' A <see cref="IEnumerable(Of SmartBotKit.Core.Imaging.PixelInfo)"/> containing the <see cref="Color"/>, pixel position, 
         ''' and coordinates location respectivelly to the image, of each pixel in the image.
         ''' </returns>
         ''' ----------------------------------------------------------------------------------------------------
         <DebuggerStepThrough>
         <Extension>
         <EditorBrowsable(EditorBrowsableState.Always)>
-        Public Function GetPixelInfo(ByVal sender As Global.System.Drawing.Bitmap) As IEnumerable(Of SmartBotKit.Imaging.PixelInfo)
+        Public Function GetPixelInfo(ByVal sender As Bitmap) As IEnumerable(Of Imaging.PixelInfo)
 
             Return Extensions.ImageExtensions.GetPixelInfo(sender)
 
@@ -206,11 +209,11 @@ Namespace SmartBotKit.Extensions.BitmapExtensions
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Resizes an <see cref="Global.System.Drawing.Bitmap"/>.
+        ''' Resizes an <see cref="Bitmap"/>.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         ''' <param name="sender">
-        ''' The source <see cref="Global.System.Drawing.Bitmap"/>.
+        ''' The source <see cref="Bitmap"/>.
         ''' </param>
         ''' 
         ''' <param name="size">
@@ -218,7 +221,7 @@ Namespace SmartBotKit.Extensions.BitmapExtensions
         ''' </param>
         ''' ----------------------------------------------------------------------------------------------------
         ''' <returns>
-        ''' The resized <see cref="Global.System.Drawing.Bitmap"/>.
+        ''' The resized <see cref="Bitmap"/>.
         ''' </returns>
         ''' ----------------------------------------------------------------------------------------------------
         ''' <exception cref="ArgumentException">

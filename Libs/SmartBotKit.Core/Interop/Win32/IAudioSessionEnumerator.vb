@@ -14,7 +14,10 @@ Imports System.Runtime.InteropServices
 
 #Region " IAudioSessionEnumerator "
 
+' ReSharper disable once CheckNamespace
+
 Namespace SmartBotKit.Interop.Win32
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>

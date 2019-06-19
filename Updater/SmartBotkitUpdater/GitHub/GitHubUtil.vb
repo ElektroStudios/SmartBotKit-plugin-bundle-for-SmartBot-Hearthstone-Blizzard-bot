@@ -52,7 +52,10 @@ Imports System.Xml.Linq
 
 #Region " GitHub Util "
 
+' ReSharper disable once CheckNamespace
+
 Namespace SmartBotKitUpdater.GitHub
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>
@@ -115,7 +118,7 @@ Namespace SmartBotKitUpdater.GitHub
         ''' ----------------------------------------------------------------------------------------------------
         Public Shared Async Function GetReleasesAsync(ByVal userName As String, ByVal repositoryName As String) As Task(Of ReadOnlyCollection(Of GitHubRelease))
 
-            Dim uri As New Uri(String.Format("http://api.github.com/repos/{0}/{1}/releases", userName, repositoryName), UriKind.Absolute)
+            Dim uri As New Uri($"http://api.github.com/repos/{userName}/{repositoryName}/releases", UriKind.Absolute)
 
             Dim request As HttpWebRequest = DirectCast(WebRequest.Create(uri), HttpWebRequest)
             request.UserAgent = userName
@@ -126,7 +129,7 @@ Namespace SmartBotKitUpdater.GitHub
 
                 Dim xml As XElement = XElement.Load(xmlReader)
                 If (xml.IsEmpty) Then
-                    Dim errMsg As String = String.Format("JSON validation error. ""{0}""", uri.ToString())
+                    Dim errMsg As String = $"JSON validation error. ""{uri.ToString()}"""
                     Throw New HttpException(HttpStatusCode.NotFound, errMsg)
                 End If
 
@@ -315,7 +318,7 @@ Namespace SmartBotKitUpdater.GitHub
         ''' ----------------------------------------------------------------------------------------------------
         Public Shared Async Function GetLatestReleaseAsync(ByVal userName As String, ByVal repositoryName As String) As Task(Of GitHubRelease)
 
-            Dim uri As New Uri(String.Format("https://api.github.com/repos/{0}/{1}/releases/latest", userName, repositoryName), UriKind.Absolute)
+            Dim uri As New Uri($"https://api.github.com/repos/{userName}/{repositoryName}/releases/latest", UriKind.Absolute)
 
             Dim request As HttpWebRequest = DirectCast(WebRequest.Create(uri), HttpWebRequest)
             request.UserAgent = userName
@@ -326,7 +329,7 @@ Namespace SmartBotKitUpdater.GitHub
 
                 Dim xml As XElement = XElement.Load(xmlReader)
                 If (xml.IsEmpty) Then
-                    Dim errMsg As String = String.Format("JSON validation error. ""{0}""", uri.ToString())
+                    Dim errMsg As String = $"JSON validation error. ""{uri.ToString()}"""
                     Throw New HttpException(HttpStatusCode.NotFound, errMsg)
                 End If
 

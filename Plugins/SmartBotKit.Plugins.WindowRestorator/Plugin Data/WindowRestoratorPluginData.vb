@@ -26,7 +26,10 @@ Imports SmartBotKit.Interop.Win32
 
 #Region " WindowRestoratorPluginData "
 
+' ReSharper disable once CheckNamespace
+
 Namespace WindowRestorator
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>

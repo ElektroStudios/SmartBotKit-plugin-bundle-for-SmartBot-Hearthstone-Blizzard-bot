@@ -9,7 +9,10 @@ Option Infer Off
 
 #Region " DwmWindowAttribute "
 
+' ReSharper disable once CheckNamespace
+
 Namespace SmartBotKit.Interop.Win32
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>

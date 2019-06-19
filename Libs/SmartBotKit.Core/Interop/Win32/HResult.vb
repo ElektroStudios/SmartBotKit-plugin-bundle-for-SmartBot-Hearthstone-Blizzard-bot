@@ -7,9 +7,18 @@ Option Infer Off
 
 #End Region
 
+#Region " Imports "
+
+Imports System.IO
+
+#End Region
+
 #Region " HRESULT "
 
+' ReSharper disable once CheckNamespace
+
 Namespace SmartBotKit.Interop.Win32
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>
@@ -25,6 +34,8 @@ Namespace SmartBotKit.Interop.Win32
     ''' </remarks>
     ''' ----------------------------------------------------------------------------------------------------
     Public Enum HResult As Integer
+
+        ' ReSharper disable InconsistentNaming
 
         ' *****************************************************************************
         '                            WARNING!, NEED TO KNOW...
@@ -163,14 +174,14 @@ Namespace SmartBotKit.Interop.Win32
         FUSION_E_REF_DEF_MISMATCH = &H80131040
 
         ''' <summary>
-        ''' Error wrapped in <see cref="Global.System.Security.Cryptography.CryptographicException"/> class.
+        ''' Error wrapped in <see cref="Security.Cryptography.CryptographicException"/> class.
         ''' </summary>
         NTE_FAIL = &H80090020
 
         ''' <summary>
         ''' 
         ''' </summary>
-        REGDB_E_CLASSNOTREG = &H80040154
+        REGD_E_CLASSNOTREG = &H80040154
 
         ''' <summary>
         ''' 
@@ -178,7 +189,7 @@ Namespace SmartBotKit.Interop.Win32
         RO_E_CLOSED = &H80000013
 
         ''' <summary>
-        ''' Error wrapped in <see cref="Global.System.InvalidCastException"/> class.
+        ''' Error wrapped in <see cref="InvalidCastException"/> class.
         ''' </summary>
         TYPE_E_TYPEMISMATCH = &H80028CA0
 
@@ -213,12 +224,12 @@ Namespace SmartBotKit.Interop.Win32
         COR_E_APPDOMAINUNLOADED = &H80131014
 
         ''' <summary>
-        ''' Error wrapped in <see cref="Global.System.ApplicationException"/> class.
+        ''' Error wrapped in <see cref="ApplicationException"/> class.
         ''' </summary>
         COR_E_APPLICATION = &H80131600
 
         '''' <summary>
-        '''' Error wrapped in <see cref="Global.System.ArgumentException"/> class.
+        '''' Error wrapped in <see cref="ArgumentException"/> class.
         '''' </summary>
         'COR_E_ARGUMENT = HResult.E_INVALIDARG
 
@@ -228,7 +239,7 @@ Namespace SmartBotKit.Interop.Win32
         COR_E_ARGUMENTOUTOFRANGE = &H80131502
 
         '''' <summary>
-        '''' Error wrapped in <see cref="Global.System.ArithmeticException"/> class.
+        '''' Error wrapped in <see cref="ArithmeticException"/> class.
         '''' </summary>
         'COR_E_ARITHMETIC = HResult.ERROR_ARITHMETIC_OVERFLOW
 
@@ -238,7 +249,7 @@ Namespace SmartBotKit.Interop.Win32
         COR_E_ARRAYTYPEMISMATCH = &H80131503
 
         '''' <summary>
-        '''' Error wrapped in <see cref="Global.System.BadImageFormatException"/> class.
+        '''' Error wrapped in <see cref="BadImageFormatException"/> class.
         '''' </summary>
         'COR_E_BADIMAGEFORMAT = HResult.ERROR_BAD_FORMAT
 
@@ -248,7 +259,7 @@ Namespace SmartBotKit.Interop.Win32
         COR_E_CANNOTUNLOADAPPDOMAIN = &H80131015
 
         ''' <summary>
-        ''' Error wrapped in <see cref="Global.System.ContextMarshalException"/> class.
+        ''' Error wrapped in <see cref="ContextMarshalException"/> class.
         ''' </summary>
         COR_E_CONTEXTMARSHAL = &H80131504
 
@@ -263,7 +274,7 @@ Namespace SmartBotKit.Interop.Win32
         COR_E_DATAMISALIGNED = &H80131541
 
         ' ''' <summary>
-        ' ''' Error wrapped in <see cref="Global.System.DivideByZeroException"/> class.
+        ' ''' Error wrapped in <see cref="DivideByZeroException"/> class.
         ' ''' </summary>
         ' COR_E_DIVIDEBYZERO = HResult.DISP_E_DIVBYZERO
 
@@ -273,12 +284,12 @@ Namespace SmartBotKit.Interop.Win32
         COR_E_DLLNOTFOUND = &H80131524
 
         ''' <summary>
-        ''' Error wrapped in <see cref="Global.System.DuplicateWaitObjectException"/> class.
+        ''' Error wrapped in <see cref="DuplicateWaitObjectException"/> class.
         ''' </summary>
         COR_E_DUPLICATEWAITOBJECT = &H80131529
 
         ''' <summary>
-        ''' Error wrapped in <see cref="Global.System.IO.EndOfStreamException"/> class.
+        ''' Error wrapped in <see cref="System.IO.EndOfStreamException"/> class.
         ''' </summary>
         COR_E_ENDOFSTREAM = &H80070026
 
@@ -288,37 +299,39 @@ Namespace SmartBotKit.Interop.Win32
         COR_E_FILELOAD = &H80131621
 
         '''' <summary>
-        '''' Error wrapped in <see cref="Global.System.IO.FileNotFoundException"/> class.
+        '''' Error wrapped in <see cref="FileNotFoundException"/> class.
         '''' </summary>
         'COR_E_FILENOTFOUND = HResult.ERROR_FILE_NOT_FOUND
 
         '''' <summary>
-        '''' Error wrapped in <see cref="Global.System.IO.DirectoryNotFoundException"/> class.
+        '''' Error wrapped in <see cref="DirectoryNotFoundException"/> class.
         '''' </summary>
         'COR_E_DIRECTORYNOTFOUND = HResult.ERROR_PATH_NOT_FOUND
 
         '''' <summary>
-        '''' Error wrapped in <see cref="Global.System.IO.PathTooLongException"/> class.
+        '''' Error wrapped in <see cref="PathTooLongException"/> class.
         '''' </summary>
         'COR_E_PATHTOOLONG = HResult.ERROR_FILENAME_EXCED_RANGE
 
         ''' <summary>
-        ''' Error wrapped in <see cref="Global.System.Exception"/> class.
+        ''' Error wrapped in <see cref="Exception"/> class.
         ''' </summary>
         COR_E_EXCEPTION = &H80131500
 
+        ' ReSharper disable VBWarnings::BC40000
         ''' <summary>
-        ''' Error wrapped in <see cref="Global.System.ExecutionEngineException"/> class.
+        ''' Error wrapped in <see cref="ExecutionEngineException"/> class.
         ''' </summary>
         COR_E_EXECUTIONENGINE = &H80131506
+        ' ReSharper restore VBWarnings::BC40000
 
         ''' <summary>
-        ''' Error wrapped in <see cref="Global.System.FieldAccessException"/> class.
+        ''' Error wrapped in <see cref="FieldAccessException"/> class.
         ''' </summary>
         COR_E_FIELDACCESS = &H80131507
 
         ''' <summary>
-        ''' Error wrapped in <see cref="Global.System.FormatException"/> class.
+        ''' Error wrapped in <see cref="FormatException"/> class.
         ''' </summary>
         COR_E_FORMAT = &H80131537
 
@@ -328,7 +341,7 @@ Namespace SmartBotKit.Interop.Win32
         COR_E_HOSTPROTECTION = &H80131640
 
         ''' <summary>
-        ''' Error wrapped in <see cref="Global.System.IndexOutOfRangeException"/> class.
+        ''' Error wrapped in <see cref="IndexOutOfRangeException"/> class.
         ''' </summary>
         COR_E_INDEXOUTOFRANGE = &H80131508
 
@@ -343,32 +356,32 @@ Namespace SmartBotKit.Interop.Win32
         COR_E_INSUFFICIENTMEMORY = &H8013153D
 
         ''' <summary>
-        ''' Error wrapped in <see cref="Global.System.InvalidCastException"/> class.
+        ''' Error wrapped in <see cref="InvalidCastException"/> class.
         ''' </summary>
         COR_E_INVALIDCAST = &H80004002
 
         ''' <summary>
-        ''' Error wrapped in <see cref="Global.System.Runtime.InteropServices.InvalidComObjectException"/> class.
+        ''' Error wrapped in <see cref="Runtime.InteropServices.InvalidComObjectException"/> class.
         ''' </summary>
         COR_E_INVALIDCOMOBJECT = &H80131527
 
         ''' <summary>
-        ''' Error wrapped in <see cref="Global.System.Reflection.InvalidFilterCriteriaException"/> class.
+        ''' Error wrapped in <see cref="Reflection.InvalidFilterCriteriaException"/> class.
         ''' </summary>
         COR_E_INVALIDFILTERCRITERIA = &H80131601
 
         ''' <summary>
-        ''' Error wrapped in <see cref="Global.System.Runtime.InteropServices.InvalidOleVariantTypeException"/> class.
+        ''' Error wrapped in <see cref="Runtime.InteropServices.InvalidOleVariantTypeException"/> class.
         ''' </summary>
         COR_E_INVALIDOLEVARIANTTYPE = &H80131531
 
         ''' <summary>
-        ''' Error wrapped in <see cref="Global.System.InvalidOperationException"/> class.
+        ''' Error wrapped in <see cref="InvalidOperationException"/> class.
         ''' </summary>
         COR_E_INVALIDOPERATION = &H80131509
 
         ''' <summary>
-        ''' Error wrapped in <see cref="Global.System.IO.IOException"/> class.
+        ''' Error wrapped in <see cref="System.IO.IOException"/> class.
         ''' </summary>
         COR_E_IO = &H80131620
 
@@ -393,27 +406,27 @@ Namespace SmartBotKit.Interop.Win32
         COR_E_MEMBERACCESS = &H8013151A
 
         ''' <summary>
-        ''' Error wrapped in <see cref="Global.System.MethodAccessException"/> class.
+        ''' Error wrapped in <see cref="MethodAccessException"/> class.
         ''' </summary>
         COR_E_METHODACCESS = &H80131510
 
         ''' <summary>
-        ''' Error wrapped in <see cref="Global.System.MissingFieldException"/> class.
+        ''' Error wrapped in <see cref="MissingFieldException"/> class.
         ''' </summary>
         COR_E_MISSINGFIELD = &H80131511
 
         ''' <summary>
-        ''' Error wrapped in <see cref="Global.System.Resources.MissingManifestResourceException"/> class.
+        ''' Error wrapped in <see cref="Resources.MissingManifestResourceException"/> class.
         ''' </summary>
         COR_E_MISSINGMANIFESTRESOURCE = &H80131532
 
         ''' <summary>
-        ''' Error wrapped in <see cref="Global.System.MissingMemberException"/> class.
+        ''' Error wrapped in <see cref="MissingMemberException"/> class.
         ''' </summary>
         COR_E_MISSINGMEMBER = &H80131512
 
         ''' <summary>
-        ''' Error wrapped in <see cref="Global.System.MissingMethodException"/> class.
+        ''' Error wrapped in <see cref="MissingMethodException"/> class.
         ''' </summary>
         COR_E_MISSINGMETHOD = &H80131513
 
@@ -423,22 +436,22 @@ Namespace SmartBotKit.Interop.Win32
         COR_E_MISSINGSATELLITEASSEMBLY = &H80131536
 
         ''' <summary>
-        ''' Error wrapped in <see cref="Global.System.MulticastNotSupportedException"/> class.
+        ''' Error wrapped in <see cref="MulticastNotSupportedException"/> class.
         ''' </summary>
         COR_E_MULTICASTNOTSUPPORTED = &H80131514
 
         ''' <summary>
-        ''' Error wrapped in <see cref="Global.System.NotFiniteNumberException"/> class.
+        ''' Error wrapped in <see cref="NotFiniteNumberException"/> class.
         ''' </summary>
         COR_E_NOTFINITENUMBER = &H80131528
 
         ''' <summary>
-        ''' Error wrapped in <see cref="Global.System.NotSupportedException"/> class.
+        ''' Error wrapped in <see cref="NotSupportedException"/> class.
         ''' </summary>
         COR_E_NOTSUPPORTED = &H80131515
 
         '''' <summary>
-        '''' Error wrapped in <see cref="Global.System.NullReferenceException"/> class.
+        '''' Error wrapped in <see cref="NullReferenceException"/> class.
         '''' </summary>
         'COR_E_NULLREFERENCE = HResult.E_POINTER
 
@@ -453,12 +466,12 @@ Namespace SmartBotKit.Interop.Win32
         COR_E_OPERATIONCANCELED = &H8013153B
 
         '''' <summary>
-        '''' Error wrapped in <see cref="Global.System.OutOfMemoryException"/> class.
+        '''' Error wrapped in <see cref="OutOfMemoryException"/> class.
         '''' </summary>
         'COR_E_OUTOFMEMORY = HResult.E_OUTOFMEMORY
 
         ''' <summary>
-        ''' Error wrapped in <see cref="Global.System.OverflowException"/> class.
+        ''' Error wrapped in <see cref="OverflowException"/> class.
         ''' </summary>
         COR_E_OVERFLOW = &H80131516
 
@@ -468,22 +481,22 @@ Namespace SmartBotKit.Interop.Win32
         COR_E_PLATFORMNOTSUPPORTED = &H80131539
 
         ''' <summary>
-        ''' Error wrapped in <see cref="Global.System.RankException"/> class.
+        ''' Error wrapped in <see cref="RankException"/> class.
         ''' </summary>
         COR_E_RANK = &H80131517
 
         ''' <summary>
-        ''' Error wrapped in <see cref="Global.System.Reflection.ReflectionTypeLoadException"/> class.
+        ''' Error wrapped in <see cref="Reflection.ReflectionTypeLoadException"/> class.
         ''' </summary>
         COR_E_REFLECTIONTYPELOAD = &H80131602
 
         ''' <summary>
-        ''' Error wrapped in <see cref="Global.System.Runtime.Remoting.RemotingException"/> class.
+        ''' Error wrapped in <see cref="Runtime.Remoting.RemotingException"/> class.
         ''' </summary>
         COR_E_REMOTING = &H8013150B
 
         ''' <summary>
-        ''' Error wrapped in <see cref="Global.System.Reflection.ReflectionTypeLoadException"/> class.
+        ''' Error wrapped in <see cref="Reflection.ReflectionTypeLoadException"/> class.
         ''' </summary>
         COR_E_SERVER = &H8013150E
 
@@ -498,7 +511,7 @@ Namespace SmartBotKit.Interop.Win32
         COR_E_SAFEARRAYRANKMISMATCH = &H80131538
 
         ''' <summary>
-        ''' Error wrapped in <see cref="Global.System.Runtime.InteropServices.SafeArrayTypeMismatchException"/> class.
+        ''' Error wrapped in <see cref="Runtime.InteropServices.SafeArrayTypeMismatchException"/> class.
         ''' </summary>
         COR_E_SAFEARRAYTYPEMISMATCH = &H80131533
 
@@ -508,7 +521,7 @@ Namespace SmartBotKit.Interop.Win32
         COR_E_SAFEHANDLEMISSINGATTRIBUTE = &H80131623
 
         ''' <summary>
-        ''' Error wrapped in <see cref="Global.System.Security.SecurityException"/> class.
+        ''' Error wrapped in <see cref="Security.SecurityException"/> class.
         ''' </summary>
         COR_E_SECURITY = &H8013150A
 
@@ -518,47 +531,47 @@ Namespace SmartBotKit.Interop.Win32
         COR_E_SEMAPHOREFULL = &H8013152B
 
         ''' <summary>
-        ''' Error wrapped in <see cref="Global.System.Runtime.Serialization.SerializationException"/> class.
+        ''' Error wrapped in <see cref="Runtime.Serialization.SerializationException"/> class.
         ''' </summary>
         COR_E_SERIALIZATION = &H8013150C
 
         '''' <summary>
-        '''' Error wrapped in <see cref="Global.System.StackOverflowException"/> class.
+        '''' Error wrapped in <see cref="StackOverflowException"/> class.
         '''' </summary>
         'COR_E_STACKOVERFLOW = HResult.ERROR_STACK_OVERFLOW
 
         ''' <summary>
-        ''' Error wrapped in <see cref="Global.System.Threading.SynchronizationLockException"/> class.
+        ''' Error wrapped in <see cref="Threading.SynchronizationLockException"/> class.
         ''' </summary>
         COR_E_SYNCHRONIZATIONLOCK = &H80131518
 
         ''' <summary>
-        ''' Error wrapped in <see cref="Global.System.SystemException"/> class.
+        ''' Error wrapped in <see cref="SystemException"/> class.
         ''' </summary>
         COR_E_SYSTEM = &H80131501
 
         ''' <summary>
-        ''' Error wrapped in <see cref="Global.System.Reflection.TargetException"/> class.
+        ''' Error wrapped in <see cref="Reflection.TargetException"/> class.
         ''' </summary>
         COR_E_TARGET = &H80131603
 
         ''' <summary>
-        ''' Error wrapped in <see cref="Global.System.Reflection.TargetInvocationException"/> class.
+        ''' Error wrapped in <see cref="Reflection.TargetInvocationException"/> class.
         ''' </summary>
         COR_E_TARGETINVOCATION = &H80131604
 
         ''' <summary>
-        ''' Error wrapped in <see cref="Global.System.Reflection.TargetParameterCountException"/> class.
+        ''' Error wrapped in <see cref="Reflection.TargetParameterCountException"/> class.
         ''' </summary>
         COR_E_TARGETPARAMCOUNT = &H8002000E
 
         ''' <summary>
-        ''' Error wrapped in <see cref="Global.System.Threading.ThreadAbortException"/> class.
+        ''' Error wrapped in <see cref="Threading.ThreadAbortException"/> class.
         ''' </summary>
         COR_E_THREADABORTED = &H80131530
 
         ''' <summary>
-        ''' Error wrapped in <see cref="Global.System.Threading.ThreadInterruptedException"/> class.
+        ''' Error wrapped in <see cref="Threading.ThreadInterruptedException"/> class.
         ''' </summary>
         COR_E_THREADINTERRUPTED = &H80131519
 
@@ -568,7 +581,7 @@ Namespace SmartBotKit.Interop.Win32
         COR_E_THREADSTART = &H80131525
 
         ''' <summary>
-        ''' Error wrapped in <see cref="Global.System.Threading.ThreadStateException"/> class.
+        ''' Error wrapped in <see cref="Threading.ThreadStateException"/> class.
         ''' </summary>
         COR_E_THREADSTATE = &H80131520
 
@@ -588,13 +601,13 @@ Namespace SmartBotKit.Interop.Win32
         COR_E_TYPEACCESS = &H80131543
 
         ''' <summary>
-        ''' Error wrapped in <see cref="Global.System.TypeInitializationException"/> class.
+        ''' Error wrapped in <see cref="TypeInitializationException"/> class.
         ''' </summary>
         COR_E_TYPEINITIALIZATION = &H80131534
 
         ''' <summary>
-        ''' Error wrapped in <see cref="Global.System.EntryPointNotFoundException"/> class 
-        ''' and also <see cref="Global.System.TypeLoadException"/> class.
+        ''' Error wrapped in <see cref="EntryPointNotFoundException"/> class 
+        ''' and also <see cref="TypeLoadException"/> class.
         ''' </summary>
         COR_E_TYPELOAD = &H80131522
 
@@ -614,7 +627,7 @@ Namespace SmartBotKit.Interop.Win32
         COR_E_UNSUPPORTEDFORMAT = &H80131523
 
         ''' <summary>
-        ''' Error wrapped in <see cref="Global.System.Security.VerificationException"/> class.
+        ''' Error wrapped in <see cref="Security.VerificationException"/> class.
         ''' </summary>
         COR_E_VERIFICATION = &H8013150D
 

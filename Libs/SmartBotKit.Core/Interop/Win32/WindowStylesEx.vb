@@ -8,7 +8,10 @@ Option Infer Off
 
 #Region " Window Styles Ex "
 
+' ReSharper disable once CheckNamespace
+
 Namespace SmartBotKit.Interop.Win32
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>

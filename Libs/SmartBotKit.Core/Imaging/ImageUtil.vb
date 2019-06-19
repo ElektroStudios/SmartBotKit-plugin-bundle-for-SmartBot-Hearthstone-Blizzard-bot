@@ -20,7 +20,10 @@ Imports SmartBotKit.SystemInfo
 
 #Region " Image Util "
 
+' ReSharper disable once CheckNamespace
+
 Namespace SmartBotKit.[Imaging]
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>

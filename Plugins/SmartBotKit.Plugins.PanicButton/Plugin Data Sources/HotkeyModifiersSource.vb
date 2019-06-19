@@ -17,7 +17,10 @@ Imports SmartBotKit.IO
 
 #Region " HotkeyModifiersSource "
 
+' ReSharper disable once CheckNamespace
+
 Namespace PanicButton
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>

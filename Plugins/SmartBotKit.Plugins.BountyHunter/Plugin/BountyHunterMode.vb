@@ -1,7 +1,10 @@
 ﻿
 #Region " BountyHunterMode "
 
+' ReSharper disable once CheckNamespace
+
 Namespace BountyHunter
+
 
     Public Enum BountyHunterMode As Integer
 

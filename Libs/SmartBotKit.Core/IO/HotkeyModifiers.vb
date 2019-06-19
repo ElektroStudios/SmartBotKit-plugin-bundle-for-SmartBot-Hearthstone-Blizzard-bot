@@ -15,7 +15,10 @@ Imports SmartBotKit.Interop.Win32
 
 #Region " Hotkey Modifiers "
 
+' ReSharper disable once CheckNamespace
+
 Namespace SmartBotKit.IO
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>

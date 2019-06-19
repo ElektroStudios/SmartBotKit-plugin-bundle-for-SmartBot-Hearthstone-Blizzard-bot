@@ -8,7 +8,10 @@ Option Infer Off
 
 #Region " EDataFlow "
 
+' ReSharper disable once CheckNamespace
+
 Namespace SmartBotKit.Interop.Win32
+
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>
@@ -25,6 +28,8 @@ Namespace SmartBotKit.Interop.Win32
     ''' </remarks>
     ''' ----------------------------------------------------------------------------------------------------
     Public Enum EDataFlow As Integer
+
+        ' ReSharper disable InconsistentNaming
 
         ''' <summary>
         ''' Audio rendering stream. 
