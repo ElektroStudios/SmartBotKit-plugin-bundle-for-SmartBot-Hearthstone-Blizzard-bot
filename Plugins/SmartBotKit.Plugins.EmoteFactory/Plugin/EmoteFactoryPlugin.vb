@@ -180,7 +180,7 @@ Namespace EmoteFactory
         ''' ----------------------------------------------------------------------------------------------------
         <DebuggerStepperBoundary>
         Public Overrides Sub OnReceivedEmote(ByVal emoteType As EmoteType)
-            If (Me.DataContainer.Enabled) AndAlso (Bot.IsBotRunning) Then
+            If (Me.DataContainer.Enabled) AndAlso (Bot.IsBotRunning) AndAlso Not (Me.isEnemySquelched) Then
                 Me.MaybeDoReplyEmote(emoteType)
                 Me.MaybeSquelchEnemy()
             End If
