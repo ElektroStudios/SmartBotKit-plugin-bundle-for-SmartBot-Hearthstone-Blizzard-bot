@@ -45,18 +45,7 @@ Namespace HearthstoneResizer
     Public NotInheritable Class HearthstoneResizerPluginData : Inherits PluginDataContainer
 
 #Region " Fields "
-
-        '''' ----------------------------------------------------------------------------------------------------
-        '''' <summary>
-        '''' 1:1 resolutions.
-        '''' </summary>
-        '''' ----------------------------------------------------------------------------------------------------
-        'Private Shared ReadOnly Resolutions_1_1 As New Dictionary(Of String, Size) From {
-        '    {"320×320 (1:1)", New Size(320, 320)},
-        '    {"1024×1024 (1:1)", New Size(1024, 1024)},
-        '    {"1440×1440 (1:1)", New Size(1440, 1440)}
-        '}
-
+        
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
         ''' 3:2 resolutions.
@@ -102,20 +91,22 @@ Namespace HearthstoneResizer
             {"800×480 (5:3)", New Size(800, 480)},
             {"1280×768 (5:3)", New Size(1280, 768)}
         }
-
-        '''' ----------------------------------------------------------------------------------------------------
-        '''' <summary>
-        '''' 5:4 resolutions.
-        '''' </summary>
-        '''' ----------------------------------------------------------------------------------------------------
-        'Private Shared ReadOnly Resolutions_5_4 As New Dictionary(Of String, Size) From {
-        '    {"320×256 (5:4)", New Size(320, 256)},
-        '    {"600×480 (5:4)", New Size(600, 480)}
-        '}
         
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' 5:3 resolutions.
+        ''' 5:4 resolutions.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        Private Shared ReadOnly Resolutions_5_4 As New Dictionary(Of String, Size) From {
+            {"550×440 (5:4)", New Size(550, 440)}
+        }
+        ' NOT WORKING:
+        ' {"320×256 (5:4)", New Size(320, 256)}
+        ' {"600×480 (5:4)", New Size(600, 480)}
+        
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' 8:5 resolutions.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Private Shared ReadOnly Resolutions_8_5 As New Dictionary(Of String, Size) From {
@@ -125,6 +116,7 @@ Namespace HearthstoneResizer
             {"1280×800 (8:5)", New Size(1280, 800)},
             {"1440×900 (8:5)", New Size(1440, 900)}
         }
+
 
         '''' ----------------------------------------------------------------------------------------------------
         '''' <summary>
@@ -160,9 +152,11 @@ Namespace HearthstoneResizer
         ''' ----------------------------------------------------------------------------------------------------
         Public Shared ReadOnly Resolutions As Dictionary(Of String, Size) =
             (Resolutions_3_2.
-            Union(Resolutions_5_3).
-            Union(Resolutions_8_5).
-            Union(Resolutions_16_10)).ToDictionary(Function(x) x.Key, Function(x) x.Value)
+             Union(Resolutions_5_3).
+             Union(Resolutions_5_4).
+             Union(Resolutions_8_5).
+             Union(Resolutions_16_10)
+            ).ToDictionary(Function(item) item.Key, Function(item) item.Value)
         
 #End Region
 
@@ -378,7 +372,7 @@ Namespace HearthstoneResizer
             Me.EnableFixedSize = True
 
             Me.Position = Point.Empty
-            Me.Size = "720×480 (3:2)"
+            Me.Size = "550×440 (5:4)"
 
             Me.IgnoreTicksIfBotStopped = False
             Me.TickCount = 10

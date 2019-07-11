@@ -127,6 +127,64 @@ Namespace PluginTemplate
         <DisplayName("Write to a single log file instead of creating multiple logs")>
         <Browsable(True)>
         Public Property UseSingleLogFile As Boolean
+        
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets a value that determine the hour (in 24 hrs format) on which the plugin will start logging battle-tags.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        <Category("General Settings")>
+        <DisplayName("The hour (in 24 hrs format) on which the plugin will start logging battle-tags")>
+        <Browsable(True)>
+        Public Property HourStart As Integer
+            Get
+                Return Me.hourStart_
+            End Get
+            Set(ByVal value As Integer)
+                If value < 0 Then
+                    Me.hourStart_ = 0
+                ElseIf value > 24 Then
+                    Me.hourStart_ = 24
+                Else
+                    Me.hourStart_ = value
+                End If
+            End Set
+        End Property
+        ''' <summary>
+        ''' ( Backing Field )
+        ''' <para></para>
+        ''' The hour (in 24 hrs format) on which the plugin will start logging battle-tags.
+        ''' </summary>
+        Private hourStart_ As Integer
+        
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets a value that determine the hour (in 24 hrs format) on which the plugin will stop from logging battle-tags.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        <Category("General Settings")>
+        <DisplayName("The hour (in 24 hrs format) on which the plugin will stop from logging battle-tags")>
+        <Browsable(True)>
+        Public Property HourEnd As Integer
+            Get
+                Return Me.hourEnd_
+            End Get
+            Set(ByVal value As Integer)
+                If value < 0 Then
+                    Me.hourEnd_ = 0
+                ElseIf value > 24 Then
+                    Me.hourEnd_ = 24
+                Else
+                    Me.hourEnd_ = value
+                End If
+            End Set
+        End Property
+        ''' <summary>
+        ''' ( Backing Field )
+        ''' <para></para>
+        ''' The hour (in 24 hrs format) on which the plugin will stop from logging battle-tags.
+        ''' </summary>
+        Private hourEnd_ As Integer
 
 #End Region
 
@@ -195,6 +253,9 @@ Namespace PluginTemplate
 
             Me.CrawlRankedWildGames = True
             Me.CrawlUnrankedWildGames = True
+
+            Me.HourStart = 0
+            Me.HourEnd = 24
         End Sub
 
 #End Region

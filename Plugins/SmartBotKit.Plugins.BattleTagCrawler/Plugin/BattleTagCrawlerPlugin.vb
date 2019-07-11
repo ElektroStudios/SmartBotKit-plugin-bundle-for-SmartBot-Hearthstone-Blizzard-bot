@@ -158,11 +158,15 @@ Namespace PluginTemplate
                         Exit Sub
                 End Select
 
+                Dim hour As Integer = Date.Now.TimeOfDay.Hours
+                If Not (hour >= Me.DataContainer.HourStart) AndAlso Not (hour < Me.DataContainer.HourEnd)
+                    Exit Sub
+                End If
+
                 Dim dirInfo As New DirectoryInfo(Path.Combine(SmartBotUtil.LogsDir.FullName, "BattleTag Crawler"))
                 Dim filename As String = If(Me.DataContainer.UseSingleLogFile,
                                             "[BattleTag Crawler].csv",
-                                            $"[BattleTag Crawler] {Date.Now.ToShortDateString().Replace("/"c, "-"c) _
-                                               }.csv")
+                                            $"[BattleTag Crawler] {Date.Now.ToShortDateString().Replace("/"c, "-"c)}.csv")
 
                 Dim fileInfo As New FileInfo(Path.Combine(dirInfo.FullName, filename))
 

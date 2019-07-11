@@ -214,7 +214,9 @@ Namespace SmartBotKit.Interop
             Return NativeMethods.SetWindowPos(hWnd, IntPtr.Zero,
                                               rc.Location.X, rc.Location.Y,
                                               sz.Width, sz.Height,
-                                              SetWindowPosFlags.IgnoreMove)
+                                              SetWindowPosFlags.IgnoreMove Or 
+                                              SetWindowPosFlags.DontSendChangingEvent Or 
+                                              SetWindowPosFlags.DontRedraw)
         End Function
 
         Private Shared Function GetWindowPosition(ByVal hWnd As IntPtr) As Point
@@ -229,7 +231,9 @@ Namespace SmartBotKit.Interop
             Return NativeMethods.SetWindowPos(hWnd, IntPtr.Zero,
                                               pt.X, pt.Y,
                                               rc.Size.Width, rc.Size.Height,
-                                              SetWindowPosFlags.IgnoreResize)
+                                              SetWindowPosFlags.IgnoreResize Or 
+                                              SetWindowPosFlags.DontSendChangingEvent Or 
+                                              SetWindowPosFlags.DontRedraw)
         End Function
 
 #End Region
