@@ -10,7 +10,7 @@ Imports System.Runtime.InteropServices
 ' Review the values of the assembly attributes
 
 <Assembly: AssemblyTitle("SmartBotkit Updater")>
-<Assembly: AssemblyDescription("Updater for SmartBotKit plugin bundle.")>
+<Assembly: AssemblyDescription("Automatic updater for SmartBotKit plugin bundle.")>
 <Assembly: AssemblyCompany("ElektroStudios")>
 <Assembly: AssemblyProduct("SmartBotkitUpdater.exe")>
 <Assembly: AssemblyCopyright("© Elektro Studios 2019")>

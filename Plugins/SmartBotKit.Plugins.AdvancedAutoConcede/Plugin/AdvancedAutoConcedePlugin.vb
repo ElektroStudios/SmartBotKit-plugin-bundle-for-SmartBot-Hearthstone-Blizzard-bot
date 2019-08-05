@@ -245,7 +245,7 @@ Namespace PluginTemplate
                                 If (Me.concedesCount < Me.DataContainer.MaxUnrankedConcedes) Then
                                     Bot.Log(
                                         $"[Advanced Auto Concede] -> (Unranked Mode) Conceding the current match, reason: repeat concede ({ _
-                                               (Me.concedesCount + 1)} of {Me.DataContainer.MaxRankedConcedes})")
+                                               (Me.concedesCount + 1)} of {Me.DataContainer.MaxUnrankedConcedes})")
                                     Me.isMatchAutoConceded = True
                                     Bot.Concede()
                                 Else

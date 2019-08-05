@@ -45,7 +45,7 @@ The library exposes members to interoperate with SmartBot process and Win32 API,
 
 Installation:
 
-![](https://i.imgur.com/wdB95Aa.png)
+![](Images/SmartBotKit.Core%20-%20Installation.png)
 
 # **Plugins**
 
@@ -162,44 +162,21 @@ Settings:
 
 ![](Images/Panic%20Button%20-%20Settings.png)
 
-### System Tray Icon
-A plugin that creates a system tray icon with menu commands to handle SmartBot and Hearthstone visibility.
+### UI Enhancer
+A plugin that adds visual enhancements for the SmartBot user-interface.
+
+Features:
+- Creates a system-tray icon with menu commands to handle SmartBot and Hearthstone visibility.
+- Prints statistical information on the SmartBot's taskbar icon and also displays a progress bar when playing Arena mode.
+- Remembers the last SmartBot's window size and position and restore it at the next program startup.
 
 Preview:
 
-![](https://i.imgur.com/Kpx6rXQ.png)
+![](Images/UI%20Enhancer%20-%20Preview.png)
 
 Settings:
 
-![](Images/System%20Tray%20Icon%20-%20Settings.png)
-
-### TaskBar Informer
-A plugin that prints statistical information on the taskbar icon and also displays a progress bar for Arena mode.
-
-For example, when you are in a arena run, it will display the current wins and losses,
-this way you can keep track of your progress when SmartBot window is minimized.
-
-For other game modes, it will only display your hero's class name and the enemy's class name﻿﻿.
-Since the visible text capacity of a taskbar icon is very small, I decided to just display that info. 
-
-Preview:
-
-![](https://i.imgur.com/4kU0sbu.png)
-
-Settings:
-
-![](Images/Taskbar%20Informer%20-%20Settings.png)
-
-### Window Restorator
-A plugin that reminds the last SmartBot's window size and position and restores it at the next program startup.
-
-It also restores the maximized state if SmartBot was maximized when you terminated its ﻿process.
-
-It will don't restore the minimized state since I consider it useless. (who wants to run minimized a program?)
-
-Settings:
-
-![](Images/Window%20Restorator%20-%20Settings.png)
+![](Images/UI%20Enhancer%20-%20Settings.png)
 
 # **Discontinued Plugins**
 

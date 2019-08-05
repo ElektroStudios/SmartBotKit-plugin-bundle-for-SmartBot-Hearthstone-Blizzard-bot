@@ -159,70 +159,71 @@ Namespace PluginTemplate
                 End Select
 
                 Dim hour As Integer = Date.Now.TimeOfDay.Hours
-                If Not (hour >= Me.DataContainer.HourStart) AndAlso Not (hour < Me.DataContainer.HourEnd)
-                    Exit Sub
-                End If
+                If (hour >= Me.DataContainer.HourStart) AndAlso (hour < Me.DataContainer.HourEnd) Then
 
-                Dim dirInfo As New DirectoryInfo(Path.Combine(SmartBotUtil.LogsDir.FullName, "BattleTag Crawler"))
-                Dim filename As String = If(Me.DataContainer.UseSingleLogFile,
-                                            "[BattleTag Crawler].csv",
-                                            $"[BattleTag Crawler] {Date.Now.ToShortDateString().Replace("/"c, "-"c)}.csv")
+                    Dim dirInfo As New DirectoryInfo(Path.Combine(SmartBotUtil.LogsDir.FullName, "BattleTag Crawler"))
+                    Dim filename As String = If(Me.DataContainer.UseSingleLogFile,
+                                                "[BattleTag Crawler].csv",
+                                                $"[BattleTag Crawler] {Date.Now.ToShortDateString().Replace("/"c, "-"c)}.csv")
 
-                Dim fileInfo As New FileInfo(Path.Combine(dirInfo.FullName, filename))
+                    Dim fileInfo As New FileInfo(Path.Combine(dirInfo.FullName, filename))
 
-                If (Not dirInfo.Exists) Then
-                    Try
-                        SmartBotUtil.LogsDir.Create()
-                        dirInfo.Create()
-                        dirInfo.Refresh()
-                    Catch ex As Exception
-                        Bot.Log($"[BattleTag Crawler] -> Error creating log directory: {ex.Message}")
-                    End Try
-                End If
-
-                If (dirInfo.Exists) Then
-                    Dim player As Player = HearthMirror.Reflection.GetMatchInfo().OpposingPlayer
-                    Dim battletag As String = $"{player.BattleTag.Name}#{player.BattleTag.Number}"
-                    Dim standardRank As Integer = player.StandardRank
-                    Dim wildrank As Integer = player.WildRank
-
-                    If Not Me.DataContainer.LogDuplicates Then
-                        If (fileInfo.Exists) AndAlso (File.ReadAllText(fileInfo.FullName, Encoding.Unicode).Contains(battletag)) Then
-                            Exit Sub
-                        End If
+                    If (Not dirInfo.Exists) Then
+                        Try
+                            SmartBotUtil.LogsDir.Create()
+                            dirInfo.Create()
+                            dirInfo.Refresh()
+                        Catch ex As Exception
+                            Bot.Log($"[BattleTag Crawler] -> Error creating log directory: {ex.Message}")
+                        End Try
                     End If
 
-                    If Not (fileInfo.Exists) Then
+                    If (dirInfo.Exists) Then
+                        Dim player As Player = HearthMirror.Reflection.GetMatchInfo().OpposingPlayer
+                        Dim battletag As String = $"{player.BattleTag.Name}#{player.BattleTag.Number}"
+                        Dim standardRank As Integer = player.StandardRank
+                        Dim wildrank As Integer = player.WildRank
+
+                        If Not Me.DataContainer.LogDuplicates Then
+                            If (fileInfo.Exists) AndAlso (File.ReadAllText(fileInfo.FullName, Encoding.Unicode).Contains(battletag)) Then
+                                Exit Sub
+                            End If
+                        End If
+
+                        If Not (fileInfo.Exists) Then
+                            Try
+                                File.WriteAllText(fileInfo.FullName, "Date,Game Mode,Standard Rank,Wild Rank,BattleTag" & Environment.NewLine, Encoding.Unicode)
+
+                            Catch ex As Exception
+                                Bot.Log($"[BattleTag Crawler] -> Error writing to file: {ex.Message}")
+
+                            End Try
+                        End If
+
+                        Dim newLine As String =
+                                $"{Date.Now.ToString("yyyy-MM-dd hh\:mm\:ss")},{Bot.CurrentMode.ToString()},{standardRank},{ _
+                                wildrank},{battletag}"
+
                         Try
-                            File.WriteAllText(fileInfo.FullName, "Date,Game Mode,Standard Rank,Wild Rank,BattleTag" & Environment.NewLine, Encoding.Unicode)
+                            Bot.Log($"[BattleTag Crawler] -> Logging opponent id: {battletag}")
+
+                            If (Me.DataContainer.AddNewEntriesAtBeginningOfFile) Then
+                                Dim lines As List(Of String) = File.ReadLines(fileInfo.FullName, Encoding.Unicode).ToList()
+                                lines.Insert(1, newLine)
+                                File.WriteAllLines(fileInfo.FullName, lines, Encoding.Unicode)
+
+                            Else
+                                File.AppendAllText(fileInfo.FullName, newLine & Environment.NewLine, Encoding.Unicode)
+
+                            End If
 
                         Catch ex As Exception
                             Bot.Log($"[BattleTag Crawler] -> Error writing to file: {ex.Message}")
 
                         End Try
+
                     End If
 
-                    Dim newLine As String =
-                            $"{Date.Now.ToString("yyyy-MM-dd hh\:mm\:ss")},{Bot.CurrentMode.ToString()},{standardRank},{ _
-                            wildrank},{battletag}"
-
-                    Try
-                        Bot.Log($"[BattleTag Crawler] -> Logging opponent id: {battletag}")
-
-                        If (Me.DataContainer.AddNewEntriesAtBeginningOfFile) Then
-                            Dim lines As List(Of String) = File.ReadLines(fileInfo.FullName, Encoding.Unicode).ToList()
-                            lines.Insert(1, newLine)
-                            File.WriteAllLines(fileInfo.FullName, lines, Encoding.Unicode)
-
-                        Else
-                            File.AppendAllText(fileInfo.FullName, newLine & Environment.NewLine, Encoding.Unicode)
-
-                        End If
-
-                    Catch ex As Exception
-                        Bot.Log($"[BattleTag Crawler] -> Error writing to file: {ex.Message}")
-
-                    End Try
                 End If
 
             End If
