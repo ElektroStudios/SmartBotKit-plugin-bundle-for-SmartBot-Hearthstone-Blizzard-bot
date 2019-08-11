@@ -2,6 +2,8 @@
 
 **SmartBotKit** is a personal collection of plugins developed for **SmartBot**, a bot for **Hearthstone** videogame.
 
+SmartBot's official website: https://smartbot.ws/
+
 Please be aware that using bots/cheats is against **Blizzard** EULA:
 
 http://eu.blizzard.com/en-gb/company/legal/anti-cheating.html
