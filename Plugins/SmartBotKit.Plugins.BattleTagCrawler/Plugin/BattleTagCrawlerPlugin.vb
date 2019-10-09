@@ -201,7 +201,7 @@ Namespace PluginTemplate
                         End If
 
                         Dim newLine As String =
-                                $"{Date.Now.ToString("yyyy-MM-dd hh\:mm\:ss")},{Bot.CurrentMode.ToString()},{standardRank},{ _
+                                $"{Date.Now.ToString("yyyy-MM-dd HH\:mm\:ss")},{Bot.CurrentMode.ToString()},{standardRank},{ _
                                 wildrank},{battletag}"
 
                         Try
