@@ -176,13 +176,15 @@ Namespace AppLauncher
                     Continue For
                 End If
 
-                Dim p As New Process()
-                p.StartInfo.FileName = fi.FullName
-                p.StartInfo.UseShellExecute = True
+#Disable Warning IDE0068 ' Use recommended dispose pattern
+                Dim pr As New Process()
+#Enable Warning IDE0068 ' Use recommended dispose pattern
+                pr.StartInfo.FileName = fi.FullName
+                pr.StartInfo.UseShellExecute = True
 
                 Try
-                    p.Start()
-                    Me.processes.Add(p)
+                    pr.Start()
+                    Me.processes.Add(pr)
                     Bot.Log($"[App Launcher] -> Execution success : '{fi.FullName}'")
 
                 Catch ex As Exception
@@ -203,12 +205,12 @@ Namespace AppLauncher
         <DebuggerStepThrough>
         Private Sub KillProcesses()
             For Each p As Process In Me.processes
-                If Not (p.HasExited) Then
+                If Not (p?.HasExited) Then
                     Try
-                        p.Kill()
+                        p?.Kill()
 
                     Finally
-                        p.Dispose()
+                        p?.Dispose()
 
                     End Try
                 End If
