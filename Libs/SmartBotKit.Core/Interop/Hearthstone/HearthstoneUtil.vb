@@ -9,6 +9,7 @@ Option Infer Off
 
 #Region " Imports "
 
+Imports System.ComponentModel
 Imports System.Drawing
 Imports System.Linq
 Imports System.Runtime.InteropServices
@@ -17,7 +18,6 @@ Imports SmartBotKit.Interop.Win32
 
 Imports SmartBot.Plugins.API
 Imports SmartBot.Plugins.API.Card
-Imports System.Collections.Generic
 
 #End Region
 
@@ -174,6 +174,115 @@ Namespace SmartBotKit.Interop
             End Get
         End Property
 
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Determine whether the player has obtained a golden hero portrait for the specified <see cref="CClass"/>.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <param name="heroClass">
+        ''' The source <see cref="CClass"/>.
+        ''' </param>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <returns>
+        ''' <see langword="True"/> if the player has obtained a golden hero portrait for the specified <see cref="CClass"/>;
+        ''' otherwise, <see langword="False"/>.
+        ''' </returns>
+        ''' ----------------------------------------------------------------------------------------------------
+        Public Shared Function IsGoldenHero(heroClass As CClass) As Boolean
+
+            Select Case heroClass
+
+                Case CClass.NONE
+                    Return False
+
+                Case CClass.DRUID
+                    Return Bot.GetPlayerDatas().GetGoldenHeroesDatas().Druid
+
+                Case CClass.HUNTER
+                    Return Bot.GetPlayerDatas().GetGoldenHeroesDatas().Hunter
+
+                Case CClass.MAGE
+                    Return Bot.GetPlayerDatas().GetGoldenHeroesDatas().Mage
+
+                Case CClass.PALADIN
+                    Return Bot.GetPlayerDatas().GetGoldenHeroesDatas().Paladin
+
+                Case CClass.PRIEST
+                    Return Bot.GetPlayerDatas().GetGoldenHeroesDatas().Priest
+
+                Case CClass.ROGUE
+                    Return Bot.GetPlayerDatas().GetGoldenHeroesDatas().Rogue
+
+                Case CClass.SHAMAN
+                    Return Bot.GetPlayerDatas().GetGoldenHeroesDatas().Shaman
+
+                Case CClass.WARLOCK
+                    Return Bot.GetPlayerDatas().GetGoldenHeroesDatas().Warlock
+
+                Case CClass.WARRIOR
+                    Return Bot.GetPlayerDatas().GetGoldenHeroesDatas().Warrior
+
+                Case Else
+                    Throw New InvalidEnumArgumentException(NameOf(heroClass), heroClass, GetType(CClass))
+
+            End Select
+
+        End Function
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Retrieve the amount of ranked/arena wins for the specified <see cref="CClass"/>.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <param name="heroClass">
+        ''' The source <see cref="CClass"/>.
+        ''' </param>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <returns>
+        ''' The amount of ranked/arena wins for the specified <see cref="CClass"/>.
+        ''' </returns>
+        ''' ----------------------------------------------------------------------------------------------------
+        Public Shared Function GetHeroWins(heroClass As CClass) As Integer
+
+            Select Case heroClass
+
+                Case CClass.NONE
+                    Return 0
+
+                Case CClass.DRUID
+                    Return Bot.GetPlayerDatas().GetGoldenHeroesDatas().DruidWins
+
+                Case CClass.HUNTER
+                    Return Bot.GetPlayerDatas().GetGoldenHeroesDatas().HunterWins
+
+                Case CClass.MAGE
+                    Return Bot.GetPlayerDatas().GetGoldenHeroesDatas().MageWins
+
+                Case CClass.PALADIN
+                    Return Bot.GetPlayerDatas().GetGoldenHeroesDatas().PaladinWins
+
+                Case CClass.PRIEST
+                    Return Bot.GetPlayerDatas().GetGoldenHeroesDatas().PriestWins
+
+                Case CClass.ROGUE
+                    Return Bot.GetPlayerDatas().GetGoldenHeroesDatas().RogueWins
+
+                Case CClass.SHAMAN
+                    Return Bot.GetPlayerDatas().GetGoldenHeroesDatas().ShamanWins
+
+                Case CClass.WARLOCK
+                    Return Bot.GetPlayerDatas().GetGoldenHeroesDatas().WarlockWins
+
+                Case CClass.WARRIOR
+                    Return Bot.GetPlayerDatas().GetGoldenHeroesDatas().WarriorWins
+
+                Case Else
+                    Throw New InvalidEnumArgumentException(NameOf(heroClass), heroClass, GetType(CClass))
+
+            End Select
+
+        End Function
+
 #End Region
 
 #Region " Constructors "
@@ -214,8 +323,8 @@ Namespace SmartBotKit.Interop
             Return NativeMethods.SetWindowPos(hWnd, IntPtr.Zero,
                                               rc.Location.X, rc.Location.Y,
                                               sz.Width, sz.Height,
-                                              SetWindowPosFlags.IgnoreMove Or 
-                                              SetWindowPosFlags.DontSendChangingEvent Or 
+                                              SetWindowPosFlags.IgnoreMove Or
+                                              SetWindowPosFlags.DontSendChangingEvent Or
                                               SetWindowPosFlags.DontRedraw)
         End Function
 
@@ -231,8 +340,8 @@ Namespace SmartBotKit.Interop
             Return NativeMethods.SetWindowPos(hWnd, IntPtr.Zero,
                                               pt.X, pt.Y,
                                               rc.Size.Width, rc.Size.Height,
-                                              SetWindowPosFlags.IgnoreResize Or 
-                                              SetWindowPosFlags.DontSendChangingEvent Or 
+                                              SetWindowPosFlags.IgnoreResize Or
+                                              SetWindowPosFlags.DontSendChangingEvent Or
                                               SetWindowPosFlags.DontRedraw)
         End Function
 
