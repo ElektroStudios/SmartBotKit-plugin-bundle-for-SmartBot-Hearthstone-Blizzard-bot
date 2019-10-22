@@ -9,9 +9,6 @@ Imports SmartBotKitUpdater.GitHub
 
 Public Module Updater
 
-    ' ReSharper disable once UnusedMember.Local
-    Private ReadOnly CurrentVersion As New Version("1.7.0.0")
-
     Public Sub Main()
         Updater.CheckForSmartBotKitUpdates()
     End Sub
