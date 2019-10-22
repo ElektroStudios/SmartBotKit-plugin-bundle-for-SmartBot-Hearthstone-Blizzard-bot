@@ -15,10 +15,11 @@ Imports System.IO
 Imports System.Linq
 Imports System.Reflection
 Imports System.Runtime.InteropServices
+Imports System.Threading
 Imports System.Windows.Automation
 
 Imports SmartBot.Plugins
-
+Imports SmartBot.Plugins.API
 Imports SmartBotKit.Interop.Win32
 
 #End Region
@@ -128,7 +129,7 @@ Namespace SmartBotKit.Interop
         Public Shared ReadOnly Property StatsLabelText As String
             <DebuggerStepThrough>
             Get
-                Return SmartBotUtil.UIElementStatsLabel.Current.Name
+                Return SmartBotUtil.UiElementStatsLabel.Current.Name
             End Get
         End Property
 
@@ -144,7 +145,7 @@ Namespace SmartBotKit.Interop
         Public Shared ReadOnly Property TextBoxLogText As String
             <DebuggerStepThrough>
             Get
-                Dim pattern As TextPattern = DirectCast(SmartBotUtil.UIElementTextBoxLog.GetCurrentPattern(TextPattern.Pattern), TextPattern)
+                Dim pattern As TextPattern = DirectCast(SmartBotUtil.UiElementTextBoxLog.GetCurrentPattern(TextPattern.Pattern), TextPattern)
                 Return pattern.DocumentRange.GetText(Integer.MaxValue)
             End Get
         End Property
@@ -407,6 +408,45 @@ Namespace SmartBotKit.Interop
         Public Shared Function GetAutomationElement(ByVal automationId As String) As AutomationElement
             Return SmartBotUtil.GetAutomationElement(SmartBotUtil.Process, automationId)
         End Function
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Ensures that SmartBot changes the specified mode or deck in Hearthstone.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <param name="botMode">
+        ''' The new bot mode.
+        ''' </param>
+        ''' 
+        ''' <param name="deckName">
+        ''' The new deck name.
+        ''' </param>
+        ''' ----------------------------------------------------------------------------------------------------
+        Public Shared Sub SafeChangeDeckOrMode(Optional botMode As Bot.Mode = Bot.Mode.None,
+                                               Optional deckName As String = "")
+
+            Dim currentMode As Bot.Mode = Bot.CurrentMode
+            Dim currentDeckName As String = Bot.CurrentDeck?.Name
+
+            If (botMode = Bot.Mode.None) Then
+                botMode = currentMode
+            End If
+
+            If (deckName = "") Then
+                deckName = currentDeckName
+            End If
+
+            If (currentMode <> botMode) OrElse (currentDeckName <> deckName) Then
+                Bot.SuspendBot()
+
+                Bot.ChangeMode(botMode)
+                Bot.ChangeDeck(deckName)
+
+                Thread.Sleep(2000)
+                Bot.ResumeBot()
+            End If
+
+        End Sub
 
 #End Region
 
