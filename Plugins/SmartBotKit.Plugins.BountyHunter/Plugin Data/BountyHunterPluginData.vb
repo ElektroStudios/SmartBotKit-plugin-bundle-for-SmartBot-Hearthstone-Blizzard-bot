@@ -511,6 +511,339 @@ Namespace BountyHunter
 
 #End Region
 
+#Region " Ranked Wins Count "
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets or sets a value that determine whether the plugin should try to play for reach a specific amount of ranked wins.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        <Category("Mode: Ranked Wins Count")>
+        <DisplayName("* Enable Ranked Wins Count")>
+        <Browsable(True)>
+        Public Property EnableRankedWinsCount As Boolean
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets or sets the bot mode for levelling.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        <Category("Mode: Ranked Wins Count")>
+        <DisplayName("** Bot Mode")>
+        <Browsable(True)>
+        <ItemsSource(GetType(LadderModeSource))>
+        Public Property RankedWinsCountMode As Bot.Mode
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets or sets a value that determine whether the bot should try to use a random available deck if 
+        ''' the specified preferred deck in <see cref="BountyHunterPluginData.RankedWinsCountPreferredDeck"/> is unavailable.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        <Category("Mode: Ranked Wins Count")>
+        <DisplayName("** Try a random available deck if preferred deck is unavailable")>
+        <Browsable(True)>
+        Public Property RankedWinsCountUseRandomDeckIfPreferredIsUnavailable As Boolean
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets or sets the target amount of ranked wins for Mage.
+        ''' <para></para>
+        ''' Valid range is between 1 and 9999.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        <Category("Mode: Ranked Wins Count")>
+        <DisplayName("Mage")>
+        <Browsable(True)>
+        Public Property RankedWinsMage As Integer
+            Get
+                Return Me.rankedWinsMage_
+            End Get
+            Set(ByVal value As Integer)
+                If (value < 0) Then
+                    Me.rankedWinsMage_ = 0
+                ElseIf (value > 9999) Then
+                    Me.rankedWinsMage_ = 9999
+                Else
+                    Me.rankedWinsMage_ = value
+                End If
+            End Set
+        End Property
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' ( Backing Field )
+        ''' <para></para>
+        ''' The target amount of ranked wins for Mage.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        Private rankedWinsMage_ As Integer
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets or sets the target amount of ranked wins for Priest.
+        ''' <para></para>
+        ''' Valid range is between 1 and 9999.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        <Category("Mode: Ranked Wins Count")>
+        <DisplayName("Priest")>
+        <Browsable(True)>
+        Public Property RankedWinsPriest As Integer
+            Get
+                Return Me.rankedWinsPriest_
+            End Get
+            Set(ByVal value As Integer)
+                If (value < 0) Then
+                    Me.rankedWinsPriest_ = 0
+                ElseIf (value > 9999) Then
+                    Me.rankedWinsPriest_ = 9999
+                Else
+                    Me.rankedWinsPriest_ = value
+                End If
+            End Set
+        End Property
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' ( Backing Field )
+        ''' <para></para>
+        ''' The target amount of ranked wins for Priest.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        Private rankedWinsPriest_ As Integer
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets or sets the target amount of ranked wins for Warrior.
+        ''' <para></para>
+        ''' Valid range is between 1 and 9999.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        <Category("Mode: Ranked Wins Count")>
+        <DisplayName("Warrior")>
+        <Browsable(True)>
+        Public Property RankedWinsWarrior As Integer
+            Get
+                Return Me.rankedWinsWarrior_
+            End Get
+            Set(ByVal value As Integer)
+                If (value < 0) Then
+                    Me.rankedWinsWarrior_ = 0
+                ElseIf (value > 9999) Then
+                    Me.rankedWinsWarrior_ = 9999
+                Else
+                    Me.rankedWinsWarrior_ = value
+                End If
+            End Set
+        End Property
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' ( Backing Field )
+        ''' <para></para>
+        ''' The target amount of ranked wins for Warrior.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        Private rankedWinsWarrior_ As Integer
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets or sets the target amount of ranked wins for Warlock.
+        ''' <para></para>
+        ''' Valid range is between 1 and 9999.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        <Category("Mode: Ranked Wins Count")>
+        <DisplayName("Warlock")>
+        <Browsable(True)>
+        Public Property RankedWinsWarlock As Integer
+            Get
+                Return Me.rankedWinsWarlock_
+            End Get
+            Set(ByVal value As Integer)
+                If (value < 0) Then
+                    Me.rankedWinsWarlock_ = 0
+                ElseIf (value > 9999) Then
+                    Me.rankedWinsWarlock_ = 9999
+                Else
+                    Me.rankedWinsWarlock_ = value
+                End If
+            End Set
+        End Property
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' ( Backing Field )
+        ''' <para></para>
+        ''' The target amount of ranked wins for Warlock.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        Private rankedWinsWarlock_ As Integer
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets or sets the target amount of ranked wins for Rogue.
+        ''' <para></para>
+        ''' Valid range is between 1 and 9999.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        <Category("Mode: Ranked Wins Count")>
+        <DisplayName("Rogue")>
+        <Browsable(True)>
+        Public Property RankedWinsRogue As Integer
+            Get
+                Return Me.rankedWinsRogue_
+            End Get
+            Set(ByVal value As Integer)
+                If (value < 0) Then
+                    Me.rankedWinsRogue_ = 0
+                ElseIf (value > 9999) Then
+                    Me.rankedWinsRogue_ = 9999
+                Else
+                    Me.rankedWinsRogue_ = value
+                End If
+            End Set
+        End Property
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' ( Backing Field )
+        ''' <para></para>
+        ''' The target amount of ranked wins for Rogue.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        Private rankedWinsRogue_ As Integer
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets or sets the target amount of ranked wins for Druid.
+        ''' <para></para>
+        ''' Valid range is between 1 and 9999.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        <Category("Mode: Ranked Wins Count")>
+        <DisplayName("Druid")>
+        <Browsable(True)>
+        Public Property RankedWinsDruid As Integer
+            Get
+                Return Me.rankedWinsDruid_
+            End Get
+            Set(ByVal value As Integer)
+                If (value < 0) Then
+                    Me.rankedWinsDruid_ = 0
+                ElseIf (value > 9999) Then
+                    Me.rankedWinsDruid_ = 9999
+                Else
+                    Me.rankedWinsDruid_ = value
+                End If
+            End Set
+        End Property
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' ( Backing Field )
+        ''' <para></para>
+        ''' The target amount of ranked wins for Druid.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        Private rankedWinsDruid_ As Integer
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets or sets the target amount of ranked wins for Hunter.
+        ''' <para></para>
+        ''' Valid range is between 1 and 9999.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        <Category("Mode: Ranked Wins Count")>
+        <DisplayName("Hunter")>
+        <Browsable(True)>
+        Public Property RankedWinsHunter As Integer
+            Get
+                Return Me.rankedWinsHunter_
+            End Get
+            Set(ByVal value As Integer)
+                If (value < 0) Then
+                    Me.rankedWinsHunter_ = 0
+                ElseIf (value > 9999) Then
+                    Me.rankedWinsHunter_ = 9999
+                Else
+                    Me.rankedWinsHunter_ = value
+                End If
+            End Set
+        End Property
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' ( Backing Field )
+        ''' <para></para>
+        ''' The target amount of ranked wins for Hunter.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        Private rankedWinsHunter_ As Integer
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets or sets the target amount of ranked wins for Shaman.
+        ''' <para></para>
+        ''' Valid range is between 1 and 9999.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        <Category("Mode: Ranked Wins Count")>
+        <DisplayName("Shaman")>
+        <Browsable(True)>
+        Public Property RankedWinsShaman As Integer
+            Get
+                Return Me.rankedWinsShaman_
+            End Get
+            Set(ByVal value As Integer)
+                If (value < 0) Then
+                    Me.rankedWinsShaman_ = 0
+                ElseIf (value > 9999) Then
+                    Me.rankedWinsShaman_ = 9999
+                Else
+                    Me.rankedWinsShaman_ = value
+                End If
+            End Set
+        End Property
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' ( Backing Field )
+        ''' <para></para>
+        ''' The target amount of ranked wins for Shaman.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        Private rankedWinsShaman_ As Integer
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets or sets the target amount of ranked wins for Paladin.
+        ''' <para></para>
+        ''' Valid range is between 1 and 9999.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        <Category("Mode: Ranked Wins Count")>
+        <DisplayName("Paladin")>
+        <Browsable(True)>
+        Public Property RankedWinsPaladin As Integer
+            Get
+                Return Me.rankedWinsPaladin_
+            End Get
+            Set(ByVal value As Integer)
+                If (value < 0) Then
+                    Me.rankedWinsPaladin_ = 0
+                ElseIf (value > 9999) Then
+                    Me.rankedWinsPaladin_ = 9999
+                Else
+                    Me.rankedWinsPaladin_ = value
+                End If
+            End Set
+        End Property
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' ( Backing Field )
+        ''' <para></para>
+        ''' The target amount of ranked wins for Paladin.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        Private rankedWinsPaladin_ As Integer
+
+#End Region
+
 #Region " Ladder Scheduler "
 
         ''' ----------------------------------------------------------------------------------------------------
@@ -636,7 +969,7 @@ Namespace BountyHunter
         ''' Gets or sets the preferred deck for Druid.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        <Category("Preferred Decks (for questing and levelling)")>
+        <Category("Preferred Decks (for questing, hero levelling and ranked mode)")>
         <DisplayName("Druid")>
         <Browsable(True)>
         <ItemsSource(GetType(DeckSourceDruid))>
@@ -658,7 +991,7 @@ Namespace BountyHunter
         ''' Gets or sets the preferred deck for Mage.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        <Category("Preferred Decks (for questing and levelling)")>
+        <Category("Preferred Decks (for questing, hero levelling and ranked mode)")>
         <DisplayName("Mage")>
         <Browsable(True)>
         <ItemsSource(GetType(DeckSourceMage))>
@@ -680,7 +1013,7 @@ Namespace BountyHunter
         ''' Gets or sets the preferred deck for Hunter.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        <Category("Preferred Decks (for questing and levelling)")>
+        <Category("Preferred Decks (for questing, hero levelling and ranked mode)")>
         <DisplayName("Hunter")>
         <Browsable(True)>
         <ItemsSource(GetType(DeckSourceHunter))>
@@ -702,7 +1035,7 @@ Namespace BountyHunter
         ''' Gets or sets the preferred deck for Paladin.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        <Category("Preferred Decks (for questing and levelling)")>
+        <Category("Preferred Decks (for questing, hero levelling and ranked mode)")>
         <DisplayName("Paladin")>
         <Browsable(True)>
         <ItemsSource(GetType(DeckSourcePaladin))>
@@ -724,7 +1057,7 @@ Namespace BountyHunter
         ''' Gets or sets the preferred deck for Priest.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        <Category("Preferred Decks (for questing and levelling)")>
+        <Category("Preferred Decks (for questing, hero levelling and ranked mode)")>
         <DisplayName("Priest")>
         <Browsable(True)>
         <ItemsSource(GetType(DeckSourcePriest))>
@@ -746,7 +1079,7 @@ Namespace BountyHunter
         ''' Gets or sets the preferred deck for Rogue.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        <Category("Preferred Decks (for questing and levelling)")>
+        <Category("Preferred Decks (for questing, hero levelling and ranked mode)")>
         <DisplayName("Rogue")>
         <Browsable(True)>
         <ItemsSource(GetType(DeckSourceRogue))>
@@ -768,7 +1101,7 @@ Namespace BountyHunter
         ''' Gets or sets the preferred deck for Shaman.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        <Category("Preferred Decks (for questing and levelling)")>
+        <Category("Preferred Decks (for questing, hero levelling and ranked mode)")>
         <DisplayName("Shaman")>
         <Browsable(True)>
         <ItemsSource(GetType(DeckSourceShaman))>
@@ -790,7 +1123,7 @@ Namespace BountyHunter
         ''' Gets or sets the preferred deck for Warrior.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        <Category("Preferred Decks (for questing and levelling)")>
+        <Category("Preferred Decks (for questing, hero levelling and ranked mode)")>
         <DisplayName("Warrior")>
         <Browsable(True)>
         <ItemsSource(GetType(DeckSourceWarrior))>
@@ -812,7 +1145,7 @@ Namespace BountyHunter
         ''' Gets or sets the preferred deck for Warlock.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        <Category("Preferred Decks (for questing and levelling)")>
+        <Category("Preferred Decks (for questing, hero levelling and ranked mode)")>
         <DisplayName("Warlock")>
         <Browsable(True)>
         <ItemsSource(GetType(DeckSourceWarlock))>
@@ -859,6 +1192,19 @@ Namespace BountyHunter
             End Get
         End Property
 
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets the target ranked wins count to reach for the specified hero class.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        <Category("Reserved")>
+        <Browsable(False)>
+        Public ReadOnly Property TargetRankedWinsCount(ByVal heroClass As CClass) As Integer
+            Get
+                Return Me.GetTargetRankedWinsCount(heroClass)
+            End Get
+        End Property
+
 #End Region
 
 #End Region
@@ -891,17 +1237,30 @@ Namespace BountyHunter
             Me.LadderModeAutoStart = False
             Me.LadderModeAutoStop = False
 
+            Me.EnableRankedWinsCount = False
+            Me.RankedWinsCountMode = Bot.Mode.RankedStandard
+            Me.RankedWinsCountUseRandomDeckIfPreferredIsUnavailable = False
+            Me.rankedWinsDruid_ = 1000
+            Me.rankedWinsHunter_ = 1000
+            Me.rankedWinsMage_ = 1000
+            Me.rankedWinsPaladin_ = 1000
+            Me.rankedWinsPriest_ = 1000
+            Me.rankedWinsRogue_ = 1000
+            Me.rankedWinsShaman_ = 1000
+            Me.rankedWinsWarlock_ = 1000
+            Me.rankedWinsWarrior_ = 1000
+
             Me.EnableHeroLevelling = False
             Me.LevelMode = Bot.Mode.UnrankedStandard
-            Me.lvlDruid_ = 1
-            Me.lvlHunter_ = 1
-            Me.lvlMage_ = 1
-            Me.lvlPaladin_ = 1
-            Me.lvlPriest_ = 1
-            Me.lvlRogue_ = 1
-            Me.lvlShaman_ = 1
-            Me.lvlWarlock_ = 1
-            Me.lvlWarrior_ = 1
+            Me.lvlDruid_ = 60
+            Me.lvlHunter_ = 60
+            Me.lvlMage_ = 60
+            Me.lvlPaladin_ = 60
+            Me.lvlPriest_ = 60
+            Me.lvlRogue_ = 60
+            Me.lvlShaman_ = 60
+            Me.lvlWarlock_ = 60
+            Me.lvlWarrior_ = 60
 
             Me.deckDruid_ = "None"
             Me.deckHunter_ = "None"
@@ -1028,6 +1387,49 @@ Namespace BountyHunter
 
                 Case CClass.WARRIOR
                     Return Me.LvlWarrior
+
+                Case Else ' CClass.NONE
+                    Return -1
+
+            End Select
+
+        End Function
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets the target ranked wins count to reach for the specified hero class.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        Private Function GetTargetRankedWinsCount(ByVal heroClass As CClass) As Integer
+
+            Select Case heroClass
+
+                Case CClass.DRUID
+                    Return Me.RankedWinsDruid
+
+                Case CClass.HUNTER
+                    Return Me.RankedWinsHunter
+
+                Case CClass.MAGE
+                    Return Me.RankedWinsMage
+
+                Case CClass.PALADIN
+                    Return Me.RankedWinsPaladin
+
+                Case CClass.PRIEST
+                    Return Me.RankedWinsPriest
+
+                Case CClass.ROGUE
+                    Return Me.RankedWinsRogue
+
+                Case CClass.SHAMAN
+                    Return Me.RankedWinsShaman
+
+                Case CClass.WARLOCK
+                    Return Me.RankedWinsWarlock
+
+                Case CClass.WARRIOR
+                    Return Me.RankedWinsWarrior
 
                 Case Else ' CClass.NONE
                     Return -1

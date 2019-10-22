@@ -19,6 +19,7 @@ Imports SmartBot.Plugins.API.Card
 
 Imports SmartBotKit.Extensions.IListExtensions
 Imports SmartBotKit.Extensions.TimeSpanExtensions
+Imports SmartBotKit.Interop
 Imports SmartBotKit.ReservedUse
 
 #End Region
@@ -28,7 +29,6 @@ Imports SmartBotKit.ReservedUse
 ' ReSharper disable once CheckNamespace
 
 Namespace BountyHunter
-
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>
@@ -259,20 +259,24 @@ Namespace BountyHunter
 
             Me.questTypesToKeep = New List(Of Quest.QuestType)
 
+            ' Defeat 3 Monster Hunt Bosses.
             If (Me.DataContainer.KeepQuestCatchABigOne) Then
-                Me.questTypesToKeep.Add(Quest.QuestType.CatchaBigOne) ' Defeat 3 Monster Hunt Bosses.
+                Me.questTypesToKeep.Add(Quest.QuestType.CatchaBigOne)
             End If
 
+            ' Defeat 3 Dungeon Run Bosses.
             If (Me.DataContainer.KeepQuestSpelunker) Then
-                Me.questTypesToKeep.Add(Quest.QuestType.Spelunker) ' Defeat 3 Dungeon Run Bosses.
+                Me.questTypesToKeep.Add(Quest.QuestType.Spelunker)
             End If
 
+            ' Play a friend, you both earn a reward!.
             If (Me.DataContainer.KeepQuestPlayAFriend) Then
-                Me.questTypesToKeep.Add(Quest.QuestType.ChallengeaFriend) ' Play a friend, you both earn a reward!.
+                Me.questTypesToKeep.Add(Quest.QuestType.ChallengeaFriend)
             End If
 
+            ' Watch a friend win in spectator mode.
             If (Me.DataContainer.KeepQuestWatchAndLearn) Then
-                Me.questTypesToKeep.Add(Quest.QuestType.WatchandLearn) ' Watch a friend win in spectator mode.
+                Me.questTypesToKeep.Add(Quest.QuestType.WatchandLearn)
             End If
 
         End Sub
@@ -330,6 +334,12 @@ Namespace BountyHunter
                 isNextModeChoosed = Me.ActivateMode(BountyHunterMode.HeroLevelling)
             End If
 
+            If (Me.DataContainer.EnableRankedWinsCount) AndAlso Not (isNextModeChoosed) Then
+#Disable Warning IDE0059 ' Unnecessary assignment of a value
+                isNextModeChoosed = Me.ActivateMode(BountyHunterMode.RankedWinsCount)
+#Enable Warning IDE0059 ' Unnecessary assignment of a value
+            End If
+
         End Sub
 
         ''' ----------------------------------------------------------------------------------------------------
@@ -358,8 +368,10 @@ Namespace BountyHunter
                         Dim newDeck As Deck = Me.GetBestDeckForQuest(questToDo)
                         Dim botMode As Bot.Mode = Me.DataContainer.QuestMode
                         Bot.Log($"[Bounty Hunter] -> Questing Mode | '{questToDo.Name}' | {botMode} | {newDeck.Name}")
-                        Bot.ChangeMode(botMode)
-                        Bot.ChangeDeck(newDeck.Name)
+
+                        SmartBotUtil.SafeChangeDeckOrMode(botMode, newDeck.Name)
+                        ' Bot.ChangeMode(botMode)
+                        ' Bot.ChangeDeck(newDeck.Name)
                         Me.currentBountyHunterMode = mode
                         Return True
 
@@ -383,14 +395,48 @@ Namespace BountyHunter
                                 Bot.Log(
                                     $"[Bounty Hunter] -> Levelling Mode | {heroClass} ({currentLevel} levels of { _
                                            targetLevel}) | {botMode} | {preferredDeck.Name}")
-                                Bot.ChangeMode(botMode)
-                                Bot.ChangeDeck(preferredDeck.Name)
+                                SmartBotUtil.SafeChangeDeckOrMode(botMode, preferredDeck.Name)
+                                ' Bot.ChangeMode(botMode)
+                                ' Bot.ChangeDeck(preferredDeck.Name)
                                 Me.currentBountyHunterMode = mode
                                 Return True
 
                             Else
                                 Bot.Log(
                                     $"[Bounty Hunter] -> Levelling Mode | No available deck for class: {heroClass _
+                                           }. Switching to next class...")
+
+                            End If
+                        End If
+
+                    Next
+                    Me.RestoreNormalSettings()
+                    Return False
+
+                Case BountyHunterMode.RankedWinsCount
+
+                    For Each heroClass As CClass In [Enum].GetValues(GetType(CClass))
+
+                        Dim currentWins As Integer = HearthstoneUtil.GetHeroWins(heroClass)
+                        Dim targetWins As Integer = Me.DataContainer.TargetRankedWinsCount(heroClass)
+
+                        If (currentWins < targetWins) Then
+                            Dim botMode As Bot.Mode = Me.DataContainer.RankedWinsCountMode
+                            Dim preferredDeck As Deck = Me.DataContainer.PreferredDeck(heroClass)
+
+                            If (preferredDeck IsNot Nothing) Then
+                                Bot.Log(
+                                    $"[Bounty Hunter] -> Ranked Wins Count Mode | {heroClass} ({currentWins} wins of { _
+                                           targetWins}) | {botMode} | {preferredDeck.Name}")
+                                SmartBotUtil.SafeChangeDeckOrMode(botMode, preferredDeck.Name)
+                                ' Bot.ChangeMode(botMode)
+                                ' Bot.ChangeDeck(preferredDeck.Name)
+                                Me.currentBountyHunterMode = mode
+                                Return True
+
+                            Else
+                                Bot.Log(
+                                    $"[Bounty Hunter] -> Ranked Wins Count Mode | No available deck for class: {heroClass _
                                            }. Switching to next class...")
 
                             End If
@@ -411,8 +457,9 @@ Namespace BountyHunter
 
                     If (deck IsNot Nothing) Then
                         Bot.Log($"[Bounty Hunter] -> Ladder Mode | {botMode} | {deck.Name}")
-                        Bot.ChangeMode(botMode)
-                        Bot.ChangeDeck(deck.Name)
+                        SmartBotUtil.SafeChangeDeckOrMode(botMode, deck.Name)
+                        ' Bot.ChangeMode(botMode)
+                        ' Bot.ChangeDeck(deck.Name)
                         If (Me.DataContainer.LadderModeAutoStart) AndAlso Not (Bot.IsBotRunning()) Then
                             Bot.Log("[Bounty Hunter] -> Ladder Mode, auto-starting bot...")
                             Bot.StartBot()
@@ -474,12 +521,9 @@ Namespace BountyHunter
                (Bot.CurrentDeck?.Name <> Me.lastNormalDeckName) OrElse
                (Bot.GetSelectedDecks?.Count <> Me.lastNormalSelectedDeckNames?.Count) Then
 
-                Bot.ChangeMode(Me.lastNormalBotMode)
-                'For Each deckName As String In Me.lastNormalSelectedDeckNames
-                '    Bot.ChangeDeck(deckName)
-                'Next
-                Bot.ChangeDeck(Me.lastNormalDeckName)
-
+                SmartBotUtil.SafeChangeDeckOrMode(Me.lastNormalBotMode, Me.lastNormalDeckName)
+                ' Bot.ChangeMode(Me.lastNormalBotMode)
+                ' Bot.ChangeDeck(Me.lastNormalDeckName)
                 Me.lastNormalBotMode = Bot.CurrentMode
                 Me.lastNormalDeckName = Bot.CurrentDeck?.Name
 

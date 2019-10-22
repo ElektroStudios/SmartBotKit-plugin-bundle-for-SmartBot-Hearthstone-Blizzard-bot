@@ -5,7 +5,6 @@
 
 Namespace BountyHunter
 
-
     Public Enum BountyHunterMode As Integer
 
         ''' <summary>
@@ -27,6 +26,11 @@ Namespace BountyHunter
         ''' Quest Completion Mode.
         ''' </summary>
         Questing
+
+        ''' <summary>
+        ''' Ranked Wins Count Mode.
+        ''' </summary>
+        RankedWinsCount
 
     End Enum
 
