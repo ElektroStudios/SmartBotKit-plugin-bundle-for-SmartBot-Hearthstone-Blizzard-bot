@@ -104,15 +104,15 @@ Namespace BountyHunter
 
 #End Region
 
-#Region " Quests Completion "
+#Region " Daily Quests "
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
         ''' Gets or sets a value that determine whether the plugin should do quests.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        <Category("Mode: Quests Completion")>
-        <DisplayName("* Enable quests completion")>
+        <Category("Mode: Daily Quests")>
+        <DisplayName("* Enable Daily Quests Mode")>
         <Browsable(True)>
         Public Property EnableQuestCompletion As Boolean
 
@@ -121,7 +121,7 @@ Namespace BountyHunter
         ''' Gets or sets the bot mode for questing.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        <Category("Mode: Quests Completion")>
+        <Category("Mode: Daily Quests")>
         <DisplayName("Bot mode")>
         <Browsable(True)>
         <ItemsSource(GetType(QuestModeSource))>
@@ -132,7 +132,7 @@ Namespace BountyHunter
         ''' Gets or sets a value that determine whether 50 gold quests should be reroll.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        <Category("Mode: Quests Completion")>
+        <Category("Mode: Daily Quests")>
         <DisplayName("Reroll 50 gold quests")>
         <Browsable(True)>
         Public Property Reroll50GoldQuests As Boolean
@@ -142,7 +142,7 @@ Namespace BountyHunter
         ''' Gets or sets a value that determine whether unfulfillable quests should be reroll.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        <Category("Mode: Quests Completion")>
+        <Category("Mode: Daily Quests")>
         <DisplayName("Reroll unfulfillable quests")>
         <Browsable(True)>
         Public Property RerollUnfulfillableQuests As Boolean
@@ -152,7 +152,7 @@ Namespace BountyHunter
         ''' Gets or sets a value that determine whether "Watch and Learn!" quest should be kept.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        <Category("Mode: Quests Completion")>
+        <Category("Mode: Daily Quests")>
         <DisplayName("Keep 'Watch and Learn!' quest")>
         <Browsable(True)>
         Public Property KeepQuestWatchAndLearn As Boolean
@@ -162,7 +162,7 @@ Namespace BountyHunter
         ''' Gets or sets a value that determine whether "Play a Friend!" quest should be kept.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        <Category("Mode: Quests Completion")>
+        <Category("Mode: Daily Quests")>
         <DisplayName("Keep 'Play a Friend!' quest")>
         <Browsable(True)>
         Public Property KeepQuestPlayAFriend As Boolean
@@ -172,7 +172,7 @@ Namespace BountyHunter
         ''' Gets or sets a value that determine whether "Catch a Big One!" quest should be kept.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        <Category("Mode: Quests Completion")>
+        <Category("Mode: Daily Quests")>
         <DisplayName("Keep 'Catch a Big One!' quest")>
         <Browsable(True)>
         Public Property KeepQuestCatchABigOne As Boolean
@@ -182,7 +182,7 @@ Namespace BountyHunter
         ''' Gets or sets a value that determine whether "Spelunker!" quest should be kept.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        <Category("Mode: Quests Completion")>
+        <Category("Mode: Daily Quests")>
         <DisplayName("Keep 'Spelunker!' quest")>
         <Browsable(True)>
         Public Property KeepQuestSpelunker As Boolean
@@ -197,7 +197,7 @@ Namespace BountyHunter
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         <Category("Mode: Hero Levelling")>
-        <DisplayName("* Enable Hero Class Level Completion")>
+        <DisplayName("* Enable Hero Levelling mode")>
         <Browsable(True)>
         Public Property EnableHeroLevelling As Boolean
 
@@ -207,7 +207,7 @@ Namespace BountyHunter
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         <Category("Mode: Hero Levelling")>
-        <DisplayName("Bot Mode")>
+        <DisplayName("** Bot Mode")>
         <Browsable(True)>
         <ItemsSource(GetType(LevelModeSource))>
         Public Property LevelMode As Bot.Mode
@@ -519,7 +519,7 @@ Namespace BountyHunter
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         <Category("Mode: Ranked Wins Count")>
-        <DisplayName("* Enable Ranked Wins Count")>
+        <DisplayName("* Enable Ranked Wins Count Mode")>
         <Browsable(True)>
         Public Property EnableRankedWinsCount As Boolean
 
@@ -537,7 +537,7 @@ Namespace BountyHunter
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
         ''' Gets or sets a value that determine whether the bot should try to use a random available deck if 
-        ''' the specified preferred deck in <see cref="BountyHunterPluginData.RankedWinsCountPreferredDeck"/> is unavailable.
+        ''' the specified preferred deck in <see cref="BountyHunterPluginData.PreferredDeck"/> is unavailable.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         <Category("Mode: Ranked Wins Count")>
@@ -852,7 +852,7 @@ Namespace BountyHunter
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         <Category("Mode: Ladder Scheduler")>
-        <DisplayName("* Enable Ladder Scheduler" & ControlChars.NewLine & ControlChars.NewLine &
+        <DisplayName("* Enable Ladder Scheduler Mode" & ControlChars.NewLine & ControlChars.NewLine &
                      "If enabled, between the specified hours " & ControlChars.NewLine &
                      "the plugin will ignore questing and levelling " & ControlChars.NewLine &
                      "and it will only play ranked mode.")>
@@ -962,14 +962,14 @@ Namespace BountyHunter
 
 #End Region
 
-#Region " Preferred Decks (for questing and levelling)"
+#Region " Preferred Decks (for all modes)"
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
         ''' Gets or sets the preferred deck for Druid.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        <Category("Preferred Decks (for questing, hero levelling and ranked mode)")>
+        <Category("Preferred Decks (for all modes)")>
         <DisplayName("Druid")>
         <Browsable(True)>
         <ItemsSource(GetType(DeckSourceDruid))>
@@ -991,7 +991,7 @@ Namespace BountyHunter
         ''' Gets or sets the preferred deck for Mage.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        <Category("Preferred Decks (for questing, hero levelling and ranked mode)")>
+        <Category("Preferred Decks (for all modes)")>
         <DisplayName("Mage")>
         <Browsable(True)>
         <ItemsSource(GetType(DeckSourceMage))>
@@ -1013,7 +1013,7 @@ Namespace BountyHunter
         ''' Gets or sets the preferred deck for Hunter.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        <Category("Preferred Decks (for questing, hero levelling and ranked mode)")>
+        <Category("Preferred Decks (for all modes)")>
         <DisplayName("Hunter")>
         <Browsable(True)>
         <ItemsSource(GetType(DeckSourceHunter))>
@@ -1035,7 +1035,7 @@ Namespace BountyHunter
         ''' Gets or sets the preferred deck for Paladin.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        <Category("Preferred Decks (for questing, hero levelling and ranked mode)")>
+        <Category("Preferred Decks (for all modes)")>
         <DisplayName("Paladin")>
         <Browsable(True)>
         <ItemsSource(GetType(DeckSourcePaladin))>
@@ -1057,7 +1057,7 @@ Namespace BountyHunter
         ''' Gets or sets the preferred deck for Priest.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        <Category("Preferred Decks (for questing, hero levelling and ranked mode)")>
+        <Category("Preferred Decks (for all modes)")>
         <DisplayName("Priest")>
         <Browsable(True)>
         <ItemsSource(GetType(DeckSourcePriest))>
@@ -1079,7 +1079,7 @@ Namespace BountyHunter
         ''' Gets or sets the preferred deck for Rogue.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        <Category("Preferred Decks (for questing, hero levelling and ranked mode)")>
+        <Category("Preferred Decks (for all modes)")>
         <DisplayName("Rogue")>
         <Browsable(True)>
         <ItemsSource(GetType(DeckSourceRogue))>
@@ -1101,7 +1101,7 @@ Namespace BountyHunter
         ''' Gets or sets the preferred deck for Shaman.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        <Category("Preferred Decks (for questing, hero levelling and ranked mode)")>
+        <Category("Preferred Decks (for all modes)")>
         <DisplayName("Shaman")>
         <Browsable(True)>
         <ItemsSource(GetType(DeckSourceShaman))>
@@ -1123,7 +1123,7 @@ Namespace BountyHunter
         ''' Gets or sets the preferred deck for Warrior.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        <Category("Preferred Decks (for questing, hero levelling and ranked mode)")>
+        <Category("Preferred Decks (for all modes)")>
         <DisplayName("Warrior")>
         <Browsable(True)>
         <ItemsSource(GetType(DeckSourceWarrior))>
@@ -1145,7 +1145,7 @@ Namespace BountyHunter
         ''' Gets or sets the preferred deck for Warlock.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        <Category("Preferred Decks (for questing, hero levelling and ranked mode)")>
+        <Category("Preferred Decks (for all modes)")>
         <DisplayName("Warlock")>
         <Browsable(True)>
         <ItemsSource(GetType(DeckSourceWarlock))>

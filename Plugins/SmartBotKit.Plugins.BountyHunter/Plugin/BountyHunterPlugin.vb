@@ -317,7 +317,7 @@ Namespace BountyHunter
                 ElseIf Not (isLadderTime) AndAlso (Me.currentBountyHunterMode = BountyHunterMode.Ladder) Then
                     Me.currentBountyHunterMode = BountyHunterMode.None
                     If (Me.DataContainer.LadderModeAutoStop) AndAlso (Bot.IsBotRunning()) Then
-                        Bot.Log("[Bounty Hunter] -> Ladder Mode, auto-finishing bot...")
+                        Bot.Log("[Bounty Hunter] -> Ladder Scheduler Mode, auto-finishing bot...")
                         Bot.Finish()
                         Me.RestoreNormalSettings()
                     End If
@@ -367,7 +367,7 @@ Namespace BountyHunter
                     If (questToDo IsNot Nothing) Then
                         Dim newDeck As Deck = Me.GetBestDeckForQuest(questToDo)
                         Dim botMode As Bot.Mode = Me.DataContainer.QuestMode
-                        Bot.Log($"[Bounty Hunter] -> Questing Mode | '{questToDo.Name}' | {botMode} | {newDeck.Name}")
+                        Bot.Log($"[Bounty Hunter] -> Daily Quests Mode | '{questToDo.Name}' | {botMode} | {newDeck.Name}")
 
                         SmartBotUtil.SafeChangeDeckOrMode(botMode, newDeck.Name)
                         ' Bot.ChangeMode(botMode)
@@ -393,8 +393,8 @@ Namespace BountyHunter
 
                             If (preferredDeck IsNot Nothing) Then
                                 Bot.Log(
-                                    $"[Bounty Hunter] -> Levelling Mode | {heroClass} ({currentLevel} levels of { _
-                                           targetLevel}) | {botMode} | {preferredDeck.Name}")
+                                    $"[Bounty Hunter] -> Hero Levelling Mode | {heroClass} ({currentLevel} of { _
+                                           targetLevel} levels) | {botMode} | {preferredDeck.Name}")
                                 SmartBotUtil.SafeChangeDeckOrMode(botMode, preferredDeck.Name)
                                 ' Bot.ChangeMode(botMode)
                                 ' Bot.ChangeDeck(preferredDeck.Name)
@@ -403,7 +403,7 @@ Namespace BountyHunter
 
                             Else
                                 Bot.Log(
-                                    $"[Bounty Hunter] -> Levelling Mode | No available deck for class: {heroClass _
+                                    $"[Bounty Hunter] -> Hero Levelling Mode | No available deck for class: {heroClass _
                                            }. Switching to next class...")
 
                             End If
@@ -418,6 +418,7 @@ Namespace BountyHunter
                     For Each heroClass As CClass In [Enum].GetValues(GetType(CClass))
 
                         Dim currentWins As Integer = HearthstoneUtil.GetHeroWins(heroClass)
+                        Bot.Log(currentWins.ToString)
                         Dim targetWins As Integer = Me.DataContainer.TargetRankedWinsCount(heroClass)
 
                         If (currentWins < targetWins) Then
@@ -426,8 +427,8 @@ Namespace BountyHunter
 
                             If (preferredDeck IsNot Nothing) Then
                                 Bot.Log(
-                                    $"[Bounty Hunter] -> Ranked Wins Count Mode | {heroClass} ({currentWins} wins of { _
-                                           targetWins}) | {botMode} | {preferredDeck.Name}")
+                                    $"[Bounty Hunter] -> Ranked Wins Count Mode | {heroClass} ({currentWins} of { _
+                                           targetWins} wins) | {botMode} | {preferredDeck.Name}")
                                 SmartBotUtil.SafeChangeDeckOrMode(botMode, preferredDeck.Name)
                                 ' Bot.ChangeMode(botMode)
                                 ' Bot.ChangeDeck(preferredDeck.Name)
@@ -456,18 +457,18 @@ Namespace BountyHunter
                     End If
 
                     If (deck IsNot Nothing) Then
-                        Bot.Log($"[Bounty Hunter] -> Ladder Mode | {botMode} | {deck.Name}")
+                        Bot.Log($"[Bounty Hunter] -> Ladder Scheduler Mode | {botMode} | {deck.Name}")
                         SmartBotUtil.SafeChangeDeckOrMode(botMode, deck.Name)
                         ' Bot.ChangeMode(botMode)
                         ' Bot.ChangeDeck(deck.Name)
                         If (Me.DataContainer.LadderModeAutoStart) AndAlso Not (Bot.IsBotRunning()) Then
-                            Bot.Log("[Bounty Hunter] -> Ladder Mode, auto-starting bot...")
+                            Bot.Log("[Bounty Hunter] -> Ladder Scheduler Mode, auto-starting bot...")
                             Bot.StartBot()
                         End If
                         Return True
 
                     Else
-                        Bot.Log("[Bounty Hunter] -> Ladder Mode | No available deck.")
+                        Bot.Log("[Bounty Hunter] -> Ladder Scheduler Mode | No available deck.")
                         Me.RestoreNormalSettings()
                         Return False
 
