@@ -418,7 +418,6 @@ Namespace BountyHunter
                     For Each heroClass As CClass In [Enum].GetValues(GetType(CClass))
 
                         Dim currentWins As Integer = HearthstoneUtil.GetHeroWins(heroClass)
-                        Bot.Log(currentWins.ToString)
                         Dim targetWins As Integer = Me.DataContainer.TargetRankedWinsCount(heroClass)
 
                         If (currentWins < targetWins) Then
