@@ -142,6 +142,10 @@ Settings:
 
 ![](Images/Legend%20Rank%20Handler%20-%20Settings.png)
 
+Default mail message:
+
+![](Images/Legend%20Rank%20Handler%20-%20Default%20Mail%20Message.png)
+
 ### Offline Server handler
 A plugin that handles the bot behavior when the server gets down. 
 
