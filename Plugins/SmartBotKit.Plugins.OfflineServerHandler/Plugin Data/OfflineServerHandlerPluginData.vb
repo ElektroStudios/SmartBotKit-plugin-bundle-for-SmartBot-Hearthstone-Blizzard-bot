@@ -20,6 +20,7 @@ Imports SmartBot.Plugins
 Imports SmartBot.Plugins.API
 
 Imports SmartBotKit.Interop
+Imports Xceed.Wpf.Toolkit.PropertyGrid.Attributes
 
 #End Region
 
@@ -28,7 +29,6 @@ Imports SmartBotKit.Interop
 ' ReSharper disable once CheckNamespace
 
 Namespace OfflineServerHandler
-
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>
@@ -171,6 +171,16 @@ Namespace OfflineServerHandler
         <Browsable(True)>
         Public Property StopTheBotIfUnranked As Boolean
 
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets or sets a value that determine the new computer state if server is down.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        <Category("Disconnection")>
+        <DisplayName("Set the computer state")>
+        <ItemsSource(GetType(ComputerStateSource))>
+        Public Property SetComputerState As ComputerState
+
 #End Region
 
 #Region " Reconnection "
@@ -234,7 +244,9 @@ Namespace OfflineServerHandler
 
             Me.StopTheBotIfArena = True
             Me.StopTheBotIfRanked = True
-            Me.StopTheBotIfUnranked = False
+            Me.StopTheBotIfUnranked = True
+
+            Me.SetComputerState = ComputerState.NoChange
 
             Me.PlaySoundFile = True
 

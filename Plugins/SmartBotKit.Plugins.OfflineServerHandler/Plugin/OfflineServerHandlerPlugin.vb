@@ -18,7 +18,9 @@ Imports System.Threading.Tasks
 Imports SmartBot.Plugins
 Imports SmartBot.Plugins.API
 
+Imports SmartBotKit.Computer
 Imports SmartBotKit.Interop
+Imports SmartBotKit.Interop.Win32
 Imports SmartBotKit.ReservedUse
 
 #End Region
@@ -221,23 +223,41 @@ Namespace OfflineServerHandler
                     If (isBotStopped) Then
                         Bot.Log("[Offline Server Handler] -> Server down detected. Bot has been stopped.")
 
-                        If (Me.DataContainer.ResumeEnabled()) Then
-                            Dim minutes As Integer = Me.DataContainer.ResumeInterval
-                            Me.ScheduleResume(minutes)
-                            Bot.Log($"[Offline Server Handler] -> Bot resumption scheduled to {minutes} minutes.")
-                        End If
-                    End If
+                        Select Case Me.DataContainer.SetComputerState
 
-                    If (Me.DataContainer.PlaySoundFile) Then
-                        Try
-                            Using player As New SoundPlayer(Path.Combine(SmartBotUtil.PluginsDir.FullName, "OfflineServerHandler.wav"))
-                                player.Play()
-                            End Using
+                            Case ComputerState.Hibernate
+                                Bot.Log("[Offline Server Handler] -> Hibernating the computer...")
+                                PowerUtil.Hibernate(force:=True)
 
-                        Catch ex As Exception
-                            Bot.Log("[Offline Server Handler] -> Failed to play the sound file. Error message: " & ex.Message)
+                            Case ComputerState.Suspend
+                                Bot.Log("[Offline Server Handler] -> Suspending the computer...")
+                                PowerUtil.Suspend(force:=True)
 
-                        End Try
+                            Case ComputerState.Shutdown
+                                Bot.Log("[Offline Server Handler] -> Powering off the computer...")
+                                PowerUtil.Shutdown("", 0, "", ShutdownMode.ForceOthers, ShutdownReason.FagUserPlanned, ShutdownPlanning.Planned, True)
+
+                            Case Else ' ComputerState.NoChange
+                                If (Me.DataContainer.ResumeEnabled()) Then
+                                    Dim minutes As Integer = Me.DataContainer.ResumeInterval
+                                    Me.ScheduleResume(minutes)
+                                    Bot.Log($"[Offline Server Handler] -> Bot resumption scheduled to {minutes} minutes.")
+                                End If
+
+                                If (Me.DataContainer.PlaySoundFile) Then
+                                    Try
+                                        Using player As New SoundPlayer(Path.Combine(SmartBotUtil.PluginsDir.FullName, "OfflineServerHandler.wav"))
+                                            player.Play()
+                                        End Using
+
+                                    Catch ex As Exception
+                                        Bot.Log("[Offline Server Handler] -> Failed to play the sound file. Error message: " & ex.Message)
+
+                                    End Try
+                                End If
+
+                        End Select
+
                     End If
 
                 End If
