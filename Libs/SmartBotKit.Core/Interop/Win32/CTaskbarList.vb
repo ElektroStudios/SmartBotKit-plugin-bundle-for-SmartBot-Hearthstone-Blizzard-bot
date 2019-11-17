@@ -19,7 +19,6 @@ Imports System.Runtime.InteropServices
 
 Namespace SmartBotKit.Interop.Win32
 
-
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>
     ''' <c>CLSID_TaskbarList</c> from <c>shobjidl.h</c> headers.

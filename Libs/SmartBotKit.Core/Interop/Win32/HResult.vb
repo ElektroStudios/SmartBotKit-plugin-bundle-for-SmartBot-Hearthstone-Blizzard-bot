@@ -19,7 +19,6 @@ Imports System.IO
 
 Namespace SmartBotKit.Interop.Win32
 
-
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>
     ''' Specifies error conditions and warning conditions about the success or failure of a method or function call.

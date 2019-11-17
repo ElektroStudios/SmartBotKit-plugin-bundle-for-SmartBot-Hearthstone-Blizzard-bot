@@ -11,7 +11,6 @@ Imports SmartBot.Plugins
 
 Namespace SmartBotKit.Interop
 
-
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>
     ''' Specifies a SmartBot's process event.

@@ -10,6 +10,7 @@ Option Infer Off
 #Region " Imports "
 
 Imports System.Diagnostics.CodeAnalysis
+Imports System.Runtime.ConstrainedExecution
 Imports System.Runtime.InteropServices
 Imports System.Security
 Imports System.Text
@@ -1202,6 +1203,501 @@ Namespace SmartBotKit.Interop.Win32
                   <MarshalAs(UnmanagedType.I4)> ByVal flags As WindowLongFlags,
                                                 ByVal newLong As IntPtr
         ) As IntPtr
+        End Function
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Initiates a shutdown and restart of the specified computer, 
+        ''' and restarts any applications that have been registered for restart.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <remarks>
+        ''' <see href="https://msdn.microsoft.com/en-us/library/windows/desktop/aa376872%28v=vs.85%29.aspx"/>
+        ''' </remarks>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <param name="machineName">
+        ''' The name of the computer to be shut down.
+        ''' <para></para>
+        ''' If the value of this parameter is <see langword="Nothing"/>, the local computer is shut down.
+        ''' This parameter can be an addres, for example: <c>127.0.0.1</c>
+        ''' </param>
+        ''' 
+        ''' <param name="message">
+        ''' The message to be displayed in the interactive shutdown dialog box.
+        ''' </param>
+        ''' 
+        ''' <param name="gracePeriod">
+        ''' The number of seconds to wait before shutting down the computer.
+        ''' <para></para>
+        ''' If the value of this parameter is zero, the computer is shut down immediately. 
+        ''' This value is limited to <c>MAX_SHUTDOWN_TIMEOUT</c>.
+        ''' <para></para>
+        ''' If the value of this parameter is greater than zero, and the <paramref name="shutdownFlags"/> parameter 
+        ''' specifies the flag <c>GRACE_OVERRIDE</c>, the function fails and returns the error code <c>ERROR_BAD_ARGUMENTS</c>.
+        ''' </param>
+        ''' 
+        ''' <param name="shutdownFlags">
+        ''' Specifies options for the shutdown.
+        ''' </param>
+        ''' 
+        ''' <param name="reason">
+        ''' The reason for initiating the shutdown. 
+        ''' <para></para>
+        ''' If this parameter is zero, 
+        ''' the default is an undefined shutdown that is logged as "No title for this reason could be found". 
+        ''' By default, it is also an 'unplanned' shutdown.
+        ''' </param>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <returns>
+        ''' If the function succeeds, it returns <c>ERROR_SUCCESS</c>.
+        ''' </returns>
+        ''' ----------------------------------------------------------------------------------------------------
+        <SuppressMessage("Microsoft.Interoperability", "CA1401:PInvokesShouldNotBeVisible", Justification:="Visible for API users")>
+        <DllImport("AdvApi32.dll", SetLastError:=True, CharSet:=CharSet.Auto, BestFitMapping:=False, ThrowOnUnmappableChar:=True)>
+        Public Shared Function InitiateShutdown(machineName As String,
+                                                message As String,
+                                                gracePeriod As Integer,
+                                                shutdownFlags As UInteger,
+                                                reason As UInteger
+        ) As UInteger
+        End Function
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Opens the access token associated with a process.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <remarks>
+        ''' <see href="https://msdn.microsoft.com/en-us/library/windows/desktop/aa379295%28v=vs.85%29.aspx"/>
+        ''' </remarks>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <param name="processHandle">
+        ''' An <see cref="IntPtr"/> handle to the process whose access token is opened.
+        ''' <para></para>
+        ''' The process must have the <c>PROCESS_QUERY_INFORMATION</c> access permission.
+        ''' </param>
+        ''' 
+        ''' <param name="desiredAccess">
+        ''' Specifies an access mask that specifies the requested types of access to the access token. 
+        ''' <para></para>
+        ''' These requested access types are compared with the discretionary access control list (DACL) 
+        ''' of the token to determine which accesses are granted or denied.
+        ''' </param>
+        ''' 
+        ''' <param name="refTokenHandle">
+        ''' Am <see cref="IntPtr"/> handle that identifies the newly opened access token when the function returns.
+        ''' </param>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <returns>
+        ''' If the function succeeds, the return value is <see langword="True"/>.
+        ''' <para></para>
+        ''' If the function fails, the return value is <see langword="False"/>.
+        ''' <para></para>
+        ''' To get extended error information, call <see cref="Marshal.GetLastWin32Error"/>.
+        ''' </returns>
+        ''' ----------------------------------------------------------------------------------------------------
+        <SuppressMessage("Microsoft.Interoperability", "CA1401:PInvokesShouldNotBeVisible", Justification:="Visible for API users")>
+        <DllImport("AdvApi32.dll", SetLastError:=True)>
+        Public Shared Function OpenProcessToken(processHandle As IntPtr,
+                                                desiredAccess As TokenAccess,
+                                                ByRef refTokenHandle As IntPtr
+        ) As <MarshalAs(UnmanagedType.Bool)> Boolean
+        End Function
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Opens the access token associated with a thread.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <remarks>
+        ''' <see href="https://msdn.microsoft.com/en-us/library/windows/desktop/aa379296%28v=vs.85%29.aspx"/>
+        ''' </remarks>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <param name="threadHandle">
+        ''' A handle To the thread whose access token Is opened.
+        ''' </param>
+        ''' 
+        ''' <param name="desiredAccess">
+        ''' Specifies an access mask that specifies the requested types of access to the access token. 
+        ''' <para></para>
+        ''' These requested access types are compared with the discretionary access control list (DACL) 
+        ''' of the token to determine which accesses are granted or denied.
+        ''' </param>
+        ''' 
+        ''' <param name="openAsSelf">
+        ''' <see langword="True"/> if the access check is to be made against the process-level security context.
+        ''' <para></para>
+        ''' <see langword="False"/> if the access check is to be made against the current security context 
+        ''' of the thread calling the <see cref="NativeMethods.OpenThreadToken"/> function.
+        ''' <para></para>
+        ''' The <paramref name="openAsSelf"/> parameter allows the caller of this function to open the access token 
+        ''' of a specified thread when the caller is impersonating a token at SecurityIdentification level. 
+        ''' Without this parameter, the calling thread cannot open the access token on the specified thread 
+        ''' because it is impossible to open executive-level objects by using the SecurityIdentification impersonation level.
+        ''' </param>
+        ''' 
+        ''' <param name="refTokenHandle">
+        ''' A <see cref="IntPtr"/> handle that identifies the newly opened access token when the function returns.
+        ''' </param>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <returns>
+        ''' If the function succeeds, the return value is <see langword="True"/>.
+        ''' <para></para>
+        ''' If the function fails, the return value is <see langword="False"/>.
+        ''' <para></para>
+        ''' To get extended error information, call <see cref="Marshal.GetLastWin32Error"/>.
+        ''' </returns>
+        ''' ----------------------------------------------------------------------------------------------------
+        <SuppressMessage("Microsoft.Interoperability", "CA1401:PInvokesShouldNotBeVisible", Justification:="Visible for API users")>
+        <DllImport("AdvApi32.dll", SetLastError:=True)>
+        Public Shared Function OpenThreadToken(threadHandle As IntPtr,
+                                               desiredAccess As TokenAccess,
+                                               openAsSelf As Boolean,
+                                               ByRef refTokenHandle As IntPtr
+        ) As <MarshalAs(UnmanagedType.Bool)> Boolean
+        End Function
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Retrieves the display name that represents a specified privilege.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <remarks>
+        ''' <see href="https://docs.microsoft.com/en-us/windows/desktop/api/winbase/nf-winbase-lookupprivilegedisplaynamea"/>
+        ''' </remarks>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <param name="systemName">
+        ''' A pointer to a null-terminated string that specifies the name of the system on which the privilege name is retrieved. 
+        ''' <para></para>
+        ''' If a null string is specified, the function attempts to find the display name on the local system.
+        ''' </param>
+        ''' 
+        ''' <param name="name">
+        ''' A pointer to a null-terminated string that specifies the name of the privilege, as defined in Winnt.h. 
+        ''' <para></para>
+        ''' For example, this parameter could specify the constant, <see cref="ProcessPrivileges.RemoteShutdownPrivilege"/>, 
+        ''' or its corresponding string, "SeRemoteShutdownPrivilege".
+        ''' </param>
+        ''' 
+        ''' <param name="displayName">
+        ''' A pointer to a buffer that receives a null-terminated string that specifies the privilege display name. 
+        ''' <para></para>
+        ''' For example, if the <paramref name="name"/> parameter is <see cref="ProcessPrivileges.RemoteShutdownPrivilege"/>, 
+        ''' the privilege display name is "Force shutdown from a remote system.".
+        ''' </param>
+        ''' 
+        ''' <param name="refDisplayNameSize">
+        ''' A pointer to a variable that specifies the size, in characters, of the <paramref name="displayName"/> buffer. 
+        ''' <para></para>
+        ''' When the function returns, this parameter contains the length of the privilege display name, 
+        ''' not including the terminating null character. 
+        ''' <para></para>
+        ''' If the buffer pointed to by the <paramref name="displayName"/> parameter is too small, 
+        ''' this variable contains the required size.
+        ''' </param>
+        ''' 
+        ''' <param name="refLanguageId">
+        ''' A pointer to a variable that receives the language identifier for the returned display name.
+        ''' </param>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <returns>
+        ''' If the function succeeds, the return value is <see langword="True"/>.
+        ''' <para></para>
+        ''' If the function fails, the return value is <see langword="False"/>.
+        ''' <para></para>
+        ''' To get extended error information, call <see cref="Marshal.GetLastWin32Error"/>. 
+        ''' </returns>
+        ''' ----------------------------------------------------------------------------------------------------
+        <SuppressMessage("Microsoft.Interoperability", "CA1401:PInvokesShouldNotBeVisible", Justification:="Visible for API users")>
+        <DllImport("AdvApi32.dll", SetLastError:=True, CharSet:=CharSet.Auto, BestFitMapping:=False, ThrowOnUnmappableChar:=True)>
+        Public Shared Function LookupPrivilegeDisplayName(systemName As String,
+                                                          name As String,
+                                                          displayName As StringBuilder,
+                                                          ByRef refDisplayNameSize As UInteger,
+                                                    <Out> ByRef refLanguageId As UInteger
+        ) As <MarshalAs(UnmanagedType.Bool)> Boolean
+        End Function
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Retrieves the name that corresponds to the privilege represented on a specific system 
+        ''' by a specified locally unique identifier (LUID).
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <remarks>
+        ''' <see href="https://msdn.microsoft.com/en-us/library/windows/desktop/aa379176%28v=vs.85%29.aspx"/>
+        ''' </remarks>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <param name="systemName">
+        ''' A pointer to a null-terminated string that specifies the name of the system on which the privilege name is retrieved.
+        ''' <para></para>
+        ''' If a empty string is specified, the function attempts to find the privilege name on the local system.
+        ''' </param>
+        ''' 
+        ''' <param name="refLuid">
+        ''' A pointer to the <see cref="Luid"/> structure by which the privilege is known on the target system.
+        ''' </param>
+        ''' 
+        ''' <param name="name">
+        ''' A pointer to a buffer that receives a null-terminated string that represents the privilege name.
+        ''' <para></para>
+        ''' For example, this string could be "<c>SeSecurityPrivilege</c>".
+        ''' </param>
+        ''' 
+        ''' <param name="refCchName">
+        ''' A pointer to a variable that specifies the size, in a TCHAR value, of the lpName buffer.
+        ''' <para></para>
+        ''' When the function returns, this parameter contains the length of the privilege name, 
+        ''' not including the terminating null character. 
+        ''' <para></para>
+        ''' If the buffer pointed to by the <paramref name="name"/> parameter is too small, 
+        ''' this variable contains the required size.
+        ''' </param>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <returns>
+        ''' If the function succeeds, the return value is a <see langword="True"/>. 
+        ''' <para></para>
+        ''' If the function succeeds, the return value is a <see langword="False"/>. 
+        ''' <para></para>
+        ''' To get extended error information, call <see cref="Marshal.GetLastWin32Error"/>.
+        ''' </returns>
+        ''' ----------------------------------------------------------------------------------------------------
+        <SuppressMessage("Microsoft.Interoperability", "CA1401:PInvokesShouldNotBeVisible", Justification:="Visible for API users")>
+        <DllImport("AdvApi32.dll", SetLastError:=True, CharSet:=CharSet.Auto, BestFitMapping:=False, ThrowOnUnmappableChar:=True)>
+        Public Shared Function LookupPrivilegeName(systemName As String,
+                                                   ByRef refLuid As Luid,
+                                                   name As StringBuilder,
+                                                   ByRef refCchName As Integer
+        ) As <MarshalAs(UnmanagedType.Bool)> Boolean
+        End Function
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Retrieves the locally unique identifier (LUID) used on a specified system, 
+        ''' to locally represent the specified privilege name.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <remarks>
+        ''' <see href="https://msdn.microsoft.com/en-us/library/windows/desktop/aa379180%28v=vs.85%29.aspx"/>
+        ''' </remarks>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <param name="systemName">
+        ''' A pointer to a null-terminated string that specifies the name of the system on which the privilege name is retrieved.
+        ''' <para></para>
+        ''' If a null string is specified, the function attempts to find the privilege name on the local system
+        ''' </param>
+        ''' 
+        ''' <param name="name">
+        ''' A pointer to a null-terminated string that specifies the name of the privilege, 
+        ''' as defined in the <c>Winnt.h</c> header file.
+        ''' <para></para>
+        ''' For example, this parameter could specify the constant, <c>SE_SECURITY_NAME</c>, 
+        ''' or its corresponding string, "SeSecurityPrivilege".
+        ''' </param>
+        ''' 
+        ''' <param name="refLuid">
+        ''' A pointer to a variable that receives the LUID by which the privilege is known on
+        ''' the system specified by the <paramref name="systemName"/> parameter.
+        ''' </param>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <returns>
+        ''' If the function succeeds, the function returns <see langword="True"/>.
+        ''' <para></para>
+        ''' If the function fails, it returns <see langword="False"/>.
+        ''' <para></para>
+        ''' To get extended error information, call <see cref="Marshal.GetLastWin32Error"/>.
+        ''' </returns>
+        ''' ----------------------------------------------------------------------------------------------------
+        <SuppressMessage("Microsoft.Interoperability", "CA1401:PInvokesShouldNotBeVisible", Justification:="Visible for API users")>
+        <DllImport("AdvApi32.dll", SetLastError:=True, CharSet:=CharSet.Auto, BestFitMapping:=False, ThrowOnUnmappableChar:=True)>
+        Public Shared Function LookupPrivilegeValue(systemName As String,
+                                                    name As String,
+                                                    ByRef refLuid As Luid
+        ) As <MarshalAs(UnmanagedType.Bool)> Boolean
+        End Function
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Enables or disables privileges in the specified access token.
+        ''' <para></para>
+        ''' Enabling or disabling privileges in an access token requires <see cref="TokenAccess.AdjustPrivileges"/> access.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <remarks>
+        ''' <see href="https://msdn.microsoft.com/es-es/library/windows/desktop/aa375202%28v=vs.85%29.aspx"/>
+        ''' </remarks>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <param name="tokenHandle">
+        ''' An <see cref="IntPtr"/> pointer handle to the access token that contains the privileges to be modified.
+        ''' <para></para> 
+        ''' The handle must have <see cref="TokenAccess.AdjustPrivileges"/> access to the token. 
+        ''' <para></para>
+        ''' If the <paramref name="refPreviousState"/> parameter is not <see langword="Nothing"/>, 
+        ''' the handle must also have <see cref="TokenAccess.Query"/> access.
+        ''' </param>
+        ''' 
+        ''' <param name="disableAllPrivileges">
+        ''' Specifies whether the function disables all of the token's privileges. 
+        ''' <para></para>
+        ''' If this value is <see langword="True"/>, 
+        ''' the function disables all privileges and ignores the <paramref name="refNewState"/> parameter. 
+        ''' <para></para>
+        ''' If it is <see langword="False"/>, 
+        ''' the function modifies privileges based on the information pointed to by the <paramref name="refNewState"/> parameter.
+        ''' </param>
+        ''' 
+        ''' <param name="refNewState">
+        ''' A <see cref="IntPtr"/> pointer to a <see cref="TokenPrivileges"/> structure that specifies an
+        ''' array of privileges and their attributes.
+        ''' <para></para>
+        ''' If the <paramref name="disableAllPrivileges"/> parameter is <see langword="False"/>, 
+        ''' the <see cref="NativeMethods.AdjustTokenPrivileges"/> function enables, 
+        ''' disables, or removes these privileges for the token. 
+        ''' </param>
+        ''' 
+        ''' <param name="bufferLength">
+        ''' Specifies the size, in bytes, of the buffer pointed to by the <paramref name="refPreviousState"/> parameter.
+        ''' <para></para>
+        ''' This parameter can be zero if the <paramref name="refPreviousState"/> parameter is <see langword="Nothing"/>.
+        ''' </param>
+        ''' 
+        ''' <param name="refPreviousState">
+        ''' A pointer to a buffer that the function fills with a <see cref="TokenPrivileges"/> structure
+        ''' that contains the previous state of any privileges that the function modifies. 
+        ''' <para></para>
+        ''' That is, if a privilege has been modified by this function, 
+        ''' the privilege and its previous state are contained in the <see cref="TokenPrivileges"/> structure 
+        ''' referenced by <paramref name="refPreviousState"/>.
+        ''' <para></para>
+        ''' If the <see cref="TokenPrivileges.PrivilegeCount"/> member is <c>0</c>,
+        ''' then no privileges have been changed by this function.
+        ''' <para></para>
+        ''' This parameter can be <see langword="Nothing"/>.
+        ''' </param>
+        ''' 
+        ''' <param name="refReturnLength">
+        ''' A pointer to a variable that receives the required size, in bytes, 
+        ''' of the buffer pointed to by the <paramref name="refPreviousState"/> parameter.
+        ''' <para></para>
+        ''' This parameter can be <see langword="Nothing"/> if <paramref name="refPreviousState"/> is <see langword="Nothing"/>.
+        ''' </param>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <returns>
+        ''' If the function succeeds, the return value is <see langword="True"/>, otherwise, <see langword="False"/>.
+        ''' <para></para>
+        ''' To determine whether the function adjusted all of the specified privileges, 
+        ''' call <see cref="Marshal.GetLastWin32Error"/>.
+        ''' </returns>
+        ''' ----------------------------------------------------------------------------------------------------
+        <SuppressMessage("Microsoft.Interoperability", "CA1401:PInvokesShouldNotBeVisible", Justification:="Visible for API users")>
+        <DllImport("AdvApi32.dll", SetLastError:=True)>
+        Public Shared Function AdjustTokenPrivileges(tokenHandle As IntPtr,
+                                                     disableAllPrivileges As Boolean,
+                                                     ByRef refNewState As TokenPrivileges,
+                                                     bufferLength As Integer,
+                                                     ByRef refPreviousState As TokenPrivileges,
+                                                     ByRef refReturnLength As IntPtr
+        ) As <MarshalAs(UnmanagedType.Bool)> Boolean
+        End Function
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Closes the specified object handle.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <remarks>
+        ''' <see href="https://msdn.microsoft.com/es-es/library/windows/desktop/ms724211%28v=vs.85%29.aspx"/>
+        ''' </remarks>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <param name="hObject">
+        ''' The handle to the object being closed.
+        ''' </param>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <returns>
+        ''' If the function succeeds, the return value is <see langword="True"/>.
+        ''' <para></para>
+        ''' If the function fails, the return value is <see langword="False"/>.
+        ''' <para></para>
+        ''' To get extended error information, call <see cref="Marshal.GetLastWin32Error"/>.
+        ''' </returns>
+        ''' ----------------------------------------------------------------------------------------------------
+        <SuppressMessage("Microsoft.Interoperability", "CA1401:PInvokesShouldNotBeVisible", Justification:="Visible for API users")>
+        <SuppressUnmanagedCodeSecurity>
+        <ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)>
+        <DllImport("Kernel32.dll", SetLastError:=True)>
+        Public Shared Function CloseHandle(hObject As IntPtr
+        ) As <MarshalAs(UnmanagedType.Bool)> Boolean
+        End Function
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Retrieves a specified type of information about an access token.
+        ''' <para></para>
+        ''' The calling process must have appropriate access rights to obtain the information.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <remarks>
+        ''' <see href="https://msdn.microsoft.com/en-us/library/windows/desktop/aa446671%28v=vs.85%29.aspx"/>
+        ''' </remarks>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <param name="tokenHandle">
+        ''' A handle to an access token from which information is retrieved.
+        ''' <para></para>
+        ''' If <paramref name="tokenInformationClass"/> specifies <see cref="TokenInformationClass.TokenSource"/>, 
+        ''' the handle must have <see cref="TokenAccess.QuerySource"/> access.
+        ''' <para></para>
+        ''' For all other <see cref="TokenInformationClass"/> values, 
+        ''' the handle must have <see cref="TokenAccess.Query"/> access.
+        ''' </param>
+        ''' 
+        ''' <param name="tokenInformationClass">
+        ''' Specifies a value from the <see cref="TokenInformationClass"/> enumeration to 
+        ''' identify the type of information the function retrieves. 
+        ''' <para></para>
+        ''' Any callers who check the <see cref="TokenInformationClass.TokenIsAppContainer"/><c>TokenIsAppContainer</c> and have it return <c>0</c> should 
+        ''' also verify that the caller token is not an identify level impersonation token.
+        ''' <para></para>
+        ''' If the current token is not an app container but is an identity level token, you should return <c>AccessDenied</c>.
+        ''' </param>
+        ''' 
+        ''' <param name="tokenInformation">
+        ''' A pointer to a buffer the function fills with the requested information.
+        ''' <para></para>
+        ''' The structure put into this buffer depends upon the type of information specified by 
+        ''' the <paramref name="tokenInformationClass"/> parameter.
+        ''' </param>
+        ''' 
+        ''' <param name="tokenInformationLength">
+        ''' Specifies the size, in bytes, of the buffer pointed to by the TokenInformation parameter.
+        ''' <para></para>
+        ''' If <paramref name="tokenInformation"/> is <see langword="IntPtr.Zero"/>, this parameter must be <c>0</c>.
+        ''' </param>
+        ''' 
+        ''' <param name="refReturnLength">
+        ''' A pointer to a variable that receives the number of bytes needed for the buffer pointed to by the 
+        ''' <paramref name="tokenInformation"/> parameter.
+        ''' <para></para>
+        ''' If this value is larger than the value specified in the <paramref name="tokenInformationLength"/> parameter, 
+        ''' the function fails and stores no data in the buffer.
+        ''' </param>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <returns>
+        ''' If the function succeeds, the return value is <see langword="True"/>.
+        ''' <para></para>
+        ''' If the function fails, the return value is <see langword="False"/>.
+        ''' <para></para>
+        ''' To get extended error information, call <see cref="Marshal.GetLastWin32Error"/>.
+        ''' <para></para>
+        ''' </returns>
+        ''' ----------------------------------------------------------------------------------------------------
+        <SuppressMessage("Microsoft.Interoperability", "CA1401:PInvokesShouldNotBeVisible", Justification:="Visible for API users")>
+        <DllImport("AdvApi32.dll", SetLastError:=True)>
+        Public Shared Function GetTokenInformation(tokenHandle As IntPtr,
+                                                   tokenInformationClass As TokenInformationClass,
+                                                   tokenInformation As IntPtr,
+                                                   tokenInformationLength As Integer,
+                                                   ByRef refReturnLength As Integer
+        ) As <MarshalAs(UnmanagedType.Bool)> Boolean
         End Function
 
 #End Region

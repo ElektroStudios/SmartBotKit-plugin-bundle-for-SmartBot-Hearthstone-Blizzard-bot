@@ -120,6 +120,16 @@
   <ItemGroup>
     <Compile Include="Application\TaskBarManager.vb" />
     <Compile Include="Audio\AudioUtil.vb" />
+    <Compile Include="Computer\PowerUtil.vb" />
+    <Compile Include="Computer\ShutdownMode.vb" />
+    <Compile Include="Extensions\EnumExtensions.vb" />
+    <Compile Include="Interop\Computer\ComputerState.vb" />
+    <Compile Include="Interop\Win32\Luid.vb" />
+    <Compile Include="Interop\Win32\LuidAndAttributes.vb" />
+    <Compile Include="Interop\Win32\PrivilegeStates.vb" />
+    <Compile Include="Interop\Win32\ProcessPrivileges.vb" />
+    <Compile Include="Interop\Win32\ShutdownPlanning.vb" />
+    <Compile Include="Computer\ShutdownReason.vb" />
     <Compile Include="Extensions\TimeSpanExtensions.vb" />
     <Compile Include="Extensions\IListExtensions.vb" />
     <Compile Include="Extensions\IEnumerableExtensions.vb" />
@@ -140,14 +150,19 @@
     <Compile Include="Interop\Win32\IAudioSessionManager2.vb" />
     <Compile Include="Interop\Win32\IMMDevice.vb" />
     <Compile Include="Interop\Win32\IMMDeviceEnumerator.vb" />
+    <Compile Include="Interop\Win32\InitiateShutdownFlags.vb" />
     <Compile Include="Interop\Win32\ISimpleAudioVolume.vb" />
     <Compile Include="Interop\Win32\MMDeviceEnumerator.vb" />
     <Compile Include="Interop\Win32\SetWindowPosFlags.vb" />
     <Compile Include="Interop\Win32\TernaryRasterOperations.vb" />
     <Compile Include="Interop\Win32\HResult.vb" />
     <Compile Include="Interop\Win32\DwmWindowAttribute.vb" />
+    <Compile Include="Interop\Win32\TokenAccess.vb" />
+    <Compile Include="Interop\Win32\TokenInformationClass.vb" />
+    <Compile Include="Interop\Win32\TokenPrivileges.vb" />
     <Compile Include="Interop\Win32\WindowLongFlags.vb" />
     <Compile Include="Interop\Win32\WindowStylesEx.vb" />
+    <Compile Include="IPC\ProcessUtil.vb" />
     <Compile Include="ReservedUse\UpdateUtil.vb" />
     <Compile Include="System\SystemInfoUtil.vb" />
     <Compile Include="Interop\Hearthstone\HearthMirrorFriendlyChallengeProvider.vb" />
