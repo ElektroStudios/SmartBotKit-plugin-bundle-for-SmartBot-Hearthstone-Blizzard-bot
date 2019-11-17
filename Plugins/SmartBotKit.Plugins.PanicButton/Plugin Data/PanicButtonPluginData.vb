@@ -21,6 +21,7 @@ Imports SmartBot.Plugins
 Imports Xceed.Wpf.Toolkit.PropertyGrid.Attributes
 
 Imports SmartBotKit.IO
+Imports SmartBotKit.Interop
 
 #End Region
 
@@ -126,6 +127,16 @@ Namespace PanicButton
         <DisplayName("Terminate SmartBot process")>
         Public Property KillProcess As Boolean
 
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets or sets a value that determine the new computer state when the hotkey is pressed.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        <Category("Behavior (when the hotkey is pressed)")>
+        <DisplayName("Set the computer state")>
+        <ItemsSource(GetType(ComputerStateSource))>
+        Public Property SetComputerState As ComputerState
+
 #End Region
 
 #Region " Hotkey "
@@ -173,6 +184,9 @@ Namespace PanicButton
         ''' ----------------------------------------------------------------------------------------------------
         Public Sub New()
             MyBase.Name = Me.AssemblyInfo.AssemblyName
+
+            Me.KillProcess = False
+            Me.SetComputerState = ComputerState.NoChange
 
             Me.ModifierA = HotkeyModifiers.Control
             Me.ModifierB = HotkeyModifiers.Alt

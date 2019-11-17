@@ -117,6 +117,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Plugin Data Sources\HotkeyModifiersSource.vb" />
+    <Compile Include="Plugin Data Sources\ComputerStateSource.vb" />
     <Compile Include="Plugin Data Sources\KeysSource.vb" />
     <Compile Include="Plugin Data\PanicButtonPluginData.vb" />
     <Compile Include="Plugin\PanicButtonPlugin.vb" />

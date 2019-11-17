@@ -13,6 +13,9 @@ Imports System.Diagnostics
 
 Imports SmartBot.Plugins.API
 
+Imports SmartBotKit.Computer
+Imports SmartBotKit.Interop
+Imports SmartBotKit.Interop.Win32
 Imports SmartBotKit.IO
 
 #End Region
@@ -61,7 +64,7 @@ Namespace PanicButton
             Me.Register()
 
             Bot.Log(
-                $"[PanicKey] Plugin initialized. Active hotkey is: {{ {dataContainer.ModifierA.ToString()} + { _
+                $"[Panic Button] Plugin initialized. Active hotkey is: {{ {dataContainer.ModifierA.ToString()} + { _
                        dataContainer.ModifierB.ToString()} + {dataContainer.Key.ToString()} }} ")
         End Sub
 
@@ -84,16 +87,33 @@ Namespace PanicButton
         ''' ----------------------------------------------------------------------------------------------------
         Private Sub PanicButton_Press(ByVal sender As Object, ByVal e As HotkeyPressEventArgs) Handles Me.Press
 
-            If (Me.dataContainer.KillProcess) Then
-                Bot.Log("[PanicKey] Terminating SmartBot process by user demand...")
-                ' Me.Dispose()
-                Bot.CloseBot()
-            Else
-                If (Bot.IsBotRunning) Then
-                    Bot.StopBot()
-                    Bot.Log("[PanicKey] Bot stopped by user demand.")
-                End If
-            End If
+            Select Case Me.dataContainer.SetComputerState
+
+                Case ComputerState.Hibernate
+                    Bot.Log("[Panic Button] -> Hibernating the computer...")
+                    PowerUtil.Hibernate(force:=True)
+
+                Case ComputerState.Suspend
+                    Bot.Log("[Panic Button] -> Suspending the computer...")
+                    PowerUtil.Suspend(force:=True)
+
+                Case ComputerState.Shutdown
+                    Bot.Log("[Panic Button] -> Powering off the computer...")
+                    PowerUtil.Shutdown("", 0, "", ShutdownMode.ForceOthers, ShutdownReason.FagUserPlanned, ShutdownPlanning.Planned, True)
+
+                Case Else ' ComputerState.NoChange
+                    If (Me.dataContainer.KillProcess) Then
+                        Bot.Log("[Panic Button] Terminating SmartBot process by user demand...")
+                        ' Me.Dispose()
+                        Bot.CloseBot()
+                    Else
+                        If (Bot.IsBotRunning) Then
+                            Bot.StopBot()
+                            Bot.Log("[Panic Button] Bot stopped by user demand.")
+                        End If
+                    End If
+
+            End Select
 
         End Sub
 
@@ -113,7 +133,7 @@ Namespace PanicButton
         '''' ----------------------------------------------------------------------------------------------------
         Protected Overrides Sub Dispose(isDisposing As Boolean)
             If (Not Me.isDisposed) AndAlso (isDisposing) Then
-                Bot.Log("[PanicKey] Plugin deinitialized.")
+                Bot.Log("[Panic Button] Plugin deinitialized.")
             End If
             MyBase.Dispose(isDisposing)
         End Sub
