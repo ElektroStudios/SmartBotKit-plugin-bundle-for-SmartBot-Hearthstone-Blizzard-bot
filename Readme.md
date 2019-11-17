@@ -133,6 +133,15 @@ Settings:
 
 ![](Images/Hearthstone%20Resizer%20-%20Settings.png)
 
+### Legend Rank Handler
+A plugin that handles what to do when the bot reachs legend rank.
+
+Legend Rank Handler lets you decide what to do when SmartBot reachs legend rank. You can use this plugin to stop Smartbot, hibernate/suspend/shutdown the computer, play a sound file and send a notification to a specified mail address.
+
+Settings:
+
+![](Images/Legend%20Rank%20Handler%20-%20Settings.png)
+
 ### Offline Server handler
 A plugin that handles the bot behavior when the server gets down. 
 
