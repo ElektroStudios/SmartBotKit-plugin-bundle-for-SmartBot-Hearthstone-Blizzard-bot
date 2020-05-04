@@ -257,16 +257,18 @@ Namespace BountyHunter
         ''' ----------------------------------------------------------------------------------------------------
         Private Sub BuildQuestTypesToKeep()
 
+            ' *************************
+            ' Full updated quests list:
+            ' *************************
+            ' https://hearthstone.gamepedia.com/Quest#List
+
             Me.questTypesToKeep = New List(Of Quest.QuestType)
 
-            ' Defeat 3 Monster Hunt Bosses.
-            If (Me.DataContainer.KeepQuestCatchABigOne) Then
-                Me.questTypesToKeep.Add(Quest.QuestType.CatchaBigOne)
-            End If
-
-            ' Defeat 3 Dungeon Run Bosses.
-            If (Me.DataContainer.KeepQuestSpelunker) Then
-                Me.questTypesToKeep.Add(Quest.QuestType.Spelunker)
+            ' Dungeon quests.
+            If (Me.DataContainer.KeepDungeonQuests) Then
+                Me.questTypesToKeep.Add(Quest.QuestType.Crimewave)
+                Me.questTypesToKeep.Add(Quest.QuestType.PlagueBusting)
+                Me.questTypesToKeep.Add(Quest.QuestType.RisetoGlory)
             End If
 
             ' Play a friend, you both earn a reward!.
@@ -290,7 +292,8 @@ Namespace BountyHunter
         Private Sub BuildUnfulfillableQuestTypes()
 
             Me.unfulfillableQuestTypes = New List(Of Quest.QuestType) From {
-                Quest.QuestType.EverybodyGetinhere ' Win 3 Tavern Brawls.
+                Quest.QuestType.EverybodyGetinHere, ' Win 3 Tavern Brawls.
+                Quest.QuestType.BigBossBattle ' Play 2 games of Battlegrounds.
             }.Concat(From quest As Quest In Bot.GetQuests()
                      Where Not [Enum].IsDefined(GetType(Quest.QuestType), quest.Id) ' Workaround to include undefined and unsupported quests like The Witchwood Monster Hunt quests: https://hearthstone.gamepedia.com/Quest#The_Witchwood
                      Select quest.GetQuestType()
@@ -359,8 +362,8 @@ Namespace BountyHunter
                     Me.RerollQuests()
 
                     Dim quests As List(Of Quest) =
-                        If(Me.DataContainer.Reroll50GoldQuests,
-                        Bot.GetQuests().FindAll(Function(quest As Quest) (quest.GetGoldReward() > 50) AndAlso Not Me.questTypesToKeep.Contains(quest.GetQuestType())),
+                        If(Me.DataContainer.Reroll50And60GoldQuests,
+                        Bot.GetQuests().FindAll(Function(quest As Quest) (quest.GetGoldReward() > 60) AndAlso Not Me.questTypesToKeep.Contains(quest.GetQuestType())),
                         Bot.GetQuests().FindAll(Function(quest As Quest) Not Me.questTypesToKeep.Contains(quest.GetQuestType())))
 
                     Dim questToDo As Quest = quests.FirstOrDefault(Function(quest As Quest) Me.GetBestDeckForQuest(quest) IsNot Nothing)
@@ -491,9 +494,10 @@ Namespace BountyHunter
             Me.BuildUnfulfillableQuestTypes()
 
             For Each quest As Quest In Bot.GetQuests()
+                Dim goldReward As Integer = quest.GetGoldReward()
 
                 If (Me.unfulfillableQuestTypes.Contains(quest.GetQuestType())) OrElse
-                   (quest.GetGoldReward() = 50 AndAlso Me.DataContainer.Reroll50GoldQuests) Then
+                   ((goldReward = 50 OrElse goldReward = 60) AndAlso Me.DataContainer.Reroll50And60GoldQuests) Then
 
                     If (Bot.CanCancelQuest()) Then
                         Bot.Log($"[Bounty Hunter] -> {quest.GetGoldReward()} Gold Quest Reroll: {quest.Name}")

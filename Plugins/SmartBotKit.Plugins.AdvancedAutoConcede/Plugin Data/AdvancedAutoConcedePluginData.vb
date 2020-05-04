@@ -16,9 +16,6 @@ Imports System.IO
 Imports System.Reflection
 
 Imports SmartBot.Plugins
-Imports SmartBot.Plugins.API
-
-Imports Xceed.Wpf.Toolkit.PropertyGrid.Attributes
 
 #End Region
 

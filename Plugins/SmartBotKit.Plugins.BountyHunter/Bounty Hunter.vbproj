@@ -10,7 +10,8 @@
     <AssemblyName>BountyHunter</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>Windows</MyType>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup>
     <OptionExplicit>On</OptionExplicit>
@@ -101,6 +102,7 @@
     <Import Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Plugin Data Sources\DeckSourceDemonHunter.vb" />
     <Compile Include="Plugin Data Sources\LadderModeSource.vb" />
     <Compile Include="Plugin Data Sources\LevelModeSource.vb" />
     <Compile Include="Plugin Data Sources\QuestModeSource.vb" />
@@ -118,6 +120,7 @@
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
       <DependentUpon>Application.myapp</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="My Project\Resources.Designer.vb">
       <AutoGen>True</AutoGen>

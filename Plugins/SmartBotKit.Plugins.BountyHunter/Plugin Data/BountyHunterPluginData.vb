@@ -129,13 +129,13 @@ Namespace BountyHunter
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Gets or sets a value that determine whether 50 gold quests should be reroll.
+        ''' Gets or sets a value that determine whether 50 and 60 gold quests should be reroll.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         <Category("Mode: Daily Quests")>
-        <DisplayName("Reroll 50 gold quests")>
+        <DisplayName("Reroll 50 and 60 gold quests")>
         <Browsable(True)>
-        Public Property Reroll50GoldQuests As Boolean
+        Public Property Reroll50And60GoldQuests As Boolean
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
@@ -149,13 +149,13 @@ Namespace BountyHunter
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Gets or sets a value that determine whether "Watch and Learn!" quest should be kept.
+        ''' Gets or sets a value that determine whether dungeon quests should be kept.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         <Category("Mode: Daily Quests")>
-        <DisplayName("Keep 'Watch and Learn!' quest")>
+        <DisplayName("Keep dungeon quest")>
         <Browsable(True)>
-        Public Property KeepQuestWatchAndLearn As Boolean
+        Public Property KeepDungeonQuests As Boolean
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
@@ -169,23 +169,13 @@ Namespace BountyHunter
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Gets or sets a value that determine whether "Catch a Big One!" quest should be kept.
+        ''' Gets or sets a value that determine whether "Watch and Learn!" quest should be kept.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         <Category("Mode: Daily Quests")>
-        <DisplayName("Keep 'Catch a Big One!' quest")>
+        <DisplayName("Keep 'Watch and Learn!' quest")>
         <Browsable(True)>
-        Public Property KeepQuestCatchABigOne As Boolean
-
-        ''' ----------------------------------------------------------------------------------------------------
-        ''' <summary>
-        ''' Gets or sets a value that determine whether "Spelunker!" quest should be kept.
-        ''' </summary>
-        ''' ----------------------------------------------------------------------------------------------------
-        <Category("Mode: Daily Quests")>
-        <DisplayName("Keep 'Spelunker!' quest")>
-        <Browsable(True)>
-        Public Property KeepQuestSpelunker As Boolean
+        Public Property KeepQuestWatchAndLearn As Boolean
 
 #End Region
 
@@ -508,6 +498,39 @@ Namespace BountyHunter
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Private lvlPaladin_ As Integer
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets or sets the target level for Demon Hunter.
+        ''' <para></para>
+        ''' Valid range is between 1 and 60.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        <Category("Mode: Hero Levelling")>
+        <DisplayName("Demon Hunter")>
+        <Browsable(True)>
+        Public Property LvlDemonHunter As Integer
+            Get
+                Return Me.lvlDemonHunter_
+            End Get
+            Set(ByVal value As Integer)
+                If (value < 1) Then
+                    Me.lvlDemonHunter_ = 1
+                ElseIf (value > 60) Then
+                    Me.lvlDemonHunter_ = 60
+                Else
+                    Me.lvlDemonHunter_ = value
+                End If
+            End Set
+        End Property
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' ( Backing Field )
+        ''' <para></para>
+        ''' The target level for Demon Hunter.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        Private lvlDemonHunter_ As Integer
 
 #End Region
 
@@ -842,6 +865,39 @@ Namespace BountyHunter
         ''' ----------------------------------------------------------------------------------------------------
         Private rankedWinsPaladin_ As Integer
 
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets or sets the target amount of ranked wins for Demon Hunter.
+        ''' <para></para>
+        ''' Valid range is between 1 and 9999.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        <Category("Mode: Ranked Wins Count")>
+        <DisplayName("Demon Hunter")>
+        <Browsable(True)>
+        Public Property RankedWinsDemonHunter As Integer
+            Get
+                Return Me.rankedWinsDemonHunter_
+            End Get
+            Set(ByVal value As Integer)
+                If (value < 0) Then
+                    Me.rankedWinsDemonHunter_ = 0
+                ElseIf (value > 9999) Then
+                    Me.rankedWinsDemonHunter_ = 9999
+                Else
+                    Me.rankedWinsDemonHunter_ = value
+                End If
+            End Set
+        End Property
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' ( Backing Field )
+        ''' <para></para>
+        ''' The target amount of ranked wins for Demon Hunter.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        Private rankedWinsDemonHunter_ As Integer
+
 #End Region
 
 #Region " Ladder Scheduler "
@@ -1162,6 +1218,28 @@ Namespace BountyHunter
         End Property
         Private deckWarlock_ As String
 
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets or sets the preferred deck for Demon Hunter.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        <Category("Preferred Decks (for all modes)")>
+        <DisplayName("Demon Hunter")>
+        <Browsable(True)>
+        <ItemsSource(GetType(DeckSourceDemonHunter))>
+        Public Property DeckDemonHunter As String
+            Get
+                If String.IsNullOrEmpty(Me.deckDemonHunter_) Then
+                    Me.deckDemonHunter_ = "None"
+                End If
+                Return Me.deckDemonHunter_
+            End Get
+            Set(value As String)
+                Me.deckDemonHunter_ = value
+            End Set
+        End Property
+        Private deckDemonHunter_ As String
+
 #End Region
 
 #Region " Reserved "
@@ -1221,11 +1299,10 @@ Namespace BountyHunter
 
             Me.EnableQuestCompletion = False
             Me.QuestMode = Bot.Mode.UnrankedStandard
-            Me.Reroll50GoldQuests = False
+            Me.Reroll50And60GoldQuests = False
             Me.RerollUnfulfillableQuests = False
-            Me.KeepQuestCatchABigOne = False
+            Me.KeepDungeonQuests = False
             Me.KeepQuestPlayAFriend = False
-            Me.KeepQuestSpelunker = False
             Me.KeepQuestWatchAndLearn = False
 
             Me.EnableLadderScheduler = False
@@ -1249,6 +1326,7 @@ Namespace BountyHunter
             Me.rankedWinsShaman_ = 1000
             Me.rankedWinsWarlock_ = 1000
             Me.rankedWinsWarrior_ = 1000
+            Me.rankedWinsDemonHunter_ = 1000
 
             Me.EnableHeroLevelling = False
             Me.LevelMode = Bot.Mode.UnrankedStandard
@@ -1261,6 +1339,7 @@ Namespace BountyHunter
             Me.lvlShaman_ = 60
             Me.lvlWarlock_ = 60
             Me.lvlWarrior_ = 60
+            Me.lvlDemonHunter_ = 60
 
             Me.deckDruid_ = "None"
             Me.deckHunter_ = "None"
@@ -1271,6 +1350,8 @@ Namespace BountyHunter
             Me.deckShaman_ = "None"
             Me.deckWarlock_ = "None"
             Me.deckWarrior_ = "None"
+            Me.deckDemonHunter_ = "None"
+
         End Sub
 
 #End Region
@@ -1333,6 +1414,11 @@ Namespace BountyHunter
                               Where (deck.Class = heroClass) AndAlso (deck.Name = Me.DeckWarrior) AndAlso (deck.IsValid())
                            ).FirstOrDefault()
 
+                Case CClass.DEMONHUNTER
+                    result = (From deck As Deck In Bot.GetDecks()
+                              Where (deck.Class = heroClass) AndAlso (deck.Name = Me.DeckDemonHunter) AndAlso (deck.IsValid())
+                           ).FirstOrDefault()
+
                 Case Else ' CClass.NONE
                     Return Nothing
 
@@ -1388,6 +1474,9 @@ Namespace BountyHunter
                 Case CClass.WARRIOR
                     Return Me.LvlWarrior
 
+                Case CClass.DEMONHUNTER
+                    Return Me.LvlDemonHunter
+
                 Case Else ' CClass.NONE
                     Return -1
 
@@ -1430,6 +1519,9 @@ Namespace BountyHunter
 
                 Case CClass.WARRIOR
                     Return Me.RankedWinsWarrior
+
+                Case CClass.DEMONHUNTER
+                    Return Me.RankedWinsDemonHunter
 
                 Case Else ' CClass.NONE
                     Return -1

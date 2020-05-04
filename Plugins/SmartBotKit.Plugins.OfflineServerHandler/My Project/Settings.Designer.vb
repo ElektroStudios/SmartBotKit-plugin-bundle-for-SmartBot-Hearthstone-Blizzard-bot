@@ -12,18 +12,15 @@ Option Strict On
 Option Explicit On
 
 
-' ReSharper disable once CheckNamespace
-
 Namespace My
-
     
-    <Runtime.CompilerServices.CompilerGeneratedAttribute(),  _
-     CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.6.0.0"),  _
-     ComponentModel.EditorBrowsableAttribute(ComponentModel.EditorBrowsableState.Advanced)>  _
+    <Global.System.Runtime.CompilerServices.CompilerGeneratedAttribute(),  _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.5.0.0"),  _
+     Global.System.ComponentModel.EditorBrowsableAttribute(Global.System.ComponentModel.EditorBrowsableState.Advanced)>  _
     Partial Friend NotInheritable Class MySettings
-        Inherits Configuration.ApplicationSettingsBase
+        Inherits Global.System.Configuration.ApplicationSettingsBase
         
-        Private Shared defaultInstance As MySettings = CType(Configuration.ApplicationSettingsBase.Synchronized(New MySettings()),MySettings)
+        Private Shared defaultInstance As MySettings = CType(Global.System.Configuration.ApplicationSettingsBase.Synchronized(New MySettings()),MySettings)
         
 #Region "My.Settings Auto-Save Functionality"
 #If _MyType = "WindowsForms" Then
@@ -31,8 +28,8 @@ Namespace My
 
     Private Shared addedHandlerLockObject As New Object
 
-    <Diagnostics.DebuggerNonUserCodeAttribute(), ComponentModel.EditorBrowsableAttribute(ComponentModel.EditorBrowsableState.Advanced)> _
-    Private Shared Sub AutoSaveSettings(sender As Object, e As EventArgs)
+    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), Global.System.ComponentModel.EditorBrowsableAttribute(Global.System.ComponentModel.EditorBrowsableState.Advanced)> _
+    Private Shared Sub AutoSaveSettings(sender As Global.System.Object, e As Global.System.EventArgs)
         If My.Application.SaveMySettingsOnExit Then
             My.Settings.Save()
         End If
@@ -59,17 +56,14 @@ Namespace My
     End Class
 End Namespace
 
-' ReSharper disable once CheckNamespace
-
 Namespace My
-
     
     <Global.Microsoft.VisualBasic.HideModuleNameAttribute(),  _
-     Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Runtime.CompilerServices.CompilerGeneratedAttribute()>  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Runtime.CompilerServices.CompilerGeneratedAttribute()>  _
     Friend Module MySettingsProperty
         
-        <ComponentModel.Design.HelpKeywordAttribute("My.Settings")>  _
+        <Global.System.ComponentModel.Design.HelpKeywordAttribute("My.Settings")>  _
         Friend ReadOnly Property Settings() As Global.SmartBotKit.Plugins.My.MySettings
             Get
                 Return Global.SmartBotKit.Plugins.My.MySettings.Default

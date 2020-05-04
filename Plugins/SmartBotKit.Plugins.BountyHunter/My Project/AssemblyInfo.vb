@@ -13,7 +13,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyDescription("A plugin that completes quests, schedules ranked mode and level up heroes.")>
 <Assembly: AssemblyCompany("ElektroStudios")>
 <Assembly: AssemblyProduct("BountyHunter.dll")>
-<Assembly: AssemblyCopyright("© ElektroStudios 2019")>
+<Assembly: AssemblyCopyright("© ElektroStudios 2020")>
 <Assembly: AssemblyTrademark("")>
 
 <Assembly: ComVisible(False)>
@@ -32,6 +32,6 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")>
 
-<Assembly: AssemblyVersion("2.6.0.0")>
-<Assembly: AssemblyFileVersion("2.6.0.0")>
+<Assembly: AssemblyVersion("2.7.0.0")>
+<Assembly: AssemblyFileVersion("2.7.0.0")>
 <Assembly: NeutralResourcesLanguage("en")>
