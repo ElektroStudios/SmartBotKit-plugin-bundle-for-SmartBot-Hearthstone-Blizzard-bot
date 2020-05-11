@@ -132,8 +132,7 @@ Namespace Matchmaker
         <DisplayName("Description")>
         Public ReadOnly Property Description As String
             Get
-                Return "Automates external files and programs execution" & ControlChars.NewLine &
-                       "at SmartBot's startup."
+                Return "Helps you to find your best opponent match."
             End Get
         End Property
 
