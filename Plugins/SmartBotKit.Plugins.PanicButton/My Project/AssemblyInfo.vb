@@ -9,11 +9,11 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("Panic Button for SmartBot")>
+<Assembly: AssemblyTitle("Panic Button plugin for SmartBot")>
 <Assembly: AssemblyDescription("A plugin that stops or terminates SmartBot process when a specified hotkey combination is pressed.")>
 <Assembly: AssemblyCompany("ElektroStudios")>
 <Assembly: AssemblyProduct("PanicButton.dll")>
-<Assembly: AssemblyCopyright("© ElektroStudios 2019")>
+<Assembly: AssemblyCopyright("© ElektroStudios 2020")>
 <Assembly: AssemblyTrademark("")>
 
 <Assembly: ComVisible(False)>
@@ -32,6 +32,6 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")>
 
-<Assembly: AssemblyVersion("2.2.0.0")>
-<Assembly: AssemblyFileVersion("2.2.0.0")>
+<Assembly: AssemblyVersion("2.3.0.0")>
+<Assembly: AssemblyFileVersion("2.3.0.0")>
 <Assembly: NeutralResourcesLanguage("en")>

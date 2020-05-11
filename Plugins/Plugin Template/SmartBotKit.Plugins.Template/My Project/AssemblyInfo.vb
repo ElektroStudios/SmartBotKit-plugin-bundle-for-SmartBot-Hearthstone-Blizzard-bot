@@ -13,7 +13,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyDescription("A plugin template for SmartBot.")>
 <Assembly: AssemblyCompany("ElektroStudios")>
 <Assembly: AssemblyProduct("PluginTemplate.dll")>
-<Assembly: AssemblyCopyright("© ElektroStudios 2019")>
+<Assembly: AssemblyCopyright("© ElektroStudios 2020")>
 <Assembly: AssemblyTrademark("")>
 
 <Assembly: ComVisible(False)>

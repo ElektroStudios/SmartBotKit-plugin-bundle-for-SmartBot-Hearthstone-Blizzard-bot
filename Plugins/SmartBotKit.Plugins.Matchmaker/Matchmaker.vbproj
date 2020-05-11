@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1B9C0E8F-1D2D-4516-9101-C234A1169D22}</ProjectGuid>
+    <ProjectGuid>{6EE0EBF8-4114-4049-8253-8E6DEF58FEDC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>SmartBotKit.Plugins</RootNamespace>
-    <AssemblyName>LegendRankHandler</AssemblyName>
+    <AssemblyName>Matchmaker</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>Windows</MyType>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
@@ -32,7 +32,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>..\..\Bin\Debug\Plugins\</OutputPath>
-    <DocumentationFile>LegendRankHandler.xml</DocumentationFile>
+    <DocumentationFile>Matchmaker.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -42,7 +42,7 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>..\..\Bin\Release\Plugins\</OutputPath>
-    <DocumentationFile>LegendRankHandler.xml</DocumentationFile>
+    <DocumentationFile>Matchmaker.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
@@ -50,7 +50,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>..\..\Bin\Debug\Plugins\</OutputPath>
-    <DocumentationFile>LegendRankHandler.xml</DocumentationFile>
+    <DocumentationFile>Matchmaker.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
     <DebugType>full</DebugType>
     <PlatformTarget>x86</PlatformTarget>
@@ -59,7 +59,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <DefineTrace>true</DefineTrace>
     <OutputPath>..\..\Bin\Release\Plugins\</OutputPath>
-    <DocumentationFile>LegendRankHandler.xml</DocumentationFile>
+    <DocumentationFile>Matchmaker.xml</DocumentationFile>
     <Optimize>true</Optimize>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
     <PlatformTarget>x86</PlatformTarget>
@@ -70,7 +70,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>..\..\Bin\Debug\Plugins\</OutputPath>
-    <DocumentationFile>LegendRankHandler.xml</DocumentationFile>
+    <DocumentationFile>Matchmaker.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
     <DebugType>full</DebugType>
     <PlatformTarget>x64</PlatformTarget>
@@ -79,23 +79,21 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
     <DefineTrace>true</DefineTrace>
     <OutputPath>..\..\Bin\Release\Plugins\</OutputPath>
-    <DocumentationFile>LegendRankHandler.xml</DocumentationFile>
+    <DocumentationFile>Matchmaker.xml</DocumentationFile>
     <Optimize>true</Optimize>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
     <PlatformTarget>x64</PlatformTarget>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HearthMirror">
-      <HintPath>..\..\References\HearthMirror.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="SBAPI">
       <HintPath>..\..\References\SBAPI.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Drawing" />
+    <Reference Include="WindowsBase" />
     <Reference Include="Xceed.Wpf.Toolkit">
       <HintPath>..\..\References\Xceed.Wpf.Toolkit.dll</HintPath>
       <Private>False</Private>
@@ -122,9 +120,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Plugin Data Sources\ComputerStateSource.vb" />
-    <Compile Include="Plugin Data\LegendRankHandlerPluginData.vb" />
-    <Compile Include="Plugin\LegendRankHandlerPlugin.vb" />
+    <Compile Include="Plugin Data Sources\DeckSource.vb" />
+    <Compile Include="Plugin Data Sources\ModeSource.vb" />
+    <Compile Include="Plugin Data\MatchmakerPluginData.vb" />
+    <Compile Include="Plugin\MatchmakerPlugin.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -153,19 +152,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Legend.htm" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\LegendAlter.htm" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Legend.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Hearthstone.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="LegendRankHandler.mp3">
+    <None Include="MatchMaker.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

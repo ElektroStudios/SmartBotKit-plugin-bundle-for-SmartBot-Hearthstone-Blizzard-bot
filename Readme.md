@@ -146,6 +146,17 @@ Default mail message:
 
 ![](Images/Legend%20Rank%20Handler%20-%20Default%20Mail%20Message.png)
 
+### Matchmaker
+A plugin that helps you to find your best opponent match.
+
+Matchmaker lets you automatically start and concede games until it finds one of the allowed opponent classes to play a match with. Once a match is found, the bot will stop.
+
+** This plugin has a human supervised purpose and for that reason it should be used without any kind of questing or concede plugins enabled.
+
+Settings:
+
+![](Images/Matchmaker%20-%20Settings.png)
+
 ### Offline Server handler
 A plugin that handles the bot behavior when the server gets down. 
 

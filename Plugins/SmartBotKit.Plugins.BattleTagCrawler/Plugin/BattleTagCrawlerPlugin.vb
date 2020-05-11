@@ -9,7 +9,6 @@ Option Infer Off
 #Region " Imports "
 
 Imports System.Diagnostics
-Imports System.Globalization
 Imports System.IO
 Imports System.Text
 
@@ -19,9 +18,7 @@ Imports SmartBot.Plugins.API.Bot
 
 Imports HearthMirror.Objects.MatchInfo
 
-Imports SmartBotKit.Extensions.StringExtensions
 Imports SmartBotKit.Interop
-Imports SmartBotKit.Text
 Imports System.Collections.Generic
 Imports System.Linq
 

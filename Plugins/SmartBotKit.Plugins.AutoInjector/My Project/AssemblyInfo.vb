@@ -9,11 +9,11 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("Auto-Injector for SmartBot")>
+<Assembly: AssemblyTitle("Auto-Injector plugin for SmartBot")>
 <Assembly: AssemblyDescription("A plugin that automate SmartBot injection when Hearthstone process is detected.")>
 <Assembly: AssemblyCompany("ElektroStudios")>
 <Assembly: AssemblyProduct("AutoInjector.dll")>
-<Assembly: AssemblyCopyright("© ElektroStudios 2019")>
+<Assembly: AssemblyCopyright("© ElektroStudios 2020")>
 <Assembly: AssemblyTrademark("")>
 
 <Assembly: ComVisible(False)>
@@ -32,6 +32,6 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")>
 
-<Assembly: AssemblyVersion("1.1.0.0")>
-<Assembly: AssemblyFileVersion("1.1.0.0")>
+<Assembly: AssemblyVersion("1.2.0.0")>
+<Assembly: AssemblyFileVersion("1.2.0.0")>
 <Assembly: NeutralResourcesLanguage("en")>

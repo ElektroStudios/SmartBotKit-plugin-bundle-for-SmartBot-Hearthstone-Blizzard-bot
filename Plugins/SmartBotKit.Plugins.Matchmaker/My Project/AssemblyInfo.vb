@@ -9,17 +9,16 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("UI Enhancer plugin for SmartBot")>
-<Assembly: AssemblyDescription("A plugin that adds visual enhancements for the SmartBot user-interface.")>
+<Assembly: AssemblyTitle("Matchmaker plugin for SmartBot")>
+<Assembly: AssemblyDescription("A plugin that helps you to find your best opponent match.")>
 <Assembly: AssemblyCompany("ElektroStudios")>
-<Assembly: AssemblyProduct("UIEnhancerPlugin.dll")>
+<Assembly: AssemblyProduct("Matchmaker.dll")>
 <Assembly: AssemblyCopyright("© ElektroStudios 2020")>
 <Assembly: AssemblyTrademark("")>
-
 <Assembly: ComVisible(False)>
 
 'The following GUID is for the ID of the typelib if this project is exposed to COM
-<Assembly: Guid("A5619ADE-0300-4827-BD17-890D3B767055")>
+<Assembly: Guid("9FF7C193-AD68-4541-AA87-5B86504CEE82")>
 
 ' Version information for an assembly consists of the following four values:
 '
@@ -32,6 +31,6 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")>
 
-<Assembly: AssemblyVersion("1.1.0.0")>
-<Assembly: AssemblyFileVersion("1.1.0.0")>
+<Assembly: AssemblyVersion("1.0.0.0")>
+<Assembly: AssemblyFileVersion("1.0.0.0")>
 <Assembly: NeutralResourcesLanguage("en")>

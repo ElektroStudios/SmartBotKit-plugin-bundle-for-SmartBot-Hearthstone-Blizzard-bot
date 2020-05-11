@@ -11,6 +11,7 @@ Option Infer Off
 
 Imports System.Collections.Generic
 Imports System.Globalization
+Imports System.IO
 Imports System.Runtime.InteropServices
 
 Imports SmartBotKit.Interop.Win32
@@ -146,6 +147,37 @@ Namespace SmartBotKit.Audio
                 volume.SetMasterVolume((volumeLevel / 100.0F), guid)
             End If
 
+        End Sub
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Plays a wav, mp3, mid or wma file.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <param name="file">
+        ''' The audio file. 
+        ''' </param>
+        ''' ----------------------------------------------------------------------------------------------------
+        <DebuggerStepThrough>
+        Public Shared Sub PlaySoundFile(file As FileInfo)
+            AudioUtil.PlaySoundFile(file.FullName)
+        End Sub
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Plays a wav, mp3, mid or wma file.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <param name="filepath">
+        ''' The audio filepath. 
+        ''' </param>
+        ''' ----------------------------------------------------------------------------------------------------
+        <DebuggerStepThrough>
+        Public Shared Sub PlaySoundFile(filepath As String)
+            Dim mciAlias As String = "temp_alias"
+            NativeMethods.MciSendString($"close {mciAlias}", Nothing, 0, IntPtr.Zero)
+            NativeMethods.MciSendString($"open ""{filepath}"" alias {mciAlias}", Nothing, 0, IntPtr.Zero)
+            NativeMethods.MciSendString($"play {mciAlias}", Nothing, 0, IntPtr.Zero)
         End Sub
 
 #End Region

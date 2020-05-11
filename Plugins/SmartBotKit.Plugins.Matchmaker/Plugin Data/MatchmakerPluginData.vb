@@ -16,27 +16,29 @@ Imports System.Diagnostics
 Imports System.Reflection
 
 Imports SmartBot.Plugins
+Imports SmartBot.Plugins.API
+Imports Xceed.Wpf.Toolkit.PropertyGrid.Attributes
 
 Imports SmartBotKit.Interop
 
 #End Region
 
-#Region " AppLauncherPluginData "
+#Region " MatchmakerPluginData "
 
 ' ReSharper disable once CheckNamespace
 
-Namespace AppLauncher
+Namespace Matchmaker
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>
-    ''' Plugin data for <see cref="AppLauncherPlugin"/> plugin class.
+    ''' Plugin data for <see cref="MatchmakerPlugin"/> plugin class.
     ''' </summary>
     ''' ----------------------------------------------------------------------------------------------------
     ''' <seealso cref="PluginDataContainer"/>
     ''' ----------------------------------------------------------------------------------------------------
     <Serializable>
     <DebuggerNonUserCode>
-    Public NotInheritable Class AppLauncherPluginData : Inherits PluginDataContainer
+    Public NotInheritable Class MatchmakerPluginData : Inherits PluginDataContainer
 
 #Region " Properties "
 
@@ -150,106 +152,151 @@ Namespace AppLauncher
 
 #End Region
 
-#Region " Behavior "
+#Region " Settings "
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Gets or sets a value that determine whether to terminate the programs specified in properties: 
-        ''' <see cref="AppLauncherPluginData.ExecutablePath1"/>, <see cref="AppLauncherPluginData.ExecutablePath2"/>, 
-        ''' <see cref="AppLauncherPluginData.ExecutablePath3"/>, <see cref="AppLauncherPluginData.ExecutablePath4"/>, 
-        ''' <see cref="AppLauncherPluginData.ExecutablePath5"/>, <see cref="AppLauncherPluginData.ExecutablePath6"/>, 
-        ''' <see cref="AppLauncherPluginData.ExecutablePath7"/>, <see cref="AppLauncherPluginData.ExecutablePath8"/> and 
-        ''' <see cref="AppLauncherPluginData.ExecutablePath9"/> when exiting from SmartBot application.
+        ''' Gets or sets the bot mode for questing.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        <Category("Behavior")>
-        <DisplayName("Terminate all launched programs when exiting from SmartBot")>
-        Public Property TerminateProgramsWhenClosingSmartBot As Boolean
+        <Category("Settings")>
+        <DisplayName("Game mode")>
+        <Browsable(True)>
+        <ItemsSource(GetType(ModeSource))>
+        Public Property Mode As Bot.Mode
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets or sets the deck for playing.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        <Category("Settings")>
+        <DisplayName("Deck")>
+        <Browsable(True)>
+        <ItemsSource(GetType(DeckSource))>
+        Public Property Deck As String
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets or sets a value indicating whether to allow matchmaking with DemonHunter class.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        <Category("Settings: Allowed Matches")>
+        <DisplayName("DemonHunter")>
+        <Browsable(True)>
+        Public Property AllowDemonHunter As Boolean
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets or sets a value indicating whether to allow matchmaking with Druid class.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        <Category("Settings: Allowed Matches")>
+        <DisplayName("Druid")>
+        <Browsable(True)>
+        Public Property AllowDruid As Boolean
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets or sets a value indicating whether to allow matchmaking with Hunter class.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        <Category("Settings: Allowed Matches")>
+        <DisplayName("Hunter")>
+        <Browsable(True)>
+        Public Property AllowHunter As Boolean
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets or sets a value indicating whether to allow matchmaking with Mage class.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        <Category("Settings: Allowed Matches")>
+        <DisplayName("Mage")>
+        <Browsable(True)>
+        Public Property AllowMage As Boolean
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets or sets a value indicating whether to allow matchmaking with Paladin class.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        <Category("Settings: Allowed Matches")>
+        <DisplayName("Paladin")>
+        <Browsable(True)>
+        Public Property AllowPaladin As Boolean
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets or sets a value indicating whether to allow matchmaking with Priest class.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        <Category("Settings: Allowed Matches")>
+        <DisplayName("Priest")>
+        <Browsable(True)>
+        Public Property AllowPriest As Boolean
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets or sets a value indicating whether to allow matchmaking with Rogue class.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        <Category("Settings: Allowed Matches")>
+        <DisplayName("Rogue")>
+        <Browsable(True)>
+        Public Property AllowRogue As Boolean
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets or sets a value indicating whether to allow matchmaking with Shaman class.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        <Category("Settings: Allowed Matches")>
+        <DisplayName("Shaman")>
+        <Browsable(True)>
+        Public Property AllowShaman As Boolean
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets or sets a value indicating whether to allow matchmaking with Warlock class.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        <Category("Settings: Allowed Matches")>
+        <DisplayName("Warlock")>
+        <Browsable(True)>
+        Public Property AllowWarlock As Boolean
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets or sets a value indicating whether to allow matchmaking with Warrior class.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        <Category("Settings: Allowed Matches")>
+        <DisplayName("Warrior")>
+        <Browsable(True)>
+        Public Property AllowWarrior As Boolean
 
 #End Region
 
-#Region " Application Paths "
+#Region " Notification "
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' (1) Gets or sets the full path to a file or program that you want run.
+        ''' Gets or sets a value that determine whether to play a wave sound file when a match is found.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        <Category("Application Paths")>
-        <DisplayName("(1) Full path to a file or program...")>
-        Public Property ExecutablePath1 As String
+        <Category("Settings: Notification")>
+        <DisplayName("Play sound file when a match is found")>
+        Public Property PlaySoundFile As Boolean
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' (2) Gets or sets the full path to a file or program that you want run.
+        ''' Gets or sets a value that determine whether to activate Hearthstone window when a match is found.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
-        <Category("Application Paths")>
-        <DisplayName("(2) Full path to a file or program...")>
-        Public Property ExecutablePath2 As String
-
-        ''' ----------------------------------------------------------------------------------------------------
-        ''' <summary>
-        ''' (3) Gets or sets the full path to a file or program that you want run.
-        ''' </summary>
-        ''' ----------------------------------------------------------------------------------------------------
-        <Category("Application Paths")>
-        <DisplayName("(3) Full path to a file or program...")>
-        Public Property ExecutablePath3 As String
-
-        ''' ----------------------------------------------------------------------------------------------------
-        ''' <summary>
-        ''' (4) Gets or sets the full path to a file or program that you want run.
-        ''' </summary>
-        ''' ----------------------------------------------------------------------------------------------------
-        <Category("Application Paths")>
-        <DisplayName("(4) Full path to a file or program...")>
-        Public Property ExecutablePath4 As String
-
-        ''' ----------------------------------------------------------------------------------------------------
-        ''' <summary>
-        ''' (5) Gets or sets the full path to a file or program that you want run.
-        ''' </summary>
-        ''' ----------------------------------------------------------------------------------------------------
-        <Category("Application Paths")>
-        <DisplayName("(5) Full path to a file or program...")>
-        Public Property ExecutablePath5 As String
-
-        ''' ----------------------------------------------------------------------------------------------------
-        ''' <summary>
-        ''' (6) Gets or sets the full path to a file or program that you want run.
-        ''' </summary>
-        ''' ----------------------------------------------------------------------------------------------------
-        <Category("Application Paths")>
-        <DisplayName("(6) Full path to a file or program...")>
-        Public Property ExecutablePath6 As String
-
-        ''' ----------------------------------------------------------------------------------------------------
-        ''' <summary>
-        ''' (7) Gets or sets the full path to a file or program that you want run.
-        ''' </summary>
-        ''' ----------------------------------------------------------------------------------------------------
-        <Category("Application Paths")>
-        <DisplayName("(7) Full path to a file or program...")>
-        Public Property ExecutablePath7 As String
-
-        ''' ----------------------------------------------------------------------------------------------------
-        ''' <summary>
-        ''' (8) Gets or sets the full path to a file or program that you want run.
-        ''' </summary>
-        ''' ----------------------------------------------------------------------------------------------------
-        <Category("Application Paths")>
-        <DisplayName("(8) Full path to a file or program...")>
-        Public Property ExecutablePath8 As String
-
-        ''' ----------------------------------------------------------------------------------------------------
-        ''' <summary>
-        ''' (9) Gets or sets the full path to a file or program that you want run.
-        ''' </summary>
-        ''' ----------------------------------------------------------------------------------------------------
-        <Category("Application Paths")>
-        <DisplayName("(9) Full path to a file or program...")>
-        Public Property ExecutablePath9 As String
+        <Category("Settings: Notification")>
+        <DisplayName("Activate Hearthstone window")>
+        Public Property ActivateWindow As Boolean
 
 #End Region
 
@@ -259,11 +306,28 @@ Namespace AppLauncher
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Initializes a new instance of the <see cref="AppLauncherPluginData"/> class.
+        ''' Initializes a new instance of the <see cref="MatchmakerPluginData"/> class.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Public Sub New()
             MyBase.Name = Me.Name
+
+            Me.Mode = Bot.Mode.UnrankedStandard
+            Me.Deck = "None"
+
+            Me.ActivateWindow = True
+            Me.PlaySoundFile = True
+
+            Me.AllowDemonHunter = True
+            Me.AllowDruid = True
+            Me.AllowHunter = True
+            Me.AllowMage = True
+            Me.AllowPaladin = True
+            Me.AllowPriest = True
+            Me.AllowRogue = True
+            Me.AllowShaman = True
+            Me.AllowWarlock = True
+            Me.AllowWarrior = True
         End Sub
 
 #End Region

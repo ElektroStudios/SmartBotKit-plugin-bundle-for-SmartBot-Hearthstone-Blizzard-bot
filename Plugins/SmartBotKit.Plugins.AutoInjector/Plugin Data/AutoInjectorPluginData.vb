@@ -12,10 +12,11 @@ Imports Microsoft.VisualBasic.ApplicationServices
 
 Imports System.ComponentModel
 Imports System.Diagnostics
-Imports System.IO
 Imports System.Reflection
 
 Imports SmartBot.Plugins
+
+Imports SmartBotKit.Interop
 
 #End Region
 
@@ -24,7 +25,6 @@ Imports SmartBot.Plugins
 ' ReSharper disable once CheckNamespace
 
 Namespace AutoInjector
-
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>
@@ -54,14 +54,69 @@ Namespace AutoInjector
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
-        ''' Gets the assembly name.
+        ''' Gets the assembly path.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         <Category("Plugin")>
+        <Browsable(False)>
         <DisplayName("Assembly Name")>
         Public ReadOnly Property AssemblyName As String
             Get
-                Return Path.ChangeExtension(Me.AssemblyInfo.AssemblyName, "dll")
+                Return System.IO.Path.ChangeExtension(Me.AssemblyInfo.AssemblyName, "dll")
+            End Get
+        End Property
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets the assembly path.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        <Category("Plugin")>
+        <DisplayName("Path")>
+        Public ReadOnly Property Path As String
+            Get
+                Return $".\{SmartBotUtil.PluginsDir.Name}\{Me.AssemblyName}"
+            End Get
+        End Property
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets the plugin title.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        <Category("Plugin")>
+        <DisplayName("[Title]")>
+        Public ReadOnly Property Title As String
+            Get
+                Return Me.AssemblyInfo.Title
+            End Get
+        End Property
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets the plugin name.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        <Category("Plugin")>
+        <DisplayName("Name")>
+        <Browsable(False)>
+        <[ReadOnly](True)>
+        Public Shadows ReadOnly Property Name As String
+            Get
+                Return Me.AssemblyInfo.AssemblyName
+            End Get
+        End Property
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets the plugin author.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        <Category("Plugin")>
+        <DisplayName("Author")>
+        Public ReadOnly Property Author As String
+            Get
+                Return Me.AssemblyInfo.CompanyName
             End Get
         End Property
 
@@ -91,9 +146,6 @@ Namespace AutoInjector
                 Return Me.AssemblyInfo.Version.ToString()
             End Get
         End Property
-
-        <Browsable(False)>
-        Public Shadows Property Name As String
 
 #End Region
 
@@ -157,7 +209,7 @@ Namespace AutoInjector
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Public Sub New()
-            MyBase.Name = Me.AssemblyInfo.AssemblyName
+            MyBase.Name = Me.Name
 
             Me.AutoStartBotAfterInjected = False
             Me.processDiscoverInterval_ = 5

@@ -11,13 +11,13 @@ Option Infer Off
 
 Imports System.Collections.Generic
 Imports System.IO
-Imports System.Media
 Imports System.Threading
 Imports System.Threading.Tasks
 
 Imports SmartBot.Plugins
 Imports SmartBot.Plugins.API
 
+Imports SmartBotKit.Audio
 Imports SmartBotKit.Computer
 Imports SmartBotKit.Interop
 Imports SmartBotKit.Interop.Win32
@@ -245,15 +245,12 @@ Namespace OfflineServerHandler
                                 End If
 
                                 If (Me.DataContainer.PlaySoundFile) Then
-                                    Try
-                                        Using player As New SoundPlayer(Path.Combine(SmartBotUtil.PluginsDir.FullName, "OfflineServerHandler.wav"))
-                                            player.Play()
-                                        End Using
-
-                                    Catch ex As Exception
-                                        Bot.Log("[Offline Server Handler] -> Failed to play the sound file. Error message: " & ex.Message)
-
-                                    End Try
+                                    Dim file As New FileInfo(Path.Combine(SmartBotUtil.PluginsDir.FullName, "OfflineServerHandler.mp3"))
+                                    If Not file.Exists() Then
+                                        Bot.Log($"[Offline Server Handler] -> Audio file not found: '{file.FullName}'")
+                                    Else
+                                        AudioUtil.PlaySoundFile(file)
+                                    End If
                                 End If
 
                         End Select

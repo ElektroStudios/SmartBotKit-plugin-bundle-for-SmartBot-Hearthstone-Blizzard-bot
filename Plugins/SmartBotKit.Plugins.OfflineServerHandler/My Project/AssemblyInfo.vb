@@ -9,11 +9,11 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("Offline Server Handler for SmartBot")>
+<Assembly: AssemblyTitle("Offline Server Handler plugin for SmartBot")>
 <Assembly: AssemblyDescription("A plugin that handles the bot behavior when the server gets down (not lag, ﻿local network inactivity﻿﻿ neither ﻿auth. problems).")>
 <Assembly: AssemblyCompany("ElektroStudios")>
 <Assembly: AssemblyProduct("OfflineServerHandler.dll")>
-<Assembly: AssemblyCopyright("© ElektroStudios 2019")>
+<Assembly: AssemblyCopyright("© ElektroStudios 2020")>
 <Assembly: AssemblyTrademark("")>
 
 <Assembly: ComVisible(False)>
@@ -32,6 +32,6 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")>
 
-<Assembly: AssemblyVersion("2.3.0.0")>
-<Assembly: AssemblyFileVersion("2.3.0.0")>
+<Assembly: AssemblyVersion("2.4.0.0")>
+<Assembly: AssemblyFileVersion("2.4.0.0")>
 <Assembly: NeutralResourcesLanguage("en")>

@@ -30,7 +30,6 @@ Imports SmartBotKit.Interop.Win32
 
 Namespace SmartBotKit.Interop
 
-
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>
     ''' Provides reusable automation utilities for SmartBot process.
@@ -210,12 +209,16 @@ Namespace SmartBotKit.Interop
             Get
                 Dim serverIsDownString As String = "Board request sent for more than"
 
-                Dim lines As IEnumerable(Of String) = SmartBotUtil.CurrentLogContent
-                For Each line As String In lines?.Reverse()
-                    If line.Contains(serverIsDownString) Then
-                        Return TimeSpan.Parse(line.Substring(0, 10).TrimStart("["c).TrimEnd("]"c))
-                    End If
-                Next
+                Try
+                    Dim lines As IEnumerable(Of String) = SmartBotUtil.CurrentLogContent
+                    For Each line As String In lines?.Reverse()
+                        If line.Contains(serverIsDownString) Then
+                            Return TimeSpan.Parse(line.Substring(0, 10).TrimStart("["c).TrimEnd("]"c))
+                        End If
+                    Next
+                Catch
+
+                End Try
 
                 Return Nothing
             End Get
@@ -447,6 +450,236 @@ Namespace SmartBotKit.Interop
             End If
 
         End Sub
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Finds and returns a running <see cref="Plugin"/> that matches 
+        ''' the specified "Name" property value.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <example> This is a code example.
+        ''' <code>
+        ''' Dim questerPlugin As Plugin = FindPluginByName("Quester", StringComparison.OrdinalIgnoreCase)
+        ''' If questerPlugin IsNot Nothing Then
+        '''     MsgBox("Plugin found.")
+        ''' End If
+        ''' </code>
+        ''' </example>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <returns>
+        ''' The return value is a running <see cref="Plugin"/> that matches the specified "Name" property value, 
+        ''' otherwise, it returns <see langword="Nothing"/>.
+        ''' </returns>
+        ''' ----------------------------------------------------------------------------------------------------
+        Public Shared Function FindPluginByName(ByVal name As String, Optional stringComparison As StringComparison = StringComparison.Ordinal) As Plugin
+
+            If String.IsNullOrWhiteSpace(name) Then
+                Throw New ArgumentNullException(paramName:=NameOf(name))
+            End If
+
+            Dim plugins As List(Of Plugin) = Bot.GetPlugins()
+            For Each plug As Plugin In plugins
+                If plug.DataContainer.Name.Equals(name, stringComparison) Then
+                    Return plug
+                End If
+            Next plug
+
+            Return Nothing
+
+        End Function
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Finds and returns the first occurrence of a running <see cref="Plugin"/> that matches 
+        ''' all the given property names.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <example> This is a code example.
+        ''' <code>
+        ''' Dim plug As Plugin = FindFirstPluginByPropertyNames("PropertyName1", "PropertyName2", "PropertyName3")
+        ''' If plug IsNot Nothing Then
+        '''     MsgBox("Plugin found.")
+        ''' End If
+        ''' </code>
+        ''' </example>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <returns>
+        ''' The return value is the first occurrence of a running <see cref="Plugin"/> that matches 
+        ''' all the given property names, 
+        ''' otherwise, it returns <see langword="Nothing"/>.
+        ''' </returns>
+        ''' ----------------------------------------------------------------------------------------------------
+        Public Shared Function FindFirstPluginByPropertyNames(ParamArray propertyNames As String()) As Plugin
+
+            If (propertyNames.Count = 0) Then
+                Throw New ArgumentNullException(paramName:=NameOf(propertyNames))
+            End If
+
+            Dim plugins As List(Of Plugin) = Bot.GetPlugins()
+            For Each plug As Plugin In plugins
+                Dim keys As Dictionary(Of String, Object).KeyCollection
+
+                Try
+                    keys = plug.GetProperties().Keys
+
+                Catch ex As Exception
+                    Throw
+
+                End Try
+
+                If propertyNames.All(Function(propertyName As String)
+                                         Return Keys.Contains(propertyName)
+                                     End Function) Then
+                    Return plug
+                End If
+            Next plug
+
+            Return Nothing
+        End Function
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Finds and returns all the occurrences of running <see cref="Plugin"/> objects that matches 
+        ''' all the given property names.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <example> This is a code example.
+        ''' <code>
+        ''' Dim plugins As IEnumerable(Of Plugin) = FindPluginsByPropertyNames("PropertyName1", "PropertyName2", "PropertyName3")
+        ''' 
+        ''' If plugins IsNot Nothing Then
+        '''     For Each plug As Plugin In plugins
+        '''         ' ...
+        '''     Next plug
+        ''' End If
+        ''' </code>
+        ''' </example>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <returns>
+        ''' The return value is all the occurrences of running <see cref="Plugin"/> objects that matches 
+        ''' all the given property names, 
+        ''' otherwise, it returns <see langword="Nothing"/>.
+        ''' </returns>
+        ''' ----------------------------------------------------------------------------------------------------
+        Public Shared Iterator Function FindPluginsByPropertyNames(ParamArray propertyNames As String()) As IEnumerable(Of Plugin)
+
+            If (propertyNames.Count = 0) Then
+                Throw New ArgumentNullException(paramName:=NameOf(propertyNames))
+            End If
+
+            Dim plugins As List(Of Plugin) = Bot.GetPlugins()
+            For Each plug As Plugin In plugins
+                Dim keys As Dictionary(Of String, Object).KeyCollection
+
+                Try
+                    keys = plug.GetProperties().Keys
+
+                Catch ex As Exception
+                    Throw
+
+                End Try
+
+                If propertyNames.All(Function(propertyName As String)
+                                         Return keys.Contains(propertyName)
+                                     End Function) Then
+                    Yield plug
+                End If
+            Next plug
+
+        End Function
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Finds and returns the first occurrence of a running <see cref="Plugin"/> that matches 
+        ''' all the given property names with their specified values.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <example> This is a code example.
+        ''' <code>
+        ''' Dim properties As New Dictionary(Of String, Object)(StringComparer.Ordinal) From {
+        '''     {"Author", "ElektroStudios"},
+        '''     {"Path", ".\Plugins\BountyHunter.dll"},
+        '''     {"Enabled", True}
+        ''' }
+        ''' 
+        ''' Dim plug As Plugin = FindFirstPluginByPropertyValues(properties)
+        ''' If plug IsNot Nothing Then
+        '''     MsgBox("Plugin found.")
+        ''' End If
+        ''' </code>
+        ''' </example>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <returns>
+        ''' The return value is a the first occurrence of a running <see cref="Plugin"/> that matches 
+        ''' all the given property names with their specified values, 
+        ''' otherwise, it returns <see langword="Nothing"/>.
+        ''' </returns>
+        ''' ----------------------------------------------------------------------------------------------------
+        Public Shared Function FindFirstPluginByPropertyValues(properties As Dictionary(Of String, Object)) As Plugin
+
+            Dim plugins As List(Of Plugin) = Bot.GetPlugins()
+            For Each plug As Plugin In plugins
+
+                Dim plugProps As Dictionary(Of String, Object) = plug.GetProperties()
+                If properties.All(Function(prop As KeyValuePair(Of String, Object))
+                                      Return (plugProps.ContainsKey(prop.Key) AndAlso
+                                              plugProps(prop.Key).Equals(prop.Value))
+                                  End Function) Then
+                    Return plug
+                End If
+
+            Next plug
+
+            Return Nothing
+
+        End Function
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Finds and returns all the occurrences of running <see cref="Plugin"/> objects that matches 
+        ''' all the given property names with their specified values.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <example> This is a code example.
+        ''' <code>
+        ''' Dim properties As New Dictionary(Of String, Object)(StringComparer.Ordinal) From {
+        '''     {"Author", "ElektroStudios"},
+        '''     {"Path", ".\Plugins\BountyHunter.dll"},
+        '''     {"Enabled", True}
+        ''' }
+        ''' 
+        ''' Dim plugins As IEnumerable(Of Plugin) = FindPluginsByPropertyValues(properties)
+        ''' 
+        ''' If plugins IsNot Nothing Then
+        '''     For Each plug As Plugin In plugins
+        '''         ' ...
+        '''     Next plug
+        ''' End If
+        ''' </code>
+        ''' </example>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <returns>
+        ''' The return value is a all the occurrences of running <see cref="Plugin"/> objects that matches 
+        ''' all the given property names with their specified values, 
+        ''' otherwise, it returns <see langword="Nothing"/>.
+        ''' </returns>
+        ''' ----------------------------------------------------------------------------------------------------
+        Public Shared Iterator Function FindPluginsByPropertyValues(properties As Dictionary(Of String, Object)) As IEnumerable(Of Plugin)
+
+            Dim plugins As List(Of Plugin) = Bot.GetPlugins()
+            For Each plug As Plugin In plugins
+
+                Dim plugProps As Dictionary(Of String, Object) = plug.GetProperties()
+                If properties.All(Function(prop As KeyValuePair(Of String, Object))
+                                      Return (plugProps.ContainsKey(prop.Key) AndAlso
+                                              plugProps(prop.Key).Equals(prop.Value))
+                                  End Function) Then
+                    Yield plug
+                End If
+
+            Next plug
+
+        End Function
 
 #End Region
 

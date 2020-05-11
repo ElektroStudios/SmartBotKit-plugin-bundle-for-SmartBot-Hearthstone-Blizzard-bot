@@ -1700,6 +1700,55 @@ Namespace SmartBotKit.Interop.Win32
         ) As <MarshalAs(UnmanagedType.Bool)> Boolean
         End Function
 
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Sends a command string to an MCI device. 
+        ''' The device that the command is sent to is specified in the command string.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <remarks>
+        ''' <see href="https://msdn.microsoft.com/en-us/library/windows/desktop/dd757161%28v=vs.85%29.aspx"/>
+        ''' </remarks>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <param name="command">
+        ''' Pointer to a null-terminated string that specifies an MCI command string. 
+        ''' For a list, see <see href="https://msdn.microsoft.com/en-us/library/windows/desktop/dd743572(v=vs.85).aspx"/>.
+        ''' </param>
+        ''' 
+        ''' <param name="buffer">
+        ''' <see cref="StringBuilder"/> that receives return information. 
+        ''' If no return information is needed, this parameter can be <see langword="Nothing"/>.
+        ''' </param>
+        ''' 
+        ''' <param name="bufferSize">
+        ''' Size, in characters, of the return buffer specified by the <paramref name="buffer"/> parameter.
+        ''' </param>
+        ''' 
+        ''' <param name="hWndCallback">
+        ''' A <see cref="IntPtr"/> to a callback window if the "notify" flag was specified in the command string.
+        ''' </param>
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <returns>
+        ''' Returns zero if successful or an error otherwise. 
+        ''' The low-order word of the returned DWORD value contains the error return value. 
+        ''' <para></para>
+        ''' If the error is device-specific, the high-order word of the return value is the driver identifier; 
+        ''' otherwise, the high-order word is zero. For a list of possible error values, see MCIERR Return Values.
+        ''' <para></para>
+        ''' To retrieve a text description of return values, 
+        ''' pass the return value to the MciGetErrorString function
+        ''' </returns>
+        ''' ----------------------------------------------------------------------------------------------------
+        <SuppressMessage("Microsoft.Interoperability", "CA1401:PInvokesShouldNotBeVisible", Justification:="Visible for API users")>
+        <SuppressUnmanagedCodeSecurity>
+        <DllImport("WinMM.dll", EntryPoint:="mciSendString", SetLastError:=True, CharSet:=CharSet.Auto, BestFitMapping:=False, ThrowOnUnmappableChar:=True)>
+        Public Shared Function MciSendString(command As String,
+                                             buffer As StringBuilder,
+                                             bufferSize As Integer,
+                                             hWndCallback As IntPtr
+        ) As Integer
+        End Function
+
 #End Region
 
     End Class

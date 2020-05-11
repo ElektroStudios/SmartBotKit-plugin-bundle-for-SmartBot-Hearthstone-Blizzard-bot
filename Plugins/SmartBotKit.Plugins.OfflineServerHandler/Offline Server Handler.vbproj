@@ -149,10 +149,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="OfflineServerHandler.wav">
+    <None Include="OfflineServerHandler.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

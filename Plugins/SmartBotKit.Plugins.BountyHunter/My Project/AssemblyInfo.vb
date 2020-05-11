@@ -9,7 +9,7 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("Bounty Hunter for SmartBot")>
+<Assembly: AssemblyTitle("Bounty Hunter plugin for SmartBot")>
 <Assembly: AssemblyDescription("A plugin that completes quests, schedules ranked mode and level up heroes.")>
 <Assembly: AssemblyCompany("ElektroStudios")>
 <Assembly: AssemblyProduct("BountyHunter.dll")>
@@ -32,6 +32,6 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")>
 
-<Assembly: AssemblyVersion("2.7.0.0")>
-<Assembly: AssemblyFileVersion("2.7.0.0")>
+<Assembly: AssemblyVersion("2.8.0.0")>
+<Assembly: AssemblyFileVersion("2.8.0.0")>
 <Assembly: NeutralResourcesLanguage("en")>

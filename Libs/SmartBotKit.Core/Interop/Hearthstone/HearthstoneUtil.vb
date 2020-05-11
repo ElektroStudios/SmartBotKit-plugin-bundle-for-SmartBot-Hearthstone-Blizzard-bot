@@ -222,6 +222,9 @@ Namespace SmartBotKit.Interop
                 Case CClass.WARRIOR
                     Return Bot.GetPlayerDatas().GetGoldenHeroesDatas().Warrior
 
+                Case CClass.DEMONHUNTER
+                    Return Bot.GetPlayerDatas().GetGoldenHeroesDatas().DemonHunter
+
                 Case Else
                     Throw New InvalidEnumArgumentException(NameOf(heroClass), heroClass, GetType(CClass))
 
@@ -275,6 +278,9 @@ Namespace SmartBotKit.Interop
 
                 Case CClass.WARRIOR
                     Return Bot.GetPlayerDatas().GetGoldenHeroesDatas().WarriorWins
+
+                Case CClass.DEMONHUNTER
+                    Return Bot.GetPlayerDatas().GetGoldenHeroesDatas().DemonHunterWins
 
                 Case Else
                     Throw New InvalidEnumArgumentException(NameOf(heroClass), heroClass, GetType(CClass))

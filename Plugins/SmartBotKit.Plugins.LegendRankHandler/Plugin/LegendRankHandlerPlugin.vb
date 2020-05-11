@@ -9,16 +9,17 @@ Option Infer Off
 
 #Region " Imports "
 
-Imports System.Diagnostics
 Imports System.IO
-Imports System.Media
 Imports System.Net
 Imports System.Net.Mail
 Imports System.Text
+
 Imports HearthMirror.Objects
+
 Imports SmartBot.Plugins
 Imports SmartBot.Plugins.API
 
+Imports SmartBotKit.Audio
 Imports SmartBotKit.Computer
 Imports SmartBotKit.Interop
 Imports SmartBotKit.Interop.Win32
@@ -151,17 +152,12 @@ Namespace LegendRankHandler
                 Me.isLegendNotified = True
 
                 If (Me.DataContainer.PlaySoundFile) Then
-                    Dim filename As String = "LegendRankHandler.wav"
-
-                    Try
-                        Using player As New SoundPlayer(Path.Combine(SmartBotUtil.PluginsDir.FullName, filename))
-                            player.Play()
-                        End Using
-
-                    Catch ex As Exception
-                        Bot.Log("[Legend Rank Handler] -> Failed to play the sound file. Error message: " & ex.Message)
-
-                    End Try
+                    Dim file As New FileInfo(Path.Combine(SmartBotUtil.PluginsDir.FullName, "LegendRankHandler.mp3"))
+                    If Not file.Exists() Then
+                        Bot.Log($"[Legend Rank Handler] -> Audio file not found: '{file.FullName}'")
+                    Else
+                        AudioUtil.PlaySoundFile(file)
+                    End If
                 End If
 
                 If Me.DataContainer.SendNotificationMail Then
