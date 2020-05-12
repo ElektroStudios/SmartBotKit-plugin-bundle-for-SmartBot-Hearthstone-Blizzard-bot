@@ -1,4 +1,5 @@
-﻿# **SmartBotKit**
+This File is Old One.
+# **SmartBotKit**
 
 **SmartBotKit** is a personal collection of plugins developed for **SmartBot**, a bot for **Hearthstone** videogame.
 
@@ -14,14 +15,7 @@ I don't use bots, I'm just a enthusiastic programmer that like to learn new thin
 
 # **Donations**
 
-##### Through Paypal:
-If you like my work and want to support it, then please consider to deposit a donation through **Paypal** by clicking on the next button:
-
-[![Donataion Account](Images/Paypal.png)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=E4RQEV6YF5NZY)
-
-[![Donataion Amount](https://img.shields.io/badge/Current%20donations-0%24-red.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=E4RQEV6YF5NZY)
-
-You are free to specify whatever amount of money you wish. That money will be sent to my **Paypal** account.
+This File is Old One. if you want to Donations the Old Version's Writter, Please went to https://github.com/ElektroStudios/SmartBotKit
 
 ##### Through Envato:
 If you are a .NET programmer, then maybe you would like to consider the purchase of 
