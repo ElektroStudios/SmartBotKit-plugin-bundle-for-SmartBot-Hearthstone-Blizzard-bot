@@ -13,7 +13,8 @@ Imports System.Collections.Generic
 Imports System.Globalization
 Imports System.IO
 Imports System.Runtime.InteropServices
-
+Imports System.Threading
+Imports System.Threading.Tasks
 Imports SmartBotKit.Interop.Win32
 
 #End Region
@@ -31,6 +32,17 @@ Namespace SmartBotKit.Audio
     ''' </summary>
     ''' ----------------------------------------------------------------------------------------------------
     Public NotInheritable Class AudioUtil
+
+#Region " Private Fields "
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' A random sequence generator.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        Private Shared RNG As New Random(Environment.TickCount)
+
+#End Region
 
 #Region " Constructors "
 
@@ -174,10 +186,15 @@ Namespace SmartBotKit.Audio
         ''' ----------------------------------------------------------------------------------------------------
         <DebuggerStepThrough>
         Public Shared Sub PlaySoundFile(filepath As String)
-            Dim mciAlias As String = "temp_alias"
-            NativeMethods.MciSendString($"close {mciAlias}", Nothing, 0, IntPtr.Zero)
+
+            Dim number As Integer = AudioUtil.RNG.Next(1000)
+            Dim mciAlias As String = $"SmartBotKit_{number}"
+
             NativeMethods.MciSendString($"open ""{filepath}"" alias {mciAlias}", Nothing, 0, IntPtr.Zero)
-            NativeMethods.MciSendString($"play {mciAlias}", Nothing, 0, IntPtr.Zero)
+            NativeMethods.MciSendString($"play ""{mciAlias}"" wait", Nothing, 0, IntPtr.Zero)
+            ' NativeMethods.MciSendString($"stop ""{mciAlias}""", Nothing, 0, IntPtr.Zero)
+            NativeMethods.MciSendString($"close ""{mciAlias}""", Nothing, 0, IntPtr.Zero)
+
         End Sub
 
 #End Region

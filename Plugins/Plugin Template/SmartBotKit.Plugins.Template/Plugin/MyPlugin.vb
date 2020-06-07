@@ -24,7 +24,6 @@ Imports SmartBot.Plugins.API.Bot
 
 Namespace PluginTemplate
 
-
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>
     ''' A plugin template for SmartBot.

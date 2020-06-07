@@ -132,7 +132,7 @@ Namespace Matchmaker
         <DisplayName("Description")>
         Public ReadOnly Property Description As String
             Get
-                Return "Helps you to find your best opponent match."
+                Return "Helps you find your favorite opponent match."
             End Get
         End Property
 

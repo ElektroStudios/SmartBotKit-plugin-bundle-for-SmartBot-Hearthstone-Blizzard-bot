@@ -33,7 +33,7 @@ Namespace Matchmaker
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>
-    ''' A plugin that helps you to find your best opponent match.
+    ''' A plugin that helps you find your favorite opponent match.
     ''' </summary>
     ''' ----------------------------------------------------------------------------------------------------
     ''' <seealso cref="Plugin"/>
@@ -173,7 +173,7 @@ Namespace Matchmaker
 
             End If
 
-                MyBase.OnHandleMulligan(choices, opponentClass, ownClass)
+            MyBase.OnHandleMulligan(choices, opponentClass, ownClass)
         End Sub
 
         ''' ----------------------------------------------------------------------------------------------------
@@ -257,6 +257,17 @@ Namespace Matchmaker
             Dim questerPlugin As Plugin = SmartBotUtil.FindFirstPluginByPropertyValues(questerProps)
             If questerPlugin IsNot Nothing Then
                 Bot.Log($"[Matchmaker] -> This plugin will not work when '{questerProps("Name")}' plugin is enabled.")
+                failTest = True
+            End If
+
+            ' AdvancedQuester Plugin
+            Dim advancedQuesterProps As New Dictionary(Of String, Object) From {
+                {"Name", "AdvancedQuester"},
+                {"Enabled", True}
+            }
+            Dim advancedQuesterPlugin As Plugin = SmartBotUtil.FindFirstPluginByPropertyValues(advancedQuesterProps)
+            If advancedQuesterPlugin IsNot Nothing Then
+                Bot.Log($"[Matchmaker] -> This plugin will not work when '{advancedQuesterProps("Name")}' plugin is enabled.")
                 failTest = True
             End If
 

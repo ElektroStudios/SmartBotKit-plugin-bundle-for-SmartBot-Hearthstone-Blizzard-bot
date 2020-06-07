@@ -23,8 +23,7 @@ Imports SmartBotKit.Interop
 
 ' ReSharper disable once CheckNamespace
 
-Namespace PluginTemplate
-
+Namespace AdvancedAutoConcede
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>

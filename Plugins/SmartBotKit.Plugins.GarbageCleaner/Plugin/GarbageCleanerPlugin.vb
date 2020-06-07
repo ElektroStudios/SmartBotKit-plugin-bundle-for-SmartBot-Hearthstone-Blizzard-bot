@@ -327,6 +327,30 @@ Namespace GarbageCleaner
                 Next screenshot
             End If
 
+            ' Delete SmartBot updates (*.zip)
+            If (Me.DataContainer.DeleteUpdates) Then
+                Dim updates As New List(Of FileInfo)
+                If (SmartBotUtil.SmartBotDir.Exists) Then
+                    updates.AddRange(SmartBotUtil.SmartBotDir.EnumerateFiles("sb-v*.zip", System.IO.SearchOption.TopDirectoryOnly))
+                End If
+
+                For Each update As FileInfo In updates
+                    Dim daysDiff As Integer = CInt((Date.Now - update.CreationTime).TotalDays)
+                    If (daysDiff >= minDaysDiff) Then
+                        Try
+                            My.Computer.FileSystem.DeleteFile(update.FullName, UIOption.OnlyErrorDialogs, recycleOption)
+                            If (verboseMode) Then
+                                Bot.Log(
+                                    $"[Garbage Cleaner] -> Update deleted: '{update.Name}'. Older than {daysDiff _
+                                           } days.")
+                            End If
+                        Catch ex As Exception
+                            ' Ignore all.
+                        End Try
+                    End If
+                Next update
+            End If
+
         End Sub
 
 #End Region

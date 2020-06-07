@@ -20,7 +20,7 @@ Imports SmartBot.Plugins.API.Bot
 
 ' ReSharper disable once CheckNamespace
 
-Namespace PluginTemplate
+Namespace AdvancedAutoConcede
 
 
     ''' ----------------------------------------------------------------------------------------------------

@@ -10,7 +10,7 @@ Imports System.Runtime.InteropServices
 ' Review the values of the assembly attributes
 
 <Assembly: AssemblyTitle("Matchmaker plugin for SmartBot")>
-<Assembly: AssemblyDescription("A plugin that helps you to find your best opponent match.")>
+<Assembly: AssemblyDescription("A plugin that helps you find your favorite opponent match.")>
 <Assembly: AssemblyCompany("ElektroStudios")>
 <Assembly: AssemblyProduct("Matchmaker.dll")>
 <Assembly: AssemblyCopyright("© ElektroStudios 2020")>
@@ -31,6 +31,6 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")>
 
-<Assembly: AssemblyVersion("1.0.0.0")>
-<Assembly: AssemblyFileVersion("1.0.0.0")>
+<Assembly: AssemblyVersion("1.1.0.0")>
+<Assembly: AssemblyFileVersion("1.1.0.0")>
 <Assembly: NeutralResourcesLanguage("en")>

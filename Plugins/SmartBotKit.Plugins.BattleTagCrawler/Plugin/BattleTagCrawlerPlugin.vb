@@ -21,6 +21,7 @@ Imports HearthMirror.Objects.MatchInfo
 Imports SmartBotKit.Interop
 Imports System.Collections.Generic
 Imports System.Linq
+Imports HearthMirror.Objects
 
 #End Region
 
@@ -28,8 +29,7 @@ Imports System.Linq
 
 ' ReSharper disable once CheckNamespace
 
-Namespace PluginTemplate
-
+Namespace BattleTagCrawler
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>
@@ -171,15 +171,34 @@ Namespace PluginTemplate
                             dirInfo.Create()
                             dirInfo.Refresh()
                         Catch ex As Exception
-                            Bot.Log($"[BattleTag Crawler] -> Error creating log directory: {ex.Message}")
                         End Try
                     End If
 
                     If (dirInfo.Exists) Then
-                        Dim player As Player = HearthMirror.Reflection.GetMatchInfo().OpposingPlayer
-                        Dim battletag As String = $"{player.BattleTag.Name}#{player.BattleTag.Number}"
-                        Dim standardRank As Integer = player.StandardRank
-                        Dim wildrank As Integer = player.WildRank
+                        Dim matchInfo As MatchInfo
+                        Dim player As Player
+                        Dim battletag As String = "#"
+                        Dim standardRank As Integer
+                        Dim wildrank As Integer
+
+                        Try
+                            matchInfo = HearthMirror.Reflection.GetMatchInfo()
+                            If matchInfo Is Nothing Then
+                                Throw New Exception(message:=$"'{NameOf(matchInfo)}' is null. (HDT libs are outdated?)")
+                            End If
+
+                            player = matchInfo.OpposingPlayer
+                            If player Is Nothing Then
+                                Throw New Exception(message:=$"'{NameOf(matchInfo.OpposingPlayer)}' is null. (HDT libs are outdated?)")
+                            End If
+
+                            battletag = $"{player.BattleTag.Name}#{player.BattleTag.Number}"
+                            standardRank = player.StandardRank
+                            wildrank = player.WildRank
+
+                        Catch ex As Exception
+                            Bot.Log($"[BattleTag Crawler] -> Error crawling BattleTag: {ex.Message}")
+                        End Try
 
                         If Not Me.DataContainer.LogDuplicates Then
                             If (fileInfo.Exists) AndAlso (File.ReadAllText(fileInfo.FullName, Encoding.Unicode).Contains(battletag)) Then

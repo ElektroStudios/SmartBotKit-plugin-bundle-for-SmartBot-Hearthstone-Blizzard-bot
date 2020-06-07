@@ -212,6 +212,15 @@ Namespace GarbageCleaner
         <DisplayName("Screenshot files")>
         Public Property DeleteScreenshots As Boolean
 
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets a value that determine whether the plugin should delete SmartBot updates (*.zip)").
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        <Category("Files to clean")>
+        <DisplayName("SmartBot updates (*.zip)")>
+        Public Property DeleteUpdates As Boolean
+
 #End Region
 
 #Region " Date Filtering "
@@ -302,6 +311,7 @@ Namespace GarbageCleaner
             Me.DeleteBattleTagCrawlertLogs = False
             Me.DeleteSeeds = False
             Me.DeleteScreenshots = False
+            Me.DeleteUpdates = False
         End Sub
 
 #End Region
