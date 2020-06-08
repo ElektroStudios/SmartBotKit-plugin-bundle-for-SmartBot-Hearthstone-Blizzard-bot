@@ -8,20 +8,20 @@ Option Infer Off
 
 #Region " Imports "
 
+Imports System.Collections.Generic
 Imports System.Diagnostics
 Imports System.IO
+Imports System.Linq
 Imports System.Text
 
 Imports SmartBot.Plugins
 Imports SmartBot.Plugins.API
 Imports SmartBot.Plugins.API.Bot
 
-Imports HearthMirror.Objects.MatchInfo
-
 Imports SmartBotKit.Interop
-Imports System.Collections.Generic
-Imports System.Linq
+
 Imports HearthMirror.Objects
+Imports HearthMirror.Objects.MatchInfo
 
 #End Region
 

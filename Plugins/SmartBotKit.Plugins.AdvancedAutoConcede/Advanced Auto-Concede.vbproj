@@ -86,6 +86,14 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="HearthMirror">
+      <HintPath>..\..\References\HearthMirror.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HearthWatcher">
+      <HintPath>..\..\References\HearthWatcher.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="SBAPI">
       <HintPath>..\..\References\SBAPI.dll</HintPath>
       <Private>False</Private>
@@ -145,6 +153,11 @@
       <Name>SmartBotKit.Core</Name>
       <Private>False</Private>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="AdvancedAutoConcede.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

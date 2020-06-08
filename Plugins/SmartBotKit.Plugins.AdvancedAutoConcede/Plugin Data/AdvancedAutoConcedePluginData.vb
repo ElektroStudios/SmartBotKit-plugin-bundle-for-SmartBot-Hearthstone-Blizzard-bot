@@ -10,11 +10,18 @@ Option Infer Off
 
 Imports Microsoft.VisualBasic.ApplicationServices
 
+Imports System.Collections.Generic
+Imports System.Collections.ObjectModel
 Imports System.ComponentModel
 Imports System.Diagnostics
+Imports System.IO
+Imports System.Linq
 Imports System.Reflection
+Imports System.Text
 
 Imports SmartBot.Plugins
+Imports SmartBot.Plugins.API
+
 Imports SmartBotKit.Interop
 
 #End Region
@@ -149,6 +156,55 @@ Namespace AdvancedAutoConcede
 
 #Region " Settings "
 
+#Region " Info "
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets the current concede count.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        <Category(".Info")>
+        <DisplayName("Current concede count")>
+        <Browsable(True)>
+        <[ReadOnly](True)>
+        Public ReadOnly Property CurrentConcedeCount As Integer
+            Get
+                Return AdvancedAutoConcedePlugin.concedesCount
+            End Get
+        End Property
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets the current ranked wins count.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        <Category(".Info")>
+        <DisplayName("Current ranked wins count")>
+        <Browsable(True)>
+        <[ReadOnly](True)>
+        Public ReadOnly Property CurrentRankedWinsCount As Integer
+            Get
+                Return AdvancedAutoConcedePlugin.rankedWinsCount
+            End Get
+        End Property
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets the current unranked wins count.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        <Category(".Info")>
+        <DisplayName("Current unranked wins count")>
+        <Browsable(True)>
+        <[ReadOnly](True)>
+        Public ReadOnly Property CurrentUnrankedWinsCount As Integer
+            Get
+                Return AdvancedAutoConcedePlugin.unrankedWinsCount
+            End Get
+        End Property
+
+#End Region
+
 #Region " Behavior "
 
         ''' ----------------------------------------------------------------------------------------------------
@@ -160,7 +216,7 @@ Namespace AdvancedAutoConcede
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         <Category("Behavior")>
-        <DisplayName("Reset wins count after losing a match.")>
+        <DisplayName("Reset wins count after losing a match")>
         <Browsable(True)>
         Public Property ResetWinsCountAfterLose As Boolean
 
@@ -173,9 +229,34 @@ Namespace AdvancedAutoConcede
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         <Category("Behavior")>
-        <DisplayName("Reset wins count after bot is stopped.")>
+        <DisplayName("Reset wins count after bot is stopped")>
         <Browsable(True)>
         Public Property ResetWinsCountAfterBotStop As Boolean
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets or sets a value that determine whether to always concede games ignoring all plugin rules.
+        ''' <para></para>
+        ''' If this value is <see langword="True"/>, a game will be always conceded. 
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        <Category("Behavior")>
+        <DisplayName("Always concede (ignore all plugin rules)")>
+        <Browsable(True)>
+        Public Property AlwaysConcede As Boolean
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets or sets a value that determine whether to concede game when matchmaking the specified battletag names.
+        ''' <para></para>
+        ''' ( One battletag per line. Unicode encoding. Case insensitive. Format: 'name#id' or 'name' ) 
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        <Category("Behavior")>
+        <DisplayName("Always concede to BattleTags specified in file:")>
+        <Browsable(True)>
+        <[ReadOnly](True)>
+        Public ReadOnly Property ConcedeToBattletagsInFile As String
 
 #End Region
 
@@ -473,7 +554,40 @@ Namespace AdvancedAutoConcede
             Me.minRankWild_ = 25
             Me.maxRankStandard_ = 0
             Me.maxRankWild_ = 0
+
+            Me.AlwaysConcede = False
+            Me.ConcedeToBattletagsInFile = $"{SmartBotUtil.PluginsDir.FullName}\AdvancedAutoConcede.txt"
         End Sub
+
+#End Region
+
+#Region " Public Methods "
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
+        ''' Gets the battletags from <see cref="AdvancedAutoConcedePluginData.ConcedeToBattletagsInFile"/> as a list.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        Friend Function GetBattletags() As ReadOnlyCollection(Of String)
+
+            If File.Exists(Me.ConcedeToBattletagsInFile) Then
+                Dim lines As IEnumerable(Of String)
+                Try
+                    lines = File.ReadLines(Me.ConcedeToBattletagsInFile, Encoding.Unicode)
+                    Return (From line As String In lines
+                            Where Not String.IsNullOrWhiteSpace(line) AndAlso Not line.StartsWith("#"c)
+                            Select line.ToLower().Trim(" "c)
+                            ).ToList().AsReadOnly()
+
+                Catch ex As Exception
+                    Bot.Log($"[Advanced Auto Concede] -> Error reading file: {Me.ConcedeToBattletagsInFile}'")
+
+                End Try
+            End If
+
+            Return Nothing
+
+        End Function
 
 #End Region
 

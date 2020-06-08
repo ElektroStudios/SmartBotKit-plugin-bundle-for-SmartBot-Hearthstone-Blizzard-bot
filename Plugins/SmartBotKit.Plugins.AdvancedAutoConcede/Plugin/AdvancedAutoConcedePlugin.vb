@@ -8,11 +8,16 @@ Option Infer Off
 
 #Region " Imports "
 
+Imports System.Collections.ObjectModel
 Imports System.Diagnostics
+Imports System.Linq
 
 Imports SmartBot.Plugins
 Imports SmartBot.Plugins.API
 Imports SmartBot.Plugins.API.Bot
+
+Imports HearthMirror.Objects
+Imports HearthMirror.Objects.MatchInfo
 
 #End Region
 
@@ -21,7 +26,6 @@ Imports SmartBot.Plugins.API.Bot
 ' ReSharper disable once CheckNamespace
 
 Namespace AdvancedAutoConcede
-
 
     ''' ----------------------------------------------------------------------------------------------------
     ''' <summary>
@@ -57,6 +61,13 @@ Namespace AdvancedAutoConcede
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
+        ''' Keeps track of the last <see cref="AdvancedAutoConcedePluginData.AlwaysConcede"/> value.
+        ''' </summary>
+        ''' ----------------------------------------------------------------------------------------------------
+        Private lastAlwaysConcede As Boolean
+
+        ''' ----------------------------------------------------------------------------------------------------
+        ''' <summary>
         ''' Keeps track of the last <see cref="AdvancedAutoConcedePluginData.Enabled"/> value.
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
@@ -69,7 +80,7 @@ Namespace AdvancedAutoConcede
         ''' ----------------------------------------------------------------------------------------------------
         ''' <seealso cref="AdvancedAutoConcedePluginData.MaxRankedWins"/>
         ''' ----------------------------------------------------------------------------------------------------
-        Private rankedWinsCount As Integer
+        Friend Shared rankedWinsCount As Integer
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
@@ -78,7 +89,7 @@ Namespace AdvancedAutoConcede
         ''' ----------------------------------------------------------------------------------------------------
         ''' <seealso cref="AdvancedAutoConcedePluginData.MaxUnrankedWins"/>
         ''' ----------------------------------------------------------------------------------------------------
-        Private unrankedWinsCount As Integer
+        Friend Shared unrankedWinsCount As Integer
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
@@ -88,7 +99,7 @@ Namespace AdvancedAutoConcede
         ''' <seealso cref="AdvancedAutoConcedePluginData.MaxRankedConcedes"/>
         ''' <seealso cref="AdvancedAutoConcedePluginData.MaxUnrankedConcedes"/>
         ''' ----------------------------------------------------------------------------------------------------
-        Private concedesCount As Integer
+        Friend Shared concedesCount As Integer
 
         ''' ----------------------------------------------------------------------------------------------------
         ''' <summary>
@@ -130,11 +141,15 @@ Namespace AdvancedAutoConcede
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Public Overrides Sub OnPluginCreated()
+
             Me.lastEnabled = Me.DataContainer.Enabled
+            Me.lastAlwaysConcede = Me.DataContainer.AlwaysConcede
             If (Me.lastEnabled) Then
                 Bot.Log("[Advanced Auto Concede] -> Plugin initialized.")
             End If
+
             MyBase.OnPluginCreated()
+
         End Sub
 
         ''' ----------------------------------------------------------------------------------------------------
@@ -143,18 +158,30 @@ Namespace AdvancedAutoConcede
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Public Overrides Sub OnDataContainerUpdated()
+
             Dim enabled As Boolean = Me.DataContainer.Enabled
             If (enabled <> Me.lastEnabled) Then
                 If (enabled) Then
                     Bot.Log("[Advanced Auto Concede] -> Plugin enabled.")
                 Else
-                    Me.rankedWinsCount = 0
-                    Me.unrankedWinsCount = 0
+                    AdvancedAutoConcedePlugin.rankedWinsCount = 0
+                    AdvancedAutoConcedePlugin.unrankedWinsCount = 0
                     Bot.Log("[Advanced Auto Concede] -> Plugin disabled.")
                 End If
                 Me.lastEnabled = enabled
             End If
+
+            If (Me.lastAlwaysConcede) AndAlso Not (Me.DataContainer.AlwaysConcede) Then
+                Me.lastAlwaysConcede = False
+                AdvancedAutoConcedePlugin.concedesCount = 0
+
+            ElseIf Not (Me.lastAlwaysConcede) AndAlso (Me.DataContainer.AlwaysConcede) Then
+                Me.lastAlwaysConcede = True
+
+            End If
+
             MyBase.OnDataContainerUpdated()
+
         End Sub
 
         ''' ----------------------------------------------------------------------------------------------------
@@ -173,13 +200,16 @@ Namespace AdvancedAutoConcede
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Public Overrides Sub OnStopped()
+
             If (Me.DataContainer.Enabled) AndAlso (Me.DataContainer.ResetWinsCountAfterBotStop) Then
-                Me.rankedWinsCount = 0
-                Me.unrankedWinsCount = 0
-                Me.concedesCount = 0
+                AdvancedAutoConcedePlugin.rankedWinsCount = 0
+                AdvancedAutoConcedePlugin.unrankedWinsCount = 0
+                AdvancedAutoConcedePlugin.concedesCount = 0
                 Bot.Log("[Advanced Auto Concede] -> Wins count resets to zero, reason: bot stop.")
             End If
+
             MyBase.OnStopped()
+
         End Sub
 
         ''' ----------------------------------------------------------------------------------------------------
@@ -188,79 +218,125 @@ Namespace AdvancedAutoConcede
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Public Overrides Sub OnGameBegin()
+
             If (Me.DataContainer.Enabled) Then
-                Me.currentMode = Bot.CurrentMode()
 
-                Select Case Me.currentMode
+                If Not (Me.DataContainer.AlwaysConcede) Then
 
-                    Case Mode.RankedStandard, Mode.RankedWild
-                        If (Me.DataContainer.EnableRankedModeAutoConcede) Then
-                            Dim isWildMode As Boolean = (Me.currentMode = Mode.RankedWild)
-                            If Not isWildMode Then
-                                If (Bot.GetPlayerDatas.GetRank(wild:=False) > Me.DataContainer.MinRankStandard) Then
-                                    Me.rankedWinsCount = 0
-                                    Bot.Log("[Advanced Auto Concede] -> (Ranked Mode) Wins count resets to zero, reason: don't concede below the current standard rank.")
-                                    Exit Select
-                                End If
-                            Else
-                                If (Bot.GetPlayerDatas.GetRank(wild:=True) > Me.DataContainer.MinRankWild) Then
-                                    Me.rankedWinsCount = 0
-                                    Bot.Log("[Advanced Auto Concede] -> (Ranked Mode) Wins count resets to zero, reason: don't concede below the current wild rank.")
-                                    Exit Select
-                                End If
+                    Dim battletags As ReadOnlyCollection(Of String) = Me.DataContainer.GetBattletags()
+                    If battletags?.Any() Then
+
+                        Dim matchInfo As MatchInfo
+                        Dim player As Player
+
+                        Try
+                            matchInfo = HearthMirror.Reflection.GetMatchInfo()
+                            If matchInfo Is Nothing Then
+                                Bot.Log($"[Advanced Auto Concede] -> Error retrieving opponent BattleTag, {NameOf(matchInfo)}' is null. (HDT is outdated?)")
                             End If
 
-                            Bot.Log($"[Advanced Auto Concede] -> (Ranked Mode) Current wins count: {Me.rankedWinsCount}")
-                            If (Me.rankedWinsCount >= Me.DataContainer.MaxRankedWins) Then
-                                Bot.Log("[Advanced Auto Concede] -> (Ranked Mode) Conceding the current match, reason: max. ranked wins")
-                                Me.isMatchAutoConceded = True
-                                Bot.Concede()
-                                Exit Select
+                            player = matchInfo.OpposingPlayer
+                            If player Is Nothing Then
+                                Bot.Log($"[Advanced Auto Concede] -> Error retrieving opponent BattleTag, {NameOf(matchInfo.OpposingPlayer)}' is null. (HDT is outdated?)")
                             End If
 
-                            If (Me.concedesCount <> 0) Then
-                                If (Me.concedesCount < Me.DataContainer.MaxRankedConcedes) Then
-                                    Bot.Log(
-                                        $"[Advanced Auto Concede] -> (Ranked Mode) Conceding the current match, reason: repeat concede ({ _
-                                               (Me.concedesCount + 1)} of {Me.DataContainer.MaxRankedConcedes})")
-                                    Me.isMatchAutoConceded = True
-                                    Bot.Concede()
-                                Else
-                                    Me.concedesCount = 0
-                                End If
-                            End If
-                        End If
+                            If battletags.Contains($"{player.BattleTag.Name}#{player.BattleTag.Number}".ToLower()) OrElse
+                               battletags.Contains(player.BattleTag.Name.ToLower()) Then
 
-                    Case Mode.UnrankedStandard, Mode.UnrankedWild
-                        If (Me.DataContainer.EnableUnrankedModeAutoConcede) Then
-                            Bot.Log(
-                                $"[Advanced Auto Concede] -> (Unranked Mode) Current wins count: {Me.unrankedWinsCount}")
-                            If (Me.unrankedWinsCount >= Me.DataContainer.MaxUnrankedWins) Then
-                                Bot.Log("[Advanced Auto Concede] -> (Ranked Mode) Conceding the current match, reason: max. unranked wins")
+                                Bot.Log($"[Advanced Auto Concede] -> Conceding the current match, reason: '{player.BattleTag.Name}#{player.BattleTag.Number}' Battletag name.")
                                 Me.isMatchAutoConceded = True
                                 Bot.Concede()
                             End If
 
-                            If (Me.concedesCount <> 0) Then
-                                If (Me.concedesCount < Me.DataContainer.MaxUnrankedConcedes) Then
-                                    Bot.Log(
-                                        $"[Advanced Auto Concede] -> (Unranked Mode) Conceding the current match, reason: repeat concede ({ _
-                                               (Me.concedesCount + 1)} of {Me.DataContainer.MaxUnrankedConcedes})")
+                        Catch ex As Exception
+                            Bot.Log($"[Advanced Auto Concede] -> Error retrieving opponent BattleTag: {ex.Message}")
+
+                        End Try
+
+                    End If
+
+                    Me.currentMode = Bot.CurrentMode()
+
+                    Select Case Me.currentMode
+
+                        Case Mode.RankedStandard, Mode.RankedWild
+                            If (Me.DataContainer.EnableRankedModeAutoConcede) Then
+                                Dim isWildMode As Boolean = (Me.currentMode = Mode.RankedWild)
+                                If Not isWildMode Then
+                                    If (Bot.GetPlayerDatas.GetRank(wild:=False) > Me.DataContainer.MinRankStandard) Then
+                                        AdvancedAutoConcedePlugin.rankedWinsCount = 0
+                                        Bot.Log("[Advanced Auto Concede] -> (Ranked Mode) Wins count resets to zero, reason: don't concede below the current standard rank.")
+                                        Exit Select
+                                    End If
+                                Else
+                                    If (Bot.GetPlayerDatas.GetRank(wild:=True) > Me.DataContainer.MinRankWild) Then
+                                        AdvancedAutoConcedePlugin.rankedWinsCount = 0
+                                        Bot.Log("[Advanced Auto Concede] -> (Ranked Mode) Wins count resets to zero, reason: don't concede below the current wild rank.")
+                                        Exit Select
+                                    End If
+                                End If
+
+                                Bot.Log($"[Advanced Auto Concede] -> (Ranked Mode) Current wins count: {AdvancedAutoConcedePlugin.rankedWinsCount}")
+                                If (AdvancedAutoConcedePlugin.rankedWinsCount >= Me.DataContainer.MaxRankedWins) Then
+                                    Bot.Log("[Advanced Auto Concede] -> (Ranked Mode) Conceding the current match, reason: max. ranked wins")
                                     Me.isMatchAutoConceded = True
                                     Bot.Concede()
-                                Else
-                                    Me.concedesCount = 0
+                                    Exit Select
+                                End If
+
+                                If (AdvancedAutoConcedePlugin.concedesCount <> 0) Then
+                                    If (AdvancedAutoConcedePlugin.concedesCount < Me.DataContainer.MaxRankedConcedes) Then
+                                        Bot.Log(
+                                            $"[Advanced Auto Concede] -> (Ranked Mode) Conceding the current match, reason: repeat concede ({ _
+                                                   (AdvancedAutoConcedePlugin.concedesCount + 1)} of {Me.DataContainer.MaxRankedConcedes})")
+                                        Me.isMatchAutoConceded = True
+                                        Bot.Concede()
+                                    Else
+                                        AdvancedAutoConcedePlugin.concedesCount = 0
+                                    End If
                                 End If
                             End If
-                        End If
 
-                    Case Else ' Mode.Arena, Mode.ArenaAuto, Mode.Practice
-                        ' Do nothing.
+                        Case Mode.UnrankedStandard, Mode.UnrankedWild
+                            If (Me.DataContainer.EnableUnrankedModeAutoConcede) Then
+                                Bot.Log(
+                                    $"[Advanced Auto Concede] -> (Unranked Mode) Current wins count: {AdvancedAutoConcedePlugin.unrankedWinsCount}")
+                                If (AdvancedAutoConcedePlugin.unrankedWinsCount >= Me.DataContainer.MaxUnrankedWins) Then
+                                    Bot.Log("[Advanced Auto Concede] -> (Ranked Mode) Conceding the current match, reason: max. unranked wins")
+                                    Me.isMatchAutoConceded = True
+                                    Bot.Concede()
+                                End If
 
-                End Select
+                                If (AdvancedAutoConcedePlugin.concedesCount <> 0) Then
+                                    If (AdvancedAutoConcedePlugin.concedesCount < Me.DataContainer.MaxUnrankedConcedes) Then
+                                        Bot.Log(
+                                            $"[Advanced Auto Concede] -> (Unranked Mode) Conceding the current match, reason: repeat concede ({ _
+                                                   (AdvancedAutoConcedePlugin.concedesCount + 1)} of {Me.DataContainer.MaxUnrankedConcedes})")
+                                        Me.isMatchAutoConceded = True
+                                        Bot.Concede()
+                                    Else
+                                        AdvancedAutoConcedePlugin.concedesCount = 0
+                                    End If
+                                End If
+                            End If
+
+                        Case Else ' Mode.Arena, Mode.ArenaAuto, Mode.Practice
+                            ' Do nothing.
+
+                    End Select
+
+                Else 'If Me.DataContainer.AlwaysConcede
+                    Bot.Log("[Advanced Auto Concede] -> Conceding the current match, reason: 'Always concede' is enabled")
+                    'Me.isMatchAutoConceded = True
+                    AdvancedAutoConcedePlugin.concedesCount += 1
+                    Bot.Concede()
+
+                End If
+
             End If
 
             MyBase.OnGameBegin()
+
         End Sub
 
         ''' ----------------------------------------------------------------------------------------------------
@@ -269,13 +345,15 @@ Namespace AdvancedAutoConcede
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Public Overrides Sub OnDefeat()
-            If (Me.DataContainer.Enabled) Then
+
+            If (Me.DataContainer.Enabled) AndAlso Not (Me.DataContainer.AlwaysConcede) Then
+
                 Select Case Me.currentMode
 
                     Case Mode.RankedStandard, Mode.RankedWild
                         If (Me.DataContainer.EnableRankedModeAutoConcede) Then
                             If (Me.DataContainer.ResetWinsCountAfterLose) Then
-                                Me.rankedWinsCount = 0
+                                AdvancedAutoConcedePlugin.rankedWinsCount = 0
                                 If Not (Me.isMatchAutoConceded) Then
                                     Bot.Log("[Advanced Auto Concede] -> (Ranked Mode) Wins count resets to zero, reason: defeat.")
                                 End If
@@ -299,7 +377,7 @@ Namespace AdvancedAutoConcede
                     Case Mode.UnrankedStandard, Mode.UnrankedWild
                         If (Me.DataContainer.EnableUnrankedModeAutoConcede) Then
                             If (Me.DataContainer.ResetWinsCountAfterLose) Then
-                                Me.unrankedWinsCount = 0
+                                AdvancedAutoConcedePlugin.unrankedWinsCount = 0
                                 If Not (Me.isMatchAutoConceded) Then
                                     Bot.Log("[Advanced Auto Concede] -> (Unranked Mode) Wins count resets to zero, reason: defeat.")
                                 End If
@@ -310,14 +388,17 @@ Namespace AdvancedAutoConcede
                         ' Do nothing.
 
                 End Select
+
             End If
+
             If (Me.isMatchAutoConceded) Then
-                Me.concedesCount += 1
+                AdvancedAutoConcedePlugin.concedesCount += 1
             End If
 
             Me.isMatchAutoConceded = False
 
             MyBase.OnDefeat()
+
         End Sub
 
         ''' ----------------------------------------------------------------------------------------------------
@@ -326,20 +407,22 @@ Namespace AdvancedAutoConcede
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Public Overrides Sub OnVictory()
-            If (Me.DataContainer.Enabled) Then
+
+            If (Me.DataContainer.Enabled) AndAlso Not (Me.DataContainer.AlwaysConcede) Then
+
                 Select Case Me.currentMode
 
                     Case Mode.RankedStandard, Mode.RankedWild
                         If (Me.DataContainer.EnableRankedModeAutoConcede) Then
-                            Me.rankedWinsCount += 1
-                            Bot.Log($"[Advanced Auto Concede] -> (Ranked Mode) Current wins count: {Me.rankedWinsCount}")
+                            AdvancedAutoConcedePlugin.rankedWinsCount += 1
+                            Bot.Log($"[Advanced Auto Concede] -> (Ranked Mode) Current wins count: {AdvancedAutoConcedePlugin.rankedWinsCount}")
                         End If
 
                     Case Mode.UnrankedStandard, Mode.UnrankedWild
                         If (Me.DataContainer.EnableUnrankedModeAutoConcede) Then
-                            Me.unrankedWinsCount += 1
+                            AdvancedAutoConcedePlugin.unrankedWinsCount += 1
                             Bot.Log(
-                                $"[Advanced Auto Concede] -> (Unranked Mode) Current wins count: {Me.unrankedWinsCount}")
+                                $"[Advanced Auto Concede] -> (Unranked Mode) Current wins count: {AdvancedAutoConcedePlugin.unrankedWinsCount}")
                         End If
 
                     Case Else ' Mode.Arena, Mode.ArenaAuto, Mode.Practice
@@ -347,7 +430,9 @@ Namespace AdvancedAutoConcede
 
                 End Select
             End If
+
             MyBase.OnVictory()
+
         End Sub
 
         ''' ----------------------------------------------------------------------------------------------------
@@ -356,21 +441,32 @@ Namespace AdvancedAutoConcede
         ''' </summary>
         ''' ----------------------------------------------------------------------------------------------------
         Public Overrides Sub OnConcede()
+
             If (Me.DataContainer.Enabled) Then
+
+                If (Me.DataContainer.AlwaysConcede) Then
+                    Exit Sub
+                End If
+
                 Select Case Me.currentMode
+
                     Case Mode.RankedStandard, Mode.RankedWild
-                        Me.rankedWinsCount = 0
+                        AdvancedAutoConcedePlugin.rankedWinsCount = 0
                         Bot.Log("[Advanced Auto Concede] -> (Ranked Mode) Wins count resets to zero, reason: auto-concede.")
 
                     Case Mode.UnrankedStandard, Mode.UnrankedWild
-                        Me.unrankedWinsCount = 0
+                        AdvancedAutoConcedePlugin.unrankedWinsCount = 0
                         Bot.Log("[Advanced Auto Concede] -> (Unranked Mode) Wins count resets to zero, reason: auto-concede.")
 
                     Case Else
                         ' Do nothing.
+
                 End Select
+
             End If
+
             MyBase.OnConcede()
+
         End Sub
 
         ''' ----------------------------------------------------------------------------------------------------
