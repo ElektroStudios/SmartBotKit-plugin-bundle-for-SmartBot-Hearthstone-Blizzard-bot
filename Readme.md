@@ -1,4 +1,16 @@
-﻿# **SmartBotKit**
+# **Discontinued**
+
+I decided to discontinue the public development of this library and all of the plugins to concentrate my efforts on other private projects.
+
+This repository will become now archived and made read-only. You can still download the current public releases.
+
+You can always contact me for a paid job if you need support or the development of a custom plugin for SmartBot.
+
+I hope you can enjoy and appreciate the effort that I have put into the development of all these plugins over several years.
+
+Good bye.
+
+# **SmartBotKit**
 
 **SmartBotKit** is a personal collection of plugins developed for **SmartBot**, a bot for **Hearthstone** videogame.
 
