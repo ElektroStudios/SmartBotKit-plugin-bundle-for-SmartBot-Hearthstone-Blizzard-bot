@@ -32,7 +32,7 @@ winforms
 
 ## 🤖 Getting Started
 
-Download the latest release by clicking [here](https://github.com/ElektroStudios/PROJECT_NAME/releases/latest),
+Download the latest release by clicking [here](https://github.com/ElektroStudios/SmartBotKit-plugin-bundle-for-SmartBot-Hearthstone-Blizzard-bot/releases/latest),
 
 ## ⚠️ Disclaimer:
 
