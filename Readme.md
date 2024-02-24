@@ -1,52 +1,40 @@
-# **Discontinued**
+<!-- Common Project Tags:
+command-line 
+console-applications 
+desktop-app 
+desktop-application 
+dotnet 
+dotnet-core 
+netcore 
+netframework 
+netframework48 
+tool 
+tools 
+vbnet 
+visualstudio 
+windows 
+windows-app 
+windows-application 
+windows-applications 
+windows-forms 
+winforms 
+ -->
 
-I decided to discontinue the public development of this library and all of the plugins to concentrate my efforts on other private projects.
+# THIS PROJECT IS DISCONTINUED AND ARCHIVED (READ-ONLY)
 
-This repository will become now archived and made read-only. You can still download the current public releases.
+# **SmartBotKit** - A personal bundle of plugins developed for [SmartBot](https://smartbot.ws/), a bot for [Hearthstone](https://hearthstone.blizzard.com/) video game.
 
-You can always contact me for a paid job if you need support or the development of a custom plugin for SmartBot.
+### Almost all the plugins were tested on year 2023, and they were working fine with the current Hearthstone version.
 
-I hope you can enjoy and appreciate the effort that I have put into the development of all these plugins over several years.
+### **SmartBotKit** plugins will not be updated anymore.
 
-Good bye.
+------------------
 
-# **SmartBotKit**
+## 👋 Introduction
 
-**SmartBotKit** is a personal collection of plugins developed for **SmartBot**, a bot for **Hearthstone** videogame.
+INTRODUCTION TEXT
 
-SmartBot's official website: https://smartbot.ws/
-
-Please be aware that using bots/cheats is against **Blizzard** EULA:
-
-http://eu.blizzard.com/en-gb/company/legal/anti-cheating.html
-
-These plugins were developed just for fun, and are shared here only for educative purposes. 
-
-I don't use bots, I'm just a enthusiastic programmer that like to learn new things about how are built and how functions this kind of software for video games.
-
-# **Donations**
-
-##### Through Paypal:
-If you like my work and want to support it, then please consider to deposit a donation through **Paypal** by clicking on the next button:
-
-[![Donataion Account](Images/Paypal.png)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=E4RQEV6YF5NZY)
-
-[![Donataion Amount](https://img.shields.io/badge/Current%20donations-0%24-red.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=E4RQEV6YF5NZY)
-
-You are free to specify whatever amount of money you wish. That money will be sent to my **Paypal** account.
-
-##### Through Envato:
-If you are a .NET programmer, then maybe you would like to consider the purchase of 
-'**DevCase for .NET Framework**', a powerful set of APIs for .NET developers, created by me. 
-
-You can click the next button to go to the product specifications and the purchase page:
-
-[![DevCase for .NET Framework](Images/DevCase%20Banner.png)](https://codecanyon.net/item/elektrokit-class-library-for-net/19260282)
-
-Note that any source-code within the namespace 'DevCase' included in this **GitHub** repository, was freely extracted and distributed from the commercial library '**DevCase for .NET Framework**'.
-
-<u>**Thanks in advance for your consideration!**</u> :thumbsup:
-
+## 👌 Features
 
 # **Libraries**
 
@@ -216,15 +204,40 @@ Settings:
 
 ![](Images/UI%20Enhancer%20-%20Settings.png)
 
-# **Discontinued Plugins**
+## 🤖 Getting Started
 
-### Challenge Notifier
-A plugin that notifies when a friend challenge is received, like the 'Play a Friend' challenge.
+Download the latest release by clicking [here](https://github.com/ElektroStudios/PROJECT_NAME/releases/latest),
 
-### PlayVIG Adverts Remover
+## ⚠️ Disclaimer:
 
-PlayVIG is a software that pays you for playing Arena or Ranked mode in Hearthstone (and for other games).
+Please be aware that using bots/cheats is against **Blizzard** EULA:
 
-The program automatically shows a top-most advert window for around 20 seconds every time you end a game in Hearthstone while a PlayVIG quest is active.
+ - http://eu.blizzard.com/en-gb/company/legal/anti-cheating.html
 
-This plugin will mute the audio volume of PlayVIG process and remove any advert window shown.
+These plugins were developed just for fun, and they are shared here only for educative purposes. 
+
+This Work (the repository and the content provided in) is provided "as is", without warranty of any kind, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose and noninfringement. In no event shall the authors or copyright holders be liable for any claim, damages or other liability, whether in an action of contract, tort or otherwise, arising from, out of or in connection with the Work or the use or other dealings in the Work.
+
+## 💪 Contributing
+
+SORRY, BUT THIS PROJECT IS DISCONTINUED AND ARCHIVED (READ-ONLY).
+
+## 💰 Beyond Contribution 
+
+This work is distributed for educational purposes and without any profit motive. However, if you find value in my efforts and wish to support and motivate my ongoing work, you may consider contributing financially through the following options:
+
+ - ### Paypal:
+    You can donate any amount you like via **Paypal** by clicking on this button:
+
+    [![Donation Account](Images/Paypal_Donate.png)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=E4RQEV6YF5NZY)
+
+ - ### Envato Market:
+   If you are a .NET developer, you may want to explore '**DevCase Class Library for .NET**', a huge set of APIs that I have on sale.
+   Almost all reusable code that you can find across my works is condensed, refined and provided through DevCase Class Library.
+
+    Check out the product:
+    
+   [![DevCase Class Library for .NET](Images/DevCase_Banner.png)](https://codecanyon.net/item/elektrokit-class-library-for-net/19260282)
+
+<u>**Your support means the world to me! Thank you for considering it!**</u> 👍
+

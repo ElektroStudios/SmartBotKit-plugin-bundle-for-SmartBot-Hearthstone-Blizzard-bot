@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D2D33EB8-ED7B-4800-92B8-6302934F2082}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>
+    </RootNamespace>
+    <AssemblyName>SmartBotKit.Core</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>Windows</MyType>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>..\..\Bin\Debug\Plugins\libs\</OutputPath>
+    <DocumentationFile>
+    </DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>none</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\Bin\Release\Plugins\libs\</OutputPath>
+    <DocumentationFile>
+    </DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>..\..\Bin\Debug\Plugins\libs\</OutputPath>
+    <DocumentationFile>
+    </DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>..\..\Bin\Release\Plugins\libs\</OutputPath>
+    <DocumentationFile>
+    </DocumentationFile>
+    <Optimize>true</Optimize>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DocumentationFile>
+    </DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DocumentationFile>
+    </DocumentationFile>
+    <Optimize>true</Optimize>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <PlatformTarget>x64</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="HearthMirror">
+      <HintPath>..\..\References\HearthMirror.dll</HintPath>
+    </Reference>
+    <Reference Include="HearthWatcher">
+      <HintPath>..\..\References\HearthWatcher.dll</HintPath>
+    </Reference>
+    <Reference Include="SBAPI">
+      <HintPath>..\..\References\SBAPI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Xml.Serialization" />
+    <Reference Include="UIAutomationClient" />
+    <Reference Include="UIAutomationTypes" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Application\TaskBarManager.vb" />
+    <Compile Include="Audio\AudioUtil.vb" />
+    <Compile Include="Computer\PowerUtil.vb" />
+    <Compile Include="Computer\ShutdownMode.vb" />
+    <Compile Include="Extensions\EnumExtensions.vb" />
+    <Compile Include="Interop\Computer\ComputerState.vb" />
+    <Compile Include="Interop\Win32\Luid.vb" />
+    <Compile Include="Interop\Win32\LuidAndAttributes.vb" />
+    <Compile Include="Interop\Win32\PrivilegeStates.vb" />
+    <Compile Include="Interop\Win32\ProcessPrivileges.vb" />
+    <Compile Include="Interop\Win32\ShutdownPlanning.vb" />
+    <Compile Include="Computer\ShutdownReason.vb" />
+    <Compile Include="Extensions\TimeSpanExtensions.vb" />
+    <Compile Include="Extensions\IListExtensions.vb" />
+    <Compile Include="Extensions\IEnumerableExtensions.vb" />
+    <Compile Include="Extensions\RectangleExtensions.vb" />
+    <Compile Include="Extensions\BitmapExtensions.vb" />
+    <Compile Include="Extensions\ImageExtensions.vb" />
+    <Compile Include="Imaging\ImageCaptureInfo.vb" />
+    <Compile Include="Imaging\ImageUtil.vb" />
+    <Compile Include="Imaging\PixelInfo.vb" />
+    <Compile Include="Interop\Hearthstone\FriendChallengeType.vb" />
+    <Compile Include="Interop\Hearthstone\HearthstoneUtil.vb" />
+    <Compile Include="Interop\SmartBot\SmartBotEvent.vb" />
+    <Compile Include="Interop\Win32\EDataFlow.vb" />
+    <Compile Include="Interop\Win32\ERole.vb" />
+    <Compile Include="Interop\Win32\IAudioSessionControl.vb" />
+    <Compile Include="Interop\Win32\IAudioSessionControl2.vb" />
+    <Compile Include="Interop\Win32\IAudioSessionEnumerator.vb" />
+    <Compile Include="Interop\Win32\IAudioSessionManager2.vb" />
+    <Compile Include="Interop\Win32\IMMDevice.vb" />
+    <Compile Include="Interop\Win32\IMMDeviceEnumerator.vb" />
+    <Compile Include="Interop\Win32\InitiateShutdownFlags.vb" />
+    <Compile Include="Interop\Win32\ISimpleAudioVolume.vb" />
+    <Compile Include="Interop\Win32\MMDeviceEnumerator.vb" />
+    <Compile Include="Interop\Win32\SetWindowPosFlags.vb" />
+    <Compile Include="Interop\Win32\TernaryRasterOperations.vb" />
+    <Compile Include="Interop\Win32\HResult.vb" />
+    <Compile Include="Interop\Win32\DwmWindowAttribute.vb" />
+    <Compile Include="Interop\Win32\TokenAccess.vb" />
+    <Compile Include="Interop\Win32\TokenInformationClass.vb" />
+    <Compile Include="Interop\Win32\TokenPrivileges.vb" />
+    <Compile Include="Interop\Win32\WindowLongFlags.vb" />
+    <Compile Include="Interop\Win32\WindowStylesEx.vb" />
+    <Compile Include="IPC\ProcessUtil.vb" />
+    <Compile Include="ReservedUse\UpdateUtil.vb" />
+    <Compile Include="System\SystemInfoUtil.vb" />
+    <Compile Include="Interop\Hearthstone\HearthMirrorFriendlyChallengeProvider.vb" />
+    <Compile Include="Text\StringCase.vb" />
+    <Compile Include="Extensions\StringExtensions.vb" />
+    <Compile Include="Interop\Win32\CTaskbarList.vb" />
+    <Compile Include="Interop\Win32\ITaskbarList4.vb" />
+    <Compile Include="Interop\Win32\TaskbarList.vb" />
+    <Compile Include="Interop\Win32\TaskbarProgressBarState.vb" />
+    <Compile Include="IO\HotkeyIsNotRegisteredException.vb" />
+    <Compile Include="IO\HotkeyIsRegisteredException.vb" />
+    <Compile Include="IO\HotkeyPressEventArgs.vb" />
+    <Compile Include="IO\HotkeyModifiers.vb" />
+    <Compile Include="IO\Hotkey.vb" />
+    <Compile Include="Interop\Win32\NativeHotkeyModifiers.vb" />
+    <Compile Include="Interop\Win32\WindowsMessages.vb" />
+    <Compile Include="Interop\SmartBot\SmartBotUtil.vb" />
+    <Compile Include="Interop\Win32\NativeMethods.vb" />
+    <Compile Include="Interop\Win32\NativePoint.vb" />
+    <Compile Include="Interop\Win32\NativeRectangle.vb" />
+    <Compile Include="Interop\Win32\WindowState.vb" />
+    <Compile Include="Interop\Win32\WindowPlacement.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+</Project>
