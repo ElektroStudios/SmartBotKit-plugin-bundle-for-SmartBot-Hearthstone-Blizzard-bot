@@ -22,11 +22,11 @@ winforms
 
 # THIS PROJECT IS DISCONTINUED AND ARCHIVED (READ-ONLY)
 
-# **SmartBotKit** - A personal bundle of plugins developed for [SmartBot](https://smartbot.ws/), a bot for [Hearthstone](https://hearthstone.blizzard.com/) video game.
+# **SmartBotKit** - A personal bundle of plugins developed for [SmartBot](https://smartbot.ws/), a bot for Blizzard's [Hearthstone](https://hearthstone.blizzard.com/) video game.
 
-### Almost all the plugins were tested on middle of year 2023, and they were working fine with the current Hearthstone version.
+### ‼️ Almost all the plugins were tested on middle of year 2023, and they were working fine with the current Hearthstone version.
 
-### **SmartBotKit** plugins will not be updated anymore.
+### 🚫 **SmartBotKit** plugins will not be updated anymore.
 
 ------------------
 
